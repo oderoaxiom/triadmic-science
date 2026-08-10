@@ -1,15 +1,15 @@
 :root {
-    --bg-main: #070a10;
-    --bg-card: #111622;
-    --border-card: #202738;
-    --border-accent: #3b82f6;
-    --text-primary: #e2e8f0;
+    --bg-main: #05070c;
+    --bg-card: rgba(13, 18, 30, 0.75);
+    --border-card: rgba(255, 255, 255, 0.08);
+    --border-hover: #38bdf8;
+    --text-primary: #f1f5f9;
     --text-muted: #94a3b8;
     --text-heading: #ffffff;
-    --accent-gold: #f59e0b;
-    --accent-blue: #60a5fa;
-    --glow-gold: rgba(245, 158, 11, 0.15);
-    --glow-blue: rgba(96, 165, 250, 0.12);
+    --accent-gold: #fbbf24;
+    --accent-blue: #38bdf8;
+    --glow-gold: rgba(251, 191, 36, 0.12);
+    --glow-blue: rgba(56, 189, 248, 0.15);
 }
 
 * {
@@ -19,20 +19,23 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-main);
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+    background-attachment: fixed;
     color: var(--text-primary);
-    line-height: 1.75;
+    line-height: 1.8;
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism Header */
 header {
     border-bottom: 1px solid var(--border-card);
-    background-color: rgba(11, 16, 26, 0.85);
+    background-color: rgba(5, 7, 12, 0.8);
     position: sticky;
     top: 0;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
     z-index: 1000;
 }
 
@@ -46,26 +49,25 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .site-title {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
-    color: var(--text-heading);
+    letter-spacing: -0.03em;
     text-decoration: none;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .nav-menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -76,21 +78,34 @@ header {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
 .nav-menu a:hover, .nav-menu a.active {
-    color: var(--accent-blue);
+    color: #ffffff;
 }
 
-/* Framer-Style Cards */
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-blue);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
 .card {
-    background-color: var(--bg-card);
+    background: var(--bg-card);
     border: 1px solid var(--border-card);
-    border-radius: 12px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-radius: 16px;
+    padding: 3rem;
+    margin-bottom: 2.5rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     position: relative;
     overflow: hidden;
 }
@@ -100,99 +115,100 @@ header {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
 }
 
 h1 {
-    font-size: 2.25rem;
+    font-size: 2.75rem;
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     color: var(--text-heading);
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
 }
 
 h2 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-heading);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .sub-title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
     font-weight: 400;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-/* Axiom Focus Box */
 .axiom-box {
-    background: radial-gradient(circle at center, var(--glow-gold) 0%, rgba(0,0,0,0.8) 100%);
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    border-radius: 10px;
-    padding: 2rem;
+    background: radial-gradient(circle at center, var(--glow-gold) 0%, rgba(0,0,0,0.9) 100%);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
     text-align: center;
     margin: 2.5rem 0;
-    box-shadow: 0 0 25px var(--glow-gold);
+    box-shadow: 0 0 35px var(--glow-gold);
 }
 
 .axiom-title {
     color: var(--accent-gold);
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.75rem;
+    letter-spacing: 2.5px;
+    margin-bottom: 1rem;
 }
 
 .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+    margin-top: 1.75rem;
 }
 
 .paper-card {
-    background-color: var(--bg-card);
+    background: var(--bg-card);
     border: 1px solid var(--border-card);
-    border-radius: 12px;
-    padding: 1.75rem;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 14px;
+    padding: 2rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
     color: inherit;
     display: block;
+    backdrop-filter: blur(12px);
 }
 
 .paper-card:hover {
     border-color: var(--accent-blue);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px var(--glow-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 35px var(--glow-blue);
 }
 
 .paper-title {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--accent-blue);
 }
 
 .badge {
-    background-color: rgba(96, 165, 250, 0.1);
+    background: rgba(56, 189, 248, 0.1);
     color: var(--accent-blue);
-    padding: 0.25rem 0.6rem;
+    padding: 0.35rem 0.8rem;
     border-radius: 9999px;
     font-size: 0.75rem;
-    font-weight: 600;
-    border: 1px solid rgba(96, 165, 250, 0.25);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(56, 189, 248, 0.3);
     display: inline-block;
 }
 
-/* Forms & Inputs */
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
 }
 
 .form-group label {
@@ -205,43 +221,46 @@ h2 {
 
 .form-group input, .form-group textarea {
     width: 100%;
-    padding: 0.85rem;
-    background-color: #080c14;
+    padding: 1rem;
+    background: rgba(5, 7, 12, 0.8);
     border: 1px solid var(--border-card);
-    border-radius: 8px;
+    border-radius: 10px;
     color: var(--text-primary);
     font-family: inherit;
     font-size: 0.95rem;
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
 }
 
 .form-group input:focus, .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-blue);
+    box-shadow: 0 0 15px var(--glow-blue);
 }
 
 .btn-submit {
-    background-color: var(--accent-blue);
-    color: #000000;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
     font-weight: 700;
-    padding: 0.85rem 1.75rem;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 20px var(--glow-blue);
 }
 
 .btn-submit:hover {
-    opacity: 0.9;
+    opacity: 0.95;
+    transform: translateY(-1px);
 }
 
 footer {
     border-top: 1px solid var(--border-card);
     text-align: center;
-    padding: 2.5rem 0;
+    padding: 3rem 0;
     color: var(--text-muted);
     font-size: 0.85rem;
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
 
 footer a {
