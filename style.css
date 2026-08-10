@@ -8,7 +8,7 @@
     --text-heading: #ffffff;
     --accent-gold: #fbbf24;
     --accent-blue: #38bdf8;
-    --glow-gold: rgba(251, 191, 36, 0.35); /* Increased glow intensity */
+    --glow-gold: rgba(251, 191, 36, 0.35);
     --glow-gold-intense: rgba(251, 191, 36, 0.65);
     --glow-blue: rgba(56, 189, 248, 0.25);
 }
@@ -157,7 +157,6 @@ h2 {
     padding: 3rem 2rem;
     text-align: center;
     margin: 2.5rem 0;
-    /* Multi-layered glow effect */
     box-shadow: 
         0 0 30px var(--glow-gold),
         0 0 70px rgba(251, 191, 36, 0.15),
@@ -175,10 +174,9 @@ h2 {
     transform: scale(1.01);
 }
 
-/* INCREASED AXIOM TITLE FONT */
 .axiom-title {
     color: var(--accent-gold);
-    font-size: 1.1rem; /* Increased size */
+    font-size: 1.1rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -186,7 +184,13 @@ h2 {
     text-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
 }
 
-/* Metric Stats Highlight Cards */
+.math-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.25rem 0;
+}
+
 .math-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -308,4 +312,21 @@ footer {
 footer a {
     color: var(--accent-blue);
     text-decoration: none;
+}
+
+/* Mobile Responsiveness Rules */
+@media (max-width: 480px) {
+    .axiom-box {
+        padding: 2rem 1rem;
+    }
+    
+    .axiom-box .katex-display {
+        font-size: 1.25rem !important; 
+        margin: 0.5rem 0 !important;
+    }
+    
+    .axiom-title {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
 }
