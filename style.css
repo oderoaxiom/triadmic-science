@@ -6,7 +6,7 @@
     --accent-blue: #3b82f6;
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --text-heading: #ffffff;
+    --text-heading: #3b82f6; /* Restored vibrant blue for main headings */
 }
 
 * {
@@ -32,7 +32,7 @@ body {
 /* Navigation Header */
 header {
     border-bottom: 1px solid var(--border-card);
-    background: rgba(10, 14, 23, 0.8);
+    background: rgba(10, 14, 23, 0.85);
     backdrop-filter: blur(8px);
     position: sticky;
     top: 0;
@@ -73,7 +73,7 @@ header {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: var(--text-primary);
+    color: var(--accent-blue);
 }
 
 /* Cards & Content Layout */
@@ -85,22 +85,31 @@ header {
     margin-top: 2rem;
 }
 
+/* Headings & Subtitles with Blue Accents */
 h1 {
     font-size: 2rem;
-    color: var(--text-heading);
+    color: var(--accent-blue);
     margin-bottom: 0.5rem;
 }
 
 h2 {
     font-size: 1.4rem;
-    color: var(--text-heading);
+    color: var(--accent-blue);
     margin-bottom: 1rem;
 }
 
+h3 {
+    font-size: 1.15rem;
+    color: var(--accent-blue);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
 .sub-title {
-    color: var(--accent-gold);
+    color: #60a5fa; /* Lighter vivid blue for sub-titles */
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
+    font-weight: 500;
 }
 
 p {
@@ -118,13 +127,16 @@ li {
     color: var(--text-primary);
 }
 
-/* Axiom Display Box */
+/* Axiom Box with Vibrant Gold Glow */
 .axiom-box {
     border: 1.5px solid var(--accent-gold);
     border-radius: 12px;
     padding: 2rem;
-    background: rgba(245, 158, 11, 0.02);
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.05);
+    background: rgba(245, 158, 11, 0.03);
+    box-shadow: 
+        0 0 15px rgba(245, 158, 11, 0.4),
+        0 0 35px rgba(245, 158, 11, 0.2),
+        inset 0 0 15px rgba(245, 158, 11, 0.1);
     text-align: center;
     overflow: hidden;
 }
@@ -136,6 +148,7 @@ li {
     letter-spacing: 2px;
     font-weight: 700;
     margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
 .math-wrapper {
@@ -145,7 +158,7 @@ li {
     padding: 0.5rem 0;
 }
 
-/* Responsive Grid for Mathematical Metrics */
+/* Responsive Grid for Formulas & Metrics */
 .math-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -166,6 +179,7 @@ li {
 
 .math-card.gold-border {
     border-color: var(--accent-gold);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
 }
 
 .math-card-title {
@@ -174,7 +188,7 @@ li {
     margin-bottom: 0.5rem;
 }
 
-/* Badge Links */
+/* Badges & Buttons */
 .badge {
     display: inline-block;
     padding: 0.35rem 0.75rem;
@@ -188,8 +202,9 @@ li {
 }
 
 .badge:hover {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
 /* Footer Styling */
