@@ -6,7 +6,7 @@
     --accent-blue: #3b82f6;
     --text-primary: #f8fafc;
     --text-muted: #94a3b8;
-    --text-heading: #3b82f6; /* Restored vibrant blue for main headings */
+    --text-heading: #3b82f6;
 }
 
 * {
@@ -48,12 +48,22 @@ header {
     gap: 1rem;
 }
 
+/* World-Class Bluish-White Gradient Site Title */
 .site-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--accent-gold);
     text-decoration: none;
     letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    transition: filter 0.3s ease;
+}
+
+.site-title:hover {
+    filter: drop-shadow(0 0 8px rgba(147, 197, 253, 0.5));
 }
 
 .nav-menu {
@@ -76,7 +86,7 @@ header {
     color: var(--accent-blue);
 }
 
-/* Cards & Content Layout */
+/* Cards & Structural Layout */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border-card);
@@ -85,7 +95,7 @@ header {
     margin-top: 2rem;
 }
 
-/* Headings & Subtitles with Blue Accents */
+/* Headings & Subtitles */
 h1 {
     font-size: 2rem;
     color: var(--accent-blue);
@@ -106,7 +116,7 @@ h3 {
 }
 
 .sub-title {
-    color: #60a5fa; /* Lighter vivid blue for sub-titles */
+    color: #60a5fa;
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
     font-weight: 500;
@@ -127,18 +137,37 @@ li {
     color: var(--text-primary);
 }
 
-/* Axiom Box with Vibrant Gold Glow */
+/* Axiom Box with Golden Aura & Touch Interaction */
 .axiom-box {
-    border: 1.5px solid var(--accent-gold);
-    border-radius: 12px;
-    padding: 2rem;
-    background: rgba(245, 158, 11, 0.03);
-    box-shadow: 
-        0 0 15px rgba(245, 158, 11, 0.4),
-        0 0 35px rgba(245, 158, 11, 0.2),
-        inset 0 0 15px rgba(245, 158, 11, 0.1);
+    border: 2px solid #f59e0b;
+    border-radius: 18px;
+    padding: 2.25rem 1.5rem;
+    background: rgba(245, 158, 11, 0.02);
     text-align: center;
-    overflow: hidden;
+    overflow: visible;
+    
+    /* Layered radiant aura */
+    box-shadow: 
+        0 0 20px rgba(245, 158, 11, 0.5),
+        0 0 45px rgba(245, 158, 11, 0.35),
+        0 0 85px rgba(245, 158, 11, 0.2),
+        inset 0 0 25px rgba(245, 158, 11, 0.15);
+        
+    /* Smooth transition for touch / hover */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    will-change: transform, box-shadow;
+}
+
+/* Dynamic Hover / Touch Feedback (Slight Zoom Out + Radiant Elevation) */
+.axiom-box:hover,
+.axiom-box:active {
+    transform: scale(0.98);
+    box-shadow: 
+        0 0 30px rgba(245, 158, 11, 0.7),
+        0 0 65px rgba(245, 158, 11, 0.5),
+        0 0 110px rgba(245, 158, 11, 0.3),
+        inset 0 0 35px rgba(245, 158, 11, 0.25);
 }
 
 .axiom-title {
@@ -175,6 +204,12 @@ li {
     text-align: center;
     box-sizing: border-box;
     width: 100%;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.math-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 158, 11, 0.5);
 }
 
 .math-card.gold-border {
@@ -188,7 +223,7 @@ li {
     margin-bottom: 0.5rem;
 }
 
-/* Badges & Buttons */
+/* Badges & Action Links */
 .badge {
     display: inline-block;
     padding: 0.35rem 0.75rem;
@@ -207,7 +242,7 @@ li {
     box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
 }
 
-/* Footer Styling */
+/* Footer */
 footer {
     margin-top: 4rem;
     padding-top: 2rem;
@@ -226,7 +261,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Mobile Adjustments */
+/* Mobile Responsiveness */
 @media (max-width: 600px) {
     .card {
         padding: 1.25rem;
