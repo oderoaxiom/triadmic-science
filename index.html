@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Search Engine Optimization (SEO) -->
+    <!-- Primary Metadata -->
     <title>Persistence Science | Odero Persistence Axiom</title>
     <meta name="description" content="Persistence Science is a first-principles mathematical framework explaining how complex systems persist, adapt, and collapse across physics, economics, biological systems, and network architectures.">
     <meta name="keywords" content="complex systems, resilience, physics, information theory, economics, cosmology, persistence science, Odero Persistence Axiom">
     <meta name="author" content="John Otieno Odero">
 
-    <!-- JSON-LD Structured Data for Scholarly Indexing -->
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Persistence Science | Odero Persistence Axiom">
+    <meta property="og:description" content="A first-principles mathematical framework explaining complex system persistence and collapse.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.21650616">
+
+    <!-- External Linked Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -23,570 +40,18 @@
       "identifier": "10.5281/zenodo.21650616"
     }
     </script>
-
-    <!-- Three.js and CSS3DRenderer Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js"></script>
-
-    <!-- KaTeX Library for Math Formula Rendering -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {
-                delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false}
-                ]
-            });"></script>
-
-    <style>
-        :root {
-            --bg-color: #080c14;
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-blue: #38bdf8;
-            --accent-amber: #f59e0b;
-            --accent-green: #10b981;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* 3D WebGL Background Canvas Container */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* 3D CSS Floating Layer Container */
-        #css3d-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Glassmorphism Header */
-        header {
-            padding: 1.25rem 0;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .site-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 1.5rem;
-        }
-
-        .nav-menu a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            color: var(--accent-blue);
-        }
-
-        /* Scroll Reveal Animation Styles */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hero Section with Watermark Background */
-        .hero {
-            padding: 4.5rem 0 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-watermark {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            color: var(--accent-blue);
-            opacity: 0.05;
-            white-space: nowrap;
-            user-select: none;
-            pointer-events: none;
-            z-index: -1;
-            font-family: serif;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border-radius: 9999px;
-            padding: 0.35rem 0.9rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        h1 {
-            font-size: clamp(2.4rem, 5vw, 3.4rem);
-            margin: 0 0 0.5rem 0;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        .sub-title {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            color: var(--accent-blue);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.35;
-        }
-
-        .hero-description {
-            font-size: 1.05rem;
-            color: #cbd5e1;
-            max-width: 850px;
-            margin-bottom: 2rem;
-        }
-
-        /* Framework Status Items */
-        .framework-status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .status-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            padding: 0.85rem 1rem;
-            border-radius: 10px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--accent-green);
-            box-shadow: 0 0 8px var(--accent-green);
-            flex-shrink: 0;
-        }
-
-        .status-text {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: #e2e8f0;
-        }
-
-        /* Enhanced Glowing Amber Axiom Box */
-        .axiom-box {
-            background-color: rgba(11, 14, 20, 0.85);
-            border: 2px solid var(--accent-amber);
-            box-shadow: 
-                0 0 20px rgba(245, 158, 11, 0.45), 
-                0 0 40px rgba(245, 158, 11, 0.2), 
-                inset 0 0 15px rgba(245, 158, 11, 0.2);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin: 1.5rem 0;
-            backdrop-filter: blur(16px);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .axiom-box:hover {
-            box-shadow: 
-                0 0 30px rgba(245, 158, 11, 0.65), 
-                0 0 50px rgba(245, 158, 11, 0.35), 
-                inset 0 0 20px rgba(245, 158, 11, 0.3);
-        }
-
-        .axiom-title {
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            color: var(--accent-amber);
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .math-hero {
-            font-size: 1.3rem;
-            text-align: center;
-            color: #fff;
-            padding: 0;
-        }
-
-        .axiom-explanation {
-            font-size: 0.88rem;
-            color: #94a3b8;
-            text-align: center;
-            margin-top: 0.75rem;
-            line-height: 1.4;
-        }
-
-        .formula-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .formula-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.6rem 0.8rem;
-            text-align: center;
-            background: rgba(15, 23, 42, 0.6);
-        }
-
-        /* Research Domains Grid */
-        .domains-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-            margin: 1.5rem 0 2rem 0;
-        }
-
-        .domain-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .domain-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.5);
-            background: rgba(15, 23, 42, 0.85);
-        }
-
-        .domain-icon {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .domain-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-
-        .domain-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .domain-link {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        /* Glass Content Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            border-radius: 14px;
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        /* Floating 3D Cards - Borderless & Clean */
-        .floating-3d-card {
-            width: 270px;
-            background: transparent !important;
-            border: none !important;
-            outline: none !important;
-            box-shadow: none !important;
-            padding: 0;
-            color: #fff;
-            pointer-events: auto;
-        }
-
-        .floating-3d-card img, .floating-3d-card svg {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 10px;
-            display: block;
-            border: none !important;
-        }
-
-        .card-caption {
-            margin-top: 0.5rem;
-            padding: 0.65rem 0.8rem;
-            background: rgba(8, 12, 20, 0.9);
-            border-radius: 8px;
-            border: none !important;
-        }
-
-        .card-caption h4 {
-            margin: 0.25rem 0 0.15rem 0;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
-        }
-
-        .card-caption p {
-            font-size: 0.82rem;
-            color: #cbd5e1;
-            margin: 0;
-            line-height: 1.35;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-        }
-
-        /* Diagram SVG Container */
-        .diagram-container {
-            width: 100%;
-            background: rgba(8, 12, 20, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .diagram-caption {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 0.75rem;
-            text-align: center;
-        }
-
-        /* Compact Half-Height Citation Box */
-        .card-citation-compact {
-            padding: 1rem 1.5rem;
-            margin-bottom: 2.5rem;
-            border-color: rgba(245, 158, 11, 0.3);
-        }
-
-        .citation-box {
-            background: rgba(8, 12, 20, 0.8);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.5rem 3.5rem 0.5rem 0.85rem;
-            font-family: monospace;
-            font-size: 0.82rem;
-            color: #e2e8f0;
-            position: relative;
-            margin-top: 0.4rem;
-            word-break: break-word;
-            line-height: 1.35;
-        }
-
-        .btn-copy {
-            position: absolute;
-            top: 50%;
-            right: 0.5rem;
-            transform: translateY(-50%);
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 4px;
-            padding: 0.2rem 0.5rem;
-            font-size: 0.72rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .btn-copy:hover {
-            background: var(--accent-blue);
-            color: #080c14;
-        }
-
-        /* Action Buttons & Paper Metadata */
-        .cta-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-start;
-            margin-top: 1.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.4rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: #080c14;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #7dd3fc;
-            transform: translateY(-2px);
-        }
-
-        .paper-meta {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 0.2rem;
-        }
-
-        /* Status Check Grid */
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
-            margin-top: 1.25rem;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            background: rgba(8, 12, 20, 0.5);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .status-check {
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2.5rem 0;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.8);
-            backdrop-filter: blur(12px);
-        }
-
-        footer a {
-            color: var(--accent-amber);
-            text-decoration: underline;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        footer a:hover,
-        footer a:active,
-        footer a:focus {
-            color: var(--accent-blue);
-            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-        }
-    </style>
 </head>
 <body>
 
-    <!-- WebGL Particle Star Canvas Background -->
+    <!-- Canvas Container for 3D Space -->
     <div id="canvas-container"></div>
 
-    <!-- CSS3D Renderer Layer for Floating Elements -->
-    <div id="css3d-container"></div>
-
-    <!-- Navigation Header -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="site-title">Persistence Science</a>
+            <a href="index.html" class="site-title" style="color: #ffffff; font-size: 1.5rem; font-weight: 800;">Persistence Science</a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Axiom</a></li>
+                    <li><a href="index.html" class="active" style="color: #38bdf8;">Axiom</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology (ERT)</a></li>
                     <li><a href="about.html">About Author</a></li>
@@ -598,20 +63,20 @@
 
     <main class="container">
         
-        <!-- Hero Section with Background Equation Watermark -->
-        <section class="hero reveal">
+        <!-- Hero Section -->
+        <section class="hero">
             <div class="hero-watermark">C(I) · E &gt; D</div>
-            <span class="badge">Foundational Physics &amp; Complexity Science</span>
-            <h1>Persistence Science</h1>
-            <div class="sub-title">A Mathematical Framework for Understanding Persistence Across Physics, Economics, Biology and Complex Systems</div>
+            <span class="badge" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); background-color: rgba(56, 189, 248, 0.1);">FOUNDATIONAL PHYSICS &amp; COMPLEXITY SCIENCE</span>
+            <h1 style="color: #ffffff; font-size: 3rem; font-weight: 800; margin-top: 0.5rem; margin-bottom: 0.5rem;">Persistence Science</h1>
+            <div class="sub-title" style="color: #38bdf8; font-size: 1.25rem; font-weight: 600;">A Mathematical Framework for Understanding Persistence Across Physics, Economics, Biology and Complex Systems</div>
             
-            <p class="hero-description">
+            <p class="hero-description" style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
                 Every complex open system—whether a biological organism, market architecture, physical universe, or digital network—operates under constant thermodynamic and operational degradation. Founded on the <strong>Odero Persistence Axiom</strong>, Persistence Science establishes a first-principles mathematical framework explaining how systems preserve structural identity over time.
             </p>
 
-            <!-- Framework Status Box -->
-            <div class="card" style="border-color: rgba(56, 189, 248, 0.3); margin-bottom: 2.5rem; padding: 1.5rem;">
-                <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.75rem;">
+            <!-- Compact Glowing Status Card (Height halved) -->
+            <div class="card" style="border-color: rgba(56, 189, 248, 0.3); margin-top: 0.75rem; padding: 0.75rem 1.25rem;">
+                <div style="font-size: 0.7rem; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.35rem;">
                     Framework Status
                 </div>
                 <div class="framework-status-grid">
@@ -628,15 +93,15 @@
                         <div class="status-text">Applied Cosmological Model</div>
                     </div>
                     <div class="status-pill">
-                        <div class="status-dot" style="background-color: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber);"></div>
+                        <div class="status-dot" style="background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b;"></div>
                         <div class="status-text">Ongoing Quantitative Validation</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Enhanced Glowing Amber Axiom Box -->
-            <div class="axiom-box">
-                <div class="axiom-title">Odero Persistence Axiom</div>
+            <!-- Axiom Box -->
+            <div class="axiom-box" style="padding: 1rem 1.25rem; margin-top: 1rem;">
+                <div class="axiom-title" style="color: #38bdf8;">Odero Persistence Axiom</div>
                 <div class="math-hero">
                     $$C(I) \cdot E > D$$
                 </div>
@@ -644,78 +109,75 @@
                     A system persists if and only if its Information-Control capacity ($C(I)$) multiplied by available Energy ($E$) strictly exceeds its total rate of Decay ($D$).
                 </div>
 
-                <div class="formula-grid">
-                    <div class="formula-card">
-                        <div style="color: var(--accent-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.2rem;">Persistence Capacity</div>
-                        <div style="font-size: 1rem;">$$C_p = C(I) \cdot E$$</div>
+                <div class="math-grid">
+                    <div class="math-card" style="padding: 0.5rem 1rem;">
+                        <div class="math-card-title" style="color: #38bdf8;">Persistence Capacity</div>
+                        <div>$$C_p = C(I) \cdot E$$</div>
                     </div>
-                    <div class="formula-card">
-                        <div style="color: var(--accent-amber); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.2rem;">Persistence Index ($\Omega$)</div>
-                        <div style="font-size: 1rem;">$$\Omega = \frac{C(I) \cdot E}{D}$$</div>
+                    <div class="math-card gold-border" style="padding: 0.5rem 1rem;">
+                        <div class="math-card-title" style="color: #f59e0b;">Persistence Index ($\Omega$)</div>
+                        <div>$$\Omega = \frac{C(I) \cdot E}{D}$$</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Executive Summary Section (Directly under Axiom) -->
-        <section class="card reveal">
-            <h2 style="font-size: 1.35rem; margin-top: 0; color: #fff;">Executive Summary</h2>
-            <p style="font-size: 1rem; color: #cbd5e1; margin-bottom: 0;">
+        <!-- Executive Summary Card (Height halved) -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Executive Summary</h2>
+            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0;">
                 Persistence Science proposes that all complex systems survive only when their information-control capacity and available energy exceed the forces of decay. This principle is formalized by the Odero Persistence Axiom and applied to economics, cosmology, biological systems, and network architectures.
             </p>
         </section>
 
-        <!-- Research Domains Section -->
-        <section class="reveal">
-            <h2 style="font-size: 1.4rem; color: #fff; margin-bottom: 0.2rem;">Research Domains</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+        <!-- Research Domains Card (Height halved) -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Research Domains</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.75rem;">
                 Applications of the Odero Persistence Axiom across physical and information systems.
             </p>
 
             <div class="domains-grid">
-                <a href="captured-inflation.html" class="domain-card">
+                <a href="captured-inflation.html" class="domain-card" style="padding: 0.75rem 1rem;">
                     <div>
-                        <div class="domain-icon" style="color: var(--accent-amber);">&#128200;</div>
+                        <div class="domain-icon" style="color: #f59e0b;">&#128200;</div>
                         <div class="domain-title">Economics</div>
                         <div class="domain-desc">
                             Captured Inflation Model explaining monetary decay vs real energy-backed assets.
                         </div>
                     </div>
-                    <div class="domain-link">Explore Model &rarr;</div>
+                    <div class="domain-link" style="color: #38bdf8;">Explore Model &rarr;</div>
                 </a>
 
-                <a href="ert.html" class="domain-card">
+                <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem;">
                     <div>
-                        <div class="domain-icon" style="color: var(--accent-blue);">&#127756;</div>
+                        <div class="domain-icon" style="color: #38bdf8;">&#127756;</div>
                         <div class="domain-title">Cosmology (ERT)</div>
                         <div class="domain-desc">
                             Entropic Realignment Theory (ERT) governing cosmic structural persistence over time.
                         </div>
                     </div>
-                    <div class="domain-link">Explore ERT &rarr;</div>
+                    <div class="domain-link" style="color: #38bdf8;">Explore ERT &rarr;</div>
                 </a>
 
-                <div class="domain-card" style="cursor: default;">
+                <div class="domain-card" style="cursor: default; padding: 0.75rem 1rem;">
                     <div>
-                        <div class="domain-icon" style="color: var(--accent-green);">&#9881;</div>
+                        <div class="domain-icon" style="color: #10b981;">&#9881;</div>
                         <div class="domain-title">Complex Systems</div>
                         <div class="domain-desc">
                             General information-control dynamics in biological, ecological, and network architectures.
                         </div>
                     </div>
-                    <div class="domain-link" style="color: var(--text-muted);">Ongoing Research</div>
+                    <div class="domain-link" style="color: #94a3b8;">Ongoing Research</div>
                 </div>
             </div>
         </section>
 
-        <!-- Context Card -->
-        <section class="card reveal">
-            <h2 style="font-size: 1.35rem; margin-top: 0; color: #fff;">Why This Matters</h2>
-            <p style="font-size: 1rem; color: #cbd5e1;">
+        <!-- Context Diagram Card (Height halved) -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Why This Matters</h2>
+            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0.5rem;">
                 From living organisms to economies and entire civilizations, all systems face constant decay. Persistence Science proposes a single governing condition that determines whether any system survives or collapses.
-            </p>
-            <p style="font-size: 1rem; color: #cbd5e1; margin-bottom: 0;">
-                This framework seeks to unify concepts across physics, biology, economics, complexity science, and information theory into an actionable mathematical foundation.
             </p>
 
             <div class="diagram-container">
@@ -750,111 +212,188 @@
             </div>
         </section>
 
-        <!-- Theoretical Predictions Section -->
-        <section class="card reveal">
-            <h2 style="font-size: 1.35rem; margin-top: 0; color: #fff;">Theoretical Predictions</h2>
-            <ul style="padding-left: 1.25rem; font-size: 0.95rem; margin-bottom: 0; color: #cbd5e1; line-height: 1.7;">
-                <li>Systems experience structural failure or collapse when $\Omega$ falls below unity ($\Omega < 1$).</li>
-                <li>Energy scarcity accelerates structural decay across all open systems.</li>
-                <li>Increasing information-control capacity ($C(I)$) non-linearly raises systemic resilience.</li>
-                <li>Persistence capacity ($C_p = C(I) \cdot E$) predicts expected system survival time under external entropy shocks.</li>
-            </ul>
-        </section>
-
-        <!-- Framework Applications Section -->
-        <section class="card reveal">
-            <h2 style="font-size: 1.35rem; margin-top: 0; color: #fff;">Framework Applications</h2>
-            <ul style="padding-left: 1.25rem; font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1;">
-                <li style="margin-bottom: 0.5rem;">Macroeconomic inflation model derived from the framework.</li>
-                <li style="margin-bottom: 0.5rem;">Entropy-based cosmological application (ERT).</li>
-                <li style="margin-bottom: 0.5rem;">Cross-domain applicability across economics, physics, and complex systems.</li>
-            </ul>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0;">
-                Ongoing work focuses on quantitative validation and predictive testing.
-            </p>
-        </section>
-
-        <!-- Research Archive & Accessibility -->
-        <section class="card reveal">
-            <h2 style="font-size: 1.25rem; margin-top: 0; color: #fff;">Research Archive &amp; Accessibility</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
+        <!-- Research Archive Card (Height halved) -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Research Archive &amp; Accessibility</h2>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem;">
                 This research program is registered and archived across open-access repositories for verification:
             </p>
 
             <div class="status-grid">
-                <div class="status-item">
-                    <span class="status-check">&#10003;</span> Open Access
-                </div>
-                <div class="status-item">
-                    <span class="status-check">&#10003;</span> Registered Zenodo DOI
-                </div>
-                <div class="status-item">
-                    <span class="status-check">&#10003;</span> Publicly Archived Research
-                </div>
-                <div class="status-item">
-                    <span class="status-check">&#10003;</span> Available for Review
-                </div>
+                <div class="status-item"><span class="status-check">&#10003;</span> Open Access</div>
+                <div class="status-item"><span class="status-check">&#10003;</span> Registered Zenodo DOI</div>
+                <div class="status-item"><span class="status-check">&#10003;</span> Publicly Archived Research</div>
+                <div class="status-item"><span class="status-check">&#10003;</span> Available for Review</div>
             </div>
 
-            <div class="cta-group">
-                <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" class="btn btn-primary">Read Paper on Zenodo &rarr;</a>
+            <div class="cta-group" style="margin-top: 0.75rem;">
+                <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn btn-primary" style="background-color: #38bdf8; color: #0f172a; padding: 0.5rem 1rem;">Read Paper on Zenodo &rarr;</a>
                 <div class="paper-meta">Foundational Paper &bull; 43 pages | Open Access | DOI Registered</div>
             </div>
         </section>
 
-        <!-- Compact Citation Banner Moved to Bottom -->
-        <section class="card card-citation-compact reveal">
-            <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-amber); margin-bottom: 0.2rem;">How to Cite</div>
-            <div class="citation-box" id="citation-text">
-                <button class="btn-copy" onclick="copyCitation()">Copy</button>
-                Odero, J. O. (2026). Persistence Science: A Unified First-Principles Framework for System Stability and Decay. Zenodo Preprint. https://doi.org/10.5281/zenodo.21650616
+        <!-- How to Cite Card (Height halved) -->
+        <section class="card card-citation-compact" style="padding: 0.75rem 1.25rem; margin-bottom: 1rem;">
+            <h3 style="margin-top: 0; color: #f59e0b; margin-bottom: 0.35rem;">How to Cite</h3>
+            <div class="citation-box" style="padding: 0.5rem 0.75rem;">
+                <button class="btn-copy" id="btn-copy-citation">Copy</button>
+                <span id="citation-content">Odero, J. O. (2026). Persistence Science: A Unified First-Principles Framework for System Stability and Decay. Zenodo Preprint. https://doi.org/10.5281/zenodo.21650616</span>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div class="container" style="text-align: center;">
+        <div class="container">
             <p style="margin-bottom: 0.5rem; color: #cbd5e1;">&copy; 2026 John Otieno Odero. Persistence Science.</p>
             <p style="margin: 0;">
-                Repository: <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank">Zenodo Preprint (DOI: 10.5281/zenodo.21650616)</a> &bull; 
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a>
+                Repository: <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" style="color: #38bdf8;">Zenodo Preprint (DOI: 10.5281/zenodo.21650616)</a> &bull; 
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener" style="color: #38bdf8;">0009-0007-7039-7209</a>
             </p>
         </div>
     </footer>
 
-    <!-- Floating 3D Cards (Andromeda, Inflation & Bar Graph) -->
-    <div id="card-andromeda" style="display:none;">
-        <div class="floating-3d-card">
-            <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=800&auto=format&fit=crop" alt="Andromeda Galaxy">
-            <div class="card-caption">
-                <span class="badge" style="font-size: 0.65rem; padding: 0.2rem 0.5rem;">Cosmology</span>
-                <h4>Andromeda Decay</h4>
-                <p>Cosmological structure persistence under entropic expansion.</p>
-            </div>
-        </div>
-    </div>
-
+    <!-- Interactive & 3D Visualizer Scripts -->
     <script>
-        function copyCitation() {
-            const text = "Odero, J. O. (2026). Persistence Science: A Unified First-Principles Framework for System Stability and Decay. Zenodo Preprint. https://doi.org/10.5281/zenodo.21650616";
-            navigator.clipboard.writeText(text);
-            const btn = document.querySelector('.btn-copy');
-            btn.textContent = 'Copied!';
-            setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // =========================================================================
+            // THREE.JS 3D BACKGROUND ENGINE
+            // =========================================================================
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
 
-        // Scroll Reveal Controller
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                // --- 1. FLOATING PARTICLES (CYAN-BLUE & AMBER) ---
+                const starCount = 800;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                const starVelocities = [];
+
+                for (let i = 0; i < starCount; i++) {
+                    starPositions[i * 3] = (Math.random() - 0.5) * 220;
+                    starPositions[i * 3 + 1] = (Math.random() - 0.5) * 220;
+                    starPositions[i * 3 + 2] = (Math.random() - 0.5) * 220;
+
+                    const isAmber = Math.random() > 0.65;
+                    if (isAmber) {
+                        starColors[i * 3] = 0.96;
+                        starColors[i * 3 + 1] = 0.62;
+                        starColors[i * 3 + 2] = 0.04;
+                    } else {
+                        starColors[i * 3] = 0.22;
+                        starColors[i * 3 + 1] = 0.74;
+                        starColors[i * 3 + 2] = 0.97;
+                    }
+
+                    starVelocities.push({
+                        x: (Math.random() - 0.5) * 0.018,
+                        y: (Math.random() - 0.5) * 0.018,
+                        z: (Math.random() - 0.5) * 0.018
+                    });
                 }
-            });
-        }, { threshold: 0.1 });
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+                
+                const starMat = new THREE.PointsMaterial({
+                    size: 0.35,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                // --- 2. 3D SPACE FABRIC SURFACE GRID (REDUCED BY 75%) ---
+                const gridWidth = 35;     // 140 -> 35 (Reduced by 75%)
+                const gridHeight = 35;    // 140 -> 35
+                const gridSegments = 10;  // 40 -> 10
+                const fabricGeo = new THREE.PlaneGeometry(gridWidth, gridHeight, gridSegments, gridSegments);
+                const fabricMat = new THREE.MeshBasicMaterial({ 
+                    color: 0x38bdf8, 
+                    wireframe: true, 
+                    transparent: true, 
+                    opacity: 0.18 
+                });
+                const fabricMesh = new THREE.Mesh(fabricGeo, fabricMat);
+                fabricMesh.position.set(0, -20, -10);
+                fabricMesh.rotation.x = -Math.PI / 2.3;
+                scene.add(fabricMesh);
+
+                // --- ANIMATION LOOP ---
+                let clock = new THREE.Clock();
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const elapsedTime = clock.getElapsedTime() * 1.20;
+
+                    // 1. Particle drift animation
+                    const positions = starGeo.attributes.position.array;
+                    for (let i = 0; i < starCount; i++) {
+                        positions[i * 3] += starVelocities[i].x;
+                        positions[i * 3 + 1] += starVelocities[i].y;
+                        positions[i * 3 + 2] += starVelocities[i].z;
+
+                        if (Math.abs(positions[i * 3]) > 110) starVelocities[i].x *= -1;
+                        if (Math.abs(positions[i * 3 + 1]) > 110) starVelocities[i].y *= -1;
+                        if (Math.abs(positions[i * 3 + 2]) > 110) starVelocities[i].z *= -1;
+                    }
+                    starGeo.attributes.position.needsUpdate = true;
+
+                    // 2. Wave deformation for the 75%-reduced space fabric grid
+                    const planePositions = fabricGeo.attributes.position.array;
+                    for (let i = 0; i < planePositions.length; i += 3) {
+                        const u = planePositions[i];
+                        const v = planePositions[i + 1];
+                        planePositions[i + 2] = Math.sin(u * 0.4 + elapsedTime * 0.8) * Math.cos(v * 0.4 + elapsedTime * 0.8) * 0.8;
+                    }
+                    fabricGeo.attributes.position.needsUpdate = true;
+
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            // =========================================================================
+            // MATH RENDERING & UTILITIES
+            // =========================================================================
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ]
+                });
+            }
+
+            const copyBtn = document.getElementById('btn-copy-citation');
+            const citationContent = document.getElementById('citation-content');
+
+            if (copyBtn && citationContent) {
+                copyBtn.addEventListener('click', function() {
+                    navigator.clipboard.writeText(citationContent.innerText).then(() => {
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+                    }).catch(err => {
+                        console.error('Copy action failed:', err);
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
