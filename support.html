@@ -184,7 +184,7 @@
                 0 0 12px rgba(245, 158, 11, 0.35), 
                 0 0 25px rgba(245, 158, 11, 0.15);
             border-radius: 10px;
-            padding: 1.25rem;
+            padding: 1rem 1.25rem;
             margin: 1.25rem 0;
             backdrop-filter: blur(16px);
             transition: box-shadow 0.3s ease;
@@ -198,7 +198,7 @@
 
         .axiom-title {
             color: var(--accent-amber);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -223,77 +223,78 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
-        /* Support Tiers Grid */
+        /* Compact Tier Grid */
         .tier-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
+            gap: 0.85rem;
+            margin-top: 0.75rem;
         }
 
         .tier-card {
             background: rgba(3, 5, 9, 0.8);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem;
+            padding: 1rem 0.85rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .tier-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+            border-color: var(--accent-amber);
+            box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
             transform: translateY(-2px);
-        }
-
-        .tier-card.selected {
-            border: 1.5px solid var(--accent-amber);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
-            background: rgba(15, 23, 42, 0.9);
         }
 
         .tier-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
         }
 
         .tier-amount {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            color: var(--text-heading);
-            margin-bottom: 0.25rem;
-        }
-
-        .tier-card.selected .tier-amount {
             color: var(--accent-amber);
+            margin-bottom: 0.2rem;
         }
 
         .tier-desc {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
-            line-height: 1.35;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-action-hint {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-top: auto;
         }
 
         .submit-btn {
-            padding: 0.75rem 1.5rem;
+            width: 100%;
+            padding: 0.6rem 1rem;
             background: linear-gradient(135deg, var(--accent-blue), #1e40af);
             color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            align-self: flex-start;
-            margin-top: 0.5rem;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
         }
 
         .grid-2 {
@@ -380,49 +381,56 @@
                 Through mathematical modeling, continuous research, and open-access knowledge sharing, this work generates evidence-based tools and frameworks that help researchers, educators, and organizations build durable systems capable of long-term progress.
             </p>
 
-            <!-- Compact Contribution Box -->
-            <div class="axiom-box" style="margin-top: 1.5rem; margin-bottom: 1.5rem; text-align: left;">
-                <div class="axiom-title" style="margin-bottom: 0.75rem;">Choose Contribution Amount</div>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    Enter a custom amount or select a suggested support level below:
-                </p>
-                
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <div>
-                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Your Email Address (for receipt)</label>
-                        <input type="email" id="user-email" placeholder="jane.doe@institution.edu" required style="width: 100%; max-width: 400px; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit;">
+            <!-- Compact Streamlined Box -->
+            <div class="axiom-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <div class="axiom-title">Choose Contribution Option</div>
+                    <div style="flex: 1; max-width: 320px;">
+                        <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
                     </div>
+                </div>
 
-                    <!-- Custom Amount Input -->
-                    <div>
-                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Custom Amount ($)</label>
-                        <input type="number" id="custom-amount" min="1" placeholder="Enter custom amount ($)" oninput="handleCustomAmountInput(this.value)" style="width: 100%; max-width: 400px; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit;">
-                    </div>
-
-                    <div>
-                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Or Select a Suggested Tier</label>
-                        <div class="tier-grid">
-                            <div class="tier-card" onclick="selectTier(this, 10)">
-                                <div class="tier-title">Supporter</div>
-                                <div class="tier-amount">$10</div>
-                                <div class="tier-desc">Maintains open-access hosting and public documentation.</div>
-                            </div>
-                            <div class="tier-card selected" onclick="selectTier(this, 50)">
-                                <div class="tier-title">Contributor</div>
-                                <div class="tier-amount">$50</div>
-                                <div class="tier-desc">Helps fund analytical reports, framework documentation, and educational materials.</div>
-                            </div>
-                            <div class="tier-card" onclick="selectTier(this, 100)">
-                                <div class="tier-title">Sponsor</div>
-                                <div class="tier-amount">$100</div>
-                                <div class="tier-desc">Directly sustains long-term mathematical modeling, paper preparation, and core operations.</div>
+                <div class="tier-grid">
+                    <!-- Custom Amount Tile -->
+                    <div class="tier-card" style="border-color: rgba(56, 189, 248, 0.3);">
+                        <div>
+                            <div class="tier-title">Custom Amount</div>
+                            <div style="margin: 0.4rem 0;">
+                                <input type="number" id="custom-amount" min="1" placeholder="Enter USD ($)" style="width: 100%; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
                             </div>
                         </div>
+                        <button type="button" class="submit-btn" onclick="payCustom()">Make Contribution</button>
                     </div>
 
-                    <button type="button" class="submit-btn" onclick="initiatePaystack()">
-                        &rarr; Make a Contribution (<span id="selected-amount-display">$50</span>)
-                    </button>
+                    <!-- $10 Direct Payment Tile -->
+                    <div class="tier-card" onclick="payFixed(10)">
+                        <div>
+                            <div class="tier-title">Supporter</div>
+                            <div class="tier-amount">$10</div>
+                            <div class="tier-desc">Maintains open-access hosting and public documentation.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Pay $10 Now</div>
+                    </div>
+
+                    <!-- $50 Direct Payment Tile -->
+                    <div class="tier-card" onclick="payFixed(50)">
+                        <div>
+                            <div class="tier-title">Contributor</div>
+                            <div class="tier-amount">$50</div>
+                            <div class="tier-desc">Helps fund analytical reports and documentation.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Pay $50 Now</div>
+                    </div>
+
+                    <!-- $100 Direct Payment Tile -->
+                    <div class="tier-card" onclick="payFixed(100)">
+                        <div>
+                            <div class="tier-title">Sponsor</div>
+                            <div class="tier-amount">$100</div>
+                            <div class="tier-desc">Directly sustains long-term modeling & operations.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Pay $100 Now</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -599,42 +607,26 @@
 
     <!-- Paystack Logic Handler -->
     <script>
-        let selectedAmountUSD = 50;
         const USD_TO_KES = 130;
 
-        function selectTier(element, amountUSD) {
-            selectedAmountUSD = amountUSD;
-            document.getElementById('custom-amount').value = ''; // clear custom amount input
-            document.getElementById('selected-amount-display').innerText = '$' + amountUSD;
-
-            const cards = document.querySelectorAll('.tier-card');
-            cards.forEach(card => card.classList.remove('selected'));
-            element.classList.add('selected');
+        function payFixed(amountUSD) {
+            triggerPaystack(amountUSD);
         }
 
-        function handleCustomAmountInput(val) {
-            const num = parseFloat(val);
-            if (num && num > 0) {
-                selectedAmountUSD = num;
-                document.getElementById('selected-amount-display').innerText = '$' + num;
-                const cards = document.querySelectorAll('.tier-card');
-                cards.forEach(card => card.classList.remove('selected'));
-            } else {
-                selectedAmountUSD = 50;
-                document.getElementById('selected-amount-display').innerText = '$50';
-            }
-        }
-
-        function initiatePaystack() {
-            const emailInput = document.getElementById('user-email').value.trim();
-
-            if (!emailInput) {
-                alert("Please enter a valid email address before proceeding.");
-                document.getElementById('user-email').focus();
+        function payCustom() {
+            const val = parseFloat(document.getElementById('custom-amount').value);
+            if (!val || val <= 0) {
+                alert("Please enter a valid contribution amount.");
+                document.getElementById('custom-amount').focus();
                 return;
             }
+            triggerPaystack(val);
+        }
 
-            const amountInKES = selectedAmountUSD * USD_TO_KES;
+        function triggerPaystack(amountUSD) {
+            const emailInput = document.getElementById('user-email').value.trim() || 'supporter@persistencescience.org';
+
+            const amountInKES = amountUSD * USD_TO_KES;
             const amountInSubunits = amountInKES * 100;
 
             let handler = PaystackPop.setup({
