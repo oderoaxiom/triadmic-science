@@ -199,7 +199,7 @@
                 inset 0 0 20px rgba(245, 158, 11, 0.3);
         }
 
-        /* Math & Tier Grid Layouts */
+        /* Tier Grid Layout */
         .tier-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -363,26 +363,40 @@
                 <li><strong>Collaborative Networks:</strong> Fostering cross-disciplinary partnerships that drive progress in complex systems theory.</li>
             </ul>
 
-            <h2>Support Tiers</h2>
-            <p>Choose a level of support to empower independent, open research:</p>
+            <h2>Choose Contribution Amount</h2>
+            <p>Enter a custom amount or select a suggested support level below:</p>
 
             <div class="tier-grid">
-                <div class="tier-card">
-                    <div class="tier-amount">$25</div>
-                    <div class="tier-desc">Supports data collection tools, technical infrastructure, and open-access publishing costs.</div>
+                <!-- Custom Amount Field (First) -->
+                <div class="tier-card" id="customCard" style="border-color: var(--accent-amber);">
+                    <div class="tier-amount" style="font-size: 1.4rem;">Custom Amount</div>
+                    <div class="tier-desc" style="margin-bottom: 0.75rem;">Enter any amount ($) you wish to contribute:</div>
+                    
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
+                        <span style="color: var(--accent-amber); font-weight: 700; font-size: 1.2rem;">$</span>
+                        <input type="number" id="customAmountInput" min="1" placeholder="e.g. 25" oninput="clearTierSelection()"
+                               style="width: 110px; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(8, 12, 20, 0.9); color: #fff; font-size: 1rem; text-align: center; font-family: inherit; outline: none;">
+                    </div>
                 </div>
-                <div class="tier-card">
+
+                <!-- $50 Tier (Second) -->
+                <div class="tier-card" onclick="selectTier(50, this)" style="cursor: pointer;">
                     <div class="tier-amount">$50</div>
                     <div class="tier-desc">Helps fund analytical reports, framework documentation, and educational materials.</div>
                 </div>
-                <div class="tier-card">
-                    <div class="tier-amount">$100+</div>
+
+                <!-- $100 Tier (Third) -->
+                <div class="tier-card" onclick="selectTier(100, this)" style="cursor: pointer;">
+                    <div class="tier-amount">$100</div>
                     <div class="tier-desc">Directly sustains long-term mathematical modeling, paper preparation, and core operations.</div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin: 2rem 0;">
-                <a href="YOUR_PAYMENT_LINK_HERE" class="btn-badge btn-amber">&rarr; Make a Contribution</a>
+            <!-- Call to Action Button directly underneath -->
+            <div style="text-align: center; margin: 1.5rem 0 2.5rem 0;">
+                <button onclick="triggerPaystack()" class="btn-badge btn-amber" style="font-size: 1.05rem; padding: 0.9rem 2.2rem; min-width: 240px; font-family: inherit; cursor: pointer;">
+                    &rarr; Make a Contribution
+                </button>
             </div>
 
             <h2>Other Ways to Contribute</h2>
@@ -499,6 +513,78 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+    </script>
+
+    <!-- Paystack Inline SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- Paystack Integration Logic -->
+    <script>
+      let selectedAmount = 0;
+
+      // Function to select a preset tier card ($50, $100)
+      function selectTier(amount, cardElement) {
+        selectedAmount = amount;
+        
+        // Clear custom input field when a fixed tier card is selected
+        document.getElementById('customAmountInput').value = '';
+
+        // Reset highlight on all cards
+        document.querySelectorAll('.tier-card').forEach(card => {
+          card.style.borderColor = 'var(--border-color)';
+          card.style.boxShadow = 'none';
+        });
+        
+        // Highlight chosen card
+        cardElement.style.borderColor = 'var(--accent-amber)';
+        cardElement.style.boxShadow = '0 0 15px rgba(245, 158, 11, 0.3)';
+      }
+
+      // Function to clear fixed selection when typing a custom amount
+      function clearTierSelection() {
+        selectedAmount = 0;
+        document.querySelectorAll('.tier-card').forEach(card => {
+          card.style.borderColor = 'var(--border-color)';
+          card.style.boxShadow = 'none';
+        });
+        document.getElementById('customCard').style.borderColor = 'var(--accent-amber)';
+      }
+
+      // Function to launch Paystack Popup
+      function triggerPaystack() {
+        let customVal = parseFloat(document.getElementById('customAmountInput').value);
+        let finalAmount = customVal > 0 ? customVal : selectedAmount;
+
+        if (!finalAmount || finalAmount <= 0) {
+          alert("Please select a tier or enter a custom amount first.");
+          return;
+        }
+
+        let customerEmail = prompt("Please enter your email address for the receipt:");
+        if (!customerEmail || !customerEmail.includes('@')) {
+          alert("A valid email address is required to complete the payment.");
+          return;
+        }
+
+        // Convert USD to cents for Paystack
+        let amountInCents = Math.round(finalAmount * 100);
+
+        let handler = PaystackPop.setup({
+          key: 'pk_test_d6cd88342528f339c200a5d363e79cd9749425c3', // Integrated Paystack Key
+          email: customerEmail,
+          amount: amountInCents,
+          currency: "USD", // Set to "KES" if you prefer billing in Kenyan Shillings
+          ref: 'PS_' + Math.floor((Math.random() * 1000000000) + 1),
+          onClose: function() {
+            alert('Transaction cancelled.');
+          },
+          callback: function(response) {
+            alert('Thank you for supporting Persistence Science! Payment Reference: ' + response.reference);
+          }
+        });
+
+        handler.openIframe();
+      }
     </script>
 </body>
 </html>
