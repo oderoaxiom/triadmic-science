@@ -48,14 +48,15 @@
 
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="site-title" style="color: #ffffff; font-size: 1.5rem; font-weight: 800;">Persistence Science</a>
+            <a href="index.html" class="site-title" style="color: #ffffff; font-size: 1.5rem; font-weight: 800; text-decoration: none;">Persistence Science</a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="active" style="color: #38bdf8;">Axiom</a></li>
+                    <li><a href="index.html" class="active">Axiom</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology (ERT)</a></li>
                     <li><a href="about.html">About Author</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="support.html">Support Research</a></li>
                 </ul>
             </nav>
         </div>
@@ -74,7 +75,7 @@
                 Every complex open system—whether a biological organism, market architecture, physical universe, or digital network—operates under constant thermodynamic and operational degradation. Founded on the <strong>Odero Persistence Axiom</strong>, Persistence Science establishes a first-principles mathematical framework explaining how systems preserve structural identity over time.
             </p>
 
-            <!-- Compact Glowing Status Card (Height halved) -->
+            <!-- Compact Glowing Status Card -->
             <div class="card" style="border-color: rgba(56, 189, 248, 0.3); margin-top: 0.75rem; padding: 0.75rem 1.25rem;">
                 <div style="font-size: 0.7rem; text-transform: uppercase; color: #38bdf8; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.35rem;">
                     Framework Status
@@ -122,7 +123,7 @@
             </div>
         </section>
 
-        <!-- Executive Summary Card (Height halved) -->
+        <!-- Executive Summary Card -->
         <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
             <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Executive Summary</h2>
             <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0;">
@@ -130,7 +131,7 @@
             </p>
         </section>
 
-        <!-- Research Domains Card (Height halved) -->
+        <!-- Research Domains Card with SVG Vector Icons -->
         <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
             <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Research Domains</h2>
             <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.75rem;">
@@ -138,42 +139,61 @@
             </p>
 
             <div class="domains-grid">
-                <a href="captured-inflation.html" class="domain-card" style="padding: 0.75rem 1rem;">
+                <!-- Economics Domain -->
+                <a href="captured-inflation.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
-                        <div class="domain-icon" style="color: #f59e0b;">&#128200;</div>
+                        <div class="domain-icon" style="color: #f59e0b; margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                        </div>
                         <div class="domain-title">Economics</div>
                         <div class="domain-desc">
                             Captured Inflation Model explaining monetary decay vs real energy-backed assets.
                         </div>
                     </div>
-                    <div class="domain-link" style="color: #38bdf8;">Explore Model &rarr;</div>
+                    <div class="domain-link" style="color: #38bdf8; margin-top: 0.5rem;">Explore Model &rarr;</div>
                 </a>
 
-                <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem;">
+                <!-- Cosmology (ERT) Domain -->
+                <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
-                        <div class="domain-icon" style="color: #38bdf8;">&#127756;</div>
+                        <div class="domain-icon" style="color: #38bdf8; margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                        </div>
                         <div class="domain-title">Cosmology (ERT)</div>
                         <div class="domain-desc">
-                            Entropic Realignment Theory (ERT) governing cosmic structural persistence over time.
+                            Elasticosmos Regenesis Theory (ERT) governing cosmic structural persistence over time.
                         </div>
                     </div>
-                    <div class="domain-link" style="color: #38bdf8;">Explore ERT &rarr;</div>
+                    <div class="domain-link" style="color: #38bdf8; margin-top: 0.5rem;">Explore ERT &rarr;</div>
                 </a>
 
+                <!-- Complex Systems Domain -->
                 <div class="domain-card" style="cursor: default; padding: 0.75rem 1rem;">
                     <div>
-                        <div class="domain-icon" style="color: #10b981;">&#9881;</div>
+                        <div class="domain-icon" style="color: #10b981; margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </div>
                         <div class="domain-title">Complex Systems</div>
                         <div class="domain-desc">
                             General information-control dynamics in biological, ecological, and network architectures.
                         </div>
                     </div>
-                    <div class="domain-link" style="color: #94a3b8;">Ongoing Research</div>
+                    <div class="domain-link" style="color: #94a3b8; margin-top: 0.5rem;">Ongoing Research</div>
                 </div>
             </div>
         </section>
 
-        <!-- Context Diagram Card (Height halved) -->
+        <!-- Context Diagram Card -->
         <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
             <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Why This Matters</h2>
             <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0.5rem;">
@@ -212,7 +232,7 @@
             </div>
         </section>
 
-        <!-- Research Archive Card (Height halved) -->
+        <!-- Research Archive Card -->
         <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
             <h2 style="color: #38bdf8; margin-bottom: 0.25rem;">Research Archive &amp; Accessibility</h2>
             <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem;">
@@ -227,12 +247,12 @@
             </div>
 
             <div class="cta-group" style="margin-top: 0.75rem;">
-                <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn btn-primary" style="background-color: #38bdf8; color: #0f172a; padding: 0.5rem 1rem;">Read Paper on Zenodo &rarr;</a>
-                <div class="paper-meta">Foundational Paper &bull; 43 pages | Open Access | DOI Registered</div>
+                <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn btn-primary" style="background-color: #38bdf8; color: #0f172a; padding: 0.5rem 1rem; text-decoration: none; border-radius: 6px; font-weight: 600;">Read Paper on Zenodo &rarr;</a>
+                <div class="paper-meta" style="margin-top: 0.5rem; font-size: 0.85rem; color: #94a3b8;">Foundational Paper &bull; 43 pages | Open Access | DOI Registered</div>
             </div>
         </section>
 
-        <!-- How to Cite Card (Height halved) -->
+        <!-- How to Cite Card -->
         <section class="card card-citation-compact" style="padding: 0.75rem 1.25rem; margin-bottom: 1rem;">
             <h3 style="margin-top: 0; color: #f59e0b; margin-bottom: 0.35rem;">How to Cite</h3>
             <div class="citation-box" style="padding: 0.5rem 0.75rem;">
@@ -312,10 +332,10 @@
                 const starField = new THREE.Points(starGeo, starMat);
                 scene.add(starField);
 
-                // --- 2. 3D SPACE FABRIC SURFACE GRID (REDUCED BY 75%) ---
-                const gridWidth = 35;     // 140 -> 35 (Reduced by 75%)
-                const gridHeight = 35;    // 140 -> 35
-                const gridSegments = 10;  // 40 -> 10
+                // --- 2. 3D SPACE FABRIC SURFACE GRID ---
+                const gridWidth = 35;
+                const gridHeight = 35;
+                const gridSegments = 10;
                 const fabricGeo = new THREE.PlaneGeometry(gridWidth, gridHeight, gridSegments, gridSegments);
                 const fabricMat = new THREE.MeshBasicMaterial({ 
                     color: 0x38bdf8, 
@@ -348,7 +368,7 @@
                     }
                     starGeo.attributes.position.needsUpdate = true;
 
-                    // 2. Wave deformation for the 75%-reduced space fabric grid
+                    // 2. Wave deformation for the space fabric grid
                     const planePositions = fabricGeo.attributes.position.array;
                     for (let i = 0; i < planePositions.length; i += 3) {
                         const u = planePositions[i];
