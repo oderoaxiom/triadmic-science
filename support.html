@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Research | Persistence Science</title>
+    <title>Support Persistence Science Research</title>
     
     <!-- Three.js Library for Background Particle Canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- KaTeX Library for Math Formula Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
 
     <style>
         :root {
@@ -19,7 +30,6 @@
             --accent-amber: #f59e0b;
             --accent-green: #10b981;
             --border-color: rgba(255, 255, 255, 0.1);
-            --border-card: #1e293b;
         }
 
         * {
@@ -36,7 +46,6 @@
             font-size: 16px;
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 2rem;
         }
 
         /* WebGL Background Canvas Container */
@@ -59,7 +68,7 @@
             z-index: 10;
         }
 
-        /* Glassmorphism Navigation Header */
+        /* Glassmorphism Header */
         header {
             padding: 1.25rem 0;
             border-bottom: 1px solid var(--border-color);
@@ -79,22 +88,12 @@
             gap: 1rem;
         }
 
-        /* Bluish-White Gradient Site Title */
         .site-title {
             font-size: 1.25rem;
             font-weight: 700;
+            color: #fff;
             text-decoration: none;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-            transition: filter 0.3s ease;
-        }
-
-        .site-title:hover {
-            filter: drop-shadow(0 0 8px rgba(147, 197, 253, 0.5));
         }
 
         .nav-menu {
@@ -103,7 +102,6 @@
             margin: 0;
             padding: 0;
             gap: 1.5rem;
-            flex-wrap: wrap;
         }
 
         .nav-menu a {
@@ -165,117 +163,170 @@
             margin-bottom: 1rem;
         }
 
-        /* Links */
         a {
             color: var(--accent-amber);
             text-decoration: underline;
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        a:hover, a:active, a:focus {
+        a:hover,
+        a:active,
+        a:focus {
             color: var(--accent-blue);
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
 
-        /* Ambient Glowing Box */
-        .glow-box {
+        /* Compact Glowing Amber Box */
+        .axiom-box, .glow-amber-box {
             background-color: rgba(11, 14, 20, 0.85);
-            border: 2px solid var(--accent-amber);
+            border: 1.5px solid var(--accent-amber);
             box-shadow: 
-                0 0 20px rgba(245, 158, 11, 0.45), 
-                0 0 40px rgba(245, 158, 11, 0.2), 
-                inset 0 0 15px rgba(245, 158, 11, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+                0 0 12px rgba(245, 158, 11, 0.35), 
+                0 0 25px rgba(245, 158, 11, 0.15);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
             backdrop-filter: blur(16px);
             transition: box-shadow 0.3s ease;
         }
 
-        .glow-box:hover {
+        .axiom-box:hover, .glow-amber-box:hover {
             box-shadow: 
-                0 0 30px rgba(245, 158, 11, 0.65), 
-                0 0 50px rgba(245, 158, 11, 0.35), 
-                inset 0 0 20px rgba(245, 158, 11, 0.3);
+                0 0 20px rgba(245, 158, 11, 0.5), 
+                0 0 35px rgba(245, 158, 11, 0.25);
         }
 
-        /* Tier Grid Layout */
+        .axiom-title {
+            color: var(--accent-amber);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Form Controls */
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        select,
+        textarea {
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Support Tiers Grid */
         .tier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            width: 100%;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
         .tier-card {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
+            background: rgba(3, 5, 9, 0.8);
             border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-align: center;
-            box-sizing: border-box;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .tier-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(245, 158, 11, 0.5);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tier-card.selected {
+            border: 1.5px solid var(--accent-amber);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .tier-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
         }
 
         .tier-amount {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-card.selected .tier-amount {
             color: var(--accent-amber);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
         }
 
         .tier-desc {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
+            line-height: 1.35;
         }
 
-        /* Buttons & Badges */
-        .btn-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.6rem;
+        .submit-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), #1e40af);
+            color: #fff;
+            border: none;
             border-radius: 8px;
-            font-size: 0.95rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+            margin-top: 0.5rem;
         }
 
-        .btn-amber {
-            background: rgba(245, 158, 11, 0.12);
-            color: var(--accent-amber);
-            border: 1px solid var(--accent-amber);
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
         }
 
-        .btn-amber:hover {
-            background: rgba(245, 158, 11, 0.25);
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-            text-shadow: none;
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        /* Lists */
-        ul {
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .info-list li {
+            position: relative;
             padding-left: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
             color: var(--text-main);
         }
 
-        /* Footer */
+        .info-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
         footer {
             margin-top: 4rem;
             padding: 2.5rem 0;
@@ -290,34 +341,25 @@
         footer p {
             margin: 0.3rem 0;
         }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 1.25rem;
-            }
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- WebGL Background Canvas -->
+    <!-- WebGL Particle Star Background Canvas -->
     <div id="canvas-container"></div>
 
     <header>
         <div class="container nav-container">
             <div>
-                <a href="index.html" class="site-title">Persistence Science</a>
+                <a href="index.html" class="site-title" style="text-decoration: none;">Persistence Science</a>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Fundamental Root Axiom</a></li>
+                    <li><a href="index.html">Axiom</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology (ERT)</a></li>
                     <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="support.html" class="active">Support Research</a></li>
                 </ul>
             </nav>
@@ -327,90 +369,127 @@
     <main class="container">
         
         <section class="card">
-            <span class="badge" style="margin-bottom: 1.25rem;">Independent Research &amp; Open Science Initiative</span>
+            <span class="badge" style="margin-bottom: 1rem;">Open Access &amp; Discovery</span>
             <h1>Support Persistence Science Research</h1>
             <div class="sub-title">Sustaining Long-Term Discovery, Open Access, and Systems-Based Inquiry</div>
             
             <p>
-                <strong>Persistence Science</strong> is an independent research initiative dedicated to exploring how sustained effort, resilience, information dynamics, and long-term commitment contribute to scientific discovery, innovation, and sustainable development.
+                Persistence Science is an independent research initiative dedicated to exploring how sustained effort, resilience, information dynamics, and long-term commitment contribute to scientific discovery, innovation, and sustainable development.
             </p>
-            
             <p>
                 Through mathematical modeling, continuous research, and open-access knowledge sharing, this work generates evidence-based tools and frameworks that help researchers, educators, and organizations build durable systems capable of long-term progress.
             </p>
 
-            <div class="glow-box">
-                <div style="color: var(--accent-amber); font-weight: 700; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-                    Independent Science Requires Sustainable Funding
-                </div>
-                <div style="color: var(--text-muted); font-size: 0.95rem;">
-                    Your contributions directly sustain data collection, mathematical modeling, analytical paper development, and open-access publishing without subscription paywalls or short-term commercial constraints.
+            <!-- Compact Contribution Box -->
+            <div class="axiom-box" style="margin-top: 1.5rem; margin-bottom: 1.5rem; text-align: left;">
+                <div class="axiom-title" style="margin-bottom: 0.75rem;">Choose Contribution Amount</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Enter a custom amount or select a suggested support level below:
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Your Email Address (for receipt)</label>
+                        <input type="email" id="user-email" placeholder="jane.doe@institution.edu" required style="width: 100%; max-width: 400px; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit;">
+                    </div>
+
+                    <!-- Custom Amount Input -->
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Custom Amount ($)</label>
+                        <input type="number" id="custom-amount" min="1" placeholder="Enter custom amount ($)" oninput="handleCustomAmountInput(this.value)" style="width: 100%; max-width: 400px; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit;">
+                    </div>
+
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem;">Or Select a Suggested Tier</label>
+                        <div class="tier-grid">
+                            <div class="tier-card" onclick="selectTier(this, 10)">
+                                <div class="tier-title">Supporter</div>
+                                <div class="tier-amount">$10</div>
+                                <div class="tier-desc">Maintains open-access hosting and public documentation.</div>
+                            </div>
+                            <div class="tier-card selected" onclick="selectTier(this, 50)">
+                                <div class="tier-title">Contributor</div>
+                                <div class="tier-amount">$50</div>
+                                <div class="tier-desc">Helps fund analytical reports, framework documentation, and educational materials.</div>
+                            </div>
+                            <div class="tier-card" onclick="selectTier(this, 100)">
+                                <div class="tier-title">Sponsor</div>
+                                <div class="tier-amount">$100</div>
+                                <div class="tier-desc">Directly sustains long-term mathematical modeling, paper preparation, and core operations.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="submit-btn" onclick="initiatePaystack()">
+                        &rarr; Make a Contribution (<span id="selected-amount-display">$50</span>)
+                    </button>
                 </div>
             </div>
         </section>
 
-        <section class="card">
-            <h2>Why Your Support Matters</h2>
-            <p>
-                Long-term, foundational research often struggles under traditional grant structures, which prioritize fast, short-term outcomes. Independent, crowd-backed funding allows for deep, persistent investigation into complex challenges.
-            </p>
-
-            <p>Your support directly enables:</p>
-            <ul>
-                <li><strong>Ongoing Research:</strong> Funding data collection, analysis, framework modeling, and peer-reviewed publishing.</li>
-                <li><strong>Open Knowledge Expansion:</strong> Keeping research papers, findings, and tools freely accessible to researchers globally.</li>
-                <li><strong>Practical Tool Development:</strong> Creating actionable frameworks, guides, and analytical models for practitioners.</li>
-                <li><strong>Collaborative Networks:</strong> Fostering cross-disciplinary partnerships that drive progress in complex systems theory.</li>
-            </ul>
-
-            <h2>Choose Contribution Amount</h2>
-            <p>Enter a custom amount or select a suggested support level below:</p>
-
-            <div class="tier-grid">
-                <!-- Custom Amount Field (First) -->
-                <div class="tier-card" id="customCard" style="border-color: var(--accent-amber);">
-                    <div class="tier-amount" style="font-size: 1.4rem;">Custom Amount</div>
-                    <div class="tier-desc" style="margin-bottom: 0.75rem;">Enter any amount ($) you wish to contribute:</div>
-                    
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0.5rem;">
-                        <span style="color: var(--accent-amber); font-weight: 700; font-size: 1.2rem;">$</span>
-                        <input type="number" id="customAmountInput" min="1" placeholder="e.g. 25" oninput="clearTierSelection()"
-                               style="width: 110px; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(8, 12, 20, 0.9); color: #fff; font-size: 1rem; text-align: center; font-family: inherit; outline: none;">
-                    </div>
-                </div>
-
-                <!-- $50 Tier (Second) -->
-                <div class="tier-card" onclick="selectTier(50, this)" style="cursor: pointer;">
-                    <div class="tier-amount">$50</div>
-                    <div class="tier-desc">Helps fund analytical reports, framework documentation, and educational materials.</div>
-                </div>
-
-                <!-- $100 Tier (Third) -->
-                <div class="tier-card" onclick="selectTier(100, this)" style="cursor: pointer;">
-                    <div class="tier-amount">$100</div>
-                    <div class="tier-desc">Directly sustains long-term mathematical modeling, paper preparation, and core operations.</div>
-                </div>
+        <!-- Detailed Information: Independent Science & Why Support Matters -->
+        <section class="grid-2">
+            <div class="card" style="margin-top: 0; margin-bottom: 0;">
+                <h2>Independent Science Requires Sustainable Funding</h2>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    Your contributions directly sustain data collection, mathematical modeling, analytical paper development, and open-access publishing without subscription paywalls or short-term commercial constraints.
+                </p>
+                <h3 style="font-size: 1.1rem; color: var(--accent-blue); margin-top: 1.25rem;">Why Your Support Matters</h3>
+                <p style="font-size: 0.95rem; color: var(--text-main);">
+                    Long-term, foundational research often struggles under traditional grant structures, which prioritize fast, short-term outcomes. Independent, crowd-backed funding allows for deep, persistent investigation into complex challenges.
+                </p>
             </div>
 
-            <!-- Call to Action Button directly underneath -->
-            <div style="text-align: center; margin: 1.5rem 0 2.5rem 0;">
-                <button onclick="triggerPaystack()" class="btn-badge btn-amber" style="font-size: 1.05rem; padding: 0.9rem 2.2rem; min-width: 240px; font-family: inherit; cursor: pointer;">
-                    &rarr; Make a Contribution
-                </button>
+            <div class="card" style="margin-top: 0; margin-bottom: 0;">
+                <h2>Your Support Directly Enables</h2>
+                <ul class="info-list">
+                    <li><strong>Ongoing Research:</strong> Funding data collection, analysis, framework modeling, and peer-reviewed publishing.</li>
+                    <li><strong>Open Knowledge Expansion:</strong> Keeping research papers, findings, and tools freely accessible to researchers globally.</li>
+                    <li><strong>Practical Tool Development:</strong> Creating actionable frameworks, guides, and analytical models for practitioners.</li>
+                    <li><strong>Collaborative Networks:</strong> Fostering cross-disciplinary partnerships that drive progress in complex systems theory.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Other Ways to Contribute & Transparency Section -->
+        <section class="grid-2" style="margin-top: 2rem;">
+            <div class="card" style="margin-top: 0; margin-bottom: 0;">
+                <h2>Other Ways to Contribute</h2>
+                <ul class="info-list">
+                    <li><strong>Share the Work:</strong> Spread research papers and frameworks across academic and professional networks.</li>
+                    <li><strong>Research Collaboration:</strong> Partner on joint studies, data verification, or systems modeling.</li>
+                    <li><strong>In-Kind Expertise:</strong> Volunteer expertise in peer review, data analysis, or technical review.</li>
+                </ul>
             </div>
 
-            <h2>Other Ways to Contribute</h2>
-            <ul>
-                <li><strong>Share the Work:</strong> Spread research papers and frameworks across academic and professional networks.</li>
-                <li><strong>Research Collaboration:</strong> Partner on joint studies, data verification, or systems modeling.</li>
-                <li><strong>In-Kind Expertise:</strong> Volunteer expertise in peer review, data analysis, or technical review.</li>
-            </ul>
-
-            <div style="background: rgba(255, 255, 255, 0.02); border-left: 4px solid var(--accent-blue); padding: 1.25rem; border-radius: 0 8px 8px 0; margin-top: 2rem;">
-                <h3 style="margin-top:0; color: #fff; font-size: 1.1rem;">Transparency &amp; Accountability</h3>
-                <p style="margin-bottom:0; font-size: 0.95rem; color: var(--text-muted);">
+            <div class="card" style="margin-top: 0; margin-bottom: 0;">
+                <h2>Transparency &amp; Accountability</h2>
+                <p style="font-size: 0.9rem; color: var(--text-main);">
                     Contributions are allocated directly toward research activities, analytical tools, public dissemination, and server infrastructure. Progress updates and research highlights are regularly published to ensure complete openness.
                 </p>
+            </div>
+        </section>
+
+        <!-- Support Queries & Partnership Queries Section -->
+        <section class="grid-2" style="margin-top: 2rem;">
+            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-blue); margin-top: 0; margin-bottom: 0;">
+                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Support Queries</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    For questions regarding financial contributions or platform assistance:
+                </p>
+                <a href="mailto:support@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue); text-transform: lowercase;">
+                    support@persistencescience.org
+                </a>
+            </div>
+
+            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-amber); margin-top: 0; margin-bottom: 0;">
+                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Partnership Queries</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    For joint studies, academic collaboration, and institutional inquiries:
+                </p>
+                <a href="mailto:partnership@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber); text-transform: lowercase;">
+                    partnership@persistencescience.org
+                </a>
             </div>
         </section>
 
@@ -420,7 +499,7 @@
         <div class="container">
             <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
             <p>
-                Repository: <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank">Zenodo Preprint</a> &bull; 
+                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank">Zenodo Preprints</a> &bull; 
                 ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
                 Contact: <a href="mailto:support@persistencescience.org">support@persistencescience.org</a>
             </p>
@@ -439,7 +518,7 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // Particle System Setup
+        // Particle Star Field
         const particleCount = 1000;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
@@ -473,7 +552,7 @@
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
 
-        // Mouse Parallax Interaction
+        // Mouse Interactivity
         let mouseX = 0;
         let mouseY = 0;
         let targetX = 0;
@@ -515,76 +594,66 @@
         });
     </script>
 
-    <!-- Paystack Inline SDK -->
+    <!-- Paystack Inline JS Library -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
 
-    <!-- Paystack Integration Logic -->
+    <!-- Paystack Logic Handler -->
     <script>
-      let selectedAmount = 0;
+        let selectedAmountUSD = 50;
+        const USD_TO_KES = 130;
 
-      // Function to select a preset tier card ($50, $100)
-      function selectTier(amount, cardElement) {
-        selectedAmount = amount;
-        
-        // Clear custom input field when a fixed tier card is selected
-        document.getElementById('customAmountInput').value = '';
+        function selectTier(element, amountUSD) {
+            selectedAmountUSD = amountUSD;
+            document.getElementById('custom-amount').value = ''; // clear custom amount input
+            document.getElementById('selected-amount-display').innerText = '$' + amountUSD;
 
-        // Reset highlight on all cards
-        document.querySelectorAll('.tier-card').forEach(card => {
-          card.style.borderColor = 'var(--border-color)';
-          card.style.boxShadow = 'none';
-        });
-        
-        // Highlight chosen card
-        cardElement.style.borderColor = 'var(--accent-amber)';
-        cardElement.style.boxShadow = '0 0 15px rgba(245, 158, 11, 0.3)';
-      }
-
-      // Function to clear fixed selection when typing a custom amount
-      function clearTierSelection() {
-        selectedAmount = 0;
-        document.querySelectorAll('.tier-card').forEach(card => {
-          card.style.borderColor = 'var(--border-color)';
-          card.style.boxShadow = 'none';
-        });
-        document.getElementById('customCard').style.borderColor = 'var(--accent-amber)';
-      }
-
-      // Function to launch Paystack Popup
-      function triggerPaystack() {
-        let customVal = parseFloat(document.getElementById('customAmountInput').value);
-        let finalAmount = customVal > 0 ? customVal : selectedAmount;
-
-        if (!finalAmount || finalAmount <= 0) {
-          alert("Please select a tier or enter a custom amount first.");
-          return;
+            const cards = document.querySelectorAll('.tier-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
         }
 
-        let customerEmail = prompt("Please enter your email address for the receipt:");
-        if (!customerEmail || !customerEmail.includes('@')) {
-          alert("A valid email address is required to complete the payment.");
-          return;
+        function handleCustomAmountInput(val) {
+            const num = parseFloat(val);
+            if (num && num > 0) {
+                selectedAmountUSD = num;
+                document.getElementById('selected-amount-display').innerText = '$' + num;
+                const cards = document.querySelectorAll('.tier-card');
+                cards.forEach(card => card.classList.remove('selected'));
+            } else {
+                selectedAmountUSD = 50;
+                document.getElementById('selected-amount-display').innerText = '$50';
+            }
         }
 
-        // Convert USD to cents for Paystack
-        let amountInCents = Math.round(finalAmount * 100);
+        function initiatePaystack() {
+            const emailInput = document.getElementById('user-email').value.trim();
 
-        let handler = PaystackPop.setup({
-          key: 'pk_test_d6cd88342528f339c200a5d363e79cd9749425c3', // Integrated Paystack Key
-          email: customerEmail,
-          amount: amountInCents,
-          currency: "USD", // Set to "KES" if you prefer billing in Kenyan Shillings
-          ref: 'PS_' + Math.floor((Math.random() * 1000000000) + 1),
-          onClose: function() {
-            alert('Transaction cancelled.');
-          },
-          callback: function(response) {
-            alert('Thank you for supporting Persistence Science! Payment Reference: ' + response.reference);
-          }
-        });
+            if (!emailInput) {
+                alert("Please enter a valid email address before proceeding.");
+                document.getElementById('user-email').focus();
+                return;
+            }
 
-        handler.openIframe();
-      }
+            const amountInKES = selectedAmountUSD * USD_TO_KES;
+            const amountInSubunits = amountInKES * 100;
+
+            let handler = PaystackPop.setup({
+                key: 'pk_test_d6cd88342528f339c200a5d363e79cd9749425c3',
+                email: emailInput,
+                amount: amountInSubunits,
+                currency: 'KES',
+                channels: ['mobile_money', 'card'],
+                ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
+                onClose: function() {
+                    alert('Transaction window closed.');
+                },
+                callback: function(response) {
+                    alert('Test Payment Successful! Reference: ' + response.reference);
+                }
+            });
+
+            handler.openIframe();
+        }
     </script>
 </body>
 </html>
