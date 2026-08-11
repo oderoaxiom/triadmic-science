@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Feedback | Triadmics Science</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Contact & Feedback | Persistence Science</title>
     
+    <!-- Three.js Library for Background Particle Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- KaTeX Library for Math Formula Rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
@@ -15,17 +18,267 @@
                     {left: '$', right: '$', display: false}
                 ]
             });"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* WebGL Background Canvas Container */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .site-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        /* Content Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin: 0.5rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* General Links: Default Amber, Turn Blue on Click/Hover */
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Enhanced Glowing Amber Box Effect */
+        .axiom-box, .glow-amber-box {
+            background-color: rgba(11, 14, 20, 0.85);
+            border: 2px solid var(--accent-amber);
+            box-shadow: 
+                0 0 20px rgba(245, 158, 11, 0.45), 
+                0 0 40px rgba(245, 158, 11, 0.2), 
+                inset 0 0 15px rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(16px);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .axiom-box:hover, .glow-amber-box:hover {
+            box-shadow: 
+                0 0 30px rgba(245, 158, 11, 0.65), 
+                0 0 50px rgba(245, 158, 11, 0.35), 
+                inset 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .axiom-title {
+            color: var(--accent-amber);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Form Controls */
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .submit-btn {
+            padding: 0.85rem 1.75rem;
+            background: linear-gradient(135deg, var(--accent-blue), #1e40af);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Grid System */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- WebGL Particle Star Background Canvas -->
+    <div id="canvas-container"></div>
 
     <header>
         <div class="container nav-container">
             <div>
-                <a href="index.html" class="site-title">Triadmics Science</a>
+                <a href="index.html" class="site-title" style="text-decoration: none;">Persistence Science</a>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Root Theory</a></li>
+                    <li><a href="index.html">Fundamental Root Axiom</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology (ERT)</a></li>
                     <li><a href="about.html">About Author</a></li>
@@ -38,15 +291,15 @@
     <main class="container">
         
         <section class="card">
-            <span class="badge" style="margin-bottom: 1.25rem;">Academic Engagement & Collaboration</span>
-            <h1>Contact & Feedback</h1>
-            <div class="sub-title">Direct Inquiries, Peer Review & Research Proposals</div>
+            <span class="badge" style="margin-bottom: 1.25rem;">Academic Engagement &amp; Collaboration</span>
+            <h1>Contact &amp; Feedback</h1>
+            <div class="sub-title">Direct Inquiries, Peer Review &amp; Research Proposals</div>
             
             <p>
                 Whether you have technical critiques regarding the <strong>Odero Axiom ($C(I) \cdot E > D$)</strong>, feedback on Elasticosmos Regenesis Theory, or proposals for interdisciplinary collaboration, submit your inquiry using the structured form below.
             </p>
 
-            <div class="axiom-box" style="margin-top: 2rem; margin-bottom: 2rem; text-align: left; padding: 2rem;">
+            <div class="axiom-box" style="margin-top: 2rem; margin-bottom: 1rem; text-align: left; padding: 2rem;">
                 <div class="axiom-title" style="margin-bottom: 1rem; font-size: 1.2rem;">Send a Communication</div>
                 
                 <form action="https://formspree.io/f/xnpapoja" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
@@ -54,23 +307,23 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
                         <div>
                             <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Your Full Name</label>
-                            <input type="text" name="name" placeholder="Dr. Jane Doe" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-card); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                            <input type="text" name="name" placeholder="Dr. Jane Doe" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
                         </div>
 
                         <div>
                             <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Email Address</label>
-                            <input type="email" name="email" placeholder="jane.doe@institution.edu" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-card); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                            <input type="email" name="email" placeholder="jane.doe@institution.edu" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
                         </div>
                     </div>
 
                     <div>
                         <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Inquiry Subject</label>
-                        <input type="text" name="subject" placeholder="Feedback on Odero Capture Gap / Collaboration" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-card); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                        <input type="text" name="subject" placeholder="Feedback on Odero Capture Gap / Collaboration" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
                     </div>
 
                     <div>
                         <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Inquiry Category</label>
-                        <select name="category" style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-card); border-radius: 8px; color: var(--text-primary); font-family: inherit;">
+                        <select name="category" style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
                             <option value="Peer Review / Theoretical Critique">Peer Review / Theoretical Critique</option>
                             <option value="Research Collaboration">Research Collaboration</option>
                             <option value="General Inquiry">General Inquiry</option>
@@ -80,10 +333,10 @@
 
                     <div>
                         <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Message / Detailed Feedback</label>
-                        <textarea name="message" rows="5" placeholder="Provide your mathematical notes, questions, or collaboration proposals here..." required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-card); border-radius: 8px; color: var(--text-primary); font-family: inherit; resize: vertical;"></textarea>
+                        <textarea name="message" rows="5" placeholder="Provide your mathematical notes, questions, or collaboration proposals here..." required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
                     </div>
 
-                    <button type="submit" style="padding: 0.85rem 1.75rem; background: linear-gradient(135deg, var(--accent-blue), #1e40af); color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; align-self: flex-start; margin-top: 0.5rem;">
+                    <button type="submit" class="submit-btn">
                         Send Submission &rarr;
                     </button>
 
@@ -93,26 +346,26 @@
 
         <section class="grid-2">
             
-            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-blue);">
+            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-blue); margin-top: 0; margin-bottom: 0;">
                 <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Direct Correspondence</h3>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
                     For direct academic communication regarding citations or paper reviews:
                 </p>
-                <a href="mailto:info@persistencescience.org" class="badge" style="text-decoration: none; border-color: var(--accent-blue);">
+                <a href="mailto:info@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue);">
                     info@persistencescience.org
                 </a>
             </div>
 
-            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-gold);">
+            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-amber); margin-top: 0; margin-bottom: 0;">
                 <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Academic Repositories</h3>
                 <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
                     Access formal preprints, dataset citations, and author verifications:
                 </p>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <a href="https://zenodo.org" target="_blank" class="badge" style="text-decoration: none; border-color: var(--accent-gold);">
+                    <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber);">
                         Zenodo Preprints
                     </a>
-                    <a href="https://orcid.org" target="_blank" class="badge" style="text-decoration: none;">
+                    <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue);">
                         ORCID Record
                     </a>
                 </div>
@@ -124,14 +377,101 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 John Otieno Odero. Triadmics Science & Persistence Framework.</p>
+            <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
             <p>
-                Repository: <a href="https://zenodo.org" target="_blank">Zenodo Preprints</a> | 
-                ORCID: <a href="https://orcid.org" target="_blank">0000-0000-0000-0000</a> | 
+                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank">Zenodo Preprints</a> &bull; 
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
                 Contact: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
             </p>
         </div>
     </footer>
 
+    <!-- Three.js Starfield Particle Animation Script -->
+    <script>
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 30;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Particle Star Field
+        const particleCount = 1000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const colorBlue = new THREE.Color(0x38bdf8);
+        const colorAmber = new THREE.Color(0xf59e0b);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 90;
+            positions[i + 1] = (Math.random() - 0.5) * 90;
+            positions[i + 2] = (Math.random() - 0.5) * 70;
+
+            const mixedColor = Math.random() > 0.35 ? colorBlue : colorAmber;
+            colors[i] = mixedColor.r;
+            colors[i + 1] = mixedColor.g;
+            colors[i + 2] = mixedColor.b;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.18,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.75,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // Mouse Interactivity
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - windowHalfX) * 0.001;
+            mouseY = (e.clientY - windowHalfY) * 0.001;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            particles.rotation.y = elapsedTime * 0.025;
+            particles.rotation.x = elapsedTime * 0.012;
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            camera.position.x = targetX * 10;
+            camera.position.y = -targetY * 10;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
 </body>
 </html>
