@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Research | Persistence Science</title>
+    
+    <!-- Three.js Library for Background Particle Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-card: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 2rem;
+        }
+
+        /* WebGL Background Canvas Container */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Navigation Header */
+        header {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Bluish-White Gradient Site Title */
+        .site-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            transition: filter 0.3s ease;
+        }
+
+        .site-title:hover {
+            filter: drop-shadow(0 0 8px rgba(147, 197, 253, 0.5));
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        /* Content Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin: 0.5rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #fff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover, a:active, a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Ambient Glowing Box */
+        .glow-box {
+            background-color: rgba(11, 14, 20, 0.85);
+            border: 2px solid var(--accent-amber);
+            box-shadow: 
+                0 0 20px rgba(245, 158, 11, 0.45), 
+                0 0 40px rgba(245, 158, 11, 0.2), 
+                inset 0 0 15px rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            backdrop-filter: blur(16px);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-box:hover {
+            box-shadow: 
+                0 0 30px rgba(245, 158, 11, 0.65), 
+                0 0 50px rgba(245, 158, 11, 0.35), 
+                inset 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Math & Tier Grid Layouts */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            width: 100%;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-card {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+        }
+
+        .tier-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .tier-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Buttons & Badges */
+        .btn-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-amber {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--accent-amber);
+            border: 1px solid var(--accent-amber);
+        }
+
+        .btn-amber:hover {
+            background: rgba(245, 158, 11, 0.25);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            text-shadow: none;
+        }
+
+        /* Lists */
+        ul {
+            padding-left: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 1.25rem;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WebGL Background Canvas -->
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <div>
+                <a href="index.html" class="site-title">Persistence Science</a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Fundamental Root Axiom</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology (ERT)</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="support.html" class="active">Support Research</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="card">
+            <span class="badge" style="margin-bottom: 1.25rem;">Independent Research &amp; Open Science Initiative</span>
+            <h1>Support Persistence Science Research</h1>
+            <div class="sub-title">Sustaining Long-Term Discovery, Open Access, and Systems-Based Inquiry</div>
+            
+            <p>
+                <strong>Persistence Science</strong> is an independent research initiative dedicated to exploring how sustained effort, resilience, information dynamics, and long-term commitment contribute to scientific discovery, innovation, and sustainable development.
+            </p>
+            
+            <p>
+                Through mathematical modeling, continuous research, and open-access knowledge sharing, this work generates evidence-based tools and frameworks that help researchers, educators, and organizations build durable systems capable of long-term progress.
+            </p>
+
+            <div class="glow-box">
+                <div style="color: var(--accent-amber); font-weight: 700; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+                    Independent Science Requires Sustainable Funding
+                </div>
+                <div style="color: var(--text-muted); font-size: 0.95rem;">
+                    Your contributions directly sustain data collection, mathematical modeling, analytical paper development, and open-access publishing without subscription paywalls or short-term commercial constraints.
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Why Your Support Matters</h2>
+            <p>
+                Long-term, foundational research often struggles under traditional grant structures, which prioritize fast, short-term outcomes. Independent, crowd-backed funding allows for deep, persistent investigation into complex challenges.
+            </p>
+
+            <p>Your support directly enables:</p>
+            <ul>
+                <li><strong>Ongoing Research:</strong> Funding data collection, analysis, framework modeling, and peer-reviewed publishing.</li>
+                <li><strong>Open Knowledge Expansion:</strong> Keeping research papers, findings, and tools freely accessible to researchers globally.</li>
+                <li><strong>Practical Tool Development:</strong> Creating actionable frameworks, guides, and analytical models for practitioners.</li>
+                <li><strong>Collaborative Networks:</strong> Fostering cross-disciplinary partnerships that drive progress in complex systems theory.</li>
+            </ul>
+
+            <h2>Support Tiers</h2>
+            <p>Choose a level of support to empower independent, open research:</p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-amount">$25</div>
+                    <div class="tier-desc">Supports data collection tools, technical infrastructure, and open-access publishing costs.</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-amount">$50</div>
+                    <div class="tier-desc">Helps fund analytical reports, framework documentation, and educational materials.</div>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-amount">$100+</div>
+                    <div class="tier-desc">Directly sustains long-term mathematical modeling, paper preparation, and core operations.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <a href="YOUR_PAYMENT_LINK_HERE" class="btn-badge btn-amber">&rarr; Make a Contribution</a>
+            </div>
+
+            <h2>Other Ways to Contribute</h2>
+            <ul>
+                <li><strong>Share the Work:</strong> Spread research papers and frameworks across academic and professional networks.</li>
+                <li><strong>Research Collaboration:</strong> Partner on joint studies, data verification, or systems modeling.</li>
+                <li><strong>In-Kind Expertise:</strong> Volunteer expertise in peer review, data analysis, or technical review.</li>
+            </ul>
+
+            <div style="background: rgba(255, 255, 255, 0.02); border-left: 4px solid var(--accent-blue); padding: 1.25rem; border-radius: 0 8px 8px 0; margin-top: 2rem;">
+                <h3 style="margin-top:0; color: #fff; font-size: 1.1rem;">Transparency &amp; Accountability</h3>
+                <p style="margin-bottom:0; font-size: 0.95rem; color: var(--text-muted);">
+                    Contributions are allocated directly toward research activities, analytical tools, public dissemination, and server infrastructure. Progress updates and research highlights are regularly published to ensure complete openness.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
+            <p>
+                Repository: <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank">Zenodo Preprint</a> &bull; 
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
+                Contact: <a href="mailto:support@persistencescience.org">support@persistencescience.org</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Three.js Starfield Particle Animation Script -->
+    <script>
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 30;
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Particle System Setup
+        const particleCount = 1000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        const colorBlue = new THREE.Color(0x38bdf8);
+        const colorAmber = new THREE.Color(0xf59e0b);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 90;
+            positions[i + 1] = (Math.random() - 0.5) * 90;
+            positions[i + 2] = (Math.random() - 0.5) * 70;
+
+            const mixedColor = Math.random() > 0.35 ? colorBlue : colorAmber;
+            colors[i] = mixedColor.r;
+            colors[i + 1] = mixedColor.g;
+            colors[i + 2] = mixedColor.b;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.18,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.75,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // Mouse Parallax Interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - windowHalfX) * 0.001;
+            mouseY = (e.clientY - windowHalfY) * 0.001;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            particles.rotation.y = elapsedTime * 0.025;
+            particles.rotation.x = elapsedTime * 0.012;
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+
+            camera.position.x = targetX * 10;
+            camera.position.y = -targetY * 10;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
