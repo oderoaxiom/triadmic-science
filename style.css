@@ -376,24 +376,27 @@ li {
 /* ==========================================================================
    8. Diagrams, Profile Avatar, Citations & Status Items
    ========================================================================== */
-.profile-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid var(--accent-blue);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.author-profile-container {
+  width: 56px !important;
+  height: 56px !important;
+  max-width: 56px !important;
+  max-height: 56px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--accent-blue) !important;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
 }
 
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.author-profile-container .avatar-img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
 }
 
 .diagram-container {
