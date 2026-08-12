@@ -139,9 +139,38 @@
             text-transform: uppercase;
         }
 
+        /* Profile Layout & Photo Styles */
+        .author-profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .author-profile-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
+            flex-shrink: 0;
+        }
+
+        .author-bio-header {
+            flex: 1;
+        }
+
         h1 {
             font-size: clamp(2.2rem, 4vw, 3rem);
-            margin: 0.5rem 0 0.5rem 0;
+            margin: 0.25rem 0 0.5rem 0;
             line-height: 1.1;
             font-weight: 800;
             letter-spacing: -0.03em;
@@ -152,7 +181,7 @@
             font-size: clamp(1rem, 2vw, 1.25rem);
             color: var(--accent-blue);
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.35;
         }
 
@@ -252,14 +281,22 @@
         
         <section class="card">
             <span class="badge" style="margin-bottom: 1.25rem;">Economics Graduate, University of Nairobi</span>
-            <h1>John Otieno Odero</h1>
-            <div class="sub-title">Independent Researcher | Systems Thinker | Founder of Persistence Science</div>
             
-            <p>
-                <strong>John Otieno Odero</strong> is a graduate of Economics from the <strong>University of Nairobi</strong>, an independent researcher, systems thinker, and the founder of <strong>Persistence Science</strong> based in Nairobi, Kenya. His work investigates the fundamental principles governing how information, energy, and entropy interact to sustain complex open systems across physical, economic, and organizational domains.
-            </p>
-            
-            <p style="margin-bottom: 0;">
+            <div class="author-profile-container">
+                <!-- Replace 'john-otieno-odero.jpg' with your photo's filename or URL -->
+                <img src="john-otieno-odero.jpg" alt="John Otieno Odero" class="profile-img">
+                
+                <div class="author-bio-header">
+                    <h1>John Otieno Odero</h1>
+                    <div class="sub-title">Independent Researcher | Systems Thinker | Founder of Persistence Science</div>
+                    
+                    <p style="margin-bottom: 0;">
+                        <strong>John Otieno Odero</strong> is a graduate of Economics from the <strong>University of Nairobi</strong>, an independent researcher, systems thinker, and the founder of <strong>Persistence Science</strong> based in Nairobi, Kenya. His work investigates the fundamental principles governing how information, energy, and entropy interact to sustain complex open systems across physical, economic, and organizational domains.
+                    </p>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 0; margin-top: 1.25rem;">
                 Synthesizing quantitative methods from economics, cybernetics, non-equilibrium thermodynamics, and statistical modeling, his research formalizes mathematical models—such as the <em>Odero Axiom ($C(I) \cdot E > D$)</em>, the <em>Persistence Index ($\Omega$)</em>, and the <em>Odero Capture Gap</em>—that quantify structural durability against entropic degradation.
             </p>
         </section>

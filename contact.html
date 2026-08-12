@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Feedback | Persistence Science</title>
+    <title>Contact & Support | Persistence Science</title>
     
     <!-- Three.js Library for Background Particle Canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -48,7 +48,6 @@
             overflow-x: hidden;
         }
 
-        /* WebGL Background Canvas Container */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -68,7 +67,6 @@
             z-index: 10;
         }
 
-        /* Glassmorphism Header */
         header {
             padding: 1.25rem 0;
             border-bottom: 1px solid var(--border-color);
@@ -116,7 +114,6 @@
             color: var(--accent-blue);
         }
 
-        /* Content Cards */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -163,86 +160,119 @@
             margin-bottom: 1rem;
         }
 
-        /* General Links: Default Amber, Turn Blue on Click/Hover */
         a {
             color: var(--accent-amber);
             text-decoration: underline;
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        a:hover,
-        a:active,
-        a:focus {
+        a:hover, a:active, a:focus {
             color: var(--accent-blue);
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
 
-        /* Enhanced Glowing Amber Box Effect */
-        .axiom-box, .glow-amber-box {
+        .axiom-box {
             background-color: rgba(11, 14, 20, 0.85);
-            border: 2px solid var(--accent-amber);
-            box-shadow: 
-                0 0 20px rgba(245, 158, 11, 0.45), 
-                0 0 40px rgba(245, 158, 11, 0.2), 
-                inset 0 0 15px rgba(245, 158, 11, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
+            border: 1.5px solid var(--accent-amber);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.35), 0 0 25px rgba(245, 158, 11, 0.15);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0;
             backdrop-filter: blur(16px);
             transition: box-shadow 0.3s ease;
         }
 
-        .axiom-box:hover, .glow-amber-box:hover {
-            box-shadow: 
-                0 0 30px rgba(245, 158, 11, 0.65), 
-                0 0 50px rgba(245, 158, 11, 0.35), 
-                inset 0 0 20px rgba(245, 158, 11, 0.3);
-        }
-
         .axiom-title {
             color: var(--accent-amber);
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        /* Form Controls */
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
+        input[type="text"], input[type="number"], input[type="email"], select, textarea {
             outline: none;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        select:focus,
-        textarea:focus {
+        input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
             border-color: var(--accent-blue) !important;
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
 
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        .tier-card {
+            background: rgba(3, 5, 9, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tier-card:hover {
+            border-color: var(--accent-amber);
+            box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tier-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+        }
+
+        .tier-amount {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-amber);
+            margin-bottom: 0.2rem;
+        }
+
+        .tier-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-action-hint {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-top: auto;
+        }
+
         .submit-btn {
-            padding: 0.85rem 1.75rem;
+            width: 100%;
+            padding: 0.6rem 1rem;
             background: linear-gradient(135deg, var(--accent-blue), #1e40af);
             color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 600;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            align-self: flex-start;
-            margin-top: 0.5rem;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
         }
 
-        /* Grid System */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -268,7 +298,6 @@
 </head>
 <body>
 
-    <!-- WebGL Particle Star Background Canvas -->
     <div id="canvas-container"></div>
 
     <header>
@@ -282,8 +311,7 @@
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology (ERT)</a></li>
                     <li><a href="about.html">About Author</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
-                    <li><a href="support.html">Support Research</a></li>
+                    <li><a href="contact.html" class="active">Contact &amp; Support</a></li>
                 </ul>
             </nav>
         </div>
@@ -292,75 +320,144 @@
     <main class="container">
         
         <section class="card">
-            <span class="badge" style="margin-bottom: 1.25rem;">Academic Engagement &amp; Collaboration</span>
-            <h1>Contact &amp; Feedback</h1>
-            <div class="sub-title">Direct Inquiries, Peer Review &amp; Research Proposals</div>
+            <span class="badge" style="margin-bottom: 1rem;">Open Access &amp; Discovery</span>
+            <h1>Support Persistence Science Research</h1>
+            <div class="sub-title">Sustaining Long-Term Discovery, Open Access, and Systems-Based Inquiry</div>
             
             <p>
-                Whether you have technical critiques regarding the <strong>Odero Axiom ($C(I) \cdot E > D$)</strong>, feedback on Elasticosmos Regenesis Theory, or proposals for interdisciplinary collaboration, submit your inquiry using the structured form below.
+                Persistence Science is an independent research initiative dedicated to exploring how sustained effort, resilience, information dynamics, and long-term commitment contribute to scientific discovery, innovation, and sustainable development.
             </p>
 
-            <div class="axiom-box" style="margin-top: 2rem; margin-bottom: 1rem; text-align: left; padding: 2rem;">
-                <div class="axiom-title" style="margin-bottom: 1rem; font-size: 1.2rem;">Send a Communication</div>
-                
-                <form action="https://formspree.io/f/xnpapoja" method="POST" style="display: flex; flex-direction: column; gap: 1.25rem;">
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+            <div class="axiom-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+                    <div class="axiom-title">Choose Contribution Option</div>
+                    <div style="flex: 1; max-width: 320px;">
+                        <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
+                    </div>
+                </div>
+
+                <div class="tier-grid">
+                    <div class="tier-card" style="border-color: rgba(56, 189, 248, 0.3);">
                         <div>
-                            <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Your Full Name</label>
-                            <input type="text" name="name" placeholder="Dr. Jane Doe" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
+                            <div class="tier-title">Custom Amount</div>
+                            <div style="margin: 0.4rem 0;">
+                                <input type="number" id="custom-amount" min="1" placeholder="Enter USD ($)" style="width: 100%; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
+                            </div>
                         </div>
+                        <button type="button" class="submit-btn" onclick="payCustom()">Make Contribution</button>
+                    </div>
 
+                    <div class="tier-card" onclick="payFixed(10)">
                         <div>
-                            <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Email Address</label>
-                            <input type="email" name="email" placeholder="jane.doe@institution.edu" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
+                            <div class="tier-title">Supporter</div>
+                            <div class="tier-amount">$10</div>
+                            <div class="tier-desc">Maintains open-access hosting and public documentation.</div>
                         </div>
+                        <div class="tier-action-hint">&rarr; Pay $10 Now</div>
                     </div>
 
-                    <div>
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Inquiry Subject</label>
-                        <input type="text" name="subject" placeholder="Feedback on Odero Capture Gap / Collaboration" required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
+                    <div class="tier-card" onclick="payFixed(50)">
+                        <div>
+                            <div class="tier-title">Contributor</div>
+                            <div class="tier-amount">$50</div>
+                            <div class="tier-desc">Helps fund analytical reports and documentation.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Pay $50 Now</div>
                     </div>
 
-                    <div>
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Inquiry Category</label>
-                        <select name="category" style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit;">
-                            <option value="Peer Review / Theoretical Critique">Peer Review / Theoretical Critique</option>
-                            <option value="Research Collaboration">Research Collaboration</option>
-                            <option value="General Inquiry">General Inquiry</option>
-                            <option value="Website Issue">Website Display Issue</option>
-                        </select>
+                    <div class="tier-card" onclick="payFixed(100)">
+                        <div>
+                            <div class="tier-title">Sponsor</div>
+                            <div class="tier-amount">$100</div>
+                            <div class="tier-desc">Directly sustains long-term modeling & operations.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Pay $100 Now</div>
                     </div>
-
-                    <div>
-                        <label style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.4rem;">Message / Detailed Feedback</label>
-                        <textarea name="message" rows="5" placeholder="Provide your mathematical notes, questions, or collaboration proposals here..." required style="width: 100%; padding: 0.85rem 1rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-main); font-family: inherit; resize: vertical;"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        Send Submission &rarr;
-                    </button>
-
-                </form>
+                </div>
             </div>
         </section>
 
-        <section class="grid-2">
+        <!-- Compact Summarized Impact Card -->
+        <section class="card">
+            <h2 style="margin-top: 0; color: var(--text-heading);">Why Support Independent Research?</h2>
             
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Sustainable Funding</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                        Bypasses short-term grant constraints to enable long-term foundational research and open-access publishing.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--accent-amber); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Direct Impact</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                        Funds ongoing analysis, actionable tools, and freely accessible research papers globally.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--accent-blue); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Other Ways to Help</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                        Support by sharing papers, collaborating on joint studies, or contributing peer-review expertise.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--accent-amber); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Accountability</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+                        Contributions strictly fund research, infrastructure, and tools with continuous public progress updates.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Academic Inquiries &amp; Direct Feedback</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Submit critiques regarding the <strong>Odero Axiom ($C(I) \cdot E > D$)</strong>, ERT feedback, or collaboration proposals via the form below.
+            </p>
+
+            <form action="https://formspree.io/f/xnpapoja" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+                    <input type="text" name="name" placeholder="Full Name" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
+                    <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
+                    <select name="category" style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
+                        <option value="Peer Review / Theoretical Critique">Peer Review / Critique</option>
+                        <option value="Research Collaboration">Research Collaboration</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Website Issue">Website Issue</option>
+                    </select>
+                </div>
+                <input type="text" name="subject" placeholder="Inquiry Subject" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
+                <textarea name="message" rows="3" placeholder="Message or notes..." required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem; resize: vertical;"></textarea>
+                <button type="submit" class="submit-btn" style="width: auto; align-self: flex-start; padding: 0.65rem 1.5rem;">Send Message &rarr;</button>
+            </form>
+        </section>
+
+        <section class="grid-2" style="margin-top: 2rem;">
             <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-blue); margin-top: 0; margin-bottom: 0;">
-                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Direct Correspondence</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    For direct academic communication regarding citations or paper reviews:
+                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Direct Inquiries</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                    For paper reviews, contributions, or partnerships:
                 </p>
-                <a href="mailto:info@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue);">
-                    info@persistencescience.org
-                </a>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start;">
+                    <a href="mailto:info@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid #ffffff; color: #ffffff; text-transform: lowercase;">
+                        info@persistencescience.org
+                    </a>
+                    <a href="mailto:support@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber); text-transform: lowercase;">
+                        support@persistencescience.org
+                    </a>
+                    <a href="mailto:partnership@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue); text-transform: lowercase;">
+                        partnership@persistencescience.org
+                    </a>
+                </div>
             </div>
 
             <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-amber); margin-top: 0; margin-bottom: 0;">
                 <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Academic Repositories</h3>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
-                    Access formal preprints, dataset citations, and author verifications:
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                    Formal preprints and verified author details:
                 </p>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                     <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber);">
@@ -371,7 +468,6 @@
                     </a>
                 </div>
             </div>
-
         </section>
 
     </main>
@@ -387,7 +483,6 @@
         </div>
     </footer>
 
-    <!-- Three.js Starfield Particle Animation Script -->
     <script>
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
@@ -399,7 +494,6 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // Particle Star Field
         const particleCount = 1000;
         const geometry = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
@@ -433,12 +527,7 @@
         const particles = new THREE.Points(geometry, material);
         scene.add(particles);
 
-        // Mouse Interactivity
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
-
+        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
         const windowHalfX = window.innerWidth / 2;
         const windowHalfY = window.innerHeight / 2;
 
@@ -451,7 +540,6 @@
 
         function animate() {
             requestAnimationFrame(animate);
-
             const elapsedTime = clock.getElapsedTime();
 
             particles.rotation.y = elapsedTime * 0.025;
@@ -473,6 +561,48 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+    </script>
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        const USD_TO_KES = 130;
+
+        function payFixed(amountUSD) {
+            triggerPaystack(amountUSD);
+        }
+
+        function payCustom() {
+            const val = parseFloat(document.getElementById('custom-amount').value);
+            if (!val || val <= 0) {
+                alert("Please enter a valid contribution amount.");
+                document.getElementById('custom-amount').focus();
+                return;
+            }
+            triggerPaystack(val);
+        }
+
+        function triggerPaystack(amountUSD) {
+            const emailInput = document.getElementById('user-email').value.trim() || 'supporter@persistencescience.org';
+            const amountInKES = amountUSD * USD_TO_KES;
+            const amountInSubunits = amountInKES * 100;
+
+            let handler = PaystackPop.setup({
+                key: 'pk_test_d6cd88342528f339c200a5d363e79cd9749425c3',
+                email: emailInput,
+                amount: amountInSubunits,
+                currency: 'KES',
+                channels: ['mobile_money', 'card'],
+                ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
+                onClose: function() {
+                    alert('Transaction window closed.');
+                },
+                callback: function(response) {
+                    alert('Test Payment Successful! Reference: ' + response.reference);
+                }
+            });
+
+            handler.openIframe();
+        }
     </script>
 </body>
 </html>
