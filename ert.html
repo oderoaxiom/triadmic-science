@@ -91,9 +91,16 @@
         .site-title {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #fff;
             text-decoration: none;
             letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.3s ease;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
         }
 
         .nav-menu {
@@ -145,7 +152,7 @@
             line-height: 1.1;
             font-weight: 800;
             letter-spacing: -0.03em;
-            color: #fff;
+            color: #ffffff;
         }
 
         .sub-title {

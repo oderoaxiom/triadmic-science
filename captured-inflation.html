@@ -91,9 +91,16 @@
         .site-title {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #fff;
             text-decoration: none;
             letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: opacity 0.3s ease;
+        }
+
+        .site-title:hover {
+            opacity: 0.85;
         }
 
         .nav-menu {
@@ -125,6 +132,7 @@
             padding: 2rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            overflow: hidden; /* Ensures children don't bleed out of rounded corners */
         }
 
         .badge {
@@ -145,7 +153,7 @@
             line-height: 1.1;
             font-weight: 800;
             letter-spacing: -0.03em;
-            color: #fff;
+            color: #ffffff;
         }
 
         .sub-title {
@@ -190,6 +198,7 @@
             margin: 1.5rem 0;
             backdrop-filter: blur(16px);
             transition: box-shadow 0.3s ease;
+            overflow-x: auto; /* Fixes mobile overflow for wide contents inside the box */
         }
 
         .axiom-box:hover, .glow-amber-box:hover {
@@ -208,6 +217,15 @@
             margin-bottom: 0.75rem;
         }
 
+        /* Responsive Wrapper for Math Formula Container */
+        .math-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.5rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
         /* Math Cards Grid Layout */
         .math-grid {
             display: grid;
@@ -222,6 +240,7 @@
             border-radius: 10px;
             padding: 1.25rem;
             text-align: center;
+            overflow-x: auto; /* Ensures long formulas inside grid cards scroll independently on mobile */
         }
 
         ul {
@@ -252,7 +271,7 @@
 </head>
 <body>
 
-    <!-- WebGL Particle Star Background Canvas -->
+    <!-- WebGL Background Particle Star Canvas -->
     <div id="canvas-container"></div>
 
     <header>
@@ -262,11 +281,11 @@
             </div>
             <nav>
                 <ul class="nav-menu">
-			<li><a href="index.html">Axiom</a></li>
-       			<li><a href="captured-inflation.html" class="active">Economics</a></li>
-        		<li><a href="ert.html">Cosmology (ERT)</a></li>
-        		<li><a href="about.html">About Author</a></li>
-        		<li><a href="contact.html">Contact &amp; Support</a></li>
+                    <li><a href="index.html">Axiom</a></li>
+                    <li><a href="captured-inflation.html" class="active">Economics</a></li>
+                    <li><a href="ert.html">Cosmology (ERT)</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact &amp; Support</a></li>
                 </ul>
             </nav>
         </div>
@@ -288,7 +307,7 @@
                 <div class="math-wrapper">
                     $$\pi_{\text{captured}} = f\left( C(I)_{\text{monopoly}}, \, \Delta E_{\text{liquidity}}, \, G_{\text{capture}} \right)$$
                 </div>
-                <div style="font-size: 0.95rem; color: var(--text-muted); margin-top: 1rem;">
+                <div style="font-size: 0.95rem; color: var(--text-muted); margin-top: 1.0rem;">
                     Quantifying asymmetric price dynamics through Control Power ($C(I)$), Liquidity Flow ($\Delta E$), and the Odero Capture Gap ($G_{\text{capture}}$).
                 </div>
             </div>
@@ -314,11 +333,15 @@
             <div class="math-grid">
                 <div class="math-card">
                     <div style="color: var(--accent-blue); font-weight: 700; margin-bottom: 0.25rem;">Odero Capture Gap</div>
-                    $$G_{\text{capture}} = P_{\text{market}} - C_{\text{marginal}}$$
+                    <div class="math-wrapper">
+                        $$G_{\text{capture}} = P_{\text{market}} - C_{\text{marginal}}$$
+                    </div>
                 </div>
                 <div class="math-card">
                     <div style="color: #f59e0b; font-weight: 700; margin-bottom: 0.25rem;">Network Stability Ratio</div>
-                    $$\Omega_{\text{econ}} = \frac{C(I)_{\text{regulatory}} \cdot E_{\text{capital}}}{D_{\text{friction}}}$$
+                    <div class="math-wrapper">
+                        $$\Omega_{\text{econ}} = \frac{C(I)_{\text{regulatory}} \cdot E_{\text{capital}}}{D_{\text{friction}}}$$
+                    </div>
                 </div>
             </div>
 

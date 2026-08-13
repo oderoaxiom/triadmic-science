@@ -89,9 +89,11 @@
         .site-title {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #fff;
             text-decoration: none;
             letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-menu {
@@ -303,17 +305,17 @@
     <header>
         <div class="container nav-container">
             <div>
-                <a href="index.html" class="site-title" style="text-decoration: none;">Persistence Science</a>
+                <a href="index.html" class="site-title">Persistence Science</a>
             </div>
             <nav>
-    <ul class="nav-menu">
-        <li><a href="index.html">Axiom</a></li>
-        <li><a href="captured-inflation.html">Economics</a></li>
-        <li><a href="ert.html">Cosmology (ERT)</a></li>
-        <li><a href="about.html">About Author</a></li>
-        <li><a href="contact.html" class="active">Contact &amp; Support</a></li>
-    </ul>
-</nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Axiom</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology (ERT)</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html" class="active">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -338,17 +340,23 @@
                 </div>
 
                 <div class="tier-grid">
+                    <!-- Custom Amount Card with Currency Selector -->
                     <div class="tier-card" style="border-color: rgba(56, 189, 248, 0.3);">
                         <div>
                             <div class="tier-title">Custom Amount</div>
-                            <div style="margin: 0.4rem 0;">
-                                <input type="number" id="custom-amount" min="1" placeholder="Enter USD ($)" style="width: 100%; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
+                            <div style="margin: 0.4rem 0; display: flex; gap: 0.4rem;">
+                                <input type="number" id="custom-amount" min="1" placeholder="Amount" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
+                                <select id="custom-currency" style="padding: 0.3rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.8rem; font-family: inherit; cursor: pointer;">
+                                    <option value="KES">KES</option>
+                                    <option value="USD">USD</option>
+                                </select>
                             </div>
                         </div>
                         <button type="button" class="submit-btn" onclick="payCustom()">Make Contribution</button>
                     </div>
 
-                    <div class="tier-card" onclick="payFixed(10)">
+                    <!-- Fixed USD Tiers -->
+                    <div class="tier-card" onclick="payFixed(10, 'USD')">
                         <div>
                             <div class="tier-title">Supporter</div>
                             <div class="tier-amount">$10</div>
@@ -357,7 +365,7 @@
                         <div class="tier-action-hint">&rarr; Pay $10 Now</div>
                     </div>
 
-                    <div class="tier-card" onclick="payFixed(50)">
+                    <div class="tier-card" onclick="payFixed(50, 'USD')">
                         <div>
                             <div class="tier-title">Contributor</div>
                             <div class="tier-amount">$50</div>
@@ -366,7 +374,7 @@
                         <div class="tier-action-hint">&rarr; Pay $50 Now</div>
                     </div>
 
-                    <div class="tier-card" onclick="payFixed(100)">
+                    <div class="tier-card" onclick="payFixed(100, 'USD')">
                         <div>
                             <div class="tier-title">Sponsor</div>
                             <div class="tier-amount">$100</div>
@@ -573,39 +581,42 @@
     <!-- Payment Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
-        const USD_TO_KES = 130;
-
-        function payFixed(amountUSD) {
-            triggerPaystack(amountUSD);
+        function payFixed(amount, currency) {
+            triggerPaystack(amount, currency);
         }
 
         function payCustom() {
             const val = parseFloat(document.getElementById('custom-amount').value);
+            const currency = document.getElementById('custom-currency').value;
             if (!val || val <= 0) {
                 alert("Please enter a valid contribution amount.");
                 document.getElementById('custom-amount').focus();
                 return;
             }
-            triggerPaystack(val);
+            triggerPaystack(val, currency);
         }
 
-        function triggerPaystack(amountUSD) {
+        function triggerPaystack(amount, currency) {
             const emailInput = document.getElementById('user-email').value.trim() || 'supporter@persistencescience.org';
-            const amountInKES = amountUSD * USD_TO_KES;
-            const amountInSubunits = amountInKES * 100;
+            const amountInSubunits = Math.round(amount * 100);
+
+            let channels = ['card'];
+            if (currency === 'KES') {
+                channels = ['mobile_money', 'card'];
+            }
 
             let handler = PaystackPop.setup({
-                key: 'pk_test_d6cd88342528f339c200a5d363e79cd9749425c3',
+                key: 'pk_live_44f3fe99f08c9328202cfc4201abe4a71f531afa',
                 email: emailInput,
                 amount: amountInSubunits,
-                currency: 'KES',
-                channels: ['mobile_money', 'card'],
+                currency: currency,
+                channels: channels,
                 ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
                 onClose: function() {
                     alert('Transaction window closed.');
                 },
                 callback: function(response) {
-                    alert('Test Payment Successful! Reference: ' + response.reference);
+                    alert('Payment Successful! Reference: ' + response.reference);
                 }
             });
 
