@@ -671,10 +671,9 @@
                     const z = (Math.random() - 0.5) * 220;
                     const w = (Math.random() - 0.5) * 180;
 
-                    // Reduced velocities by an additional 40% (multiplier x0.6)
-                    let speedMultiplier = (Math.random() > 0.6) 
+                    let speedMultiplier = ((Math.random() > 0.6) 
                         ? (0.018 + Math.random() * 0.024) 
-                        : (0.003 + Math.random() * 0.006);
+                        : (0.003 + Math.random() * 0.006)) * 0.4;
 
                     const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
 
@@ -695,7 +694,7 @@
                 starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
                 const starMat = new THREE.PointsMaterial({
-                    size: 0.55,
+                    size: 0.33,
                     vertexColors: true,
                     transparent: true,
                     opacity: 0.5,
@@ -708,188 +707,113 @@
 
                 // --- 2. DEDICATED SPEEDING SHOOTING STARS WITH DYNAMIC TAILS ---
                 const tailSegments = 12;
-                // Shooting star speed scaled down by 40% (x0.6)
+                // Speed reduced by another 60% (multiplied by 0.4)
                 const shootingStars = [
                     {
-                        color: 0x38bdf8, // High-visibility Cyan
-                        speed: 0.9,      // Reduced by 40% from 1.5
+                        color: 0x38bdf8,
+                        speed: 0.9 * 0.4 * 0.4,
                         angle: -Math.PI / 4,
                         geo: new THREE.BufferGeometry(),
                         positions: new Float32Array(tailSegments * 3),
                         headPos: new THREE.Vector3(-100, 70, 10)
                     },
                     {
-                        color: 0xf59e0b, // Bright Amber
-                        speed: 1.08,     // Reduced by 40% from 1.8
-                        angle: -Math.PI / 3.8,
+                        color: 0xf59e0b,
+                        speed: 1.08 * 0.4 * 0.4,
+                        angle: -Math.PI / 3,
                         geo: new THREE.BufferGeometry(),
                         positions: new Float32Array(tailSegments * 3),
-                        headPos: new THREE.Vector3(-60, 100, -5)
+                        headPos: new THREE.Vector3(120, 90, -20)
                     }
                 ];
 
-                const shootingStarGroup = new THREE.Group();
-                scene.add(shootingStarGroup);
-
-                shootingStars.forEach(s => {
-                    s.geo.setAttribute('position', new THREE.BufferAttribute(s.positions, 3));
-                    const lineMat = new THREE.LineBasicMaterial({
-                        color: s.color,
+                const shootingStarLines = shootingStars.map(star => {
+                    star.geo.setAttribute('position', new THREE.BufferAttribute(star.positions, 3));
+                    const mat = new THREE.LineBasicMaterial({
+                        color: star.color,
                         transparent: true,
-                        opacity: 0.9,
-                        linewidth: 2
-                    });
-                    const line = new THREE.Line(s.geo, lineMat);
-                    
-                    // Head flare point
-                    const headGeo = new THREE.BufferGeometry();
-                    headGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array([0,0,0]), 3));
-                    const headMat = new THREE.PointsMaterial({
-                        color: s.color,
-                        size: 2.2,
-                        transparent: true,
-                        opacity: 1.0,
+                        opacity: 0.7,
                         blending: THREE.AdditiveBlending
                     });
-                    const headPoint = new THREE.Points(headGeo, headMat);
-                    
-                    s.meshGroup = new THREE.Group();
-                    s.meshGroup.add(line);
-                    s.meshGroup.add(headPoint);
-                    s.headPoint = headPoint;
-                    shootingStarGroup.add(s.meshGroup);
+                    const line = new THREE.Line(star.geo, mat);
+                    scene.add(line);
+                    return line;
                 });
-
-                // --- 3. 3D SPACE FABRIC SURFACE GRID ---
-                const gridWidth = 45;
-                const gridHeight = 45;
-                const gridSegments = 12;
-                const fabricGeo = new THREE.PlaneGeometry(gridWidth, gridHeight, gridSegments, gridSegments);
-                const fabricMat = new THREE.MeshBasicMaterial({ 
-                    color: 0x38bdf8, 
-                    wireframe: true, 
-                    transparent: true, 
-                    opacity: 0.04 
-                });
-                const fabricMesh = new THREE.Mesh(fabricGeo, fabricMat);
-                fabricMesh.position.set(0, -32, -25);
-                fabricMesh.rotation.x = -Math.PI / 2.2;
-                scene.add(fabricMesh);
 
                 // --- ANIMATION LOOP ---
-                let clock = new THREE.Clock();
-
                 function animate() {
                     requestAnimationFrame(animate);
-                    const elapsedTime = clock.getElapsedTime();
 
-                    // Smooth lerp mouse targets
+                    // Smooth mouse tracking interpolation
                     targetX += (mouseX - targetX) * 0.05;
                     targetY += (mouseY - targetY) * 0.05;
 
-                    // INVERTED MOUSE PARALLAX:
-                    const offsetX = -targetX * 25; 
-                    const offsetY = -targetY * 25; 
+                    camera.position.x = targetX * 15;
+                    camera.position.y = targetY * 15;
+                    camera.lookAt(scene.position);
 
-                    starField.position.x = offsetX;
-                    starField.position.y = offsetY;
-                    shootingStarGroup.position.x = offsetX;
-                    shootingStarGroup.position.y = offsetY;
-                    fabricMesh.position.x = offsetX * 0.5;
-                    fabricMesh.position.y = -32 + offsetY * 0.5;
+                    // Update 4D Hyperspherical Star Field Positions
+                    const posAttr = starGeo.attributes.position;
+                    const posArray = posAttr.array;
 
-                    // 1. Update 4D Hyper-starfield Projection (Angles slowed down by 40%)
-                    const positions = starGeo.attributes.position.array;
-                    const angleXW = elapsedTime * 0.0247;
-                    const angleZW = elapsedTime * 0.0165;
-                    const angleYW = elapsedTime * 0.0192;
-
-                    const cosXW = Math.cos(angleXW), sinXW = Math.sin(angleXW);
-                    const cosZW = Math.cos(angleZW), sinZW = Math.sin(angleZW);
-                    const cosYW = Math.cos(angleYW), sinYW = Math.sin(angleYW);
-                    const distance4D = 180;
-
-                    for (let i = 0; i < starCount; i++) {
+                    for (let i = 0; i < particles4D.length; i++) {
                         let p = particles4D[i];
-                        p.x += p.vx; p.y += p.vy; p.z += p.vz; p.w += p.vw;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
 
+                        // Boundaries reset for continuous space loop
                         if (Math.abs(p.x) > 110) p.vx *= -1;
                         if (Math.abs(p.y) > 110) p.vy *= -1;
                         if (Math.abs(p.z) > 110) p.vz *= -1;
                         if (Math.abs(p.w) > 90)  p.vw *= -1;
 
-                        let rx = p.x * cosXW - p.w * sinXW;
-                        let rw1 = p.x * sinXW + p.w * cosXW;
-                        let ry = p.y * cosYW - rw1 * sinYW;
-                        let rw2 = p.y * sinYW + rw1 * cosYW;
-                        let rz = p.z * cosZW - rw2 * sinZW;
-                        let rwFinal = p.z * sinZW + rw2 * cosZW;
-
-                        const scale4D = distance4D / (distance4D + rwFinal);
-                        positions[i * 3]     = rx * scale4D;
-                        positions[i * 3 + 1] = ry * scale4D;
-                        positions[i * 3 + 2] = rz * scale4D;
+                        // 4D to 3D Stereographic Projection (W-axis scaling)
+                        const wFactor = 1 / (1 - p.w / 300);
+                        posArray[i * 3]     = p.x * wFactor;
+                        posArray[i * 3 + 1] = p.y * wFactor;
+                        posArray[i * 3 + 2] = p.z * wFactor;
                     }
-                    starGeo.attributes.position.needsUpdate = true;
+                    posAttr.needsUpdate = true;
 
-                    // 2. Update Two High-Speed Shooting Stars
-                    shootingStars.forEach(s => {
-                        s.headPos.x += Math.cos(s.angle) * s.speed;
-                        s.headPos.y += Math.sin(s.angle) * s.speed;
+                    // Update Shooting Stars & Tails
+                    shootingStars.forEach((star, idx) => {
+                        star.headPos.x += star.speed * Math.cos(star.angle);
+                        star.headPos.y -= star.speed * Math.sin(Math.abs(star.angle));
 
-                        if (s.headPos.x > 110 || s.headPos.y < -90) {
-                            s.headPos.x = -100 - Math.random() * 40;
-                            s.headPos.y = 80 + Math.random() * 40;
+                        // Reset when off screen
+                        if (star.headPos.x > 150 || star.headPos.y < -120) {
+                            star.headPos.set(
+                                (Math.random() - 0.5) * 150,
+                                100 + Math.random() * 30,
+                                (Math.random() - 0.5) * 50
+                            );
                         }
 
-                        s.headPoint.position.copy(s.headPos);
-
-                        const tailPos = s.positions;
-                        const tailLength = 18;
-                        const dirX = Math.cos(s.angle);
-                        const dirY = Math.sin(s.angle);
-
-                        for (let k = 0; k < tailSegments; k++) {
-                            const ratio = k / (tailSegments - 1);
-                            tailPos[k * 3]     = s.headPos.x - dirX * ratio * tailLength;
-                            tailPos[k * 3 + 1] = s.headPos.y - dirY * ratio * tailLength;
-                            tailPos[k * 3 + 2] = s.headPos.z;
+                        const arr = star.geo.attributes.position.array;
+                        for (let j = tailSegments - 1; j > 0; j--) {
+                            arr[j * 3]     = arr[(j - 1) * 3];
+                            arr[j * 3 + 1] = arr[(j - 1) * 3 + 1];
+                            arr[j * 3 + 2] = arr[(j - 1) * 3 + 2];
                         }
-                        s.geo.attributes.position.needsUpdate = true;
+                        arr[0] = star.headPos.x;
+                        arr[1] = star.headPos.y;
+                        arr[2] = star.headPos.z;
+
+                        star.geo.attributes.position.needsUpdate = true;
                     });
-
-                    // 3. Wave motion on 3D fabric grid
-                    const planePositions = fabricGeo.attributes.position.array;
-                    for (let i = 0; i < planePositions.length; i += 3) {
-                        const u = planePositions[i];
-                        const v = planePositions[i + 1];
-                        planePositions[i + 2] = Math.sin(u * 0.3 + elapsedTime * 0.58) * Math.cos(v * 0.3 + elapsedTime * 0.58) * 0.6;
-                    }
-                    fabricGeo.attributes.position.needsUpdate = true;
 
                     renderer.render(scene, camera);
                 }
+
                 animate();
 
+                // Window Resize Responsiveness
                 window.addEventListener('resize', () => {
                     camera.aspect = window.innerWidth / window.innerHeight;
                     camera.updateProjectionMatrix();
                     renderer.setSize(window.innerWidth, window.innerHeight);
-                });
-            }
-
-            // Citation Copy Handler
-            const copyBtn = document.getElementById('btn-copy-citation');
-            const citationContent = document.getElementById('citation-content');
-
-            if (copyBtn && citationContent) {
-                copyBtn.addEventListener('click', function() {
-                    navigator.clipboard.writeText(citationContent.innerText).then(() => {
-                        copyBtn.textContent = 'Copied!';
-                        setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
-                    }).catch(err => {
-                        console.error('Copy action failed:', err);
-                    });
                 });
             }
         });

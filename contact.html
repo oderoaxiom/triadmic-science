@@ -532,7 +532,7 @@
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         const material = new THREE.PointsMaterial({
-            size: 0.18,
+            size: 0.126, // Reduced by 30% from 0.18
             vertexColors: true,
             transparent: true,
             opacity: 0.75,
@@ -557,8 +557,9 @@
             requestAnimationFrame(animate);
             const elapsedTime = clock.getElapsedTime();
 
-            particles.rotation.y = elapsedTime * 0.025;
-            particles.rotation.x = elapsedTime * 0.012;
+            // Reduced speed further by 15% (0.01375 * 0.85 = 0.0116875)
+            particles.rotation.y = elapsedTime * 0.0116875;
+            particles.rotation.x = elapsedTime * 0.0116875;
 
             targetX += (mouseX - targetX) * 0.05;
             targetY += (mouseY - targetY) * 0.05;
