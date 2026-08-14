@@ -7,7 +7,7 @@
     <!-- Primary Metadata -->
     <title>Persistence Science | Odero Persistence Axiom</title>
     <meta name="description" content="Persistence Science is a first-principles mathematical framework explaining how complex systems persist, adapt, and collapse across physics, economics, biological systems, and network architectures.">
-    <meta name="keywords" content="complex systems, resilience, physics, information theory, economics, cosmology, persistence science, Odero Persistence Axiom">
+    <meta name="keywords" content="complex systems, resilience, physics, information theory, economics, cosmology, persistence science, Odero Persistence Axiom, System Dynamics">
     <meta name="author" content="John Otieno Odero">
 
     <!-- Open Graph / Social Sharing -->
@@ -73,7 +73,6 @@
             overflow-x: hidden;
         }
 
-        /* WebGL Background Canvas Container */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -93,11 +92,10 @@
             z-index: 10;
         }
 
-        /* Glassmorphism Header */
         header {
-            padding: 1.25rem 0;
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.75);
+            background: rgba(8, 12, 20, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             position: sticky;
@@ -110,12 +108,11 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
-        /* Header Gradient Brand Title (White to Cyan Blue Gradient) */
         .site-title {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 900;
             text-decoration: none;
             letter-spacing: -0.02em;
@@ -131,13 +128,15 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 1.5rem;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-menu a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -146,7 +145,26 @@
             color: var(--accent-blue);
         }
 
-        /* Content Cards */
+        .nav-menu .nav-highlight {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--accent-amber);
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.82rem;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-menu .nav-highlight:hover {
+            background: rgba(245, 158, 11, 0.35);
+            border-color: #ffffff;
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
+        }
+
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -157,7 +175,6 @@
             margin-bottom: 2rem;
         }
 
-        /* Hero Container */
         .hero-container {
             background: transparent;
             border: none;
@@ -180,7 +197,6 @@
             text-transform: uppercase;
         }
 
-        /* Solid White Main Title above Mathematical Framework */
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.2rem);
             margin: 0.25rem 0 0.5rem 0;
@@ -205,7 +221,6 @@
             margin-bottom: 1rem;
         }
 
-        /* Links */
         a {
             color: var(--accent-amber);
             text-decoration: underline;
@@ -219,29 +234,28 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
 
-        /* Outer Formula Container */
         .axiom-box {
-            padding: 1.25rem 1.5rem;
-            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
             background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid rgba(245, 158, 11, 0.85);
-            box-shadow: 0 0 18px rgba(245, 158, 11, 0.6), inset 0 0 12px rgba(245, 158, 11, 0.25);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
             transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
             cursor: pointer;
         }
 
         .axiom-box:hover {
             border-color: rgba(245, 158, 11, 1);
-            box-shadow: 0 0 36px rgba(245, 158, 11, 1), inset 0 0 24px rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 24px rgba(245, 158, 11, 0.9), inset 0 0 16px rgba(245, 158, 11, 0.3);
             transform: translateY(-2px);
         }
 
         .framework-status-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
@@ -264,12 +278,13 @@
 
         .math-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
         }
 
         .math-card {
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
@@ -280,7 +295,7 @@
 
         .math-card.blue-border:hover {
             border-color: rgba(56, 189, 248, 0.8);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5), inset 0 0 8px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
             transform: translateY(-2px);
         }
 
@@ -290,7 +305,7 @@
 
         .math-card.gold-border:hover {
             border-color: rgba(245, 158, 11, 0.9);
-            box-shadow: 0 0 21.6px rgba(245, 158, 11, 0.72), inset 0 0 12px rgba(245, 158, 11, 0.28);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
             transform: translateY(-2px);
         }
 
@@ -396,22 +411,21 @@
 </head>
 <body>
 
-    <!-- Canvas Container for Space -->
     <div id="canvas-container"></div>
 
     <header>
         <div class="container nav-container">
-            <!-- White-to-Cyan Gradient Navigation Header Title -->
             <a href="index.html" class="site-title">
                 Persistence Science
             </a>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Axiom</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="physics.html">Physics</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
-                    <li><a href="ert.html">Cosmology (ERT)</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
                     <li><a href="about.html">About Author</a></li>
-                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                    <li><a href="contact.html" class="nav-highlight">Contact &amp; Support</a></li>
                 </ul>
             </nav>
         </div>
@@ -423,7 +437,6 @@
         <section class="hero-container">
             <span class="badge">FOUNDATIONAL PHYSICS &amp; COMPLEXITY SCIENCE</span>
             
-            <!-- Solid White Main Hero Title -->
             <h1>Persistence Science</h1>
 
             <div class="sub-title">A Mathematical Framework for Understanding Persistence Across Physics, Economics, Biology and Complex Systems</div>
@@ -444,7 +457,11 @@
                     </div>
                     <div class="status-pill">
                         <div class="status-dot"></div>
-                        <div class="status-text">Applied Economic Model</div>
+                        <div class="status-text">Applied Physics</div>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-dot"></div>
+                        <div class="status-text">Applied Economics</div>
                     </div>
                     <div class="status-pill">
                         <div class="status-dot"></div>
@@ -457,24 +474,24 @@
                 </div>
             </div>
 
-            <!-- Transparent Formula Card with Outer Amber Hover Glow -->
+            <!-- Transparent Formula Card with Outer Amber Hover Glow (Resized to half size) -->
             <div class="axiom-box">
-                <div class="axiom-title" style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700;">Odero Persistence Axiom</div>
-                <div class="math-hero" style="margin: 0.5rem 0;">
+                <div class="axiom-title" style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Odero Persistence Axiom</div>
+                <div class="math-hero" style="margin: 0.25rem 0; font-size: 0.95rem;">
                     $$C(I) \cdot E > D$$
                 </div>
-                <div class="axiom-explanation" style="color: #f8fafc;">
+                <div class="axiom-explanation" style="color: #f8fafc; font-size: 0.85rem;">
                     A system persists if and only if its Information-Control capacity ($C(I)$) multiplied by available Energy ($E$) strictly exceeds its total rate of Decay ($D$).
                 </div>
 
-                <div class="math-grid" style="margin-top: 1rem;">
-                    <div class="math-card blue-border" style="padding: 0.5rem 1rem; background: transparent;">
-                        <div class="math-card-title" style="color: var(--accent-blue);">Persistence Capacity</div>
-                        <div>$$P_c = C(I) \cdot E$$</div>
+                <div class="math-grid">
+                    <div class="math-card blue-border" style="padding: 0.35rem 0.5rem; background: transparent;">
+                        <div class="math-card-title" style="color: var(--accent-blue); font-size: 0.75rem;">Persistence Capacity</div>
+                        <div style="font-size: 0.85rem;">$$P_c = C(I) \cdot E$$</div>
                     </div>
-                    <div class="math-card gold-border" style="padding: 0.5rem 1rem; background: transparent;">
-                        <div class="math-card-title" style="color: var(--accent-amber);">Persistence Index ($\Omega$)</div>
-                        <div>$$\Omega = \frac{C(I) \cdot E}{D}$$</div>
+                    <div class="math-card gold-border" style="padding: 0.35rem 0.5rem; background: transparent;">
+                        <div class="math-card-title" style="color: var(--accent-amber); font-size: 0.75rem;">Persistence Index ($\Omega$)</div>
+                        <div style="font-size: 0.85rem;">$$\Omega = \frac{C(I) \cdot E}{D}$$</div>
                     </div>
                 </div>
             </div>
@@ -484,7 +501,7 @@
         <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
             <h2>Executive Summary</h2>
             <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0;">
-                Persistence Science proposes that all complex systems survive only when their information-control capacity and available energy exceed the forces of decay. This principle is formalized by the Odero Persistence Axiom and applied to economics, cosmology, biological systems, and network architectures.
+                Persistence Science proposes that all complex systems survive only when their information-control capacity and available energy exceed the forces of decay. This principle is formalized by the Odero Persistence Axiom and extended via continuous dynamic control systems, applied across physics, economics, cosmology, biological systems, and network architectures.
             </p>
         </section>
 
@@ -496,6 +513,23 @@
             </p>
 
             <div class="domains-grid">
+                <!-- Applied Physics Domain -->
+                <a href="physics.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
+                    <div>
+                        <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                                <line x1="4" y1="22" x2="4" y2="15"></line>
+                            </svg>
+                        </div>
+                        <div class="domain-title">Applied Physics</div>
+                        <div class="domain-desc">
+                            System Dynamics &amp; Control Theory: Continuous state-space formulation, Omega velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
+                        </div>
+                    </div>
+                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Physics &rarr;</div>
+                </a>
+
                 <!-- Economics Domain -->
                 <a href="captured-inflation.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
@@ -513,7 +547,7 @@
                     <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Model &rarr;</div>
                 </a>
 
-                <!-- Cosmology (ERT) Domain -->
+                <!-- Cosmology Domain -->
                 <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
                         <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
@@ -523,12 +557,12 @@
                                 <path d="M2 12h20"></path>
                             </svg>
                         </div>
-                        <div class="domain-title">Cosmology (ERT)</div>
+                        <div class="domain-title">Cosmology</div>
                         <div class="domain-desc">
-                            Elasticosmos Regenesis Theory (ERT) governing cosmic structural persistence over time.
+                            Elasticosmos Regenesis Theory governing cosmic structural persistence over time.
                         </div>
                     </div>
-                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore ERT &rarr;</div>
+                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Cosmology &rarr;</div>
                 </a>
 
                 <!-- Complex Systems Domain -->
@@ -564,16 +598,20 @@
                         <text x="80" y="23" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Information-Control</text>
                         <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">C(I)</text>
                     </g>
-                    <g transform="translate(40, 105)">
+                    <text x="120" y="100" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">&middot;</text>
+                    <g transform="translate(40, 115)">
                         <rect x="0" y="0" width="160" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
                         <text x="80" y="23" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Available Energy</text>
                         <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">E</text>
                     </g>
-                    <text x="225" y="105" fill="#cbd5e1" font-size="24" font-weight="bold" text-anchor="middle">×</text>
+                    <g transform="translate(210, 90)">
+                        <line x1="0" y1="15" x2="35" y2="15" stroke="#38bdf8" stroke-width="2.5" />
+                        <polygon points="35,10 45,15 35,20" fill="#38bdf8" />
+                    </g>
                     <g transform="translate(255, 65)">
                         <rect x="0" y="0" width="180" height="65" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
                         <text x="90" y="28" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1">PERSISTENCE CAPACITY</text>
-                        <text x="90" y="48" fill="#38bdf8" font-size="15" font-weight="bold" text-anchor="middle">C(I) · E</text>
+                        <text x="90" y="48" fill="#38bdf8" font-size="15" font-weight="bold" text-anchor="middle">C(I) &middot; E</text>
                     </g>
                     <text x="465" y="103" fill="#10b981" font-size="28" font-weight="bold" text-anchor="middle">&gt;</text>
                     <g transform="translate(495, 65)">
@@ -581,7 +619,7 @@
                         <text x="80" y="28" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1">RATE OF DECAY</text>
                         <text x="80" y="48" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">D</text>
                     </g>
-                    <text x="345" y="180" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">System Persists &amp; Adapts (Ω &gt; 1)</text>
+                    <text x="345" y="180" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">System Persists &amp; Adapts (&Omega; &gt; 1)</text>
                 </svg>
                 <div class="diagram-caption">
                     Figure 1: System balance condition under the Odero Persistence Axiom.
@@ -598,14 +636,16 @@
 
             <div class="status-grid">
                 <div class="status-item"><span class="status-check">&#10003;</span> Open Access</div>
-                <div class="status-item"><span class="status-check">&#10003;</span> Registered Zenodo DOI</div>
+                <div class="status-item"><span class="status-check">&#10003;</span> Registered Zenodo DOIs</div>
                 <div class="status-item"><span class="status-check">&#10003;</span> Publicly Archived Research</div>
                 <div class="status-item"><span class="status-check">&#10003;</span> Available for Review</div>
             </div>
 
-            <div class="cta-group" style="margin-top: 0.75rem;">
-                <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener" class="badge" style="padding: 0.5rem 1rem; text-decoration: none;">Read Odero Persistence Axiom on Zenodo &rarr;</a>
-                <div class="paper-meta" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">Read Odero Persistence Axiom on Zenodo &bull; Foundational Paper &bull; Open Access | DOI Registered</div>
+            <div class="cta-group" style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <div>
+                    <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener" class="badge" style="padding: 0.5rem 1rem; text-decoration: none;">Read Odero Persistence Axiom on Zenodo &rarr;</a>
+                    <div class="paper-meta" style="margin-top: 0.3rem; font-size: 0.85rem; color: var(--text-muted);">Foundational Paper &bull; Open Access | DOI: 10.5281/zenodo.21841446</div>
+                </div>
             </div>
         </section>
 
@@ -613,8 +653,8 @@
         <section class="card card-citation-compact" style="padding: 0.75rem 1.25rem; margin-bottom: 1rem;">
             <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
             <div class="citation-box" style="padding: 0.5rem 0.75rem;">
-                <button class="btn-copy" id="btn-copy-citation">Copy</button>
-                <span id="citation-content">Odero, J. O. (2026). Persistence Science: A Unified First-Principles Framework for System Stability and Decay. Zenodo Preprint. https://doi.org/10.5281/zenodo.21841446</span>
+                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-1').innerText)">Copy</button>
+                <span id="citation-content-1">Odero, J. O. (2026). Odero Persistence Axiom: Foundations of Persistence Science: Zenodo Preprint. https://doi.org/10.5281/zenodo.21841446</span>
             </div>
         </section>
 
@@ -624,7 +664,7 @@
         <div class="container">
             <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
             <p>
-                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener">Zenodo Preprint (DOI: 10.5281/zenodo.21841446)</a> &bull; 
+                Repositories: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener">Axiom DOI: 10.5281/zenodo.21841446</a> &bull; 
                 ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a>
             </p>
         </div>
@@ -644,18 +684,14 @@
                 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 container.appendChild(renderer.domElement);
 
-                // --- MOUSE TRACKING FOR INVERTED PARALLAX ---
                 let mouseX = 0;
                 let mouseY = 0;
-                let targetX = 0;
-                let targetY = 0;
 
                 window.addEventListener('mousemove', (e) => {
                     mouseX = (e.clientX / window.innerWidth) * 2 - 1;
                     mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
                 });
 
-                // --- 1. FULL 4D HYPERSPHERICAL STAR PARTICLES ---
                 const starCount = 450;
                 const starGeo = new THREE.BufferGeometry();
                 const starPositions = new Float32Array(starCount * 3);
@@ -673,7 +709,7 @@
 
                     let speedMultiplier = ((Math.random() > 0.6) 
                         ? (0.018 + Math.random() * 0.024) 
-                        : (0.003 + Math.random() * 0.006)) * 0.4;
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
 
                     const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
 
@@ -705,111 +741,35 @@
                 const starField = new THREE.Points(starGeo, starMat);
                 scene.add(starField);
 
-                // --- 2. DEDICATED SPEEDING SHOOTING STARS WITH DYNAMIC TAILS ---
-                const tailSegments = 12;
-                // Speed reduced by another 60% (multiplied by 0.4)
-                const shootingStars = [
-                    {
-                        color: 0x38bdf8,
-                        speed: 0.9 * 0.4 * 0.4,
-                        angle: -Math.PI / 4,
-                        geo: new THREE.BufferGeometry(),
-                        positions: new Float32Array(tailSegments * 3),
-                        headPos: new THREE.Vector3(-100, 70, 10)
-                    },
-                    {
-                        color: 0xf59e0b,
-                        speed: 1.08 * 0.4 * 0.4,
-                        angle: -Math.PI / 3,
-                        geo: new THREE.BufferGeometry(),
-                        positions: new Float32Array(tailSegments * 3),
-                        headPos: new THREE.Vector3(120, 90, -20)
-                    }
-                ];
-
-                const shootingStarLines = shootingStars.map(star => {
-                    star.geo.setAttribute('position', new THREE.BufferAttribute(star.positions, 3));
-                    const mat = new THREE.LineBasicMaterial({
-                        color: star.color,
-                        transparent: true,
-                        opacity: 0.7,
-                        blending: THREE.AdditiveBlending
-                    });
-                    const line = new THREE.Line(star.geo, mat);
-                    scene.add(line);
-                    return line;
-                });
-
-                // --- ANIMATION LOOP ---
                 function animate() {
                     requestAnimationFrame(animate);
+                    const positions = starGeo.attributes.position.array;
 
-                    // Smooth mouse tracking interpolation
-                    targetX += (mouseX - targetX) * 0.05;
-                    targetY += (mouseY - targetY) * 0.05;
-
-                    camera.position.x = targetX * 15;
-                    camera.position.y = targetY * 15;
-                    camera.lookAt(scene.position);
-
-                    // Update 4D Hyperspherical Star Field Positions
-                    const posAttr = starGeo.attributes.position;
-                    const posArray = posAttr.array;
-
-                    for (let i = 0; i < particles4D.length; i++) {
+                    for (let i = 0; i < starCount; i++) {
                         let p = particles4D[i];
                         p.x += p.vx;
                         p.y += p.vy;
                         p.z += p.vz;
                         p.w += p.vw;
 
-                        // Boundaries reset for continuous space loop
                         if (Math.abs(p.x) > 110) p.vx *= -1;
                         if (Math.abs(p.y) > 110) p.vy *= -1;
                         if (Math.abs(p.z) > 110) p.vz *= -1;
                         if (Math.abs(p.w) > 90)  p.vw *= -1;
 
-                        // 4D to 3D Stereographic Projection (W-axis scaling)
-                        const wFactor = 1 / (1 - p.w / 300);
-                        posArray[i * 3]     = p.x * wFactor;
-                        posArray[i * 3 + 1] = p.y * wFactor;
-                        posArray[i * 3 + 2] = p.z * wFactor;
+                        let distanceW = 60;
+                        let factor = distanceW / (distanceW - p.w);
+
+                        positions[i * 3]     = p.x * factor;
+                        positions[i * 3 + 1] = p.y * factor;
+                        positions[i * 3 + 2] = p.z * factor;
                     }
-                    posAttr.needsUpdate = true;
-
-                    // Update Shooting Stars & Tails
-                    shootingStars.forEach((star, idx) => {
-                        star.headPos.x += star.speed * Math.cos(star.angle);
-                        star.headPos.y -= star.speed * Math.sin(Math.abs(star.angle));
-
-                        // Reset when off screen
-                        if (star.headPos.x > 150 || star.headPos.y < -120) {
-                            star.headPos.set(
-                                (Math.random() - 0.5) * 150,
-                                100 + Math.random() * 30,
-                                (Math.random() - 0.5) * 50
-                            );
-                        }
-
-                        const arr = star.geo.attributes.position.array;
-                        for (let j = tailSegments - 1; j > 0; j--) {
-                            arr[j * 3]     = arr[(j - 1) * 3];
-                            arr[j * 3 + 1] = arr[(j - 1) * 3 + 1];
-                            arr[j * 3 + 2] = arr[(j - 1) * 3 + 2];
-                        }
-                        arr[0] = star.headPos.x;
-                        arr[1] = star.headPos.y;
-                        arr[2] = star.headPos.z;
-
-                        star.geo.attributes.position.needsUpdate = true;
-                    });
-
+                    starGeo.attributes.position.needsUpdate = true;
+                    starField.rotation.y += 0.0005;
                     renderer.render(scene, camera);
                 }
-
                 animate();
 
-                // Window Resize Responsiveness
                 window.addEventListener('resize', () => {
                     camera.aspect = window.innerWidth / window.innerHeight;
                     camera.updateProjectionMatrix();

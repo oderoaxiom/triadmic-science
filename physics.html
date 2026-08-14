@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Metadata -->
+    <title>Applied Physics | Persistence Science</title>
+    <meta name="description" content="System Dynamics & Control Theory: Continuous state-space formulation, Omega velocity, acceleration, and control-phase simplex under the Odero Persistence Axiom.">
+    <meta name="keywords" content="System Dynamics, Control Theory, Applied Physics, Persistence Science, Odero Persistence Axiom, Omega velocity">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        .nav-menu .nav-highlight {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--accent-amber);
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.82rem;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-menu .nav-highlight:hover {
+            background: rgba(245, 158, 11, 0.35);
+            border-color: #ffffff;
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .axiom-box {
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.5), inset 0 0 10px rgba(245, 158, 11, 0.2);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .axiom-box:hover {
+            border-color: rgba(245, 158, 11, 1);
+            box-shadow: 0 0 24px rgba(245, 158, 11, 0.8), inset 0 0 16px rgba(245, 158, 11, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .math-card {
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.4);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .math-card.blue-border {
+            border: 1px solid rgba(56, 189, 248, 0.85);
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.4), inset 0 0 8px rgba(56, 189, 248, 0.15);
+        }
+
+        .math-card.blue-border:hover {
+            border-color: rgba(56, 189, 248, 1);
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.75), inset 0 0 14px rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .math-card.gold-border {
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 14px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
+        }
+
+        .math-card.gold-border:hover {
+            border-color: rgba(245, 158, 11, 1);
+            box-shadow: 0 0 22px rgba(245, 158, 11, 0.75), inset 0 0 14px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html" class="active">Physics</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html" class="nav-highlight">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">APPLIED PHYSICS &amp; SYSTEM DYNAMICS</span>
+            
+            <h1>System Dynamics &amp; Control Theory</h1>
+
+            <div class="sub-title">Continuous State-Space Formulation of the Odero Persistence Axiom</div>
+            
+            <p class="hero-description" style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Applied physics within Persistence Science models structural continuity using continuous state-space formulations. By analyzing the temporal evolution of the Persistence Index ($\Omega$), system velocity ($\omega$), acceleration ($\alpha$), and control-phase geometry ($\kappa$), we can rigorously evaluate how complex mechanical and energetic systems maintain stability or undergo systemic collapse.
+            </p>
+
+            <!-- Dynamic Equilibrium Formulation Box (Amber Glow) -->
+            <div class="axiom-box">
+                <div class="axiom-title" style="color: var(--accent-amber); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Dynamic Equilibrium Formulation</div>
+                <div class="math-hero" style="margin: 0.5rem 0; font-size: 1.1rem; text-align: center;">
+                    $$\frac{d\Omega}{dt} = \omega(t) - \gamma D(t)$$
+                </div>
+                <div class="axiom-explanation" style="color: #f8fafc; font-size: 0.85rem; text-align: center;">
+                    Tracking the rate of change of structural persistence relative to active control velocity ($\omega$) and environmental decay dissipation ($\gamma D$).
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Physics Equations Card -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2>Kinematic Vectors &amp; Equations</h2>
+            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1rem;">
+                The applied physics framework expands the primary axiom into explicit kinematic state-space equations:
+            </p>
+
+            <div class="math-grid">
+                <!-- Omega Velocity Card (Blue Glow) -->
+                <div class="math-card blue-border">
+                    <div style="color: var(--accent-blue); font-size: 0.85rem; font-weight: bold; margin-bottom: 0.35rem;">Omega Velocity ($\omega$)</div>
+                    <div style="font-size: 0.95rem; margin-bottom: 0.5rem;">$$\omega(t) = \frac{d\Omega}{dt}$$</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">The temporal rate of change of structural persistence capacity.</div>
+                </div>
+
+                <!-- Persistence Acceleration Card (Amber Glow) -->
+                <div class="math-card gold-border">
+                    <div style="color: var(--accent-amber); font-size: 0.85rem; font-weight: bold; margin-bottom: 0.35rem;">Persistence Acceleration ($\alpha$)</div>
+                    <div style="font-size: 0.95rem; margin-bottom: 0.5rem;">$$\alpha(t) = \frac{d\omega}{dt} = \frac{d^2\Omega}{dt^2}$$</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">The second derivative tracking compounding or exhausting adaptation.</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+                <ul style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.8; padding-left: 1.2rem; margin-bottom: 0;">
+                    <li><strong>Control-Phase Simplex ($\kappa$):</strong> The multi-dimensional geometric boundary defining stable operational regimes vs structural failure states.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Research Reference Card -->
+        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
+            <h2>Zenodo Open Access Registration</h2>
+            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+                The mathematical proofs and state-space models for system dynamics are openly registered for peer examination.
+            </p>
+            <a href="https://doi.org/10.5281/zenodo.21933742" target="_blank" rel="noopener" class="badge" style="padding: 0.5rem 1rem; text-decoration: none;">View Applied Physics Paper on Zenodo &rarr;</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
+            <p>
+                Repositories: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener">Axiom DOI: 10.5281/zenodo.21841446</a> &bull; 
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- THREE.js WebGL Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                const starCount = 450;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.006)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const starMat = new THREE.PointsMaterial({
+                    size: 0.33,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.5,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    const positions = starGeo.attributes.position.array;
+
+                    for (let i = 0; i < starCount; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90)  p.vw *= -1;
+
+                        let distanceW = 60;
+                        let factor = distanceW / (distanceW - p.w);
+
+                        positions[i * 3]     = p.x * factor;
+                        positions[i * 3 + 1] = p.y * factor;
+                        positions[i * 3 + 2] = p.z * factor;
+                    }
+                    starGeo.attributes.position.needsUpdate = true;
+                    starField.rotation.y += 0.0005;
+                    renderer.render(scene, camera);
+                }
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

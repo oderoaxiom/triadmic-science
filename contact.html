@@ -101,7 +101,8 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 1.5rem;
+            gap: 1.25rem;
+            align-items: center;
         }
 
         .nav-menu a {
@@ -112,8 +113,25 @@
             transition: color 0.3s ease;
         }
 
-        .nav-menu a:hover, .nav-menu a.active {
+        .nav-menu a:hover {
             color: var(--accent-blue);
+        }
+
+        .nav-menu .contact-btn {
+            background: transparent;
+            border: 1.5px solid var(--accent-amber);
+            color: #fff;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu .contact-btn:hover, .nav-menu .contact-btn.active {
+            color: #fff;
+            border-color: var(--accent-amber);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            background: rgba(245, 158, 11, 0.1);
         }
 
         .card {
@@ -309,11 +327,12 @@
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Axiom</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html">Physics</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
-                    <li><a href="ert.html">Cosmology (ERT)</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
                     <li><a href="about.html">About Author</a></li>
-                    <li><a href="contact.html" class="active">Contact &amp; Support</a></li>
+                    <li><a href="contact.html" class="contact-btn active">Contact &amp; Support</a></li>
                 </ul>
             </nav>
         </div>
@@ -532,7 +551,7 @@
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         const material = new THREE.PointsMaterial({
-            size: 0.126, // Reduced by 30% from 0.18
+            size: 0.126,
             vertexColors: true,
             transparent: true,
             opacity: 0.75,
@@ -557,7 +576,6 @@
             requestAnimationFrame(animate);
             const elapsedTime = clock.getElapsedTime();
 
-            // Reduced speed further by 15% (0.01375 * 0.85 = 0.0116875)
             particles.rotation.y = elapsedTime * 0.0116875;
             particles.rotation.x = elapsedTime * 0.0116875;
 
