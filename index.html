@@ -145,26 +145,6 @@
             color: var(--accent-blue);
         }
 
-        .nav-menu .nav-highlight {
-            background: rgba(245, 158, 11, 0.2);
-            border: 2px solid var(--accent-amber);
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.82rem;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-menu .nav-highlight:hover {
-            background: rgba(245, 158, 11, 0.35);
-            border-color: #ffffff;
-            color: #ffffff;
-            box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
-        }
-
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -227,9 +207,7 @@
             transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        a:hover,
-        a:active,
-        a:focus {
+        a:hover, a:active, a:focus {
             color: var(--accent-blue);
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
@@ -457,15 +435,15 @@
                     </div>
                     <div class="status-pill">
                         <div class="status-dot"></div>
+                        <div class="status-text">Applied Cosmological Model</div>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-dot"></div>
                         <div class="status-text">Applied Physics</div>
                     </div>
                     <div class="status-pill">
                         <div class="status-dot"></div>
                         <div class="status-text">Applied Economics</div>
-                    </div>
-                    <div class="status-pill">
-                        <div class="status-dot"></div>
-                        <div class="status-text">Applied Cosmological Model</div>
                     </div>
                     <div class="status-pill">
                         <div class="status-dot" style="background-color: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber);"></div>
@@ -474,7 +452,7 @@
                 </div>
             </div>
 
-            <!-- Transparent Formula Card with Outer Amber Hover Glow (Resized to half size) -->
+            <!-- Transparent Formula Card with Outer Amber Hover Glow -->
             <div class="axiom-box">
                 <div class="axiom-title" style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Odero Persistence Axiom</div>
                 <div class="math-hero" style="margin: 0.25rem 0; font-size: 0.95rem;">
@@ -513,6 +491,24 @@
             </p>
 
             <div class="domains-grid">
+                <!-- Cosmology Domain (First) -->
+                <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
+                    <div>
+                        <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                        </div>
+                        <div class="domain-title">Cosmology</div>
+                        <div class="domain-desc">
+                            <strong>Fundamental Cosmological Equation:</strong> Governing cosmic structural persistence and expansion mechanics. Followed by the <strong>Elasticosmos Regenesis Theory</strong> governing cosmic structural persistence over time.
+                        </div>
+                    </div>
+                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Cosmology &rarr;</div>
+                </a>
+
                 <!-- Applied Physics Domain -->
                 <a href="physics.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
@@ -547,31 +543,13 @@
                     <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Model &rarr;</div>
                 </a>
 
-                <!-- Cosmology Domain -->
-                <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
-                    <div>
-                        <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
-                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
-                                <path d="M2 12h20"></path>
-                            </svg>
-                        </div>
-                        <div class="domain-title">Cosmology</div>
-                        <div class="domain-desc">
-                            Elasticosmos Regenesis Theory governing cosmic structural persistence over time.
-                        </div>
-                    </div>
-                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Cosmology &rarr;</div>
-                </a>
-
                 <!-- Complex Systems Domain -->
                 <div class="domain-card" style="cursor: default; padding: 0.75rem 1rem;">
                     <div>
                         <div class="domain-icon" style="color: var(--accent-green); margin-bottom: 0.5rem;">
                             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>
                         </div>
                         <div class="domain-title">Complex Systems</div>
@@ -718,10 +696,15 @@
                         vx: (Math.random() - 0.5) * speedMultiplier,
                         vy: (Math.random() - 0.5) * speedMultiplier,
                         vz: (Math.random() - 0.5) * speedMultiplier,
-                        vw: (Math.random() - 0.5) * speedMultiplier
+                        vw: (Math.random() - 0.5) * speedMultiplier,
+                        color: colorObj
                     });
 
-                    starColors[i * 3]     = colorObj.r;
+                    starPositions[i * 3] = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3] = colorObj.r;
                     starColors[i * 3 + 1] = colorObj.g;
                     starColors[i * 3 + 2] = colorObj.b;
                 }
@@ -729,11 +712,23 @@
                 starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
                 starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
                 const starMat = new THREE.PointsMaterial({
-                    size: 0.33,
+                    size: 2.2,
                     vertexColors: true,
+                    map: pTexture,
                     transparent: true,
-                    opacity: 0.5,
                     blending: THREE.AdditiveBlending,
                     depthWrite: false
                 });
@@ -741,11 +736,24 @@
                 const starField = new THREE.Points(starGeo, starMat);
                 scene.add(starField);
 
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
                 function animate() {
                     requestAnimationFrame(animate);
-                    const positions = starGeo.attributes.position.array;
 
-                    for (let i = 0; i < starCount; i++) {
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
                         let p = particles4D[i];
                         p.x += p.vx;
                         p.y += p.vy;
@@ -755,19 +763,37 @@
                         if (Math.abs(p.x) > 110) p.vx *= -1;
                         if (Math.abs(p.y) > 110) p.vy *= -1;
                         if (Math.abs(p.z) > 110) p.vz *= -1;
-                        if (Math.abs(p.w) > 90)  p.vw *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
 
-                        let distanceW = 60;
-                        let factor = distanceW / (distanceW - p.w);
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3] = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
 
-                        positions[i * 3]     = p.x * factor;
-                        positions[i * 3 + 1] = p.y * factor;
-                        positions[i * 3 + 2] = p.z * factor;
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
                     }
-                    starGeo.attributes.position.needsUpdate = true;
-                    starField.rotation.y += 0.0005;
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
                     renderer.render(scene, camera);
                 }
+
                 animate();
 
                 window.addEventListener('resize', () => {
