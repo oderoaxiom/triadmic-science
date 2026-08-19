@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Metadata -->
+    <title>Political Survival &amp; CIT | Persistence Science</title>
+    <meta name="description" content="Coalition Indispensability Theory (CIT) and Political Persistence Dynamics under Persistence Science.">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Three.js for Interactive Network Constellation Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover, a:active, a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .cosmology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.25rem;
+        }
+
+        .axiom-box {
+            padding: 1.25rem;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.2), inset 0 0 8px rgba(245, 158, 11, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .axiom-box:hover {
+            border-color: rgba(245, 158, 11, 1);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), inset 0 0 12px rgba(245, 158, 11, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .axiom-box.blue-theme {
+            border: 1px solid rgba(56, 189, 248, 0.85);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2), inset 0 0 8px rgba(56, 189, 248, 0.1);
+        }
+
+        .axiom-box.blue-theme:hover {
+            border-color: rgba(56, 189, 248, 1);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4), inset 0 0 12px rgba(56, 189, 248, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .relation-table-wrapper {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+
+        table.relation-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        table.relation-table th {
+            background: rgba(30, 41, 59, 0.8);
+            color: #ffffff;
+            padding: 0.85rem 1rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        table.relation-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: top;
+        }
+
+        table.relation-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+
+        ul.claims-list {
+            margin: 0.5rem 0 0.75rem 0;
+            padding-left: 1.2rem;
+            color: #cbd5e1;
+            font-size: 0.88rem;
+        }
+
+        ul.claims-list li {
+            margin-bottom: 0.6rem;
+        }
+
+        /* Custom Zenodo Pill Button Matching User Image Style */
+        .zenodo-pill-wrapper {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .zenodo-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 30, 50, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            padding: 0.85rem 2rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .zenodo-pill:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: rgba(56, 189, 248, 0.8);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html">Physics</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
+                    <li><a href="Political Science.html" class="active">Political Science</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">Political Science &amp; Comparative Politics</span>
+            
+            <h1>The Persistence of Power</h1>
+
+            <div class="sub-title">A Coalition Indispensability Theory of Democratic Leader Longevity</div>
+            
+            <p class="hero-description" style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Did you know that executive survival isn't just about political luck? By applying the Odero Axiom to democratic political systems, this framework reveals how leader longevity is strictly governed by the Political Persistence Index and Political Omega Velocity.
+            </p>
+
+            <!-- Side-by-Side Summaries Grid -->
+            <div class="cosmology-grid">
+                
+                <!-- 1. Coalition Indispensability Theory (CIT) Summary -->
+                <div class="axiom-box">
+                    <div>
+                        <div style="color: var(--accent-amber); letter-spacing: 0.05em; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">
+                            Core Political Theory
+                        </div>
+                        <h3 style="margin: 0.25rem 0 0.5rem 0; font-size: 1.25rem; color: #ffffff;">
+                            Coalition Indispensability Theory
+                        </h3>
+                        <p style="margin: 0.5rem 0; color: #94a3b8; font-size: 0.9rem;">
+                            Proposes that democratic leaders survive not through unlimited resources, but because coalition indispensability ($\kappa$) acts as an internal structural decay dampener.
+                        </p>
+
+                        <div style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600; margin-top: 0.75rem;">Core Postulates:</div>
+                        <ul class="claims-list">
+                            <li><strong>Persistence Condition:</strong> Leaders maintain office if political control efficiency acting on resource throughput exceeds adjusted decay ($\Omega_{pol} > 1.0$).</li>
+                            <li><strong>Decay Dampening:</strong> Indispensability ($\kappa$) lowers effective political decay ($D_{pol\_adjusted} = D_{pol} / \kappa$).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div style="margin-top: 0.75rem; text-align: center; font-size: 1.05rem;">
+                            $$\Omega_{pol} = \frac{\kappa \cdot C_{pol}(I)E_{pol}}{D_{pol}}$$
+                        </div>
+                        <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
+                            Political Persistence Index incorporating control efficiency ($C_{pol}(I)$), energy throughput ($E_{pol}$), and indispensability ($\kappa$).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Political Omega Velocity Summary -->
+                <div class="axiom-box blue-theme">
+                    <div>
+                        <div style="color: var(--accent-blue); letter-spacing: 0.05em; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">
+                            Dynamic Early-Warning Metric
+                        </div>
+                        <h3 style="margin: 0.25rem 0 0.5rem 0; font-size: 1.25rem; color: #ffffff;">
+                            Political Omega Velocity ($\omega_{pol}$)
+                        </h3>
+                        <p style="margin: 0.5rem 0; color: #94a3b8; font-size: 0.9rem;">
+                            Measures the rate of change of the persistence index over time, providing rigorous early warning for executive collapse before margin breach.
+                        </p>
+                        
+                        <div style="font-size: 0.82rem; color: #e2e8f0; font-weight: 600; margin-top: 0.75rem;">Key Takeaway:</div>
+                        <ul class="claims-list">
+                            <li><strong>Leaders survive because $\Omega_{pol} > 1$, but leaders endure because $\omega_{pol} > 0$.</strong></li>
+                            <li>Negative velocity ($\omega_{pol} < 0$) strongly forecasts executive collapse prior to margin breach ($\Omega_{pol} \le 1.0$).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div style="margin-top: 0.75rem; text-align: center; font-size: 0.95rem;">
+                            $$\omega_{pol} = \frac{d\Omega_{pol}}{dt} = \Omega_{pol}\left[\frac{\dot{C}_{pol}}{C_{pol}} + \frac{\dot{E}_{pol}}{E_{pol}} + \frac{\dot{\kappa}}{\kappa} - \frac{\dot{D}_{pol}}{D_{pol}}\right]$$
+                        </div>
+                        <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
+                            Dynamic velocity equation balancing control, resource growth, indispensability shift, and decay acceleration.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Illustrative Pilot Calibration Section -->
+        <section class="card">
+            <h2>Illustrative Pilot Calibration: Four Leader Profiles</h2>
+            <p style="color: #94a3b8; font-size: 0.95rem;">
+                Comparing static margins versus dynamic velocity across prominent democratic leaders.
+            </p>
+
+            <div class="relation-table-wrapper">
+                <table class="relation-table">
+                    <thead>
+                        <tr>
+                            <th>Leader (Context)</th>
+                            <th>Indispensability ($\kappa$)</th>
+                            <th>$\Omega_{pol}$ Margin</th>
+                            <th>Omega Velocity ($\omega_{pol}$)</th>
+                            <th>Empirical Outcome</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Benjamin Netanyahu</strong> (Israel)</td>
+                            <td>High (~1.8)</td>
+                            <td>$> 1.0$</td>
+                            <td>Positive ($>0$)</td>
+                            <td>Survived (Long Tenure)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Boris Johnson</strong> (UK)</td>
+                            <td>Moderate (~1.0)</td>
+                            <td>$> 1.0$</td>
+                            <td>Negative ($<0$)</td>
+                            <td>Removed (2022)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Liz Truss</strong> (UK)</td>
+                            <td>Low (~1.0)</td>
+                            <td>$< 1.0$</td>
+                            <td>Negative ($<0$)</td>
+                            <td>Removed (45 Days)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Angela Merkel</strong> (Germany)</td>
+                            <td>High (~1.6)</td>
+                            <td>$> 1.0$</td>
+                            <td>Near Zero ($\approx 0$)</td>
+                            <td>Survived (Voluntary)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Detailed Theoretical Content Card -->
+        <section class="card">
+            <h2>How Leaders Survive: Comparing Political Theories</h2>
+            <p>
+                Instead of looking at politics through complicated math and jargon, our theory explains why political leaders stay in power by comparing how they build coalitions, handle daily pressures, and control government systems.
+            </p>
+            <ul style="color: #cbd5e1; padding-left: 1.2rem; font-size: 0.95rem;">
+                <li style="margin-bottom: 0.6rem;">
+                    <strong>How We Compare to Traditional Ideas:</strong> Older theories focus mainly on how leaders share money and perks with their inner circle to stay in power. Our approach looks at something simpler: *How hard would it be to replace this leader?* (replacement cost) and *How fast is their political strength growing or shrinking?*
+                </li>
+                <li style="margin-bottom: 0.6rem;">
+                    <strong>The Three Types of Government Styles:</strong> By looking at how much a government tries to steer things versus how much energy it actually uses, we can sort countries into three simple groups:
+                    <ul style="margin-top: 0.4rem; padding-left: 1.2rem;">
+                        <li><strong>Strict Autocracies/Tyrannies:</strong> Systems where leaders focus entirely on tight control with very little room for public pushback.</li>
+                        <li><strong>Stable Democracies:</strong> Balanced systems where leadership and public systems work in a steady, ongoing rhythm.</li>
+                        <li><strong>Gridlocked Governments:</strong> Systems where so many different groups are steering at once that the government slows down and gets stuck.</li>
+                    </ul>
+                </li>
+                <li style="margin-bottom: 0.6rem;">
+                    <strong>Everyday Political Tools:</strong> This approach breaks down how leaders actually manage day-to-day survival—looking at how much influence they hold, how well they resist political wear-and-tear, how efficiently they get things done, and how they handle political risks.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Zenodo Callout Section with Updated Pill Button -->
+        <div class="zenodo-pill-wrapper">
+            <a href="https://doi.org/10.5281/zenodo.22012149" target="_blank" class="zenodo-pill">
+                Read Persistence of Power on Zenodo &rarr;
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>Persistence Science</strong> &mdash; Applied Cosmological Model &amp; Elasticosmos Regenesis Theory (ERT)</p>
+            <p>Author &amp; Principal Investigator: <strong>John Otieno Odero</strong></p>
+            <p style="margin-top: 0.75rem;">
+                <a href="index.html">Home</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
+                <a href="captured-inflation.html">Economics</a> &bull; 
+                <a href="ert.html">Cosmology</a> &bull; 
+                <a href="about.html">About Author</a> &bull; 
+                <a href="contact.html">Contact &amp; Support</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Three.js Interactive Network Constellation Background -->
+    <script>
+        (function() {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            
+            const camera = new THREE.PerspectiveCamera(
+                60, 
+                window.innerWidth / window.innerHeight, 
+                0.1, 
+                1000
+            );
+            camera.position.z = 400;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Particle and Network Setup
+            const count = 70;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(count * 3);
+            const velocities = [];
+
+            const colorBlue = new THREE.Color(0x38bdf8);
+            const colorAmber = new THREE.Color(0xf59e0b);
+            const colors = new Float32Array(count * 3);
+
+            for (let i = 0; i < count; i++) {
+                positions[i * 3]     = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 800;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 400;
+
+                velocities.push({
+                    x: (Math.random() - 0.5) * 0.4,
+                    y: (Math.random() - 0.5) * 0.4,
+                    z: (Math.random() - 0.5) * 0.2
+                });
+
+                const c = Math.random() > 0.4 ? colorBlue : colorAmber;
+                colors[i * 3]     = c.r;
+                colors[i * 3 + 1] = c.g;
+                colors[i * 3 + 2] = c.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 4,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8
+            });
+
+            const particles = new THREE.Points(geometry, particleMaterial);
+            scene.add(particles);
+
+            // Line connections geometry for network web
+            const maxConnections = count * count;
+            const lineGeometry = new THREE.BufferGeometry();
+            const linePositions = new Float32Array(maxConnections * 3);
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x38bdf8,
+                transparent: true,
+                opacity: 0.15
+            });
+
+            const linesMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(linesMesh);
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                const posArr = geometry.attributes.position.array;
+                const linePosArr = lineGeometry.attributes.position.array;
+                let vertexIndex = 0;
+
+                // Update particle positions gently
+                for (let i = 0; i < count; i++) {
+                    posArr[i * 3] += velocities[i].x;
+                    posArr[i * 3 + 1] += velocities[i].y;
+                    posArr[i * 3 + 2] += velocities[i].z;
+
+                    // Boundaries check
+                    if (Math.abs(posArr[i * 3]) > 400) velocities[i].x *= -1;
+                    if (Math.abs(posArr[i * 3 + 1]) > 400) velocities[i].y *= -1;
+                    if (Math.abs(posArr[i * 3 + 2]) > 200) velocities[i].z *= -1;
+                }
+
+                geometry.attributes.position.needsUpdate = true;
+
+                // Recompute network lines based on proximity
+                for (let i = 0; i < count; i++) {
+                    for (let j = i + 1; j < count; j++) {
+                        const dx = posArr[i * 3] - posArr[j * 3];
+                        const dy = posArr[i * 3 + 1] - posArr[j * 3 + 1];
+                        const dz = posArr[i * 3 + 2] - posArr[j * 3 + 2];
+                        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (dist < 120) {
+                            linePosArr[vertexIndex++] = posArr[i * 3];
+                            linePosArr[vertexIndex++] = posArr[i * 3 + 1];
+                            linePosArr[vertexIndex++] = posArr[i * 3 + 2];
+
+                            linePosArr[vertexIndex++] = posArr[j * 3];
+                            linePosArr[vertexIndex++] = posArr[j * 3 + 1];
+                            linePosArr[vertexIndex++] = posArr[j * 3 + 2];
+                        }
+                    }
+                }
+
+                lineGeometry.setDrawRange(0, vertexIndex / 3);
+                lineGeometry.attributes.position.needsUpdate = true;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+    </script>
+</body>
+</html>
