@@ -402,6 +402,7 @@
                     <li><a href="physics.html">Physics</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology</a></li>
+		    <li><a href="Political Science.html">Political Science</a></li>
                     <li><a href="about.html">About Author</a></li>
                     <li><a href="contact.html">Contact &amp; Support</a></li>
                 </ul>
@@ -648,7 +649,7 @@
         </div>
     </footer>
 
-    <!-- THREE.js WebGL Script -->
+    <!-- STABILIZED THREE.js WebGL Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('canvas-container');
@@ -696,15 +697,14 @@
                         vx: (Math.random() - 0.5) * speedMultiplier,
                         vy: (Math.random() - 0.5) * speedMultiplier,
                         vz: (Math.random() - 0.5) * speedMultiplier,
-                        vw: (Math.random() - 0.5) * speedMultiplier,
-                        color: colorObj
+                        vw: (Math.random() - 0.5) * speedMultiplier
                     });
 
-                    starPositions[i * 3] = x;
+                    starPositions[i * 3]     = x;
                     starPositions[i * 3 + 1] = y;
                     starPositions[i * 3 + 2] = z;
 
-                    starColors[i * 3] = colorObj.r;
+                    starColors[i * 3]     = colorObj.r;
                     starColors[i * 3 + 1] = colorObj.g;
                     starColors[i * 3 + 2] = colorObj.b;
                 }
@@ -766,7 +766,7 @@
                         if (Math.abs(p.w) > 90) p.vw *= -1;
 
                         let wFactor = 1 + (p.w / 300);
-                        positions[i * 3] = p.x * wFactor;
+                        positions[i * 3]     = p.x * wFactor;
                         positions[i * 3 + 1] = p.y * wFactor;
                         positions[i * 3 + 2] = p.z * wFactor;
 
