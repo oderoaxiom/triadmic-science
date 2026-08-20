@@ -6,8 +6,15 @@
     
     <!-- Primary Metadata -->
     <title>Applied Physics | Persistence Science</title>
-    <meta name="description" content="Applied Physics and System Dynamics under the Odero Persistence Axiom.">
+    <meta name="description" content="Applied Physics framework for Persistence Science: System Dynamics, Omega velocity, acceleration, and control-phase simplex under the Odero Persistence Axiom.">
+    <meta name="keywords" content="applied physics, system dynamics, control theory, omega velocity, persistence science, Odero Persistence Axiom">
     <meta name="author" content="John Otieno Odero">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Applied Physics | Persistence Science">
+    <meta property="og:description" content="System Dynamics and Control Theory formulation under the Odero Persistence Axiom.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.21933743">
 
     <!-- Math (KaTeX) Styles & Scripts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -20,7 +27,7 @@
                 ]
             });"></script>
 
-    <!-- Three.js for 3D/4D Constellation Background -->
+    <!-- Three.js for 3D/4D Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
@@ -29,6 +36,7 @@
             --card-bg: rgba(15, 23, 42, 0.65);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --text-heading: #ffffff;
             --accent-blue: #38bdf8;
             --accent-amber: #f59e0b;
             --accent-green: #10b981;
@@ -75,6 +83,7 @@
             border-bottom: 1px solid var(--border-color);
             background: rgba(8, 12, 20, 0.85);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -92,9 +101,12 @@
             font-size: 1.35rem;
             font-weight: 900;
             text-decoration: none;
+            letter-spacing: -0.02em;
             background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
         }
 
         .nav-menu {
@@ -102,7 +114,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            gap: 1rem;
+            gap: 0.75rem 1rem;
             align-items: center;
             flex-wrap: wrap;
         }
@@ -129,10 +141,44 @@
             margin-bottom: 2rem;
         }
 
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
         h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin: 0.5rem 0;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
             color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
         }
 
         h2 {
@@ -145,90 +191,178 @@
         a {
             color: var(--accent-amber);
             text-decoration: underline;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        a:hover {
+        a:hover, a:active, a:focus {
             color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
 
-        /* Completely Transparent Math Card */
-        .math-card {
-            border-radius: 8px;
-            text-align: center;
-            padding: 1.5rem;
-            background: transparent;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        .axiom-box {
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
         }
 
-        /* Colored Borders & Glow Effects */
-        .amber-border {
-            border: 1px solid rgba(245, 158, 11, 0.6);
-        }
-        .amber-border:hover, .amber-border:active {
-            border-color: rgba(245, 158, 11, 1);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .blue-border {
-            border: 1px solid rgba(56, 189, 248, 0.6);
-        }
-        .blue-border:hover, .blue-border:active {
-            border-color: rgba(56, 189, 248, 1);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .grid-2 {
+        .math-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
             margin-top: 1rem;
         }
 
-        .sub-card {
-            background: rgba(8, 12, 20, 0.5);
-            border-radius: 10px;
-            padding: 1.5rem;
+        .math-card {
+            border-radius: 6px;
+            padding: 0.75rem;
             text-align: center;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(15, 23, 42, 0.4);
         }
 
-        .badge-btn {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border: 1px solid var(--accent-blue);
+        /* Custom Action Buttons Style matching user screenshot in floating space */
+        .action-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem 0;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .btn-action-amber {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-amber);
+            border: 1px solid var(--accent-amber);
             border-radius: 9999px;
-            padding: 0.6rem 1.25rem;
+            padding: 0.7rem 1.5rem;
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
             text-decoration: none;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
         }
 
-        .badge-btn:hover {
-            background: rgba(56, 189, 248, 0.3);
+        .btn-action-amber:hover {
+            background: rgba(245, 158, 11, 0.15);
             color: #ffffff;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-action-blue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-action-blue:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .citation-box {
+            background: rgba(8, 12, 20, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            padding: 0.75rem;
+            word-break: break-all;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-copy {
+            align-self: flex-end;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            border-radius: 4px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .citation-box {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding-right: 5.5rem;
+            }
+            .btn-copy {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+                align-self: auto;
+            }
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
         }
 
         footer {
             margin-top: 4rem;
-            padding: 3rem 0;
+            padding: 2.5rem 0;
             font-size: 0.85rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.9);
+            background: rgba(8, 12, 20, 0.8);
             backdrop-filter: blur(12px);
             text-align: center;
         }
 
         footer p {
             margin: 0.4rem 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        footer .footer-links a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.3rem;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
         }
     </style>
 </head>
@@ -238,7 +372,9 @@
 
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="site-title">Persistence Science</a>
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
@@ -255,122 +391,98 @@
 
     <main class="container">
         
-        <!-- Main Header Section -->
-        <section class="card blue-border" style="margin-top: 2rem;">
-            <!-- Added Category Badge -->
-            <div style="display: inline-block; background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 9999px; padding: 0.35rem 0.9rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem;">
-                Applied Physics &amp; System Control
-            </div>
-
-            <h1>System Dynamics &amp; Control Theory</h1>
-            <div style="color: var(--accent-blue); font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem;">
-                Continuous State-Space Formulation of the Odero Persistence Axiom
-            </div>
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">APPLIED PHYSICS &amp; SYSTEM DYNAMICS</span>
             
-            <!-- Added Introductory Paragraph matching reference layout style -->
-            <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin-top: 1rem;">
-                Conventional physical systems are often modeled under standard equilibrium assumptions. The <strong>System Dynamics &amp; Control Theory</strong> framework applies <em>Persistence Science</em> to physical systems, demonstrating how structural stability and phase transitions emerge when internal control mechanisms counteract environmental dissipation.
+            <h1>Applied Physics Framework</h1>
+
+            <div class="sub-title">Continuous State-Space Formulation &amp; Control Theory Dynamics</div>
+            
+            <p style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Extending the <strong>Odero Persistence Axiom</strong> into continuous physical domains. This framework models physical systems through state-space formulations, tracking the persistence index trajectory $\Omega(t)$, velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
             </p>
 
-            <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7;">
-                Applied physics within Persistence Science models structural continuity using continuous state-space formulations. By analyzing the temporal evolution of the Persistence Index ($\Omega$), system velocity ($\omega$), acceleration ($\alpha$), and control-phase geometry ($\kappa$), we can rigorously evaluate how complex mechanical and energetic systems maintain stability or undergo systemic collapse.
-            </p>
+            <!-- Core Mathematical Formulation Box -->
+            <div class="axiom-box">
+                <div style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Continuous Control Dynamics</div>
+                <div style="margin: 0.5rem 0; font-size: 0.95rem; text-align: center;">
+                    $$\frac{d\Omega}{dt} = \frac{\dot{C}(I)E + C(I)\dot{E}}{D} - \Omega \frac{\dot{D}}{D}$$
+                </div>
+                <div style="color: #f8fafc; font-size: 0.85rem; text-align: center;">
+                     Governing the rate of change of systemic resilience under fluctuating energy inputs and decay rates.
+                </div>
+
+                <div class="math-grid">
+                    <div class="math-card">
+                        <div style="color: var(--accent-blue); font-size: 0.75rem; font-weight: 700;">Omega Velocity ($\omega$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\omega = \frac{d\Omega}{dt}$$</div>
+                    </div>
+                    <div class="math-card">
+                        <div style="color: var(--accent-amber); font-size: 0.75rem; font-weight: 700;">Omega Acceleration ($\alpha$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\alpha = \frac{d^2\Omega}{dt^2}$$</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Dynamic Equilibrium Formulation -->
+        <!-- Core Sections Card -->
         <section class="card">
-            <div class="math-card amber-border">
-                <div style="color: var(--accent-amber); font-size: 0.8rem; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Dynamic Equilibrium Formulation</div>
-                <div style="font-size: 1.35rem; margin: 0.75rem 0;">$$\frac{d\Omega}{dt} = \omega(t) - \gamma D(t)$$</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; word-break: break-word;">
-                    Tracking the rate of change of structural persistence relative to active control velocity ($\omega$) and environmental decay dissipation ($\gamma D$).
-                </div>
-            </div>
+            <h2>System Dynamics &amp; Phase Space</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem;">
+                Physical systems maintain structural stability by continuously compensating for entropy. When tracking systems through control phase-space ($\kappa$), stability thresholds dictate whether a system converges toward steady-state persistence or undergoes rapid structural collapse.
+            </p>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; margin-top: 1rem; line-height: 1.7;">
+                <li><strong>Information-Control Coupling:</strong> How feedback loops optimize energetic distribution.</li>
+                <li><strong>Dissipation Boundaries:</strong> Critical thresholds where decay rates ($D$) overwhelm control capacity ($C(I) \cdot E$).</li>
+                <li><strong>Phase Simplex Mapping:</strong> Multidimensional tracking of systemic health metrics over chronological time.</li>
+            </ul>
         </section>
 
-        <!-- Kinematic Vectors & Equations -->
-        <section class="card">
-            <h2>Kinematic Vectors &amp; Equations</h2>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.25rem;">
-                The applied physics framework expands the primary axiom into explicit kinematic state-space equations:
-            </p>
-
-            <div class="grid-2">
-                <!-- Omega Velocity Card -->
-                <div class="sub-card blue-border">
-                    <div style="color: var(--accent-blue); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">
-                        Omega Velocity ($\omega$)
-                    </div>
-                    <div style="font-size: 1.2rem; margin: 0.75rem 0;">
-                        $$\omega(t) = \frac{d\Omega}{dt}$$
-                    </div>
-                    <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
-                        The temporal rate of change of structural persistence capacity.
-                    </div>
-                </div>
-
-                <!-- Persistence Acceleration Card -->
-                <div class="sub-card amber-border">
-                    <div style="color: var(--accent-amber); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem;">
-                        Persistence Acceleration ($\alpha$)
-                    </div>
-                    <div style="font-size: 1.2rem; margin: 0.75rem 0;">
-                        $$\alpha(t) = \frac{d\omega}{dt} = \frac{d^2\Omega}{dt^2}$$
-                    </div>
-                    <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
-                        The second derivative tracking compounding or exhausting adaptation.
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-top: 1.5rem; color: #cbd5e1; font-size: 0.95rem;">
-                <ul style="list-style-type: disc; padding-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Control-Phase Simplex ($\kappa$):</strong> The multi-dimensional geometric boundary defining stable operational regimes vs structural failure states.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Zenodo Open Access Registration -->
-        <section class="card blue-border">
-            <h2>Zenodo Open Access Registration</h2>
-            <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.5rem;">
-                The mathematical proofs and state-space models for system dynamics are openly registered for peer examination.
-            </p>
-            <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="badge-btn">
-                View Applied Physics Paper on Zenodo &rarr;
+        <!-- Action Buttons in their own floating space below the card -->
+        <div class="action-buttons-container">
+            <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="btn-action-amber">
+                Read Physics Manuscript (DOI) &rarr;
             </a>
+            <a href="index.html" class="btn-action-blue">
+                &larr; Return to Axiom
+            </a>
+        </div>
+
+        <!-- How to Cite -->
+        <section class="card" style="padding: 1.25rem;">
+            <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
+            <div class="citation-box">
+                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-physics').innerText)">Copy</button>
+                <span id="citation-content-physics">Odero, J. O. (2026). Applied Physics Framework: System Dynamics and Control Theory under the Odero Persistence Axiom. Zenodo. https://doi.org/10.5281/zenodo.21933743</span>
+            </div>
         </section>
 
     </main>
 
-    <!-- Bottom Footer Matching Picture Style -->
     <footer>
         <div class="container">
-            <div style="font-weight: 700; font-size: 1.1rem; color: #ffffff; margin-bottom: 0.3rem;">Persistence Science</div>
-            <div style="color: var(--text-muted); margin-bottom: 0.75rem;">Applied Physics &mdash; System Dynamics &amp; Control Theory</div>
-            <div style="font-weight: 600; color: #cbd5e1; margin-bottom: 1.2rem;">Founded by John Otieno Odero</div>
-            
-            <p style="margin-bottom: 1rem;">
+            <p class="footer-brand">Persistence Science</p>
+            <p style="color: var(--text-muted);">Applied Physics: System Dynamics &amp; Control Theory</p>
+            <p style="color: var(--text-muted);">Established by John Otieno Odero</p>
+            <p class="footer-links" style="margin-top: 1rem;">
                 <a href="index.html">Home</a> &bull; 
-                <a href="physics.html" style="color: var(--accent-amber);">Physics</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
                 <a href="captured-inflation.html">Economics</a> &bull; 
                 <a href="ert.html">Cosmology</a> &bull; 
                 <a href="Political Science.html">Political Science</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
             </p>
-            
-            <p style="font-size: 0.8rem; color: var(--text-muted);">
+            <p class="footer-meta" style="margin-top: 1rem;">
                 ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
-                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a>
             </p>
-            
-            <p style="margin-top: 1rem; color: #64748b; font-size: 0.78rem;">&copy; 2026 Persistence Science</p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
-    <!-- Three.js Star Constellation Background Script -->
+    <!-- Three.js Background Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('canvas-container');
@@ -446,7 +558,1927 @@
 
                 const pTexture = new THREE.CanvasTexture(canvas);
                 const starMat = new THREE.PointsMaterial({
-                    size: 2.2,
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Metadata -->
+    <title>Applied Physics | Persistence Science</title>
+    <meta name="description" content="Applied Physics framework for Persistence Science: System Dynamics, Omega velocity, acceleration, and control-phase simplex under the Odero Persistence Axiom.">
+    <meta name="keywords" content="applied physics, system dynamics, control theory, omega velocity, persistence science, Odero Persistence Axiom">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Applied Physics | Persistence Science">
+    <meta property="og:description" content="System Dynamics and Control Theory formulation under the Odero Persistence Axiom.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.21933743">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover, a:active, a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .axiom-box {
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
+        }
+
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .math-card {
+            border-radius: 6px;
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        /* Custom Action Buttons Style matching user screenshot in floating space */
+        .action-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem 0;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .btn-action-amber {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-amber);
+            border: 1px solid var(--accent-amber);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-action-amber:hover {
+            background: rgba(245, 158, 11, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-action-blue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-action-blue:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .citation-box {
+            background: rgba(8, 12, 20, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            padding: 0.75rem;
+            word-break: break-all;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-copy {
+            align-self: flex-end;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            border-radius: 4px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .citation-box {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding-right: 5.5rem;
+            }
+            .btn-copy {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+                align-self: auto;
+            }
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.4rem 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        footer .footer-links a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.3rem;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html" class="active">Physics</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
+                    <li><a href="Political Science.html">Political Science</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">APPLIED PHYSICS &amp; SYSTEM DYNAMICS</span>
+            
+            <h1>Applied Physics Framework</h1>
+
+            <div class="sub-title">Continuous State-Space Formulation &amp; Control Theory Dynamics</div>
+            
+            <p style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Extending the <strong>Odero Persistence Axiom</strong> into continuous physical domains. This framework models physical systems through state-space formulations, tracking the persistence index trajectory $\Omega(t)$, velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
+            </p>
+
+            <!-- Core Mathematical Formulation Box -->
+            <div class="axiom-box">
+                <div style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Continuous Control Dynamics</div>
+                <div style="margin: 0.5rem 0; font-size: 0.95rem; text-align: center;">
+                    $$\frac{d\Omega}{dt} = \frac{\dot{C}(I)E + C(I)\dot{E}}{D} - \Omega \frac{\dot{D}}{D}$$
+                </div>
+                <div style="color: #f8fafc; font-size: 0.85rem; text-align: center;">
+                     Governing the rate of change of systemic resilience under fluctuating energy inputs and decay rates.
+                </div>
+
+                <div class="math-grid">
+                    <div class="math-card">
+                        <div style="color: var(--accent-blue); font-size: 0.75rem; font-weight: 700;">Omega Velocity ($\omega$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\omega = \frac{d\Omega}{dt}$$</div>
+                    </div>
+                    <div class="math-card">
+                        <div style="color: var(--accent-amber); font-size: 0.75rem; font-weight: 700;">Omega Acceleration ($\alpha$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\alpha = \frac{d^2\Omega}{dt^2}$$</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Sections Card -->
+        <section class="card">
+            <h2>System Dynamics &amp; Phase Space</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem;">
+                Physical systems maintain structural stability by continuously compensating for entropy. When tracking systems through control phase-space ($\kappa$), stability thresholds dictate whether a system converges toward steady-state persistence or undergoes rapid structural collapse.
+            </p>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; margin-top: 1rem; line-height: 1.7;">
+                <li><strong>Information-Control Coupling:</strong> How feedback loops optimize energetic distribution.</li>
+                <li><strong>Dissipation Boundaries:</strong> Critical thresholds where decay rates ($D$) overwhelm control capacity ($C(I) \cdot E$).</li>
+                <li><strong>Phase Simplex Mapping:</strong> Multidimensional tracking of systemic health metrics over chronological time.</li>
+            </ul>
+        </section>
+
+        <!-- Action Buttons in their own floating space below the card -->
+        <div class="action-buttons-container">
+            <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="btn-action-amber">
+                Read Physics Manuscript (DOI) &rarr;
+            </a>
+            <a href="index.html" class="btn-action-blue">
+                &larr; Return to Axiom
+            </a>
+        </div>
+
+        <!-- How to Cite -->
+        <section class="card" style="padding: 1.25rem;">
+            <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
+            <div class="citation-box">
+                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-physics').innerText)">Copy</button>
+                <span id="citation-content-physics">Odero, J. O. (2026). Applied Physics Framework: System Dynamics and Control Theory under the Odero Persistence Axiom. Zenodo. https://doi.org/10.5281/zenodo.21933743</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p style="color: var(--text-muted);">Applied Physics: System Dynamics &amp; Control Theory</p>
+            <p style="color: var(--text-muted);">Established by John Otieno Odero</p>
+            <p class="footer-links" style="margin-top: 1rem;">
+                <a href="index.html">Home</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
+                <a href="captured-inflation.html">Economics</a> &bull; 
+                <a href="ert.html">Cosmology</a> &bull; 
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta" style="margin-top: 1rem;">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- Three.js Background Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 450;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Metadata -->
+    <title>Applied Physics | Persistence Science</title>
+    <meta name="description" content="Applied Physics framework for Persistence Science: System Dynamics, Omega velocity, acceleration, and control-phase simplex under the Odero Persistence Axiom.">
+    <meta name="keywords" content="applied physics, system dynamics, control theory, omega velocity, persistence science, Odero Persistence Axiom">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Applied Physics | Persistence Science">
+    <meta property="og:description" content="System Dynamics and Control Theory formulation under the Odero Persistence Axiom.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.21933743">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover, a:active, a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .axiom-box {
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
+        }
+
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .math-card {
+            border-radius: 6px;
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        /* Custom Action Buttons Style matching user screenshot in floating space */
+        .action-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem 0;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .btn-action-amber {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-amber);
+            border: 1px solid var(--accent-amber);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-action-amber:hover {
+            background: rgba(245, 158, 11, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-action-blue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-action-blue:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .citation-box {
+            background: rgba(8, 12, 20, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            padding: 0.75rem;
+            word-break: break-all;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-copy {
+            align-self: flex-end;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            border-radius: 4px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .citation-box {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding-right: 5.5rem;
+            }
+            .btn-copy {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+                align-self: auto;
+            }
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.4rem 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        footer .footer-links a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.3rem;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html" class="active">Physics</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
+                    <li><a href="Political Science.html">Political Science</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">APPLIED PHYSICS &amp; SYSTEM DYNAMICS</span>
+            
+            <h1>Applied Physics Framework</h1>
+
+            <div class="sub-title">Continuous State-Space Formulation &amp; Control Theory Dynamics</div>
+            
+            <p style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Extending the <strong>Odero Persistence Axiom</strong> into continuous physical domains. This framework models physical systems through state-space formulations, tracking the persistence index trajectory $\Omega(t)$, velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
+            </p>
+
+            <!-- Core Mathematical Formulation Box -->
+            <div class="axiom-box">
+                <div style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Continuous Control Dynamics</div>
+                <div style="margin: 0.5rem 0; font-size: 0.95rem; text-align: center;">
+                    $$\frac{d\Omega}{dt} = \frac{\dot{C}(I)E + C(I)\dot{E}}{D} - \Omega \frac{\dot{D}}{D}$$
+                </div>
+                <div style="color: #f8fafc; font-size: 0.85rem; text-align: center;">
+                     Governing the rate of change of systemic resilience under fluctuating energy inputs and decay rates.
+                </div>
+
+                <div class="math-grid">
+                    <div class="math-card">
+                        <div style="color: var(--accent-blue); font-size: 0.75rem; font-weight: 700;">Omega Velocity ($\omega$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\omega = \frac{d\Omega}{dt}$$</div>
+                    </div>
+                    <div class="math-card">
+                        <div style="color: var(--accent-amber); font-size: 0.75rem; font-weight: 700;">Omega Acceleration ($\alpha$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\alpha = \frac{d^2\Omega}{dt^2}$$</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Sections Card -->
+        <section class="card">
+            <h2>System Dynamics &amp; Phase Space</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem;">
+                Physical systems maintain structural stability by continuously compensating for entropy. When tracking systems through control phase-space ($\kappa$), stability thresholds dictate whether a system converges toward steady-state persistence or undergoes rapid structural collapse.
+            </p>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; margin-top: 1rem; line-height: 1.7;">
+                <li><strong>Information-Control Coupling:</strong> How feedback loops optimize energetic distribution.</li>
+                <li><strong>Dissipation Boundaries:</strong> Critical thresholds where decay rates ($D$) overwhelm control capacity ($C(I) \cdot E$).</li>
+                <li><strong>Phase Simplex Mapping:</strong> Multidimensional tracking of systemic health metrics over chronological time.</li>
+            </ul>
+        </section>
+
+        <!-- Action Buttons in their own floating space below the card -->
+        <div class="action-buttons-container">
+            <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="btn-action-amber">
+                Read Physics Manuscript (DOI) &rarr;
+            </a>
+            <a href="index.html" class="btn-action-blue">
+                &larr; Return to Axiom
+            </a>
+        </div>
+
+        <!-- How to Cite -->
+        <section class="card" style="padding: 1.25rem;">
+            <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
+            <div class="citation-box">
+                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-physics').innerText)">Copy</button>
+                <span id="citation-content-physics">Odero, J. O. (2026). Applied Physics Framework: System Dynamics and Control Theory under the Odero Persistence Axiom. Zenodo. https://doi.org/10.5281/zenodo.21933743</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p style="color: var(--text-muted);">Applied Physics: System Dynamics &amp; Control Theory</p>
+            <p style="color: var(--text-muted);">Established by John Otieno Odero</p>
+            <p class="footer-links" style="margin-top: 1rem;">
+                <a href="index.html">Home</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
+                <a href="captured-inflation.html">Economics</a> &bull; 
+                <a href="ert.html">Cosmology</a> &bull; 
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta" style="margin-top: 1rem;">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- Three.js Background Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 450;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Metadata -->
+    <title>Applied Physics | Persistence Science</title>
+    <meta name="description" content="Applied Physics framework for Persistence Science: System Dynamics, Omega velocity, acceleration, and control-phase simplex under the Odero Persistence Axiom.">
+    <meta name="keywords" content="applied physics, system dynamics, control theory, omega velocity, persistence science, Odero Persistence Axiom">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Applied Physics | Persistence Science">
+    <meta property="og:description" content="System Dynamics and Control Theory formulation under the Odero Persistence Axiom.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.21933743">
+
+    <!-- Math (KaTeX) Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #080c14;
+            --card-bg: rgba(15, 23, 42, 0.65);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-heading: #ffffff;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .site-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-blue);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            margin: 0.25rem 0 0.5rem 0;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .sub-title {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        a:hover, a:active, a:focus {
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .axiom-box {
+            padding: 1rem 1.25rem;
+            margin-top: 1rem;
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border-radius: 10px;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
+        }
+
+        .math-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .math-card {
+            border-radius: 6px;
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        /* Custom Action Buttons Style matching user screenshot in floating space */
+        .action-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2.5rem 0 1.5rem 0;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .btn-action-amber {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-amber);
+            border: 1px solid var(--accent-amber);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-action-amber:hover {
+            background: rgba(245, 158, 11, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+
+        .btn-action-blue {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.65);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-action-blue:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+        }
+
+        .citation-box {
+            background: rgba(8, 12, 20, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            position: relative;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            padding: 0.75rem;
+            word-break: break-all;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-copy {
+            align-self: flex-end;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            border-radius: 4px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .citation-box {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding-right: 5.5rem;
+            }
+            .btn-copy {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+                align-self: auto;
+            }
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background: rgba(8, 12, 20, 0.8);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.4rem 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        footer .footer-links a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.3rem;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="physics.html" class="active">Physics</a></li>
+                    <li><a href="captured-inflation.html">Economics</a></li>
+                    <li><a href="ert.html">Cosmology</a></li>
+                    <li><a href="Political Science.html">Political Science</a></li>
+                    <li><a href="about.html">About Author</a></li>
+                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <span class="badge">APPLIED PHYSICS &amp; SYSTEM DYNAMICS</span>
+            
+            <h1>Applied Physics Framework</h1>
+
+            <div class="sub-title">Continuous State-Space Formulation &amp; Control Theory Dynamics</div>
+            
+            <p style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
+                Extending the <strong>Odero Persistence Axiom</strong> into continuous physical domains. This framework models physical systems through state-space formulations, tracking the persistence index trajectory $\Omega(t)$, velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
+            </p>
+
+            <!-- Core Mathematical Formulation Box -->
+            <div class="axiom-box">
+                <div style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Continuous Control Dynamics</div>
+                <div style="margin: 0.5rem 0; font-size: 0.95rem; text-align: center;">
+                    $$\frac{d\Omega}{dt} = \frac{\dot{C}(I)E + C(I)\dot{E}}{D} - \Omega \frac{\dot{D}}{D}$$
+                </div>
+                <div style="color: #f8fafc; font-size: 0.85rem; text-align: center;">
+                     Governing the rate of change of systemic resilience under fluctuating energy inputs and decay rates.
+                </div>
+
+                <div class="math-grid">
+                    <div class="math-card">
+                        <div style="color: var(--accent-blue); font-size: 0.75rem; font-weight: 700;">Omega Velocity ($\omega$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\omega = \frac{d\Omega}{dt}$$</div>
+                    </div>
+                    <div class="math-card">
+                        <div style="color: var(--accent-amber); font-size: 0.75rem; font-weight: 700;">Omega Acceleration ($\alpha$)</div>
+                        <div style="font-size: 0.9rem; margin-top: 0.25rem;">$$\alpha = \frac{d^2\Omega}{dt^2}$$</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Sections Card -->
+        <section class="card">
+            <h2>System Dynamics &amp; Phase Space</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem;">
+                Physical systems maintain structural stability by continuously compensating for entropy. When tracking systems through control phase-space ($\kappa$), stability thresholds dictate whether a system converges toward steady-state persistence or undergoes rapid structural collapse.
+            </p>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; margin-top: 1rem; line-height: 1.7;">
+                <li><strong>Information-Control Coupling:</strong> How feedback loops optimize energetic distribution.</li>
+                <li><strong>Dissipation Boundaries:</strong> Critical thresholds where decay rates ($D$) overwhelm control capacity ($C(I) \cdot E$).</li>
+                <li><strong>Phase Simplex Mapping:</strong> Multidimensional tracking of systemic health metrics over chronological time.</li>
+            </ul>
+        </section>
+
+        <!-- Action Buttons in their own floating space below the card -->
+        <div class="action-buttons-container">
+            <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="btn-action-amber">
+                Read Physics Manuscript (DOI) &rarr;
+            </a>
+            <a href="index.html" class="btn-action-blue">
+                &larr; Return to Axiom
+            </a>
+        </div>
+
+        <!-- How to Cite -->
+        <section class="card" style="padding: 1.25rem;">
+            <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
+            <div class="citation-box">
+                <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-physics').innerText)">Copy</button>
+                <span id="citation-content-physics">Odero, J. O. (2026). Applied Physics Framework: System Dynamics and Control Theory under the Odero Persistence Axiom. Zenodo. https://doi.org/10.5281/zenodo.21933743</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p style="color: var(--text-muted);">Applied Physics: System Dynamics &amp; Control Theory</p>
+            <p style="color: var(--text-muted);">Established by John Otieno Odero</p>
+            <p class="footer-links" style="margin-top: 1rem;">
+                <a href="index.html">Home</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
+                <a href="captured-inflation.html">Economics</a> &bull; 
+                <a href="ert.html">Cosmology</a> &bull; 
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta" style="margin-top: 1rem;">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- Three.js Background Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 450;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
                     vertexColors: true,
                     map: pTexture,
                     transparent: true,
