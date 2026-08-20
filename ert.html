@@ -226,6 +226,25 @@
             transform: translateY(-2px);
         }
 
+        /* Formula Container Fix for Overflow */
+        .formula-wrapper {
+            margin-top: 0.75rem;
+            padding: 0.25rem 0;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            text-align: center;
+        }
+
+        .formula-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .formula-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
         .relation-table-wrapper {
             margin-top: 2rem;
             overflow-x: auto;
@@ -391,7 +410,7 @@
                         </ul>
                     </div>
                     <div>
-                        <div style="margin-top: 0.75rem; text-align: center; font-size: 1.05rem;">
+                        <div class="formula-wrapper">
                             $$\mathcal{T}_{\text{elastic}} = \kappa \cdot \left(\frac{a}{a_0} - 1\right) - \gamma \cdot \dot{S}_{\text{regen}}$$
                         </div>
                         <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
@@ -421,7 +440,7 @@
                         </ul>
                     </div>
                     <div>
-                        <div style="margin-top: 0.75rem; text-align: center; font-size: 1.05rem;">
+                        <div class="formula-wrapper">
                             $$\mathcal{E}_{\text{cosmo}} = \frac{3H^2}{8\pi G} + \rho_{\text{m}} + \frac{k}{a^2} + \Lambda(t) - \sigma_{\text{entropy}}$$
                         </div>
                         <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
@@ -592,7 +611,7 @@
 
                 const pTexture = new THREE.CanvasTexture(canvas);
                 const starMat = new THREE.PointsMaterial({
-                    size: 1.6, // Adjusted to match smaller star size
+                    size: 1.6,
                     vertexColors: true,
                     map: pTexture,
                     transparent: true,
