@@ -29,6 +29,7 @@
             --card-bg: rgba(15, 23, 42, 0.65);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --text-heading: #ffffff;
             --accent-blue: #38bdf8;
             --accent-amber: #f59e0b;
             --accent-green: #10b981;
@@ -226,6 +227,34 @@
             transform: translateY(-2px);
         }
 
+        /* Formula Container Fix for Mobile Overflow */
+        .formula-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.25rem 0;
+            margin: 0.5rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .formula-scroll-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .formula-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 4px;
+        }
+
+        /* Ensure KaTeX display equations wrap or scroll gracefully */
+        .katex-display {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+            margin: 0.5rem 0 !important;
+            padding: 0.2rem 0;
+        }
+
         .relation-table-wrapper {
             margin-top: 2rem;
             overflow-x: auto;
@@ -261,6 +290,7 @@
             border-bottom: none;
         }
 
+        /* Footer Design */
         footer {
             margin-top: 4rem;
             padding: 2.5rem 0;
@@ -272,8 +302,51 @@
             text-align: center;
         }
 
-        footer p {
-            margin: 0.3rem 0;
+        footer .footer-top {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        footer .footer-author {
+            color: var(--text-heading);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-nav {
+            margin-bottom: 1rem;
+            font-size: 0.82rem;
+        }
+
+        footer .footer-nav a {
+            color: var(--accent-amber);
+            text-decoration: underline;
+            margin: 0 0.2rem;
+        }
+
+        footer .footer-nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        footer .footer-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
+        }
+
+        footer .footer-meta a:hover {
+            color: var(--accent-blue);
+        }
+
+        footer .footer-copy {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
         }
 
         ul.claims-list {
@@ -287,7 +360,7 @@
             margin-bottom: 0.6rem;
         }
 
-        /* Custom Zenodo Pill Button Matching User Image Style */
+        /* Custom Zenodo Pill Button */
         .zenodo-pill-wrapper {
             margin-top: 2rem;
             text-align: center;
@@ -381,8 +454,10 @@
                         </ul>
                     </div>
                     <div>
-                        <div style="margin-top: 0.75rem; text-align: center; font-size: 1.05rem;">
-                            $$\Omega_{pol} = \frac{\kappa \cdot C_{pol}(I)E_{pol}}{D_{pol}}$$
+                        <div class="formula-scroll-wrapper">
+                            <div style="margin-top: 0.75rem; text-align: center; font-size: 1.05rem;">
+                                $$\Omega_{pol} = \frac{\kappa \cdot C_{pol}(I)E_{pol}}{D_{pol}}$$
+                            </div>
                         </div>
                         <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
                             Political Persistence Index incorporating control efficiency ($C_{pol}(I)$), energy throughput ($E_{pol}$), and indispensability ($\kappa$).
@@ -410,8 +485,10 @@
                         </ul>
                     </div>
                     <div>
-                        <div style="margin-top: 0.75rem; text-align: center; font-size: 0.95rem;">
-                            $$\omega_{pol} = \frac{d\Omega_{pol}}{dt} = \Omega_{pol}\left[\frac{\dot{C}_{pol}}{C_{pol}} + \frac{\dot{E}_{pol}}{E_{pol}} + \frac{\dot{\kappa}}{\kappa} - \frac{\dot{D}_{pol}}{D_{pol}}\right]$$
+                        <div class="formula-scroll-wrapper">
+                            <div style="margin-top: 0.75rem; text-align: center; font-size: 0.95rem;">
+                                $$\omega_{pol} = \frac{d\Omega_{pol}}{dt} = \Omega_{pol}\left[\frac{\dot{C}_{pol}}{C_{pol}} + \frac{\dot{E}_{pol}}{E_{pol}} + \frac{\dot{\kappa}}{\kappa} - \frac{\dot{D}_{pol}}{D_{pol}}\right]$$
+                            </div>
                         </div>
                         <p style="color: #64748b; font-size: 0.78rem; text-align: center; margin-top: 0.5rem;">
                             Dynamic velocity equation balancing control, resource growth, indispensability shift, and decay acceleration.
@@ -509,16 +586,24 @@
 
     <footer>
         <div class="container">
-            <p><strong>Persistence Science</strong> &mdash; Applied Cosmological Model &amp; Elasticosmos Regenesis Theory (ERT)</p>
-            <p>Author &amp; Principal Investigator: <strong>John Otieno Odero</strong></p>
-            <p style="margin-top: 0.75rem;">
+            <div class="footer-top">Persistence Science</div>
+            <div class="footer-top" style="font-weight: 400; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem;">Applied Political Science &mdash; Coalition Indispensability Theory</div>
+            <div class="footer-author" style="margin-top: 0.75rem;">Founded by John Otieno Odero</div>
+            <div class="footer-nav">
                 <a href="index.html">Home</a> &bull; 
                 <a href="physics.html">Physics</a> &bull; 
                 <a href="captured-inflation.html">Economics</a> &bull; 
                 <a href="ert.html">Cosmology</a> &bull; 
-                <a href="about.html">About Author</a> &bull; 
-                <a href="contact.html">Contact &amp; Support</a>
-            </p>
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://doi.org/10.5281/zenodo.22012149" target="_blank">Zenodo Preprints</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </div>
+            <div class="footer-copy">&copy; 2026 Persistence Science</div>
         </div>
     </footer>
 

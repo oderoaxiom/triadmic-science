@@ -356,19 +356,26 @@
             position: relative;
             font-size: 0.85rem;
             color: #cbd5e1;
+            padding: 0.75rem 5.5rem 0.75rem 0.75rem;
+            word-break: break-all;
         }
 
         .btn-copy {
             position: absolute;
-            top: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
             right: 0.5rem;
             background: rgba(56, 189, 248, 0.15);
             border: 1px solid var(--accent-blue);
             color: var(--accent-blue);
             border-radius: 4px;
-            padding: 0.2rem 0.5rem;
+            padding: 0.3rem 0.7rem;
             font-size: 0.75rem;
             cursor: pointer;
+        }
+
+        .btn-copy:hover {
+            background: rgba(56, 189, 248, 0.3);
         }
 
         footer {
@@ -383,7 +390,59 @@
         }
 
         footer p {
-            margin: 0.3rem 0;
+            margin: 0.4rem 0;
+        }
+
+        footer .footer-brand {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        footer .footer-theory {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        footer .footer-established {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        footer .footer-mission {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto 1rem auto;
+            line-height: 1.4;
+        }
+
+        footer .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-links a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.3rem;
+        }
+
+        footer .footer-links a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        footer .footer-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
         }
     </style>
 </head>
@@ -402,7 +461,7 @@
                     <li><a href="physics.html">Physics</a></li>
                     <li><a href="captured-inflation.html">Economics</a></li>
                     <li><a href="ert.html">Cosmology</a></li>
-		    <li><a href="Political Science.html">Political Science</a></li>
+                    <li><a href="Political Science.html">Political Science</a></li>
                     <li><a href="about.html">About Author</a></li>
                     <li><a href="contact.html">Contact &amp; Support</a></li>
                 </ul>
@@ -445,6 +504,10 @@
                     <div class="status-pill">
                         <div class="status-dot"></div>
                         <div class="status-text">Applied Economics</div>
+                    </div>
+                    <div class="status-pill">
+                        <div class="status-dot"></div>
+                        <div class="status-text">Applied Political Science</div>
                     </div>
                     <div class="status-pill">
                         <div class="status-dot" style="background-color: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber);"></div>
@@ -492,7 +555,7 @@
             </p>
 
             <div class="domains-grid">
-                <!-- Cosmology Domain (First) -->
+                <!-- Cosmology Domain -->
                 <a href="ert.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
                     <div>
                         <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
@@ -542,6 +605,25 @@
                         </div>
                     </div>
                     <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Model &rarr;</div>
+                </a>
+
+                <!-- Political Science Domain -->
+                <a href="Political Science.html" class="domain-card" style="padding: 0.75rem 1rem; text-decoration: none;">
+                    <div>
+                        <div class="domain-icon" style="color: var(--accent-blue); margin-bottom: 0.5rem;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="domain-title">Political Science</div>
+                        <div class="domain-desc">
+                            Coalition Indispensability Theory (CIT): Modeling democratic leader longevity, executive survival, and political omega velocity ($\omega_{pol}$).
+                        </div>
+                    </div>
+                    <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Political Science &rarr;</div>
                 </a>
 
                 <!-- Complex Systems Domain -->
@@ -631,7 +713,7 @@
         <!-- How to Cite Card -->
         <section class="card card-citation-compact" style="padding: 0.75rem 1.25rem; margin-bottom: 1rem;">
             <h3 style="margin-top: 0; color: var(--accent-amber); margin-bottom: 0.35rem;">How to Cite</h3>
-            <div class="citation-box" style="padding: 0.5rem 0.75rem;">
+            <div class="citation-box">
                 <button class="btn-copy" onclick="navigator.clipboard.writeText(document.getElementById('citation-content-1').innerText)">Copy</button>
                 <span id="citation-content-1">Odero, J. O. (2026). Odero Persistence Axiom: Foundations of Persistence Science: Zenodo Preprint. https://doi.org/10.5281/zenodo.21841446</span>
             </div>
@@ -641,11 +723,25 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 John Otieno Odero. Persistence Science.</p>
-            <p>
-                Repositories: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener">Axiom DOI: 10.5281/zenodo.21841446</a> &bull; 
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a>
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-theory">Parent Theory: The Odero Persistence Axiom</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-mission">Exploring persistence as a unifying principle across physics, economics, cosmology, and political science.</p>
+            <p class="footer-links">
+                <a href="index.html">Home</a> &bull; 
+                <a href="physics.html">Physics</a> &bull; 
+                <a href="captured-inflation.html">Economics</a> &bull; 
+                <a href="ert.html">Cosmology</a> &bull; 
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
             </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
@@ -725,7 +821,7 @@
 
                 const pTexture = new THREE.CanvasTexture(canvas);
                 const starMat = new THREE.PointsMaterial({
-                    size: 2.2,
+                    size: 1.6,
                     vertexColors: true,
                     map: pTexture,
                     transparent: true,

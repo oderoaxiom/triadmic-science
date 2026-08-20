@@ -280,11 +280,49 @@
         footer p {
             margin: 0.3rem 0;
         }
+
+        footer .footer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+
+        footer .footer-thankyou {
+            font-size: 0.95rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-nav {
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-nav a {
+            color: var(--accent-amber);
+            text-decoration: none;
+            margin: 0 0.25rem;
+        }
+
+        footer .footer-nav a:hover {
+            text-decoration: underline;
+        }
+
+        footer .footer-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .footer-meta a {
+            color: var(--accent-amber);
+        }
     </style>
 </head>
 <body>
 
-    <!-- WebGL Particle Star Background Canvas -->
+    <!-- WebGL Starfield Particle Background Canvas -->
     <div id="canvas-container"></div>
 
     <header>
@@ -360,16 +398,23 @@
 
     <footer>
         <div class="container">
-            <p><strong>Persistence Science</strong> &mdash; Applied Cosmological Model &amp; Elasticosmos Regenesis Theory</p>
-            <p>Author &amp; Principal Investigator: <strong>John Otieno Odero</strong></p>
-            <p style="margin-top: 0.75rem;">
+            <div class="footer-title">Persistence Science</div>
+            <div class="footer-thankyou">Thank you!</div>
+            <div class="footer-nav">
                 <a href="index.html">Home</a> &bull; 
                 <a href="physics.html">Physics</a> &bull; 
                 <a href="captured-inflation.html">Economics</a> &bull; 
                 <a href="ert.html">Cosmology</a> &bull; 
-                <a href="about.html">About Author</a> &bull; 
-                <a href="contact.html">Contact &amp; Support</a>
-            </p>
+                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank">Zenodo Preprints</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </div>
+            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
