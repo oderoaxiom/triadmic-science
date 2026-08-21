@@ -16,17 +16,6 @@
     <meta property="og:description" content="A first-principles mathematical framework explaining complex system persistence and collapse.">
     <meta property="og:url" content="https://doi.org/10.5281/zenodo.21841446">
 
-    <!-- Math (KaTeX) Styles & Scripts -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {
-                delimiters: [
-                    {left: '$$', right: '$$', display: true},
-                    {left: '$', right: '$', display: false}
-                ]
-            });"></script>
-
     <!-- Three.js for 3D/4D Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -177,6 +166,31 @@
             text-transform: uppercase;
         }
 
+        .badge-doi-glow {
+            display: inline-block;
+            background: rgba(8, 12, 20, 0.75) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            color: var(--accent-amber);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(245, 158, 11, 0.85);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4), inset 0 0 6px rgba(245, 158, 11, 0.15);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .badge-doi-glow:hover {
+            border-color: rgba(245, 158, 11, 1);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.9), inset 0 0 12px rgba(245, 158, 11, 0.3);
+            transform: translateY(-1px);
+            color: var(--accent-amber);
+        }
+
         h1 {
             font-size: clamp(2.2rem, 4vw, 3.2rem);
             margin: 0.25rem 0 0.5rem 0;
@@ -212,23 +226,41 @@
             text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
         }
 
+        @keyframes formulaPulse {
+            0% {
+                color: #38bdf8;
+                text-shadow: 0 0 4px rgba(56, 189, 248, 0.3), 0 0 12px rgba(56, 189, 248, 0.15);
+            }
+            50% {
+                color: #ffffff;
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 20px rgba(56, 189, 248, 0.4);
+            }
+            100% {
+                color: #38bdf8;
+                text-shadow: 0 0 4px rgba(56, 189, 248, 0.3), 0 0 12px rgba(56, 189, 248, 0.15);
+            }
+        }
+
+        .glowing-formula {
+            animation: formulaPulse 5s infinite ease-in-out;
+            display: inline-block;
+        }
+
         .axiom-box {
-            padding: 0.75rem 1rem;
+            padding: 1.25rem 1.5rem;
             margin-top: 0.75rem;
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            border-radius: 10px;
-            border: 1px solid rgba(245, 158, 11, 0.85);
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.15);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-            cursor: pointer;
+            background: rgba(10, 15, 26, 0.8) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-radius: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .axiom-box:hover {
-            border-color: rgba(245, 158, 11, 1);
-            box-shadow: 0 0 24px rgba(245, 158, 11, 0.9), inset 0 0 16px rgba(245, 158, 11, 0.3);
             transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.4);
         }
 
         .framework-status-grid {
@@ -258,13 +290,14 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 0.75rem;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
         }
 
         .math-card {
-            border-radius: 6px;
+            border-radius: 8px;
             text-align: center;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            background: rgba(8, 12, 20, 0.5);
         }
 
         .math-card.blue-border {
@@ -330,23 +363,6 @@
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-top: 0.5rem;
-        }
-
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.5rem;
-            margin: 0.75rem 0;
-        }
-
-        .status-item {
-            font-size: 0.88rem;
-            color: #cbd5e1;
-        }
-
-        .status-check {
-            color: var(--accent-green);
-            font-weight: bold;
         }
 
         .citation-box {
@@ -415,26 +431,11 @@
             color: #ffffff;
         }
 
-        footer .footer-theory {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-        }
-
         footer .footer-established {
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-muted);
             margin-bottom: 0.75rem;
-        }
-
-        footer .footer-mission {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: #cbd5e1;
-            max-width: 600px;
-            margin: 0 auto 1rem auto;
-            line-height: 1.4;
         }
 
         footer .footer-links {
@@ -493,7 +494,46 @@
             
             <h1>Persistence Science</h1>
 
-            <div class="sub-title">A Mathematical Framework for Understanding Persistence Across Physics, Economics, Biology and Complex Systems</div>
+            <div class="sub-title">First-Principles Mathematics of System Persistence</div>
+            
+            <!-- Axiom Card with Enhanced Background Opacity & Blur -->
+            <div class="axiom-box" style="margin-top: 0.5rem; margin-bottom: 1.25rem; text-align: center;">
+                <div style="text-align: center; margin-bottom: 0.75rem;">
+                    <span style="letter-spacing: 0.05em; text-transform: uppercase; font-weight: 900; font-size: 0.95rem; color: #ffffff;"><strong>Odero Persistence Axiom</strong></span>
+                </div>
+                <div class="math-hero" style="margin: 0.35rem 0; font-size: 1.4rem; font-weight: bold;">
+                    <span class="glowing-formula">𝐶(𝐼) × 𝐸 > 𝐷</span>
+                </div>
+                <div class="axiom-explanation" style="color: #f8fafc; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                    A system persists if and only if its Information-Control capacity (𝐶(𝐼)) multiplied by available Energy (𝐸) strictly exceeds its total rate of Decay (𝐷).
+                </div>
+
+                <div class="axiom-systems" style="font-size: 0.82rem; color: #cbd5e1; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 0.5rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.3rem; text-align: left;">
+                    <div>1. Government survives = Strong institutions × Budget > Corruption + Inflation</div>
+                    <div>2. Galaxy survives = Gravitational binding × Star formation energy > Dark energy expansion + Radiation loss</div>
+                    <div>3. Species survives = DNA repair capacity × Food energy > Mutation rate + Predation + Disease</div>
+                    <div>4. Company survives = Brand + Ops × Revenue > Burn rate + Competition + Debt</div>
+                </div>
+
+                <div class="math-grid" style="margin-top: 0.75rem;">
+                    <div class="math-card blue-border" style="padding: 0.5rem 0.5rem;">
+                        <div class="math-card-title" style="color: var(--accent-blue); font-size: 0.75rem;">Persistence Capacity</div>
+                        <div style="font-size: 0.85rem; font-weight: bold;">𝑃𝑐 = 𝐶(𝐼) × 𝐸</div>
+                    </div>
+                    <div class="math-card gold-border" style="padding: 0.5rem 0.5rem;">
+                        <div class="math-card-title" style="color: var(--accent-amber); font-size: 0.75rem;">Persistence Index (Ω)</div>
+                        <div style="font-size: 0.85rem; font-weight: bold;">Ω = (𝐶(𝐼) × 𝐸) / 𝐷</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOI Section Brought Up Right Under Formula Card -->
+            <div class="cta-group" style="margin-bottom: 1.5rem;">
+                <div>
+                    <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener" class="badge-doi-glow" style="text-decoration: none;">READ ODERO PERSISTENCE AXIOM ON ZENODO &rarr;</a>
+                    <div class="paper-meta" style="margin-top: 0.3rem; font-size: 0.85rem; color: var(--text-muted);">Foundational Paper &bull; Open Access | DOI: 10.5281/zenodo.21841446</div>
+                </div>
+            </div>
             
             <p class="hero-description" style="color: #cbd5e1; font-size: 1.05rem; margin-top: 0.75rem;">
                 Every complex open system—whether a biological organism, market architecture, physical universe, or digital network—operates under constant thermodynamic and operational degradation. Founded on the <strong>Odero Persistence Axiom</strong>, Persistence Science establishes a first-principles mathematical framework explaining how systems preserve structural identity over time.
@@ -531,36 +571,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Transparent Formula Card with Outer Amber Hover Glow -->
-            <div class="axiom-box">
-                <div class="axiom-title" style="color: var(--accent-blue); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 700; font-size: 0.85rem;">Odero Persistence Axiom</div>
-                <div class="math-hero" style="margin: 0.25rem 0; font-size: 0.95rem;">
-                    $$C(I) \cdot E > D$$
-                </div>
-                <div class="axiom-explanation" style="color: #f8fafc; font-size: 0.85rem;">
-                    A system persists if and only if its Information-Control capacity ($C(I)$) multiplied by available Energy ($E$) strictly exceeds its total rate of Decay ($D$).
-                </div>
-
-                <div class="math-grid">
-                    <div class="math-card blue-border" style="padding: 0.35rem 0.5rem; background: transparent;">
-                        <div class="math-card-title" style="color: var(--accent-blue); font-size: 0.75rem;">Persistence Capacity</div>
-                        <div style="font-size: 0.85rem;">$$P_c = C(I) \cdot E$$</div>
-                    </div>
-                    <div class="math-card gold-border" style="padding: 0.35rem 0.5rem; background: transparent;">
-                        <div class="math-card-title" style="color: var(--accent-amber); font-size: 0.75rem;">Persistence Index ($\Omega$)</div>
-                        <div style="font-size: 0.85rem;">$$\Omega = \frac{C(I) \cdot E}{D}$$</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Executive Summary Card -->
-        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
-            <h2>Executive Summary</h2>
-            <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 0;">
-                Persistence Science proposes that all complex systems survive only when their information-control capacity and available energy exceed the forces of decay. This principle is formalized by the Odero Persistence Axiom and extended via continuous dynamic control systems, applied across physics, economics, cosmology, biological systems, and network architectures.
-            </p>
         </section>
 
         <!-- Research Domains Card -->
@@ -600,7 +610,7 @@
                         </div>
                         <div class="domain-title">Applied Physics</div>
                         <div class="domain-desc">
-                            System Dynamics &amp; Control Theory: Continuous state-space formulation, Omega velocity ($\omega$), acceleration ($\alpha$), and control-phase simplex ($\kappa$).
+                            System Dynamics &amp; Control Theory: Continuous state-space formulation, Omega velocity (ω), acceleration (𝛼), and control-phase simplex (𝜅).
                         </div>
                     </div>
                     <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Physics &rarr;</div>
@@ -636,7 +646,7 @@
                         </div>
                         <div class="domain-title">Political Science</div>
                         <div class="domain-desc">
-                            Coalition Indispensability Theory (CIT): Modeling democratic leader longevity, executive survival, and political omega velocity ($\omega_{pol}$).
+                            Coalition Indispensability Theory (CIT): Modeling democratic leader longevity, executive survival, and political omega velocity (𝜔<sub>pol</sub>).
                         </div>
                     </div>
                     <div class="domain-link" style="color: var(--accent-amber); margin-top: 0.5rem;">Explore Political Science &rarr;</div>
@@ -673,13 +683,13 @@
                     <g transform="translate(40, 30)">
                         <rect x="0" y="0" width="160" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
                         <text x="80" y="23" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Information-Control</text>
-                        <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">C(I)</text>
+                        <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">𝐶(𝐼)</text>
                     </g>
-                    <text x="120" y="100" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">&middot;</text>
+                    <text x="120" y="100" fill="#38bdf8" font-size="20" font-weight="bold" text-anchor="middle">×</text>
                     <g transform="translate(40, 115)">
                         <rect x="0" y="0" width="160" height="55" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
                         <text x="80" y="23" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">Available Energy</text>
-                        <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">E</text>
+                        <text x="80" y="42" fill="#f8fafc" font-size="14" font-weight="bold" text-anchor="middle">𝐸</text>
                     </g>
                     <g transform="translate(210, 90)">
                         <line x1="0" y1="15" x2="35" y2="15" stroke="#38bdf8" stroke-width="2.5" />
@@ -688,40 +698,18 @@
                     <g transform="translate(255, 65)">
                         <rect x="0" y="0" width="180" height="65" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
                         <text x="90" y="28" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1">PERSISTENCE CAPACITY</text>
-                        <text x="90" y="48" fill="#38bdf8" font-size="15" font-weight="bold" text-anchor="middle">C(I) &middot; E</text>
+                        <text x="90" y="48" fill="#38bdf8" font-size="15" font-weight="bold" text-anchor="middle">𝐶(𝐼) × 𝐸</text>
                     </g>
                     <text x="465" y="103" fill="#10b981" font-size="28" font-weight="bold" text-anchor="middle">&gt;</text>
                     <g transform="translate(495, 65)">
                         <rect x="0" y="0" width="160" height="65" rx="8" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
                         <text x="80" y="28" fill="#ef4444" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="1">RATE OF DECAY</text>
-                        <text x="80" y="48" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">D</text>
+                        <text x="80" y="48" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">𝐷</text>
                     </g>
-                    <text x="345" y="180" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">System Persists &amp; Adapts (&Omega; &gt; 1)</text>
+                    <text x="345" y="180" fill="#10b981" font-size="13" font-weight="bold" text-anchor="middle">System Persists &amp; Adapts (Ω > 1)</text>
                 </svg>
                 <div class="diagram-caption">
                     Figure 1: System balance condition under the Odero Persistence Axiom.
-                </div>
-            </div>
-        </section>
-
-        <!-- Research Archive Card -->
-        <section class="card" style="padding: 1rem 1.25rem; margin-bottom: 1rem;">
-            <h2>Research Archive &amp; Accessibility</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                This research program is registered and archived across open-access repositories for verification:
-            </p>
-
-            <div class="status-grid">
-                <div class="status-item"><span class="status-check">&#10003;</span> Open Access</div>
-                <div class="status-item"><span class="status-check">&#10003;</span> Registered Zenodo DOIs</div>
-                <div class="status-item"><span class="status-check">&#10003;</span> Publicly Archived Research</div>
-                <div class="status-item"><span class="status-check">&#10003;</span> Available for Review</div>
-            </div>
-
-            <div class="cta-group" style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.75rem;">
-                <div>
-                    <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" rel="noopener" class="badge" style="padding: 0.5rem 1rem; text-decoration: none;">Read Odero Persistence Axiom on Zenodo &rarr;</a>
-                    <div class="paper-meta" style="margin-top: 0.3rem; font-size: 0.85rem; color: var(--text-muted);">Foundational Paper &bull; Open Access | DOI: 10.5281/zenodo.21841446</div>
                 </div>
             </div>
         </section>
@@ -740,9 +728,7 @@
     <footer>
         <div class="container">
             <p class="footer-brand">Persistence Science</p>
-            <p class="footer-theory">Parent Theory: The Odero Persistence Axiom</p>
             <p class="footer-established">Established by John Otieno Odero</p>
-            <p class="footer-mission">Exploring persistence as a unifying principle across physics, economics, cosmology, and political science.</p>
             <p class="footer-links">
                 <a href="index.html">Home</a> &bull; 
                 <a href="physics.html">Physics</a> &bull; 
