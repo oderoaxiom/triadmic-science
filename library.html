@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Primary Metadata -->
+    <title>Library | Persistence Science</title>
+    <meta name="description" content="Publication repository, DOI registry, and research archive for the Persistence Science Framework.">
+    <meta name="keywords" content="Persistence Science, Publication Repository, DOI Registry, Research Archive, John Otieno Odero">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- GoatCounter Analytics Integration -->
+    <script data-goatcounter="https://persistencescience.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Persistence Science Library">
+    <meta property="og:description" content="Publications, Mathematical Foundations, Research Papers, and DOI Records.">
+    <meta property="og:url" content="https://doi.org/10.5281/zenodo.22117576">
+    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Library-Specific Styles Only -->
+    <style>
+        /* Library-specific modifications: yellow glow when clicked */
+        .btn-action:active, .btn-action:focus {
+            background-color: rgba(245, 158, 11, 0.25) !important;
+            border-color: var(--accent-gold) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.7), inset 0 0 10px rgba(245, 158, 11, 0.3) !important;
+        }
+    </style>
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="framework.html">Framework</a></li>
+                    <li><a href="library.html" class="active">Library</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-container" style="margin-top: 2.5rem;">
+            <span class="badge">Research Library</span>
+            <h1>Persistence Science Library</h1>
+            <div class="sub-title">Publications, Mathematical Foundations, Research Papers, and DOI Records</div>
+            
+            <!-- Statistics Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Research Publications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Foundations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Core Theories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Applications</div>
+                </div>
+                <div class="stat-item" style="border-right: none;">
+                    <div class="stat-value" style="font-size: 1rem; padding-top: 0.15rem; color: var(--accent-blue);">DOI Indexed</div>
+                    <div class="stat-label">Zenodo Archive</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1.25rem;">
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6;">
+                    The Research Library serves as the central repository for publications within the Persistence Science Framework. Each publication contributes to the development of the framework through foundational principles, core theories, or domain-specific applications.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 1: Foundation Publications -->
+        <h2>Foundation Publications</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Foundational papers establish the mathematical principles upon which the Persistence Science Framework is built.</p>
+
+        <div class="grid-2">
+            <!-- Card 1 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Odero Persistence Axiom</h3>
+                    <div class="theory-formula">C(I) × E > D</div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        The foundational persistence condition governing survival, adaptation and collapse.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22117576" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Information Index</h3>
+                    <div class="theory-formula">I = A × ηI</div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Defines information as actionable control rather than simple data accumulation.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22160893" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 1.25rem;">
+            <div class="sub-card" style="width: 100%;">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Persistence Ratio</h3>
+                    <div class="theory-formula">Ω = (C(I)E)/D</div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        A dimensional persistence metric for evaluating system state.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.21773032" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Core Theory Publications -->
+        <h2>Core Theory Publications</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Core theories extend the foundational principles into general models applicable across disciplines.</p>
+
+        <div class="grid-2">
+            <!-- Card 4 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Persistence Thermodynamics</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Explains how systems resist decay through energy and information flows.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22157474" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>System Dynamics &amp; Control Theory</h3>
+                    <div class="theory-formula">ω = dΩ/dt</div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Models how persistence changes through time.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.21933743" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Application & Emerging Theory Publications -->
+        <h2>Application &amp; Emerging Theory Publications</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Application theories extend Persistence Science into specific domains of inquiry.</p>
+
+        <div class="grid-2">
+            <!-- Card 6 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Thermoeconomic Information Theory</h3>
+                    <div class="theory-formula">Ωecon = C(I)E/D</div>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Information, energy and economic persistence.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22162692" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Theory of Captured Inflation</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        An explanation of inflation through control structures and systemic distortions.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.21859707" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Coalition Indispensability Theory</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Political persistence through coalition dependence.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22012149" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- New Card: Theory of Hegemonic Stability and Transition -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Theory of Hegemonic Stability and Transition</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        A persistence-based theory explaining how hegemonic powers maintain, consolidate, and ultimately transition through changing structures of control, legitimacy, energy, and systemic competition.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.22134046" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Fundamental Cosmological Equation</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        Persistence principles applied to cosmological evolution.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="sub-card">
+                <div>
+                    <span class="tiny-badge">PUBLISHED</span>
+                    <h3>Elasticosmos Regenesis Theory</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        A regenerative model of cosmic evolution based on elastic spacetime dynamics.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+
+            <!-- New Card: A General Theory of Institutional Legitimacy -->
+            <div class="sub-card" style="grid-column: 1 / -1;">
+                <div>
+                    <span class="tiny-badge">COMING SOON</span>
+                    <h3>A General Theory of Institutional Legitimacy</h3>
+                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0 0 0;">
+                        A persistence-based model explaining how institutions acquire, maintain, and lose legitimacy through information, control, performance, and societal acceptance.
+                    </p>
+                </div>
+                <div class="archive-meta">
+                    <span style="color: var(--accent-amber); font-weight: 600;">
+                        Repository Entry Pending
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Citation Notice -->
+        <div style="background: rgba(15, 23, 42, 0.4); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 1.5rem; margin-top: 3rem; text-align: center;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0; line-height: 1.6;">
+                All publications are archived through Zenodo and include persistent DOI identifiers to ensure long-term academic accessibility and citation.
+            </p>
+        </div>
+
+        <!-- Final CTA -->
+        <section class="cta-section">
+            <h2 style="font-size: 1.5rem; margin-top: 0; border: none; padding: 0; margin-bottom: 0.5rem;">Explore the Framework</h2>
+            <p style="color: var(--text-muted); font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
+                Understand how these publications connect within the larger Persistence Science architecture.
+            </p>
+            <div>
+                <a href="framework.html" class="btn-primary">Return to Framework &rarr;</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-links">
+                <a href="index.html">Home</a> &bull; 
+                <a href="framework.html">Framework</a> &bull; 
+                <a href="library.html">Library</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- STABILIZED THREE.js WebGL Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 150;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

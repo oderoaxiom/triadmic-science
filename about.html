@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About the Author | John Otieno Odero | Persistence Science</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <title>About | John Otieno Odero | Persistence Science</title>
+    <meta name="description" content="About John Otieno Odero, founder of Persistence Science, an interdisciplinary framework investigating persistence, adaptation, transformation, and collapse in complex systems.">
+    <meta name="keywords" content="John Otieno Odero, Persistence Science, Founder, Systems Thinker, Independent Researcher, Information Theory, Complex Systems">
+    <meta name="author" content="John Otieno Odero">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About John Otieno Odero | Persistence Science">
+    <meta property="og:description" content="Learn about John Otieno Odero, founder of Persistence Science and developer of the Persistence Science Framework.">
+    <meta property="og:url" content="https://persistencescience.org/about.html">
+    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Three.js Library for Background Particle Canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -19,304 +31,28 @@
                 ]
             });"></script>
 
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- About-Specific Styles Only -->
     <style>
-        :root {
-            --bg-color: #080c14;
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-heading: #ffffff;
-            --accent-blue: #38bdf8;
-            --accent-amber: #f59e0b;
-            --accent-green: #10b981;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* WebGL Background Canvas Container */
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Glassmorphism Header */
-        header {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .site-title {
-            font-size: 1.35rem;
-            font-weight: 900;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 0.75rem 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-menu a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover, .nav-menu a.active {
-            color: var(--accent-blue);
-        }
-
-        .nav-menu .nav-highlight {
-            background: rgba(245, 158, 11, 0.2);
-            border: 2px solid var(--accent-amber);
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.82rem;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .nav-menu .nav-highlight:hover {
-            background: rgba(245, 158, 11, 0.35);
-            border-color: #ffffff;
-            color: #ffffff;
-            box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
-        }
-
-        /* Content Cards */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            border-radius: 14px;
-            padding: 2rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border-radius: 9999px;
-            padding: 0.35rem 0.9rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        /* Profile Layout & Photo Styles */
-        .author-profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.75rem;
-        }
-
-        @media (min-width: 640px) {
-            .author-profile-container {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-        }
-
-        .profile-img {
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
-            flex-shrink: 0;
-        }
-
-        .author-bio-header {
-            flex: 1;
-        }
-
         h1 {
-            font-size: clamp(2.2rem, 4vw, 3rem);
-            margin: 0.25rem 0 0.5rem 0;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: #fff;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 900;
+        }
+
+        .founder-title {
+            color: var(--accent-blue);
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
         }
 
         .sub-title {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--accent-blue);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.35;
-        }
-
-        h2 {
-            color: #fff;
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-
-        /* General Links: Default Amber, Turn Blue on Click/Hover */
-        a {
-            color: var(--accent-amber);
-            text-decoration: underline;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: var(--accent-blue);
-            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-        }
-
-        /* Enhanced Glowing Amber Box Effect */
-        .axiom-box, .glow-amber-box {
-            background-color: rgba(11, 14, 20, 0.85);
-            border: 2px solid var(--accent-amber);
-            box-shadow: 
-                0 0 20px rgba(245, 158, 11, 0.45), 
-                0 0 40px rgba(245, 158, 11, 0.2), 
-                inset 0 0 15px rgba(245, 158, 11, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            backdrop-filter: blur(16px);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .axiom-box:hover, .glow-amber-box:hover {
-            box-shadow: 
-                0 0 30px rgba(245, 158, 11, 0.65), 
-                0 0 50px rgba(245, 158, 11, 0.35), 
-                inset 0 0 20px rgba(245, 158, 11, 0.3);
-        }
-
-        ul {
-            padding-left: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2.5rem 0;
-            font-size: 0.85rem;
             color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.8);
-            backdrop-filter: blur(12px);
-            text-align: center;
-        }
-
-        footer p {
-            margin: 0.3rem 0;
-        }
-
-        footer .footer-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.2rem;
-        }
-
-        footer .footer-thankyou {
-            font-size: 0.95rem;
-            color: var(--accent-blue);
+            font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        footer .footer-nav {
-            margin-bottom: 1rem;
-        }
-
-        footer .footer-nav a {
-            color: var(--accent-amber);
-            text-decoration: none;
-            margin: 0 0.25rem;
-        }
-
-        footer .footer-nav a:hover {
-            text-decoration: underline;
-        }
-
-        footer .footer-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        footer .footer-meta a {
-            color: var(--accent-amber);
         }
     </style>
 </head>
@@ -333,12 +69,10 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="physics.html">Physics</a></li>
-                    <li><a href="captured-inflation.html">Economics</a></li>
-                    <li><a href="ert.html">Cosmology</a></li>
-		    <li><a href="Political Science.html">Political Science</a></li>
-                    <li><a href="about.html" class="active">About Author</a></li>
-                    <li><a href="contact.html">Contact &amp; Support</a></li>
+                    <li><a href="framework.html">Framework</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -346,163 +80,297 @@
 
     <main class="container">
         
-        <section class="card">
-            <span class="badge" style="margin-bottom: 1.25rem;">Economics Graduate, University of Nairobi</span>
+        <!-- Founder Section -->
+        <section class="card glow-blue">
+            <span class="badge" style="margin-bottom: 1.25rem;">Founder</span>
             
             <div class="author-profile-container">
                 <img src="john-otieno-odero.png" alt="John Otieno Odero" class="profile-img">
                 
                 <div class="author-bio-header">
                     <h1>John Otieno Odero</h1>
-                    <div class="sub-title">Independent Researcher | Systems Thinker | Founder of Persistence Science</div>
                     
-                    <p style="margin-bottom: 0;">
-                        <strong>John Otieno Odero</strong> is a Kenyan independent researcher, systems thinker, and founder of <strong>Persistence Science</strong>, an interdisciplinary field investigating the principles that govern persistence, continuity, adaptation, and resilience in complex systems. A graduate of Economics from the <strong>University of Nairobi</strong>, his research explores how information, control, energy, and decay interact to determine whether systems survive, adapt, or fail across physical, biological, organizational, computational, ecological, economic, and political domains.
+                    <div class="founder-title">
+                        Founder of Persistence Science
+                    </div>
+                    
+                    <div class="sub-title">
+                        Independent Researcher | Systems Thinker
+                    </div>
+                    
+                    <p style="margin-top: 1rem; line-height: 1.7;">
+                        John Otieno Odero is an independent researcher, systems thinker, and founder of Persistence Science, an interdisciplinary research framework investigating the principles governing persistence, adaptation, transformation, and collapse in complex systems. A graduate of Economics from the University of Nairobi, his work focuses on the interaction of information, control, energy, and decay across physical, economic, political, technological, and cosmological domains.
                     </p>
                 </div>
             </div>
 
-            <p style="margin-bottom: 0; margin-top: 1.25rem;">
-                Drawing upon economics, cybernetics, information theory, non-equilibrium thermodynamics, complexity science, and systems theory, he develops quantitative frameworks for understanding persistence as a universal systems phenomenon. He is the originator of the <em>Odero Axiom ($C(I) \cdot E > D$)</em>, a proposed mathematical framework describing persistence as the capacity of information-directed control to deploy usable energy at a rate exceeding system decay.
+            <p style="margin-bottom: 0; margin-top: 1.25rem; line-height: 1.7;">
+                His research program is organized around the Persistence Science Framework, comprising foundational principles including the Odero Persistence Axiom, Information Index, and Persistence Ratio; core theories including Persistence Thermodynamics and System Dynamics &amp; Control Theory; and application theories spanning economics, political science, and cosmology.
+            </p>
+
+            <p style="margin-bottom: 0; margin-top: 1.25rem; line-height: 1.7;">
+                Notable contributions include the Odero Persistence Axiom, Information Index, Persistence Ratio, Thermoeconomic Information Theory, Theory of Captured Inflation, Coalition Indispensability Theory, the Fundamental Cosmological Equation, and Elasticosmos Regenesis Theory. Collectively, these works seek to establish a unified scientific framework for understanding how systems survive, adapt, and evolve across diverse domains of inquiry.
             </p>
         </section>
 
-        <section class="card">
-            <h2>Research Focus &amp; Theoretical Contributions</h2>
+        <!-- Research Program Section -->
+        <section class="card glow-amber">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">Research Program</span>
+            <h2>Persistence Science Framework</h2>
             
-            <p style="margin-bottom: 1.25rem;">
-                His research is centered on the development of Persistence Science, a unifying framework for understanding how complex systems emerge, endure, adapt, and transform across disciplines. The program seeks to identify the fundamental principles governing persistence in physical, biological, economic, political, and social systems, providing a common analytical language for studying dynamic processes.
+            <p style="margin-bottom: 1.25rem; line-height: 1.7;">
+                Persistence Science seeks to establish a unified scientific framework for understanding why systems survive, adapt, transform, or collapse.
+            </p>
+            <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                The research program is organized around foundations, core theories, and application theories that together form the Persistence Science Framework.
             </p>
 
-            <p style="margin-bottom: 1.25rem;">
-                Key contributions include the Persistence Ratio (Index), a quantitative measure of structural retention and long-term stability; the study of state-space evolution and transformation dynamics; Elasticosmos Regenesis Theory, which advances a regenerative cosmological framework based on spacetime elasticity and cyclical renewal; the Fundamental Cosmological Equation, a covariant cosmological realization of the Odero Axiom; the Theory of Captured Inflation, which examines how market concentration, asymmetric price transmission, and institutional failures generate persistent inflationary pressures; and the Coalition Indispensability Theory, which explains democratic leader longevity through coalition dependence, introducing the Political Persistence Index, Political Omega Velocity, and Political Control-Phase Simplex as tools for modeling political stability, regime trajectories, and executive survival.
-            </p>
+            <div class="grid-3">
+                <div class="sub-card">
+                    <div>
+                        <span class="tiny-badge">AXIOMS &amp; INDICES</span>
+                        <h3>Foundational Contributions</h3>
+                        <ul>
+                            <li>Odero Persistence Axiom</li>
+                            <li>Information Index</li>
+                            <li>Persistence Ratio</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <p style="margin-bottom: 0;">
-                Collectively, these contributions aim to establish a general theory of persistence capable of explaining continuity, resilience, transformation, and collapse across diverse systems. By revealing common persistence structures across fields, the framework seeks to bridge organizations, economies, political systems, biological processes, and the cosmos within a single, integrated scientific paradigm.
-            </p>
+                <div class="sub-card">
+                    <div>
+                        <span class="tiny-badge">MODELS &amp; DYNAMICS</span>
+                        <h3>Core Theories</h3>
+                        <ul>
+                            <li>Persistence Thermodynamics</li>
+                            <li>System Dynamics &amp; Control Theory</li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber);">Verified ORCID: 0009-0007-7039-7209 &rarr;</a>
+                <div class="sub-card">
+                    <div>
+                        <span class="tiny-badge">DOMAINS</span>
+                        <h3>Applications</h3>
+                        <ul>
+                            <li>Thermoeconomic Information Theory</li>
+                            <li>Captured Inflation</li>
+                            <li>Coalition Indispensability Theory</li>
+                            <li>Fundamental Cosmological Equation</li>
+                            <li>Elasticosmos Regenesis Theory</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="card glow-amber-box">
-            <h2 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--accent-amber);">Academic Inquiries &amp; Publications</h2>
-            <p style="margin-bottom: 0; font-size: 0.95rem; color: var(--text-main);">
-                Preprints and formal theoretical manuscripts are archived on Zenodo. For research collaborations, citations, or author verification, consult my verified <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">ORCID Profile (0009-0007-7039-7209)</a>, visit the <a href="contact.html">Contact Page</a>, or write directly to <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>.
-            </p>
-        </section>
+        <!-- Academic Profiles & Inquiries -->
+        <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+            <section class="card glow-blue" style="margin-top: 0; margin-bottom: 0; height: 100%;">
+                <h2>Academic Profiles</h2>
+                <ul style="list-style-type: none; padding: 0; margin-top: 1rem;">
+                    <li style="margin-bottom: 1rem;">
+                        <strong>ORCID:</strong><br>
+                        <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a>
+                    </li>
+                    <li style="margin-bottom: 1rem;">
+                        <strong>Zenodo Repository:</strong><br>
+                        <a href="https://zenodo.org" target="_blank" rel="noopener">Persistence Science Preprints</a>
+                    </li>
+                    <li>
+                        <strong>Library:</strong><br>
+                        <a href="library.html">Persistence Science Library</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="card glow-amber" style="margin-top: 0; margin-bottom: 0; height: 100%;">
+                <h2>Academic Inquiries</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-top: 1rem; margin-bottom: 1.5rem;">
+                    For collaborations, citations, interviews, research inquiries, or author verification, please use the <a href="contact.html">Contact page</a> or consult the verified <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">ORCID profile</a>.
+                </p>
+                <div>
+                    <a href="mailto:info@persistencescience.org" style="color: var(--accent-blue); text-decoration: none; font-weight: 600;">info@persistencescience.org &rarr;</a>
+                </div>
+            </section>
+        </div>
 
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-title">Persistence Science</div>
-            <div class="footer-thankyou">Thank you!</div>
-            <div class="footer-nav">
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-links">
                 <a href="index.html">Home</a> &bull; 
-                <a href="physics.html">Physics</a> &bull; 
-                <a href="captured-inflation.html">Economics</a> &bull; 
-                <a href="ert.html">Cosmology</a> &bull; 
-                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="framework.html">Framework</a> &bull; 
+                <a href="library.html">Library</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-meta">
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank">Zenodo Preprints</a> &bull; 
+            </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
                 Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
-            </div>
-            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
-    <!-- Three.js Starfield Particle Animation Script -->
+    <!-- STABILIZED THREE.js WebGL Script -->
     <script>
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 30;
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
 
-        // Particle Star Field
-        const particleCount = 1000;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
+                let mouseX = 0;
+                let mouseY = 0;
 
-        const colorBlue = new THREE.Color(0x38bdf8);
-        const colorAmber = new THREE.Color(0xf59e0b);
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
 
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 90;
-            positions[i + 1] = (Math.random() - 0.5) * 90;
-            positions[i + 2] = (Math.random() - 0.5) * 70;
+                const starCount = 150;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
 
-            const mixedColor = Math.random() > 0.35 ? colorBlue : colorAmber;
-            colors[i] = mixedColor.r;
-            colors[i + 1] = mixedColor.g;
-            colors[i + 2] = mixedColor.b;
-        }
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
 
-        const material = new THREE.PointsMaterial({
-            size: 0.18,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.75,
-            blending: THREE.AdditiveBlending
-        });
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
 
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
 
-        // Mouse Interactivity
-        let mouseX = 0;
-        let mouseY = 0;
-        let targetX = 0;
-        let targetY = 0;
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
 
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - windowHalfX) * 0.001;
-            mouseY = (e.clientY - windowHalfY) * 0.001;
-        });
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
-        const clock = new THREE.Clock();
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
 
-        function animate() {
-            requestAnimationFrame(animate);
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
 
-            const elapsedTime = clock.getElapsedTime();
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
 
-            particles.rotation.y = elapsedTime * 0.025;
-            particles.rotation.x = elapsedTime * 0.012;
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
 
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
 
-            camera.position.x = targetX * 10;
-            camera.position.y = -targetY * 10;
+                function animate() {
+                    requestAnimationFrame(animate);
 
-            renderer.render(scene, camera);
-        }
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
 
-        animate();
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
         });
     </script>
 </body>

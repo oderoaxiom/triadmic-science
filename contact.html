@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Support | Persistence Science</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <title>Contact | Persistence Science</title>
+    <meta name="description" content="Contact Persistence Science for academic inquiries, research collaborations, citations, interviews, and scholarly discussions.">
+    <meta name="keywords" content="Persistence Science, Contact, Academic Collaboration, Research Inquiries, John Otieno Odero, ORCID, Research Support">
+    <meta name="author" content="John Otieno Odero">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact | Persistence Science">
+    <meta property="og:description" content="Contact Persistence Science for research collaborations, academic inquiries, author verification, and scholarly engagement.">
+    <meta property="og:url" content="https://persistencescience.org/contact.html">
+    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Three.js Library for Background Particle Canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -19,366 +31,84 @@
                 ]
             });"></script>
 
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Contact-specific styles for strict 4-column tier grid layout -->
     <style>
-        :root {
-            --bg-color: #080c14;
-            --card-bg: rgba(15, 23, 42, 0.65);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-heading: #ffffff;
-            --accent-blue: #38bdf8;
-            --accent-amber: #f59e0b;
-            --accent-green: #10b981;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        header {
-            padding: 1.25rem 0;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .site-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #ffffff 30%, var(--accent-blue) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 1.25rem;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: var(--accent-blue);
-        }
-
-        .nav-menu .contact-btn {
-            background: transparent;
-            border: 1.5px solid var(--accent-amber);
-            color: #fff;
-            padding: 0.45rem 1rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu .contact-btn:hover, .nav-menu .contact-btn.active {
-            color: #fff;
-            border-color: var(--accent-amber);
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-            background: rgba(245, 158, 11, 0.1);
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            border-radius: 14px;
-            padding: 2rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-            border-radius: 9999px;
-            padding: 0.35rem 0.9rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: clamp(2.2rem, 4vw, 3rem);
-            margin: 0.5rem 0 0.5rem 0;
-            line-height: 1.1;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: #fff;
-        }
-
-        .sub-title {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--accent-blue);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.35;
-        }
-
-        h2 {
-            color: #fff;
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: var(--accent-amber);
-            text-decoration: underline;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        a:hover, a:active, a:focus {
-            color: var(--accent-blue);
-            text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-        }
-
-        .axiom-box {
-            background-color: rgba(11, 14, 20, 0.85);
-            border: 1.5px solid var(--accent-amber);
-            box-shadow: 0 0 12px rgba(245, 158, 11, 0.35), 0 0 25px rgba(245, 158, 11, 0.15);
-            border-radius: 10px;
-            padding: 1rem 1.25rem;
-            margin: 1.25rem 0;
-            backdrop-filter: blur(16px);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .axiom-title {
-            color: var(--accent-amber);
-            font-size: 0.95rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        input[type="text"], input[type="number"], input[type="email"], select, textarea {
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
-            border-color: var(--accent-blue) !important;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-        }
-
         .tier-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.85rem;
-            margin-top: 0.75rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
         }
-
+        @media (max-width: 1024px) {
+            .tier-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         .tier-card {
-            background: rgba(3, 5, 9, 0.8);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-
         .tier-card:hover {
             border-color: var(--accent-amber);
-            box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
             transform: translateY(-2px);
         }
-
         .tier-title {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.2rem;
-        }
-
-        .tier-amount {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--accent-amber);
-            margin-bottom: 0.2rem;
-        }
-
-        .tier-desc {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            line-height: 1.3;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-action-hint {
-            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--accent-blue);
-            margin-top: auto;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 0.6rem 1rem;
-            background: linear-gradient(135deg, var(--accent-blue), #1e40af);
             color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
-
-        .submit-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2.5rem 0;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            background: rgba(8, 12, 20, 0.8);
-            backdrop-filter: blur(12px);
-            text-align: center;
-        }
-
-        footer p {
+        .tier-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-amber);
             margin: 0.3rem 0;
         }
-
-        footer .footer-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.2rem;
-        }
-
-        footer .footer-founder {
-            font-size: 0.95rem;
-            color: #ffffff;
-            font-weight: 500;
-            margin-bottom: 0.2rem;
-        }
-
-        footer .footer-thankyou {
-            font-size: 0.9rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        footer .footer-nav {
-            margin-bottom: 1rem;
-        }
-
-        footer .footer-nav a {
-            color: var(--accent-amber);
-            text-decoration: none;
-            margin: 0 0.25rem;
-        }
-
-        footer .footer-nav a:hover {
-            text-decoration: underline;
-        }
-
-        footer .footer-meta {
+        .tier-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
-
-        footer .footer-meta a {
-            color: var(--accent-amber);
+        .tier-action-hint {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
         }
     </style>
 </head>
 <body>
 
+    <!-- WebGL Starfield Particle Background Canvas -->
     <div id="canvas-container"></div>
 
     <header>
         <div class="container nav-container">
-            <div>
-                <a href="index.html" class="site-title">Persistence Science</a>
-            </div>
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="physics.html">Physics</a></li>
-                    <li><a href="captured-inflation.html">Economics</a></li>
-                    <li><a href="ert.html">Cosmology</a></li>
-		    <li><a href="Political Science.html">Political Science</a></li>
-                    <li><a href="about.html">About Author</a></li>
-                    <li><a href="contact.html" class="active">Contact &amp; Support</a></li>
+                    <li><a href="framework.html">Framework</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -386,166 +116,172 @@
 
     <main class="container">
         
-        <!-- Primary Contribution Section -->
-        <section class="card">
-            <span class="badge" style="margin-bottom: 1rem;">Open Access &amp; Discovery</span>
-            <h1>Support Persistence Science Research</h1>
-            <div class="sub-title">Sustaining Long-Term Discovery, Open Access, and Systems-Based Inquiry</div>
+        <!-- Hero Section -->
+        <section class="card glow-blue">
+            <span class="badge" style="margin-bottom: 1.25rem;">Contact</span>
+            <h1>Academic Inquiries &amp; Collaboration</h1>
+            <p class="sub-title">
+                Contact the Founder of Persistence Science for research inquiries, collaborations, citations, interviews, and academic discussions.
+            </p>
+        </section>
+
+        <!-- Section 1: Contact Information -->
+        <section class="card glow-amber">
+            <h2>Primary Contact</h2>
+            <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 500;">Email</p>
+            <p style="font-size: 1.15rem; font-weight: 600; margin-top: 0;">
+                <a href="mailto:info@persistencescience.org" style="color: var(--accent-blue); text-decoration: none;">info@persistencescience.org</a>
+            </p>
+            <div>
+                <a href="mailto:info@persistencescience.org" class="btn-action">Send Email &rarr;</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Research & Collaboration -->
+        <section class="card glow-blue">
+            <h2>Research Collaborations</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                Persistence Science welcomes academic discussions, interdisciplinary collaborations, research partnerships, conference invitations, and constructive scholarly feedback.
+            </p>
             
-            <p>
-                Persistence Science is an independent research initiative dedicated to exploring how sustained effort, resilience, information dynamics, and long-term commitment contribute to scientific discovery, innovation, and sustainable development.
+            <div style="margin-top: 1rem;">
+                <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.5rem 1.5rem; list-style-type: disc;">
+                    <li>Academic collaboration</li>
+                    <li>Research partnerships</li>
+                    <li>Conference participation</li>
+                    <li>Interviews and media inquiries</li>
+                    <li>Framework discussions</li>
+                    <li>Citation and reference requests</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: Academic Profiles -->
+        <section class="card glow-amber">
+            <h2>Academic Profiles &amp; Repositories</h2>
+            <div class="grid-3" style="margin-top: 0;">
+                
+                <div class="sub-card">
+                    <div>
+                        <h3>ORCID</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">0009-0007-7039-7209</p>
+                    </div>
+                    <div>
+                        <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener" class="btn-action" style="margin-top: 0;">View ORCID &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <div>
+                        <h3>Research Library</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Persistence Science Publications</p>
+                    </div>
+                    <div>
+                        <a href="library.html" class="btn-action" style="margin-top: 0;">Browse Library &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <div>
+                        <h3>Zenodo Repository</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Persistence Science Archive</p>
+                    </div>
+                    <div>
+                        <a href="https://zenodo.org" target="_blank" rel="noopener" class="btn-action" style="margin-top: 0;">View Repository &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Citation & Author Verification -->
+        <section class="card glow-blue">
+            <h2>Author Verification</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0;">
+                The author maintains a verified ORCID profile and publicly archived research records through Zenodo. These resources provide persistent identifiers for citation, verification, and long-term academic accessibility.
+            </p>
+        </section>
+
+        <!-- New Section: Support Persistence Science -->
+        <section class="card glow-amber">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">Support</span>
+            <h2>Support Persistence Science</h2>
+            
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+                Support helps sustain research, publication archiving, website maintenance, and the continued development of the Persistence Science Framework.
             </p>
 
-            <div class="axiom-box">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
-                    <div class="axiom-title">Choose Contribution Option</div>
-                    <div style="flex: 1; max-width: 320px;">
+            <!-- Paystack Contribution Tiers & Custom Amount -->
+            <div style="background: rgba(11, 14, 20, 0.85); border: 1.5px solid var(--accent-amber); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div style="color: var(--accent-amber); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Support Persistence Science</div>
+                    <div style="flex: 1; max-width: 300px; min-width: 200px;">
                         <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
                     </div>
                 </div>
 
                 <div class="tier-grid">
-                    <!-- Custom Amount Card with Currency Selector -->
-                    <div class="tier-card" style="border-color: rgba(56, 189, 248, 0.3);">
+                    <!-- Custom Amount Card -->
+                    <div class="tier-card">
                         <div>
-                            <div class="tier-title">Custom Amount</div>
+                            <div class="tier-title" style="margin-bottom: 0.4rem;">Custom Amount</div>
                             <div style="margin: 0.4rem 0; display: flex; gap: 0.4rem;">
-                                <input type="number" id="custom-amount" min="1" placeholder="Amount" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
+                                <input type="number" id="custom-amount" min="1" placeholder="Amt" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
                                 <select id="custom-currency" style="padding: 0.3rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.8rem; font-family: inherit; cursor: pointer;">
                                     <option value="KES">KES</option>
                                     <option value="USD">USD</option>
                                 </select>
                             </div>
                         </div>
-                        <button type="button" class="submit-btn" onclick="payCustom()">Make Contribution</button>
+                        <button type="button" class="btn-action" onclick="payCustom()" style="margin-top: 0.4rem; width: 100%; text-align: center;">Support Persistence Science &rarr;</button>
                     </div>
 
-                    <!-- Fixed USD Tiers -->
+                    <!-- Tier 1 -->
                     <div class="tier-card" onclick="payFixed(10, 'USD')">
                         <div>
                             <div class="tier-title">Supporter</div>
                             <div class="tier-amount">$10</div>
-                            <div class="tier-desc">Maintains open-access hosting and public documentation.</div>
+                            <div class="tier-desc">Maintains hosting &amp; docs.</div>
                         </div>
-                        <div class="tier-action-hint">&rarr; Pay $10 Now</div>
+                        <div class="tier-action-hint">&rarr; Support $10</div>
                     </div>
 
+                    <!-- Tier 2 -->
                     <div class="tier-card" onclick="payFixed(50, 'USD')">
                         <div>
                             <div class="tier-title">Contributor</div>
                             <div class="tier-amount">$50</div>
-                            <div class="tier-desc">Helps fund analytical reports and documentation.</div>
+                            <div class="tier-desc">Funds analytical reports.</div>
                         </div>
-                        <div class="tier-action-hint">&rarr; Pay $50 Now</div>
+                        <div class="tier-action-hint">&rarr; Support $50</div>
                     </div>
 
+                    <!-- Tier 3 -->
                     <div class="tier-card" onclick="payFixed(100, 'USD')">
                         <div>
                             <div class="tier-title">Sponsor</div>
                             <div class="tier-amount">$100</div>
-                            <div class="tier-desc">Directly sustains long-term modeling & operations.</div>
+                            <div class="tier-desc">Sustains modeling &amp; ops.</div>
                         </div>
-                        <div class="tier-action-hint">&rarr; Pay $100 Now</div>
+                        <div class="tier-action-hint">&rarr; Support $100</div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Summarized Impact Overview -->
-        <section class="card">
-            <h2 style="margin-top: 0; color: var(--text-heading);">Why Support Independent Research?</h2>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
-                <div>
-                    <h4 style="color: var(--accent-blue); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Sustainable Funding</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
-                        Bypasses short-term grant constraints to enable long-term foundational research and open-access publishing.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 style="color: var(--accent-amber); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Direct Impact</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
-                        Funds ongoing analysis, actionable tools, and freely accessible research papers globally.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 style="color: var(--accent-blue); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Other Ways to Help</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
-                        Support by sharing papers, collaborating on joint studies, or contributing peer-review expertise.
-                    </p>
-                </div>
-
-                <div>
-                    <h4 style="color: var(--accent-amber); margin: 0 0 0.35rem 0; font-size: 0.95rem;">Accountability</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
-                        Contributions strictly fund research, infrastructure, and tools with continuous public progress updates.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Academic Form Section -->
-        <section class="card">
-            <h2>Academic Inquiries &amp; Direct Feedback</h2>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-                Submit critiques regarding the <strong>Odero Axiom ($C(I) \cdot E > D$)</strong>, ERT feedback, or collaboration proposals via the form below.
+            <p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic; text-align: center; margin-bottom: 0; line-height: 1.5;">
+                All contributions are voluntary and are used solely to support the development, publication, and dissemination of Persistence Science research.
             </p>
-
-            <form action="https://formspree.io/f/xnpapoja" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-                    <input type="text" name="name" placeholder="Full Name" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
-                    <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
-                    <select name="category" style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
-                        <option value="Peer Review / Theoretical Critique">Peer Review / Critique</option>
-                        <option value="Research Collaboration">Research Collaboration</option>
-                        <option value="General Inquiry">General Inquiry</option>
-                        <option value="Website Issue">Website Issue</option>
-                    </select>
-                </div>
-                <input type="text" name="subject" placeholder="Inquiry Subject" required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem;">
-                <textarea name="message" rows="3" placeholder="Message or notes..." required style="width: 100%; padding: 0.65rem 0.85rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-family: inherit; font-size: 0.85rem; resize: vertical;"></textarea>
-                <button type="submit" class="submit-btn" style="width: auto; align-self: flex-start; padding: 0.65rem 1.5rem;">Send Message &rarr;</button>
-            </form>
         </section>
 
-        <!-- Direct Emails (Colored) and Repositories -->
-        <section class="grid-2" style="margin-top: 2rem;">
-            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-blue); margin-top: 0; margin-bottom: 0;">
-                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Direct Inquiries</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
-                    For paper reviews, contributions, or partnerships:
-                </p>
-                <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start;">
-                    <!-- White Badge -->
-                    <a href="mailto:info@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid #ffffff; color: #ffffff; text-transform: lowercase;">
-                        info@persistencescience.org
-                    </a>
-                    <!-- Amber Badge -->
-                    <a href="mailto:support@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber); text-transform: lowercase;">
-                        support@persistencescience.org
-                    </a>
-                    <!-- Blue Badge -->
-                    <a href="mailto:partnership@persistencescience.org" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue); text-transform: lowercase;">
-                        partnership@persistencescience.org
-                    </a>
-                </div>
-            </div>
-
-            <div class="card" style="padding: 1.5rem; border-left: 3px solid var(--accent-amber); margin-top: 0; margin-bottom: 0;">
-                <h3 style="font-size: 1.1rem; margin-top: 0; color: var(--text-heading);">Academic Repositories</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
-                    Formal preprints and verified author details:
-                </p>
-                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-amber); color: var(--accent-amber);">
-                        Zenodo Preprints
-                    </a>
-                    <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" class="badge" style="text-decoration: none; border: 1px solid var(--accent-blue); color: var(--accent-blue);">
-                        ORCID Record
-                    </a>
-                </div>
+        <!-- Final CTA Section -->
+        <section class="card glow-amber" style="text-align: center;">
+            <h2>Continue Exploring</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
+                Learn how information, control, energy, and decay interact within the Persistence Science Framework.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="framework.html" class="btn-action">Explore Framework &rarr;</a>
+                <a href="library.html" class="btn-action">Research Library &rarr;</a>
             </div>
         </section>
 
@@ -553,109 +289,181 @@
 
     <footer>
         <div class="container">
-            <div class="footer-title">Persistence Science</div>
-            <div class="footer-founder">Founded by John Otieno Odero</div>
-            <div class="footer-thankyou">Thank you!</div>
-            <div class="footer-nav">
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-links">
                 <a href="index.html">Home</a> &bull; 
-                <a href="physics.html">Physics</a> &bull; 
-                <a href="captured-inflation.html">Economics</a> &bull; 
-                <a href="ert.html">Cosmology</a> &bull; 
-                <a href="Political Science.html">Political Science</a> &bull; 
+                <a href="framework.html">Framework</a> &bull; 
+                <a href="library.html">Library</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
-            </div>
-            <div class="footer-meta">
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://doi.org/10.5281/zenodo.21841446" target="_blank">Zenodo Preprints</a> &bull; 
+            </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
                 Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
-            </div>
-            <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
-    <!-- WebGL Particle Animation -->
+    <!-- STABILIZED THREE.js WebGL Script (starCount = 150) -->
     <script>
-        const container = document.getElementById('canvas-container');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 30;
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
 
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        container.appendChild(renderer.domElement);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
 
-        const particleCount = 1000;
-        const geometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
+                let mouseX = 0;
+                let mouseY = 0;
 
-        const colorBlue = new THREE.Color(0x38bdf8);
-        const colorAmber = new THREE.Color(0xf59e0b);
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
 
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 90;
-            positions[i + 1] = (Math.random() - 0.5) * 90;
-            positions[i + 2] = (Math.random() - 0.5) * 70;
+                const starCount = 150;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
 
-            const mixedColor = Math.random() > 0.35 ? colorBlue : colorAmber;
-            colors[i] = mixedColor.r;
-            colors[i + 1] = mixedColor.g;
-            colors[i + 2] = mixedColor.b;
-        }
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
 
-        const material = new THREE.PointsMaterial({
-            size: 0.126,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.75,
-            blending: THREE.AdditiveBlending
-        });
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
 
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
 
-        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
-        const windowHalfX = window.innerWidth / 2;
-        const windowHalfY = window.innerHeight / 2;
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - windowHalfX) * 0.001;
-            mouseY = (e.clientY - windowHalfY) * 0.001;
-        });
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
 
-        const clock = new THREE.Clock();
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
-        function animate() {
-            requestAnimationFrame(animate);
-            const elapsedTime = clock.getElapsedTime();
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
 
-            particles.rotation.y = elapsedTime * 0.0116875;
-            particles.rotation.x = elapsedTime * 0.0116875;
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
 
-            targetX += (mouseX - targetX) * 0.05;
-            targetY += (mouseY - targetY) * 0.05;
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
 
-            camera.position.x = targetX * 10;
-            camera.position.y = -targetY * 10;
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
 
-            renderer.render(scene, camera);
-        }
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
 
-        animate();
+                function animate() {
+                    requestAnimationFrame(animate);
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+.animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
         });
     </script>
 
-    <!-- Payment Script -->
+    <!-- Paystack Integration Script -->
     <script src="https://js.paystack.co/v1/inline.js"></script>
     <script>
         function payFixed(amount, currency) {
@@ -690,7 +498,7 @@
                 channels: channels,
                 ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
                 onClose: function() {
-                    alert('Transaction window closed.');
+                    // Window closed handler
                 },
                 callback: function(response) {
                     alert('Payment Successful! Reference: ' + response.reference);
