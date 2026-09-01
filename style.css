@@ -43,7 +43,7 @@ body {
     height: 100vh;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(circle at center, #0b0e14 0%, #030509 100%);
+    background: radial-gradient(circle at center, #0e1e2d 0%, #030509 100%);
 }
 
 /* 4. Layout & Containers */
@@ -81,14 +81,16 @@ header {
 .site-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-decoration: none;
     letter-spacing: -0.01em;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .site-title:hover {
-    color: var(--accent-emerald);
+    opacity: 0.8;
 }
 
 .nav-menu {
@@ -139,6 +141,9 @@ h1, h2, h3 {
 h1 {
     font-size: 2.25rem;
     margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -231,7 +236,8 @@ footer {
 }
 
 .footer-established {
-    font-style: italic;
+    font-style: normal;
+    color: var(--accent-amber);
     margin-bottom: 1rem;
 }
 
