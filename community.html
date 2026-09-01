@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <title>Community | Persistence Science</title>
+    <meta name="description" content="Join the Persistence Science community—an open framework, a growing body of knowledge, and a living movement.">
+    <meta name="keywords" content="Persistence Science, Community, Movement, Frontiers, Scholarly Discussions, John Otieno Odero">
+    <meta name="author" content="John Otieno Odero">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Community | Persistence Science">
+    <meta property="og:description" content="An open framework. A growing body of knowledge. A place for ideas that persist.">
+    <meta property="og:url" content="https://persistencescience.org/community.html">
+    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Three.js Library for Background Particle Canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- KaTeX Library for Math Formula Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ]
+            });"></script>
+
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Community-specific styles -->
+    <style>
+        :root {
+            --accent-teal: #10b981;
+            --accent-blue: #38bdf8;
+            --accent-amber: #f59e0b;
+        }
+
+        /* Glow effect variants */
+        .glow-emerald {
+            border-color: rgba(16, 185, 129, 0.35);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+            transition: all 0.3s ease;
+        }
+        .glow-emerald:hover {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.4);
+        }
+
+        .glow-blue {
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glow-blue:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.35);
+        }
+
+        .glow-amber {
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glow-amber:hover {
+            border-color: var(--accent-amber);
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
+        }
+
+        /* Special Teal + Blue Highlight Glow Card for Discussion Form & Companion Card */
+        .glow-teal-blue {
+            background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(16,185,129,.08));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15), 0 0 50px rgba(16, 185, 129, 0.10);
+            transition: all 0.3s ease;
+        }
+        .glow-teal-blue:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.25), 0 0 60px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Two-column layout for Form + What's Next Card */
+        .community-main-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .community-main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Interactive Participation Grid */
+        .participation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 900px) {
+            .participation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Frontiers List Grid */
+        .frontiers-list-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .frontiers-list-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .frontier-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        .frontier-item:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Contribution Tiers Grid */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 1024px) {
+            .tier-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .tier-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .tier-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .tier-card:hover {
+            border-color: var(--accent-amber);
+            transform: translateY(-2px);
+        }
+        .tier-title {
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .tier-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-amber);
+            margin: 0.3rem 0;
+        }
+        .tier-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .tier-action-hint {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WebGL Starfield Particle Background Canvas -->
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="framework.html">Framework</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="community.html" class="active">Community</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <section class="card glow-emerald" style="text-align: center; padding: 3rem 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Join the Community</h1>
+            <p class="sub-title" style="font-size: 1.15rem; color: #fff; max-width: 750px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
+                The Persistence Science Community is intended to serve as an intellectual commons for the study of persistence across systems.
+            </p>
+            <div style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto; line-height: 1.6;">
+                An open framework. A growing body of knowledge. A place for ideas that persist.
+            </div>
+        </section>
+
+        <!-- Why Participate? Section -->
+        <section class="card glow-amber">
+            <h2>Why Participate?</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                Engage with the framework at any level—explore core ideas, create new knowledge, or build systems together.
+            </p>
+
+            <div class="participation-grid">
+                
+                <!-- Discuss Card -->
+                <div class="sub-card glow-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4);">
+                    <div>
+                        <h3>Discuss</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
+                            Persistence Science is an open framework. Submit challenges, critiques, and questions directly to help refine core propositions.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="#discussion-form" class="btn-action" style="margin-top: 0; width: 100%; text-align: center;">Submit Discussion &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Contribute Card -->
+                <div class="sub-card glow-emerald" style="display: flex; flex-direction: column; justify-content: space-between; border-color: var(--accent-teal); background: rgba(16, 185, 129, 0.05);">
+                    <div>
+                        <h3 style="color: #fff;">Contribute</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Submit critiques, empirical validations, and cross-disciplinary applications to expand the living body of persistence science.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="mailto:info@persistencescience.org?subject=Persistence%20Science%20Contribution" class="btn-action" style="margin-top: 0; width: 100%; text-align: center; background: var(--accent-teal); color: #000; border-color: var(--accent-teal);">Contribute &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Collaborate Card -->
+                <div class="sub-card glow-amber" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.4);">
+                    <div>
+                        <h3>Collaborate</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                            Partner on working groups, mathematical modeling, and foundational research across biological, institutional, and AI systems.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="mailto:info@persistencescience.org?subject=Persistence%20Science%20Collaboration" class="btn-action" style="margin-top: 0; width: 100%; text-align: center;">Collaborate &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Main Grid: Submission Form on Left, "What Should Persistence Science Explain Next?" on Right -->
+        <div class="community-main-grid">
+            
+            <!-- Discussion Form Card -->
+            <section id="discussion-form" class="card glow-teal-blue" style="padding: 2.5rem;">
+                
+                <h2 style="margin-bottom: 0.75rem; font-size: 1.8rem;">Join the Discussion</h2>
+                
+                <div style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; background: rgba(15, 23, 42, 0.5); padding: 1rem; border-radius: 6px; border-left: 3px solid var(--accent-teal);">
+                    <ul style="list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem;">
+                        <li>• Challenge assumptions.</li>
+                        <li>• Propose applications.</li>
+                        <li>• Ask questions.</li>
+                        <li>• Submit critiques.</li>
+                    </ul>
+                    <div style="margin-top: 0.75rem; font-weight: 500; color: #fff;">
+                        Help shape the future development of Persistence Science.
+                    </div>
+                    <div style="margin-top: 0.75rem; font-size: 0.9rem; color: var(--text-muted); font-style: italic;">
+                        The framework does not require agreement. It requires engagement.
+                    </div>
+                </div>
+
+                <form action="mailto:info@persistencescience.org" method="POST" enctype="text/plain" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="submitter-name" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Name</label>
+                            <input type="text" id="submitter-name" name="Name" placeholder="Your name" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="submitter-email" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Email</label>
+                            <input type="email" id="submitter-email" name="Email" placeholder="Your email" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit;">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.25rem;">
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="discussion-area" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Discussion Area</label>
+                            <select id="discussion-area" name="Area" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit; cursor: pointer;">
+                                <option>Foundations</option>
+                                <option>Core Theories</option>
+                                <option>Economic Systems</option>
+                                <option>Political Systems</option>
+                                <option>Policy & Institutions</option>
+                                <option>Religious Systems</option>
+                                <option>Cosmological Systems</option>
+                                <option>General Discussion</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <label for="discussion-subject" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Subject</label>
+                            <input type="text" id="discussion-subject" name="Subject" placeholder="Discussion title" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit;">
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="discussion-message" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Message</label>
+                        <textarea id="discussion-message" name="Message" rows="7" placeholder="Share an idea, critique, application, question, observation, or proposal..." style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button type="submit" class="btn-action" style="background: var(--accent-teal); color: #000; border-color: var(--accent-teal); font-weight: 600; padding: 0.85rem 1.5rem; cursor: pointer; flex: 1;">
+                            [ Join the Discussion ]
+                        </button>
+                        <button type="button" onclick="document.getElementById('discussion-message').focus();" class="btn-action" style="background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600; padding: 0.85rem 1.5rem; cursor: pointer; flex: 1;">
+                            [ Contribute an Idea ]
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Community Platform Banner directly beneath the form -->
+                <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(11, 14, 20, 0.8); border: 1px dashed var(--accent-amber); border-radius: 8px;">
+                    <div style="color: var(--accent-amber); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">COMMUNITY PLATFORM COMING SOON</div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0; line-height: 1.6;">
+                        User accounts, discussion threads, working papers, and contributor profiles are currently under development. Early submissions help shape the future community infrastructure.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Companion Card: What Should Persistence Science Explain Next? -->
+            <section class="card glow-blue" style="padding: 2.2rem; position: sticky; top: 2rem;">
+                <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">What should Persistence Science explain next?</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">
+                    <li>• Biological Evolution</li>
+                    <li>• Disease Persistence</li>
+                    <li>• Military Stability</li>
+                    <li>• Artificial Intelligence</li>
+                    <li>• Civilizational Collapse</li>
+                    <li>• The Hubble Constant</li>
+                    <li>• Cosmic Expansion</li>
+                    <li>• Dark Energy</li>
+                </ul>
+                <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; text-align: center;">
+                    <div style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem;">Have an idea?</div>
+                    <div style="color: var(--accent-teal); font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">Tell us.</div>
+                    <a href="#discussion-form" class="btn-action" style="display: block; text-align: center; background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600;">Submit an Idea &rarr;</a>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- The Next Frontier -->
+        <section class="card glow-blue">
+            <h2>The Next Frontier</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;">
+                Persistence Science is expanding into new domains of theory, validation, and application.
+            </p>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                Current areas of development include:
+            </p>
+
+            <div class="frontiers-list-grid">
+                <div class="frontier-item"><span>🔹</span> Global Persistence Index</div>
+                <div class="frontier-item"><span>🔹</span> Institutional Legitimacy Observatory</div>
+                <div class="frontier-item"><span>🔹</span> Religious Systems Observatory</div>
+                <div class="frontier-item"><span>🔹</span> Biological Persistence</div>
+                <div class="frontier-item"><span>🔹</span> Disease Dynamics</div>
+                <div class="frontier-item"><span>🔹</span> Military and Strategic Persistence</div>
+                <div class="frontier-item"><span>🔹</span> Civilizational Persistence</div>
+                <div class="frontier-item"><span>🔹</span> Hubble Constant Research</div>
+                <div class="frontier-item"><span>🔹</span> Cosmic Expansion</div>
+                <div class="frontier-item"><span>🔹</span> Dark Energy and Universal Persistence</div>
+                <div class="frontier-item" style="grid-column: span 2;"><span>🔹</span> Persistence Science Validation Framework</div>
+            </div>
+        </section>
+
+        <!-- Support Persistence Science -->
+        <section class="card glow-emerald">
+            <h2>Support Persistence Science</h2>
+            
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                Persistence Science is developed independently and published through open-access infrastructure.
+            </p>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                Support helps maintain:
+            </p>
+            <ul style="list-style-type: disc; padding-left: 1.25rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8;">
+                <li>Open publication access</li>
+                <li>DOI archiving</li>
+                <li>Website infrastructure</li>
+                <li>Framework development</li>
+                <li>Future validation studies</li>
+            </ul>
+
+            <!-- Paystack Contribution Tiers & Custom Amount -->
+            <div style="background: rgba(11, 14, 20, 0.85); border: 1.5px solid var(--accent-teal); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div style="color: var(--accent-teal); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Support Persistence Science</div>
+                    <div style="flex: 1; max-width: 300px; min-width: 200px;">
+                        <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
+                    </div>
+                </div>
+
+                <div class="tier-grid">
+                    <!-- Custom Amount Card -->
+                    <div class="tier-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                        <div>
+                            <div class="tier-title" style="margin-bottom: 0.4rem;">Custom Amount</div>
+                            <div style="margin: 0.4rem 0; display: flex; gap: 0.4rem;">
+                                <input type="number" id="custom-amount" min="1" placeholder="Amt" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
+                                <select id="custom-currency" style="padding: 0.3rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.8rem; font-family: inherit; cursor: pointer;">
+                                    <option value="KES">KES</option>
+                                    <option value="USD">USD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-action" onclick="payCustom()" style="margin-top: 0.4rem; width: 100%; text-align: center; background: var(--accent-teal); color: #000; border-color: var(--accent-teal);">Support &rarr;</button>
+                    </div>
+
+                    <!-- Tier 1 -->
+                    <div class="tier-card" onclick="payFixed(10, 'USD')">
+                        <div>
+                            <div class="tier-title">Supporter</div>
+                            <div class="tier-amount">$10</div>
+                            <div class="tier-desc">Maintains hosting &amp; docs.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Support $10</div>
+                    </div>
+
+                    <!-- Tier 2 -->
+                    <div class="tier-card" onclick="payFixed(50, 'USD')">
+                        <div>
+                            <div class="tier-title">Contributor</div>
+                            <div class="tier-amount">$50</div>
+                            <div class="tier-desc">Funds analytical reports.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Support $50</div>
+                    </div>
+
+                    <!-- Tier 3 -->
+                    <div class="tier-card" onclick="payFixed(100, 'USD')">
+                        <div>
+                            <div class="tier-title">Sponsor</div>
+                            <div class="tier-amount">$100</div>
+                            <div class="tier-desc">Sustains modeling &amp; ops.</div>
+                        </div>
+                        <div class="tier-action-hint">&rarr; Support $100</div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic; text-align: center; margin-bottom: 0; line-height: 1.5;">
+                All contributions are voluntary and are used solely to support the development, publication, and dissemination of Persistence Science.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-links">
+                <a href="index.html">Home</a> &bull; 
+                <a href="framework.html">Framework</a> &bull; 
+                <a href="library.html">Library</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="community.html">Community</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Library: <a href="library.html">Persistence Science Library</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- STABILIZED THREE.js WebGL Script (starCount = 150) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 150;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+                const TEAL  = new THREE.Color(0x10b981);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const randColor = Math.random();
+                    let colorObj = BLUE;
+                    if (randColor > 0.66) colorObj = AMBER;
+                    else if (randColor > 0.33) colorObj = TEAL;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(16,185,129,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x10b981,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+
+    <!-- Paystack Integration Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function payFixed(amount, currency) {
+            triggerPaystack(amount, currency);
+        }
+
+        function payCustom() {
+            const val = parseFloat(document.getElementById('custom-amount').value);
+            const currency = document.getElementById('custom-currency').value;
+            if (!val || val <= 0) {
+                alert("Please enter a valid contribution amount.");
+                document.getElementById('custom-amount').focus();
+                return;
+            }
+            triggerPaystack(val, currency);
+        }
+
+        function triggerPaystack(amount, currency) {
+            const emailInput = document.getElementById('user-email').value.trim() || 'supporter@persistencescience.org';
+            const amountInSubunits = Math.round(amount * 100);
+
+            let channels = ['card'];
+            if (currency === 'KES') {
+                channels = ['mobile_money', 'card'];
+            }
+
+            let handler = PaystackPop.setup({
+                key: 'pk_live_44f3fe99f08c9328202cfc4201abe4a71f531afa',
+                email: emailInput,
+                amount: amountInSubunits,
+                currency: currency,
+                channels: channels,
+                ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
+                onClose: function() {
+                    // Window closed handler
+                },
+                callback: function(response) {
+                    alert('Payment Successful! Reference: ' + response.reference);
+                }
+            });
+
+            handler.openIframe();
+        }
+    </script>
+</body>
+</html>

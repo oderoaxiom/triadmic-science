@@ -6,12 +6,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <title>Contact | Persistence Science</title>
-    <meta name="description" content="Contact Persistence Science for academic inquiries, research collaborations, citations, interviews, and scholarly discussions.">
-    <meta name="keywords" content="Persistence Science, Contact, Academic Collaboration, Research Inquiries, John Otieno Odero, ORCID, Research Support">
+    <meta name="description" content="Contact Persistence Science for academic inquiries, scholarly engagement, citations, interviews, and framework discussions.">
+    <meta name="keywords" content="Persistence Science, Contact, Academic Engagement, Scholarly Inquiries, John Otieno Odero, ORCID, Framework Support">
     <meta name="author" content="John Otieno Odero">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Contact | Persistence Science">
-    <meta property="og:description" content="Contact Persistence Science for research collaborations, academic inquiries, author verification, and scholarly engagement.">
+    <meta property="og:description" content="Contact Persistence Science for academic engagement, scholarly inquiries, author verification, and framework support.">
     <meta property="og:url" content="https://persistencescience.org/contact.html">
     <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
     <meta property="og:image:width" content="1200">
@@ -34,61 +34,21 @@
     <!-- Global Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Contact-specific styles for strict 4-column tier grid layout -->
+    <!-- Contact-specific styles for hero spacing -->
     <style>
-        .tier-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
         }
-        @media (max-width: 1024px) {
-            .tier-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 640px) {
-            .tier-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .tier-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .tier-card:hover {
-            border-color: var(--accent-amber);
-            transform: translateY(-2px);
-        }
-        .tier-title {
-            font-weight: 600;
-            color: #fff;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .tier-amount {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-amber);
-            margin: 0.3rem 0;
-        }
-        .tier-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        .tier-action-hint {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-blue);
+
+        h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            font-weight: 900;
         }
     </style>
 </head>
@@ -107,6 +67,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="framework.html">Framework</a></li>
                     <li><a href="library.html">Library</a></li>
+                    <li><a href="community.html">Community</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
@@ -117,11 +78,11 @@
     <main class="container">
         
         <!-- Hero Section -->
-        <section class="card glow-blue">
+        <section class="hero-container">
             <span class="badge" style="margin-bottom: 1.25rem;">Contact</span>
-            <h1>Academic Inquiries &amp; Collaboration</h1>
+            <h1>Academic Engagement</h1>
             <p class="sub-title">
-                Contact the Founder of Persistence Science for research inquiries, collaborations, citations, interviews, and academic discussions.
+                Persistence Science welcomes scholarly discussion, collaboration, interviews, citations, and framework engagement.
             </p>
         </section>
 
@@ -137,11 +98,11 @@
             </div>
         </section>
 
-        <!-- Section 2: Research & Collaboration -->
+        <!-- Section 2: Academic Engagement -->
         <section class="card glow-blue">
-            <h2>Research Collaborations</h2>
+            <h2>Academic Engagement</h2>
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
-                Persistence Science welcomes academic discussions, interdisciplinary collaborations, research partnerships, conference invitations, and constructive scholarly feedback.
+                Persistence Science welcomes academic discussions, interdisciplinary collaborations, partnerships, conference invitations, and constructive scholarly feedback.
             </p>
             
             <div style="margin-top: 1rem;">
@@ -158,13 +119,13 @@
 
         <!-- Section 3: Academic Profiles -->
         <section class="card glow-amber">
-            <h2>Academic Profiles &amp; Repositories</h2>
+            <h2>Academic Profiles</h2>
             <div class="grid-3" style="margin-top: 0;">
                 
                 <div class="sub-card">
                     <div>
                         <h3>ORCID</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">0009-0007-7039-7209</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">Verified Research Profile<br>Author Identity<br>Publication Links</p>
                     </div>
                     <div>
                         <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener" class="btn-action" style="margin-top: 0;">View ORCID &rarr;</a>
@@ -173,8 +134,8 @@
 
                 <div class="sub-card">
                     <div>
-                        <h3>Research Library</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Persistence Science Publications</p>
+                        <h3>Persistence Science Library</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">Published Frameworks<br>DOI Records<br>Application Theories</p>
                     </div>
                     <div>
                         <a href="library.html" class="btn-action" style="margin-top: 0;">Browse Library &rarr;</a>
@@ -183,105 +144,66 @@
 
                 <div class="sub-card">
                     <div>
-                        <h3>Zenodo Repository</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Persistence Science Archive</p>
+                        <h3>Academic Contact</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">Research Inquiries<br>Collaborations<br>Interviews</p>
                     </div>
                     <div>
-                        <a href="https://zenodo.org" target="_blank" rel="noopener" class="btn-action" style="margin-top: 0;">View Repository &rarr;</a>
+                        <a href="mailto:info@persistencescience.org" class="btn-action" style="margin-top: 0;">Send Email &rarr;</a>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- Section 4: Citation & Author Verification -->
+        <!-- Section 4: Author Verification -->
         <section class="card glow-blue">
             <h2>Author Verification</h2>
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0;">
-                The author maintains a verified ORCID profile and publicly archived research records through Zenodo. These resources provide persistent identifiers for citation, verification, and long-term academic accessibility.
+                The author maintains a verified ORCID profile and publicly accessible framework records. These resources provide persistent identifiers for citation, verification, and long-term academic accessibility.
             </p>
         </section>
 
-        <!-- New Section: Support Persistence Science -->
+        <!-- Section 5: The Next Frontier -->
         <section class="card glow-amber">
-            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">Support</span>
-            <h2>Support Persistence Science</h2>
-            
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">The Next Frontier</span>
+            <h2>The Next Frontier</h2>
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
-                Support helps sustain research, publication archiving, website maintenance, and the continued development of the Persistence Science Framework.
+                Persistence Science is expanding from theoretical foundations into large-scale validation and application.
             </p>
-
-            <!-- Paystack Contribution Tiers & Custom Amount -->
-            <div style="background: rgba(11, 14, 20, 0.85); border: 1.5px solid var(--accent-amber); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
-                    <div style="color: var(--accent-amber); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Support Persistence Science</div>
-                    <div style="flex: 1; max-width: 300px; min-width: 200px;">
-                        <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
-                    </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div>
+                    <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem;">• Global Persistence Index</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">A comparative measure of institutional, economic, and organizational persistence.</p>
                 </div>
-
-                <div class="tier-grid">
-                    <!-- Custom Amount Card -->
-                    <div class="tier-card">
-                        <div>
-                            <div class="tier-title" style="margin-bottom: 0.4rem;">Custom Amount</div>
-                            <div style="margin: 0.4rem 0; display: flex; gap: 0.4rem;">
-                                <input type="number" id="custom-amount" min="1" placeholder="Amt" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
-                                <select id="custom-currency" style="padding: 0.3rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.8rem; font-family: inherit; cursor: pointer;">
-                                    <option value="KES">KES</option>
-                                    <option value="USD">USD</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-action" onclick="payCustom()" style="margin-top: 0.4rem; width: 100%; text-align: center;">Support Persistence Science &rarr;</button>
-                    </div>
-
-                    <!-- Tier 1 -->
-                    <div class="tier-card" onclick="payFixed(10, 'USD')">
-                        <div>
-                            <div class="tier-title">Supporter</div>
-                            <div class="tier-amount">$10</div>
-                            <div class="tier-desc">Maintains hosting &amp; docs.</div>
-                        </div>
-                        <div class="tier-action-hint">&rarr; Support $10</div>
-                    </div>
-
-                    <!-- Tier 2 -->
-                    <div class="tier-card" onclick="payFixed(50, 'USD')">
-                        <div>
-                            <div class="tier-title">Contributor</div>
-                            <div class="tier-amount">$50</div>
-                            <div class="tier-desc">Funds analytical reports.</div>
-                        </div>
-                        <div class="tier-action-hint">&rarr; Support $50</div>
-                    </div>
-
-                    <!-- Tier 3 -->
-                    <div class="tier-card" onclick="payFixed(100, 'USD')">
-                        <div>
-                            <div class="tier-title">Sponsor</div>
-                            <div class="tier-amount">$100</div>
-                            <div class="tier-desc">Sustains modeling &amp; ops.</div>
-                        </div>
-                        <div class="tier-action-hint">&rarr; Support $100</div>
-                    </div>
+                <div>
+                    <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem;">• Institutional Legitimacy Observatory</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">Tracking legitimacy dynamics across public systems.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem;">• Religious Systems Observatory</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">Measuring organizational trust and coercive decay within religious institutions.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem;">• Cosmological Persistence Research</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">Investigating the Hubble constant, cosmic expansion, dark energy, and large-scale persistence structures.</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.05rem; color: #fff; margin-bottom: 0.2rem;">• Persistence Science Validation Framework</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">Establishing standardized methods for empirical testing across domains.</p>
                 </div>
             </div>
-
-            <p style="color: var(--text-muted); font-size: 0.85rem; font-style: italic; text-align: center; margin-bottom: 0; line-height: 1.5;">
-                All contributions are voluntary and are used solely to support the development, publication, and dissemination of Persistence Science research.
-            </p>
         </section>
 
         <!-- Final CTA Section -->
-        <section class="card glow-amber" style="text-align: center;">
-            <h2>Continue Exploring</h2>
+        <section class="card glow-blue" style="text-align: center;">
+            <h2>Explore Persistence Science</h2>
             <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
-                Learn how information, control, energy, and decay interact within the Persistence Science Framework.
+                Discover how the framework connects information, control, persistence, institutions, religious systems, and cosmology.
             </p>
             <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                <a href="framework.html" class="btn-action">Explore Framework &rarr;</a>
-                <a href="library.html" class="btn-action">Research Library &rarr;</a>
+                <a href="framework.html" class="btn-action">Framework &rarr;</a>
+                <a href="library.html" class="btn-action">Library &rarr;</a>
             </div>
         </section>
 
@@ -295,12 +217,13 @@
                 <a href="index.html">Home</a> &bull; 
                 <a href="framework.html">Framework</a> &bull; 
                 <a href="library.html">Library</a> &bull; 
+                <a href="community.html">Community</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
             </p>
             <p class="footer-meta">
                 ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
+                Library: <a href="library.html">Persistence Science Library</a> &bull; 
                 Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
             </p>
             <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
@@ -452,7 +375,7 @@
                     renderer.render(scene, camera);
                 }
 
-.animate();
+                animate();
 
                 window.addEventListener('resize', () => {
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -461,52 +384,6 @@
                 });
             }
         });
-    </script>
-
-    <!-- Paystack Integration Script -->
-    <script src="https://js.paystack.co/v1/inline.js"></script>
-    <script>
-        function payFixed(amount, currency) {
-            triggerPaystack(amount, currency);
-        }
-
-        function payCustom() {
-            const val = parseFloat(document.getElementById('custom-amount').value);
-            const currency = document.getElementById('custom-currency').value;
-            if (!val || val <= 0) {
-                alert("Please enter a valid contribution amount.");
-                document.getElementById('custom-amount').focus();
-                return;
-            }
-            triggerPaystack(val, currency);
-        }
-
-        function triggerPaystack(amount, currency) {
-            const emailInput = document.getElementById('user-email').value.trim() || 'supporter@persistencescience.org';
-            const amountInSubunits = Math.round(amount * 100);
-
-            let channels = ['card'];
-            if (currency === 'KES') {
-                channels = ['mobile_money', 'card'];
-            }
-
-            let handler = PaystackPop.setup({
-                key: 'pk_live_44f3fe99f08c9328202cfc4201abe4a71f531afa',
-                email: emailInput,
-                amount: amountInSubunits,
-                currency: currency,
-                channels: channels,
-                ref: 'SUP-' + Math.floor((Math.random() * 1000000000) + 1),
-                onClose: function() {
-                    // Window closed handler
-                },
-                callback: function(response) {
-                    alert('Payment Successful! Reference: ' + response.reference);
-                }
-            });
-
-            handler.openIframe();
-        }
     </script>
 </body>
 </html>

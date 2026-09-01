@@ -9,7 +9,7 @@
     <!-- Primary Metadata -->
     <title>Framework | Persistence Science</title>
     <meta name="description" content="Explore the Persistence Science framework architecture: from foundational axioms and the Information Index to core thermodynamics and domain-specific applications.">
-    <meta name="keywords" content="Persistence Science, Framework, Odero Persistence Axiom, Information Index, Persistence Thermodynamics, Complex Systems">
+    <meta name="keywords" content="Persistence Science, Framework, Odero Axiom, Information Index, Persistence Thermodynamics, Complex Systems">
     <meta name="author" content="John Otieno Odero">
 
     <!-- GoatCounter Analytics Integration -->
@@ -18,7 +18,7 @@
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Framework Architecture | Persistence Science">
-    <meta property="og:description" content="A layered scientific architecture for understanding how information, energy, and decay determine persistence across all complex systems.">
+    <meta property="og:description" content="A unified scientific architecture for understanding how information, control, energy, and decay determine persistence across complex systems.">
     <meta property="og:url" content="https://doi.org/10.5281/zenodo.22117576">
     <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
     <meta property="og:image:width" content="1200">
@@ -31,14 +31,302 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
         .framework-flow-container {
-            background: rgba(10, 15, 26, 0.85);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(10, 15, 26, 0.75);
+            border: 1px solid rgba(245, 158, 11, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             border-radius: 14px;
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0 0.75rem 0;
             text-align: center;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .framework-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .framework-flow-node {
+            background: rgba(8, 12, 20, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #fff;
+            min-width: 200px;
+        }
+
+        .framework-flow-arrow {
+            color: var(--accent-amber);
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        /* Persistence Chain - Scaled up 15-20% as the primary visual hero */
+        .persistence-chain-box {
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 0%, rgba(10, 15, 26, 0.95) 70%);
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            border-radius: 18px;
+            padding: 3rem 2.5rem;
+            margin: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 45px rgba(56, 189, 248, 0.2);
+        }
+
+        .chain-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            letter-spacing: 0.06em;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .chain-node {
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid rgba(56, 189, 248, 0.6);
+            border-radius: 12px;
+            padding: 1.1rem 2.5rem;
+            color: #fff;
+            min-width: 330px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .chain-node:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.45);
+        }
+
+        .chain-arrow {
+            color: var(--accent-amber);
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        /* Sacred Axiom Treatment Card */
+        .sacred-axiom-card {
+            border: 1px solid rgba(245, 158, 11, 0.45);
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.95) 80%);
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.18), inset 0 0 15px rgba(245, 158, 11, 0.08);
+            border-radius: 14px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sacred-axiom-card::before {
+            content: 'BEGINNING PRINCIPLE';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: var(--accent-amber);
+            opacity: 0.8;
+        }
+
+        .library-stats-container {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .domain-card {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .domain-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Domain-specific color accents */
+        .domain-emerald {
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+        }
+        .domain-emerald:hover {
+            border-color: rgba(16, 185, 129, 0.7);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+        }
+        .domain-emerald h3 { color: #10b981; }
+
+        .domain-purple {
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+        }
+        .domain-purple:hover {
+            border-color: rgba(168, 85, 247, 0.7);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+        }
+        .domain-purple h3 { color: #a855f7; }
+
+        .domain-indigo {
+            border: 1px solid rgba(99, 102, 241, 0.35);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+        }
+        .domain-indigo:hover {
+            border-color: rgba(99, 102, 241, 0.7);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+        }
+        .domain-indigo h3 { color: #6366f1; }
+
+        .domain-copper {
+            border: 1px solid rgba(217, 119, 6, 0.35);
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.1);
+        }
+        .domain-copper:hover {
+            border-color: rgba(217, 119, 6, 0.7);
+            box-shadow: 0 0 25px rgba(217, 119, 6, 0.25);
+        }
+        .domain-copper h3 { color: #d97706; }
+
+        .domain-violet {
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+        }
+        .domain-violet:hover {
+            border-color: rgba(139, 92, 246, 0.7);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+        }
+        .domain-violet h3 { color: #8b5cf6; }
+
+        .domain-card h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .domain-card ul {
+            margin: 0;
+            padding-left: 1.25rem;
+            color: var(--text-main);
+        }
+
+        .domain-card li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .explore-library-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(10, 15, 26, 0.98) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .explore-library-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+        }
+
+        .explore-library-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .explore-library-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .explore-library-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 640px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+
+        .explore-library-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-library-primary {
+            background: rgba(56, 189, 248, 0.15);
+            color: #fff;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            font-weight: 700;
+            padding: 0.9rem 2.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn-library-primary:hover {
+            transform: translateY(-2px);
+            background: rgba(56, 189, 248, 0.25);
+            border-color: var(--accent-blue);
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
         }
     </style>
 </head>
@@ -56,6 +344,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="framework.html" class="active">Framework</a></li>
                     <li><a href="library.html">Library</a></li>
+                    <li><a href="community.html">Community</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -69,7 +358,7 @@
         <section class="hero-container">
             <span class="badge">Framework Architecture</span>
             <h1>Persistence Science Framework</h1>
-            <div class="sub-title">A layered scientific architecture for understanding how information, energy, and decay determine persistence across all complex systems.</div>
+            <div class="sub-title">A unified scientific architecture for understanding how information, control, energy, and decay determine persistence across complex systems.</div>
             
             <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
                 <h3 style="color: var(--accent-amber); margin-bottom: 0.5rem;">The Fundamental Question</h3>
@@ -82,177 +371,217 @@
             </div>
         </section>
 
-        <!-- Framework Relationship Diagram (Conceptual Heart) -->
-        <section class="framework-flow-container">
-            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">Conceptual Architecture</span>
-            <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">Framework Relationship Diagram</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">This diagram becomes the conceptual heart of the whole website.</p>
+        <!-- The Persistence Chain (Magnified Hero Visual) -->
+        <section class="persistence-chain-box">
+            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);">Signature Conceptual Visual</span>
+            <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">The Persistence Chain</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">The core causal progression driving all long-term system survival.</p>
             
-            <div class="framework-flow">
-                <div class="framework-flow-node" style="border-color: var(--accent-amber); color: var(--accent-amber);">ODERO PERSISTENCE AXIOM</div>
-                <div class="framework-flow-arrow">↓</div>
-                <div class="framework-flow-node">INFORMATION INDEX</div>
-                <div class="framework-flow-arrow">↓</div>
-                <div class="framework-flow-node">PERSISTENCE RATIO</div>
-                <div class="framework-flow-arrow">↓</div>
-                <div class="framework-flow-node">PERSISTENCE THERMODYNAMICS</div>
-                <div class="framework-flow-arrow">↓</div>
-                <div class="framework-flow-node">SYSTEM DYNAMICS &AMP; CONTROL THEORY</div>
-                <div class="framework-flow-arrow">↓</div>
-                <div class="framework-flow-node" style="border-color: var(--accent-blue); color: var(--accent-blue);">APPLICATION THEORIES</div>
+            <div class="chain-flow">
+                <div class="chain-node">Information</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-node">Information Control</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-node">Persistence Capacity</div>
+                <div class="chain-arrow">↓</div>
+                <div class="chain-node" style="border-color: var(--accent-amber); color: var(--accent-amber);">Persistence</div>
             </div>
         </section>
 
-        <!-- Foundations Section -->
-        <section class="card glow-blue">
+        <!-- Framework Architecture (Supporting Visual) -->
+        <section class="framework-flow-container">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">Framework Architecture</span>
+            <h3 style="margin-top: 0.4rem; margin-bottom: 0.2rem; font-size: 1.1rem; color: #fff;">Systemic Structural Hierarchy</h3>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.75rem;">The underlying mathematical and theoretical breakdown.</p>
+            
+            <div class="framework-flow">
+                <div class="framework-flow-node" style="border-color: var(--accent-amber); color: var(--accent-amber);">ODERO AXIOM</div>
+                <div class="framework-flow-arrow">↓</div>
+                <div class="framework-flow-node">INFORMATION INDEX</div>
+                <div class="framework-flow-arrow">↓</div>
+                <div class="framework-flow-node">PERSISTENCE INDEX</div>
+                <div class="framework-flow-arrow">↓</div>
+                <div class="framework-flow-node">PERSISTENCE THERMODYNAMICS</div>
+                <div class="framework-flow-arrow">↓</div>
+                <div class="framework-flow-node">SYSTEM DYNAMICS &amp; CONTROL THEORY</div>
+                <div class="framework-flow-arrow">↓</div>
+                <div class="framework-flow-node" style="border-color: var(--accent-blue); color: var(--accent-blue);">DOMAINS OF APPLICATION</div>
+            </div>
+        </section>
+
+        <!-- One Elegant Line Under Architecture Diagram -->
+        <p style="text-align: center; color: var(--text-muted); font-size: 1.05rem; font-style: italic; margin: 1.5rem 0 2.5rem 0; letter-spacing: 0.02em;">
+            Every framework in Persistence Science can be traced back to the interaction of information, control, energy, and decay.
+        </p>
+
+        <!-- Library Structure Section -->
+        <section class="library-stats-container">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">Published Body of Work</span>
+            <h2 style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Persistence Science Library</h2>
+            <p style="color: var(--text-muted); font-size: 1rem; margin: 0 auto; max-width: 600px; line-height: 1.6;">
+                13 Published Frameworks organized into Foundations, Core Theories, and Application Frameworks.
+            </p>
+        </section>
+
+        <!-- Foundations Section (Gold / Amber Accent) -->
+        <section class="card" style="border-color: rgba(245,158,11,.35); box-shadow: 0 0 20px rgba(245,158,11,.12);">
             <h2>Foundations</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                The foundational bedrock of Persistence Science defining control, information structuring, and efficiency ratios.
+                First principles, axioms, and origins defining control, information structuring, and capacity indices.
             </p>
 
             <div class="grid-2">
-                <div class="sub-card">
+                <div class="sub-card sacred-axiom-card">
                     <div>
-                        <span class="tiny-badge">AXIOM</span>
-                        <div class="theory-formula">C(I) × E > D</div>
-                        <h3>Odero Persistence Axiom</h3>
+                        <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber);">AXIOM</span>
+                        <div class="theory-formula" style="color: var(--accent-amber);">C(I) × E > D</div>
+                        <h3>Odero Axiom</h3>
+                        <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">Why do systems persist?</p>
                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            A system persists if and only if its information-directed control capacity multiplied by available energy exceeds its total rate of decay. This establishes the universal boundary separating surviving organizations from systemic collapse. Without sufficient control or energy to offset decay, structural degradation becomes inevitable.
+                            Establishes the universal condition for persistence. Systems survive when information-directed control acting through available energy exceeds decay.
                         </p>
                     </div>
                 </div>
 
-                <div class="sub-card">
+                <div class="sub-card" style="border-color: rgba(245, 158, 11, 0.25);">
                     <div>
-                        <span class="tiny-badge">FOUNDATION</span>
-                        <div class="theory-formula">I = A × ηI</div>
+                        <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber);">FOUNDATION</span>
+                        <div class="theory-formula" style="color: var(--accent-amber);">I = S × ηI</div>
                         <h3>Information Index</h3>
+                        <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">How should information be measured?</p>
                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Defines information not merely as data storage or uncertainty reduction, but as actionable control capacity. It scales raw structural organization by operational efficiency to quantify true system agency. Higher index values reflect a greater capacity to direct energy against entropic pressures.
+                            Measures effective information through the interaction of Information Structure and Information Efficiency.
                         </p>
                     </div>
                 </div>
             </div>
 
             <div style="margin-top: 1.25rem;">
-                <div class="sub-card" style="width: 100%;">
+                <div class="sub-card" style="width: 100%; border-color: rgba(245, 158, 11, 0.25);">
                     <div>
-                        <span class="tiny-badge">RATIO</span>
-                        <div class="theory-formula">Ω = (C(I)E)/D</div>
-                        <h3>Persistence Ratio</h3>
+                        <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-amber);">FOUNDATION</span>
+                        <div class="theory-formula" style="color: var(--accent-amber);">Ω = (C(I)E)/D</div>
+                        <h3>Persistence Index</h3>
+                        <p style="color: #fff; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem;">How should persistence capacity be measured?</p>
                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Synthesizes control, energy, and decay into a single dimensionless scalar metric. When the ratio remains strictly above unity, the system maintains structural integrity and evolutionary viability. Values dipping toward or below unity indicate critical systemic vulnerability and imminent collapse.
+                            Synthesizes control, energy, and decay into a dimensionless scalar metric where values above unity indicate systemic viability.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Core Theories Section -->
-        <section class="card glow-amber">
+        <!-- Core Theories Section (Cyan / Blue Accent) -->
+        <section class="card" style="border-color: rgba(56,189,248,.35); box-shadow: 0 0 20px rgba(56,189,248,.12);">
             <h2>Core Theories</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                Mathematical and thermodynamic models tracking systemic transformation and trajectory over time.
+                Mechanisms, dynamics, and control models tracking systemic transformation and trajectory over time.
             </p>
 
             <div class="grid-2">
-                <div class="sub-card">
+                <div class="sub-card" style="border-color: rgba(56, 189, 248, 0.25);">
                     <div>
-                        <span class="tiny-badge">CORE THEORY</span>
-                        <div class="theory-formula">Persistence Thermodynamics</div>
+                        <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">CORE THEORY</span>
+                        <div class="theory-formula" style="color: var(--accent-blue);">Persistence Thermodynamics</div>
                         <h3>Persistence Thermodynamics</h3>
                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Extends classical thermodynamic principles into open, complex architectures. It explains how ordered configurations manage entropy export by coupling information networks with energy throughput, maintaining internal organization far from thermal equilibrium.
+                            Extends classical thermodynamics into open complex architectures, explaining how ordered configurations manage entropy export.
                         </p>
                     </div>
                 </div>
 
-                <div class="sub-card">
+                <div class="sub-card" style="border-color: rgba(56, 189, 248, 0.25);">
                     <div>
-                        <span class="tiny-badge">CORE THEORY</span>
-                        <div class="theory-formula">ω = dΩ/dt</div>
+                        <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">CORE THEORY</span>
+                        <div class="theory-formula" style="color: var(--accent-blue);">ω = dΩ/dt</div>
                         <h3>System Dynamics &amp; Control Theory</h3>
                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Analyzes the rate of change of the persistence ratio over time. By tracking temporal derivatives of system resilience, this model detects early warning signals of structural decay long before macroscopic failure manifests.
+                            Analyzes temporal derivatives of the persistence index to detect early warning signals of structural decay before failure manifests.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Application Theories Section -->
+        <!-- Domains of Application Section (Replacing Application Frameworks with distinct domain colors) -->
         <section class="card glow-blue">
-            <h2>Application Theories</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                Domain-specific extensions mapping persistence principles to economics, sociopolitical coalitions, and cosmology.
+            <h2>Domains of Application</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.5rem;">
+                Persistence Science applies a common framework across multiple domains of inquiry.
+            </p>
+            <p style="color: var(--accent-amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                One framework &bull; Many domains
             </p>
 
-            <div class="grid-2">
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">APPLICATION</span>
-                        <div class="theory-formula">Ωecon = C(I)E/D</div>
-                        <h3>Thermoeconomic Information Theory</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Models economic systems as energy-dissipative structures governed by price signals acting as informational control loops.
-                        </p>
-                    </div>
+            <div class="domain-grid">
+                <div class="domain-card domain-emerald">
+                    <h3>Economic Systems</h3>
+                    <ul>
+                        <li>Thermoeconomic Information Theory</li>
+                        <li>Theory of Captured Inflation</li>
+                    </ul>
                 </div>
 
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">APPLICATION</span>
-                        <div class="theory-formula">Captured Inflation</div>
-                        <h3>Captured Inflation</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Examines how informational distortions and monetary extraction inefficiencies accelerate structural decay in modern fiscal markets.
-                        </p>
-                    </div>
+                <div class="domain-card domain-purple">
+                    <h3>Political Systems</h3>
+                    <ul>
+                        <li>Coalition Indispensability Theory</li>
+                        <li>Theory of Hegemonic Stability &amp; Transition</li>
+                    </ul>
                 </div>
 
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">APPLICATION</span>
-                        <div class="theory-formula">Coalition Indispensability Theory</div>
-                        <h3>Coalition Indispensability Theory</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Quantifies political stability and power distribution by measuring the critical functional dependency of governance networks on key coalitions.
-                        </p>
-                    </div>
+                <div class="domain-card domain-indigo">
+                    <h3>Policy &amp; Institutions</h3>
+                    <ul>
+                        <li>General Theory of Legitimacy</li>
+                    </ul>
                 </div>
 
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">APPLICATION</span>
-                        <div class="theory-formula">Fundamental Cosmological Equation</div>
-                        <h3>Fundamental Cosmological Equation</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Applies persistence mechanics to large-scale cosmic evolution, examining vacuum energy, entropic limits, and universal cyclical regeneration.
-                        </p>
-                    </div>
+                <div class="domain-card domain-copper">
+                    <h3>Religious Systems</h3>
+                    <ul>
+                        <li>Theory of Interpretive and Organizational Trust</li>
+                    </ul>
                 </div>
 
-                <div class="sub-card" style="grid-column: 1 / -1;">
-                    <div>
-                        <span class="tiny-badge">APPLICATION</span>
-                        <div class="theory-formula">Elasticosmos Regenesis Theory</div>
-                        <h3>Elasticosmos Regenesis Theory</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-                            Describes the cosmic-scale cyclical evolution and self-regeneration mechanisms of bound elastic spacetime architectures under extreme information-density fluxes.
-                        </p>
-                    </div>
+                <div class="domain-card domain-violet" style="grid-column: 1 / -1;">
+                    <h3>Cosmological Systems</h3>
+                    <ul>
+                        <li>Fundamental Cosmological Equation</li>
+                        <li>Elasticosmos Regenesis Theory</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Final Call-to-Action -->
-        <section class="cta-section">
-            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Research Library</h2>
-            <p style="color: var(--text-muted); font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem auto; line-height: 1.6;">
-                Explore the publications, mathematical derivations, DOI records and supporting papers behind the Persistence Science Framework.
+        <!-- The Next Frontier Section -->
+        <section class="card glow-amber" style="margin-top: 3rem;">
+            <h2>The Next Frontier</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+                Ongoing research initiatives and observational extensions pushing the boundaries of Persistence Science.
             </p>
-            <div>
-                <a href="library.html" class="btn-primary">Enter Library &rarr;</a>
+            <ul style="list-style-type: none; padding-left: 0; color: var(--text-main); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Global Persistence Index</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Institutional Legitimacy Observatory</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Religious Systems Observatory</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Cosmological Persistence Research</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Hubble Constant and Cosmic Expansion</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Dark Energy and Universal Persistence</li>
+                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; grid-column: 1 / -1;">&bull; Persistence Science Validation Framework</li>
+            </ul>
+        </section>
+
+        <!-- Redesigned Blue Glassmorphism Explore the Library Section -->
+        <section class="explore-library-section">
+            <span class="explore-library-badge">Published Framework Library</span>
+            <h2 class="explore-library-title">Explore the Library</h2>
+            <p class="explore-library-desc">
+                Access the complete collection of published Persistence Science frameworks.
+            </p>
+            <div class="explore-library-actions">
+                <a href="library.html" class="btn-library-primary">
+                    <span>Browse Library</span> &rarr;
+                </a>
             </div>
         </section>
 
@@ -266,6 +595,7 @@
                 <a href="index.html">Home</a> &bull; 
                 <a href="framework.html">Framework</a> &bull; 
                 <a href="library.html">Library</a> &bull; 
+                <a href="community.html">Community</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
             </p>

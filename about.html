@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <title>About | John Otieno Odero | Persistence Science</title>
-    <meta name="description" content="About John Otieno Odero, founder of Persistence Science, an interdisciplinary framework investigating persistence, adaptation, transformation, and collapse in complex systems.">
-    <meta name="keywords" content="John Otieno Odero, Persistence Science, Founder, Systems Thinker, Independent Researcher, Information Theory, Complex Systems">
+    <title>About | Persistence Science</title>
+    <meta name="description" content="About Persistence Science and founder John Otieno Odero, investigating persistence, adaptation, transformation, and collapse in complex systems.">
+    <meta name="keywords" content="Persistence Science, John Otieno Odero, Framework, Systems Thinker, Independent Researcher, Information Theory, Complex Systems">
     <meta name="author" content="John Otieno Odero">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="About John Otieno Odero | Persistence Science">
-    <meta property="og:description" content="Learn about John Otieno Odero, founder of Persistence Science and developer of the Persistence Science Framework.">
+    <meta property="og:title" content="About | Persistence Science">
+    <meta property="og:description" content="Learn about Persistence Science, founded by John Otieno Odero to study complex systems persistence.">
     <meta property="og:url" content="https://persistencescience.org/about.html">
     <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
     <meta property="og:image:width" content="1200">
@@ -36,14 +36,24 @@
 
     <!-- About-Specific Styles Only -->
     <style>
+        .hero-container {
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
         h1 {
-            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
             font-weight: 900;
         }
 
         .founder-title {
             color: var(--accent-blue);
-            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            font-size: clamp(1.1rem, 1.8vw, 1.5rem);
             font-weight: 700;
             margin-bottom: 0.4rem;
             line-height: 1.3;
@@ -53,6 +63,40 @@
             color: var(--text-muted);
             font-size: 1.1rem;
             font-weight: 500;
+        }
+
+        /* Color Chips for Current Development */
+        .color-chip {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .chip-green { background-color: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+        .chip-purple { background-color: #a855f7; box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
+        .chip-blue { background-color: var(--accent-blue); box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+        .chip-amber { background-color: var(--accent-amber); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+
+        /* Emotional Center Quote Block Style */
+        .emotional-quote-card {
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            background: rgba(245, 158, 11, 0.02);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 12px;
+        }
+
+        .emotional-quote-text {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
         }
     </style>
 </head>
@@ -71,6 +115,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="framework.html">Framework</a></li>
                     <li><a href="library.html">Library</a></li>
+                    <li><a href="community.html">Community</a></li>
                     <li><a href="about.html" class="active">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -80,6 +125,13 @@
 
     <main class="container">
         
+        <!-- Hero Section: About Persistence Science -->
+        <section class="hero-container">
+            <span class="badge">Framework Identity</span>
+            <h1>About Persistence Science</h1>
+            <div class="sub-title">A unified scientific framework investigating the principles governing persistence, adaptation, transformation, and collapse in complex systems.</div>
+        </section>
+
         <!-- Founder Section -->
         <section class="card glow-blue">
             <span class="badge" style="margin-bottom: 1.25rem;">Founder</span>
@@ -88,86 +140,99 @@
                 <img src="john-otieno-odero.png" alt="John Otieno Odero" class="profile-img">
                 
                 <div class="author-bio-header">
-                    <h1>John Otieno Odero</h1>
+                    <h2>John Otieno Odero</h2>
                     
                     <div class="founder-title">
-                        Founder of Persistence Science
+                        Founder, Persistence Science Framework
                     </div>
                     
                     <div class="sub-title">
-                        Independent Researcher | Systems Thinker
+                        Independent Systems Researcher
                     </div>
                     
                     <p style="margin-top: 1rem; line-height: 1.7;">
-                        John Otieno Odero is an independent researcher, systems thinker, and founder of Persistence Science, an interdisciplinary research framework investigating the principles governing persistence, adaptation, transformation, and collapse in complex systems. A graduate of Economics from the University of Nairobi, his work focuses on the interaction of information, control, energy, and decay across physical, economic, political, technological, and cosmological domains.
+                        John Otieno Odero is the founder of the Persistence Science Framework and an independent systems researcher based in Nairobi, Kenya. Persistence Science is a scientific framework for understanding how information, control, energy, and decay influence the persistence, adaptation, transformation, and collapse of complex systems.
+                    </p>
+                    
+                    <p style="margin-top: 1rem; line-height: 1.7;">
+                        His work focuses on developing a common scientific language for studying persistence across physical, economic, institutional, political, religious, technological, biological, and cosmological domains.
+                    </p>
+
+                    <p style="margin-top: 1rem; line-height: 1.7;">
+                        The Persistence Science library currently includes foundational frameworks, core theories, and application frameworks spanning economics, policy and institutions, religious systems, political systems, and cosmology.
+                    </p>
+
+                    <p style="margin-top: 1rem; line-height: 1.7;">
+                        Current work focuses on validation methodologies, comparative persistence measurement, institutional legitimacy, organizational trust, and large-scale applications of Persistence Science across both social and physical systems.
+                    </p>
+
+                    <p style="margin-top: 1rem; line-height: 1.7;">
+                        The long-term objective of Persistence Science is to establish persistence as a unifying scientific principle and to foster an open community of researchers exploring persistence across domains.
                     </p>
                 </div>
             </div>
+        </section>
 
-            <p style="margin-bottom: 0; margin-top: 1.25rem; line-height: 1.7;">
-                His research program is organized around the Persistence Science Framework, comprising foundational principles including the Odero Persistence Axiom, Information Index, and Persistence Ratio; core theories including Persistence Thermodynamics and System Dynamics &amp; Control Theory; and application theories spanning economics, political science, and cosmology.
+        <!-- Mission Section -->
+        <section class="card" style="border: 1px solid rgba(245, 158, 11, 0.2); background: rgba(245, 158, 11, 0.015); box-shadow: 0 0 30px rgba(245, 158, 11, 0.04);">
+            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">Mission</span>
+            <h2>Mission</h2>
+            
+            <p style="margin-bottom: 1.25rem; line-height: 1.7;">
+                Persistence Science seeks to establish a common scientific language for understanding why systems persist, adapt, transform, or collapse.
             </p>
-
-            <p style="margin-bottom: 0; margin-top: 1.25rem; line-height: 1.7;">
-                Notable contributions include the Odero Persistence Axiom, Information Index, Persistence Ratio, Thermoeconomic Information Theory, Theory of Captured Inflation, Coalition Indispensability Theory, the Fundamental Cosmological Equation, and Elasticosmos Regenesis Theory. Collectively, these works seek to establish a unified scientific framework for understanding how systems survive, adapt, and evolve across diverse domains of inquiry.
+            <p style="margin-bottom: 0; line-height: 1.7;">
+                The framework applies across physical, institutional, economic, political, religious, technological, and cosmological systems.
             </p>
         </section>
 
-        <!-- Research Program Section -->
-        <section class="card glow-amber">
-            <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); margin-bottom: 1.25rem;">Research Program</span>
-            <h2>Persistence Science Framework</h2>
+        <!-- The Next Frontier Section -->
+        <section class="card" style="background: linear-gradient(135deg, rgba(56,189,248,.06), rgba(245,158,11,.06)); border: 1px solid rgba(56,189,248,0.15);">
+            <span class="badge" style="margin-bottom: 1.25rem;">Current Development</span>
+            <h2>The Next Frontier</h2>
             
             <p style="margin-bottom: 1.25rem; line-height: 1.7;">
-                Persistence Science seeks to establish a unified scientific framework for understanding why systems survive, adapt, transform, or collapse.
+                Persistence Science is expanding beyond institutional systems toward one of the largest persistence questions in science: the Universe itself.
             </p>
-            <p style="margin-bottom: 1.5rem; line-height: 1.7;">
-                The research program is organized around foundations, core theories, and application theories that together form the Persistence Science Framework.
+            
+            <p style="margin-bottom: 1rem; line-height: 1.7;">
+                Current development includes:
             </p>
 
-            <div class="grid-3">
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">AXIOMS &amp; INDICES</span>
-                        <h3>Foundational Contributions</h3>
-                        <ul>
-                            <li>Odero Persistence Axiom</li>
-                            <li>Information Index</li>
-                            <li>Persistence Ratio</li>
-                        </ul>
-                    </div>
-                </div>
+            <ul style="list-style-type: none; padding: 0; margin-top: 0.5rem; line-height: 1.8;">
+                <li style="margin-bottom: 1rem;">
+                    <strong><span class="color-chip chip-green"></span>Biological Persistence</strong><br>
+                    <span style="color: var(--text-muted);">Investigating adaptation, metabolic constraints, and evolutionary longevity thresholds across living systems.</span>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong><span class="color-chip chip-purple"></span>Cosmological Persistence &amp; Hubble Constant</strong><br>
+                    <span style="color: var(--text-muted);">A Persistence Science investigation of cosmic expansion, dark energy, and large-scale cosmological evolution.</span>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong><span class="color-chip chip-blue"></span>Persistence Science Validation Framework</strong><br>
+                    <span style="color: var(--text-muted);">Establishing standardized methods for measuring Information Control, Persistence Capacity, Legitimacy, Trust, and Organizational Decay.</span>
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong><span class="color-chip chip-amber"></span>Global Persistence Index &amp; Institutions</strong><br>
+                    <span style="color: var(--text-muted);">Comparative measurement of institutional legitimacy, organizational trust, and governance resilience.</span>
+                </li>
+                <li>
+                    <strong><span class="color-chip chip-blue"></span>Cross-Domain Persistence Studies</strong><br>
+                    <span style="color: var(--text-muted);">Testing whether common persistence principles govern economies, institutions, religious systems, and cosmological structures.</span>
+                </li>
+            </ul>
+        </section>
 
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">MODELS &amp; DYNAMICS</span>
-                        <h3>Core Theories</h3>
-                        <ul>
-                            <li>Persistence Thermodynamics</li>
-                            <li>System Dynamics &amp; Control Theory</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="sub-card">
-                    <div>
-                        <span class="tiny-badge">DOMAINS</span>
-                        <h3>Applications</h3>
-                        <ul>
-                            <li>Thermoeconomic Information Theory</li>
-                            <li>Captured Inflation</li>
-                            <li>Coalition Indispensability Theory</li>
-                            <li>Fundamental Cosmological Equation</li>
-                            <li>Elasticosmos Regenesis Theory</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Emotional Center Quote Block -->
+        <section class="emotional-quote-card">
+            <div class="emotional-quote-text">
+                "Persistence Science seeks to establish a common scientific language for understanding why systems persist, adapt, transform, or collapse."
             </div>
         </section>
 
         <!-- Academic Profiles & Inquiries -->
         <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
-            <section class="card glow-blue" style="margin-top: 0; margin-bottom: 0; height: 100%;">
+            <section class="card glow-amber" style="margin-top: 0; margin-bottom: 0; height: 100%;">
                 <h2>Academic Profiles</h2>
                 <ul style="list-style-type: none; padding: 0; margin-top: 1rem;">
                     <li style="margin-bottom: 1rem;">
@@ -185,7 +250,7 @@
                 </ul>
             </section>
 
-            <section class="card glow-amber" style="margin-top: 0; margin-bottom: 0; height: 100%;">
+            <section class="card glow-blue" style="margin-top: 0; margin-bottom: 0; height: 100%;">
                 <h2>Academic Inquiries</h2>
                 <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-top: 1rem; margin-bottom: 1.5rem;">
                     For collaborations, citations, interviews, research inquiries, or author verification, please use the <a href="contact.html">Contact page</a> or consult the verified <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">ORCID profile</a>.
@@ -206,6 +271,7 @@
                 <a href="index.html">Home</a> &bull; 
                 <a href="framework.html">Framework</a> &bull; 
                 <a href="library.html">Library</a> &bull; 
+                <a href="community.html">Community</a> &bull; 
                 <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
             </p>
