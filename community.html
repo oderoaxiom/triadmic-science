@@ -84,6 +84,45 @@
             box-shadow: 0 0 40px rgba(56, 189, 248, 0.25), 0 0 60px rgba(16, 185, 129, 0.2);
         }
 
+        /* Subtitle and Tier Typography Styles with Restored Colors */
+        .sub-title {
+            color: var(--accent-blue) !important;
+            font-weight: 500;
+        }
+
+        .tier-title {
+            color: var(--accent-amber);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.01em;
+        }
+
+        .tier-amount {
+            color: var(--accent-teal);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0.3rem 0;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .tier-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .tier-action-hint {
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .tier-card:hover .tier-action-hint {
+            color: #fff;
+        }
+
         /* Two-column layout for Form + What's Next Card */
         .community-main-grid {
             display: grid;
@@ -145,62 +184,6 @@
             transform: translateY(-2px);
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
         }
-
-        /* Contribution Tiers Grid */
-        .tier-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        @media (max-width: 1024px) {
-            .tier-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 640px) {
-            .tier-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .tier-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .tier-card:hover {
-            border-color: var(--accent-amber);
-            transform: translateY(-2px);
-        }
-        .tier-title {
-            font-weight: 600;
-            color: #fff;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .tier-amount {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-amber);
-            margin: 0.3rem 0;
-        }
-        .tier-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        .tier-action-hint {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-blue);
-        }
     </style>
 </head>
 <body>
@@ -231,7 +214,7 @@
         <!-- Hero Section -->
         <section class="card glow-emerald" style="text-align: center; padding: 3rem 2rem;">
             <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Join the Community</h1>
-            <p class="sub-title" style="font-size: 1.15rem; color: #fff; max-width: 750px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
+            <p class="sub-title" style="font-size: 1.15rem; max-width: 750px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
                 The Persistence Science Community is intended to serve as an intellectual commons for the study of persistence across systems.
             </p>
             <div style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto; line-height: 1.6;">
@@ -447,7 +430,7 @@
                     <!-- Custom Amount Card -->
                     <div class="tier-card" style="border-color: rgba(16, 185, 129, 0.4);">
                         <div>
-                            <div class="tier-title" style="margin-bottom: 0.4rem;">Custom Amount</div>
+                            <div class="tier-title">Custom Amount</div>
                             <div style="margin: 0.4rem 0; display: flex; gap: 0.4rem;">
                                 <input type="number" id="custom-amount" min="1" placeholder="Amt" style="flex: 1; min-width: 0; padding: 0.45rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.9rem; text-align: center; font-family: inherit;">
                                 <select id="custom-currency" style="padding: 0.3rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.8rem; font-family: inherit; cursor: pointer;">
@@ -455,6 +438,7 @@
                                     <option value="USD">USD</option>
                                 </select>
                             </div>
+                            <div class="tier-desc">Enter any amount.</div>
                         </div>
                         <button type="button" class="btn-action" onclick="payCustom()" style="margin-top: 0.4rem; width: 100%; text-align: center; background: var(--accent-teal); color: #000; border-color: var(--accent-teal);">Support &rarr;</button>
                     </div>

@@ -1,934 +1,284 @@
 /* ==========================================================================
-   1. Root Variables & Reset
+   Persistence Science - Global Stylesheet
    ========================================================================== */
+
+/* 1. CSS Variables & Theme Setup */
 :root {
-  --bg-color: #080c14;
-  --card-bg: rgba(15, 23, 42, 0.65);
-  --border-card: rgba(255, 255, 255, 0.1);
-  --border-color: rgba(255, 255, 255, 0.1);
-  --accent-gold: #f59e0b;
-  --accent-amber: #f59e0b;
-  --accent-blue: #38bdf8;
-  --accent-green: #10b981;
-  --text-primary: #f8fafc;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-heading: #ffffff;
+    --bg-color: #030509;
+    --card-bg: rgba(11, 14, 20, 0.75);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-card: rgba(16, 185, 129, 0.2);
+    --text-main: #f3f4f6;
+    --text-muted: #94a3b8;
+    --accent-emerald: #10b981;
+    --accent-blue: #38bdf8;
+    --accent-amber: #f59e0b;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
+/* 2. Reset & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
-  padding-bottom: 2rem;
-  overflow-x: hidden;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
+/* 3. Background WebGL Starfield Container */
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #0b0e14 0%, #030509 100%);
+}
+
+/* 4. Layout & Containers */
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 10;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
-/* ==========================================================================
-   2. Canvas Containers (Three.js / Visuals)
-   ========================================================================== */
-#canvas-container,
-#css3d-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
+main.container {
+    flex: 1;
+    padding-top: 2.5rem;
+    padding-bottom: 4rem;
 }
 
-#canvas-container { z-index: -1; }
-#css3d-container { z-index: 0; }
-
-/* ==========================================================================
-   3. Navigation Header
-   ========================================================================== */
+/* 5. Header & Navigation */
 header {
-  border-bottom: 1px solid var(--border-color);
-  background: rgba(8, 12, 20, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(3, 5, 9, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
 }
 
 .site-title {
-  font-size: 1.35rem;
-  font-weight: 900;
-  text-decoration: none;
-  letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #ffffff 0%, #38bdf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  transition: filter 0.3s ease;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
 }
 
 .site-title:hover {
-  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+    color: var(--accent-emerald);
 }
 
 .nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  align-items: center;
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
 }
 
 .nav-menu a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
 }
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: var(--accent-blue);
+    color: #fff;
 }
 
-/* ==========================================================================
-   4. Hero & Headings
-   ========================================================================== */
-.hero {
-  padding: 0.75rem 0 1.5rem 0;
-  position: relative;
-}
-
-.hero-watermark {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  font-weight: 900;
-  color: var(--accent-blue);
-  opacity: 0.04;
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-  z-index: -1;
-}
-
-h1 {
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  color: #fff;
-  margin: 0.25rem 0 0.75rem 0;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-}
-
-h2 {
-  font-size: 1.4rem;
-  color: var(--text-heading);
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.15rem;
-  color: var(--text-heading);
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.sub-title {
-  color: var(--text-muted);
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  margin-bottom: 0;
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-.hero-description {
-  font-size: 1.05rem;
-  color: #cbd5e1;
-  margin-bottom: 2rem;
-}
-
-p {
-  margin-bottom: 1.25rem;
-  color: var(--text-main);
-}
-
-ul {
-  margin-left: 1.25rem;
-  margin-bottom: 1.5rem;
-  padding-left: 0;
-}
-
-li {
-  margin-bottom: 0.5rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-li::marker {
-  color: var(--accent-amber);
-}
-
-/* ==========================================================================
-   5. Cards & Universal Hover Classes
-   ========================================================================== */
+/* 6. Cards & UI Components */
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glow-blue:hover {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.35), inset 0 0 12px rgba(56, 189, 248, 0.15);
-}
-
-.glow-amber:hover {
-  border-color: var(--accent-amber);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), inset 0 0 12px rgba(245, 158, 11, 0.15);
-}
-
-/* Standard Card Types */
-.hero-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 2rem;
-  backdrop-filter: blur(12px);
-}
-
-.info-card {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1.5rem;
-}
-
-.support-card {
-  background: rgba(3, 5, 9, 0.8);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.25rem 1rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.3s ease;
+    background: var(--card-bg);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .sub-card {
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
 }
 
-.sub-card:hover {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+h1, h2, h3 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.02em;
 }
 
-.framework-status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
 }
 
-.status-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--border-card);
-  padding: 0.85rem 1rem;
-  border-radius: 10px;
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--accent-green);
-  box-shadow: 0 0 8px var(--accent-green);
-  flex-shrink: 0;
+h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
 }
 
-.status-text {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #e2e8f0;
+p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
 }
 
-/* Grid Utilities */
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
+a:hover {
+    text-decoration: underline;
 }
 
-/* ==========================================================================
-   6. Axiom Box & Math Grids
-   ========================================================================== */
-.axiom-box {
-  border: 2px solid var(--accent-gold);
-  border-radius: 18px;
-  padding: 2.25rem 1.5rem;
-  background: rgba(245, 158, 11, 0.02);
-  text-align: center;
-  overflow: visible;
-  margin: 2rem 0;
-  box-shadow: 
-    0 0 20px rgba(245, 158, 11, 0.5),
-    0 0 45px rgba(245, 158, 11, 0.35),
-    0 0 85px rgba(245, 158, 11, 0.2),
-    inset 0 0 25px rgba(245, 158, 11, 0.15);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-  cursor: pointer;
-  will-change: transform, box-shadow;
+/* 7. Buttons & Actions */
+.btn-action {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 0.6rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
 }
 
-.axiom-box:hover,
-.axiom-box:active {
-  transform: scale(0.98);
-  box-shadow: 
-    0 0 30px rgba(245, 158, 11, 0.7),
-    0 0 65px rgba(245, 158, 11, 0.5),
-    0 0 110px rgba(245, 158, 11, 0.3),
-    inset 0 0 35px rgba(245, 158, 11, 0.25);
-}
-
-.axiom-title {
-  color: var(--accent-gold);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-}
-
-.math-hero {
-  font-size: 1.4rem;
-  color: #ffffff;
-  margin: 0.5rem 0;
-}
-
-.axiom-explanation {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-top: 0.75rem;
-  line-height: 1.5;
-}
-
-.math-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.25rem;
-  width: 100%;
-  margin-top: 1.5rem;
-}
-
-.math-card {
-  padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
-  border: 1px solid var(--border-card);
-  text-align: center;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.math-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(245, 158, 11, 0.5);
-}
-
-.math-card.gold-border {
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
-}
-
-.math-card-title {
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  color: var(--accent-blue);
-}
-
-/* ==========================================================================
-   7. Research Domains & Framework/Library/About/Contact Components
-   ========================================================================== */
-.domains-grid,
-.frontiers-list-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-  margin: 1.5rem 0;
-}
-
-.domain-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.domain-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(56, 189, 248, 0.5);
-  background: rgba(15, 23, 42, 0.85);
-}
-
-.domain-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.domain-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.4rem;
-}
-
-.domain-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
-.domain-link {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent-blue);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-/* Framework Components */
-.framework-flow {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.framework-flow-node {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--border-card);
-  border-radius: 10px;
-  padding: 1.25rem;
-  text-align: center;
-}
-
-.framework-flow-arrow {
-  text-align: center;
-  color: var(--accent-blue);
-  font-size: 1.25rem;
-}
-
-/* Library Components */
-.archive-meta {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-/* About Components */
-.profile-img {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--accent-blue);
-  box-shadow: 0 0 25px rgba(56, 189, 248, .35);
-  display: block;
-}
-
-.author-profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.75rem;
-}
-
-@media (min-width: 640px) {
-  .author-profile-container {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-/* Contact Components */
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.25rem;
-}
-
-.contact-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 12px;
-  padding: 1.5rem;
+.btn-action:hover {
+    background: var(--accent-blue);
+    color: #030509;
+    text-decoration: none;
 }
 
 /* Support Tier Grid Components */
 .tier-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .tier-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 12px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Theories Components */
-.theories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.theory-formula {
-  font-family: monospace;
-  color: var(--accent-blue);
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.theory-title {
-  color: #fff;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.theory-desc {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-/* ==========================================================================
-   8. Diagrams, Citations, Status Items & Standard Button Set
-   ========================================================================== */
-.diagram-container {
-  width: 100%;
-  background: rgba(3, 5, 9, 0.6);
-  border: 1px solid var(--border-card);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.diagram-caption {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 0.75rem;
-  text-align: center;
-}
-
-.card-citation-compact {
-  border-color: rgba(245, 158, 11, 0.3);
-}
-
-.citation-box {
-  background: rgba(3, 5, 9, 0.8);
-  border: 1px solid var(--border-card);
-  border-radius: 8px;
-  padding: 0.75rem 4rem 0.75rem 1rem;
-  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.82rem;
-  color: #e2e8f0;
-  position: relative;
-  margin-top: 0.5rem;
-  word-break: break-word;
-}
-
-.btn-copy {
-  position: absolute;
-  top: 50%;
-  right: 0.75rem;
-  transform: translateY(-50%);
-  background: rgba(56, 189, 248, 0.15);
-  color: var(--accent-blue);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  border-radius: 4px;
-  padding: 0.25rem 0.6rem;
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-copy:hover {
-  background: var(--accent-blue);
-  color: var(--bg-color);
-}
-
-.cta-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
-  margin-top: 1.5rem;
-}
-
-/* CTA Section */
-.cta-section {
-  text-align: center;
-  padding: 3rem 1.5rem;
-  border-radius: 14px;
-  margin-top: 3rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-card);
-}
-
-/* Standard Button Set */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.4rem;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent-blue), #1e40af);
-  color: #fff;
-  border: none;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
-  color: #fff;
-  text-shadow: none;
-}
-
-.btn-secondary {
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--accent-blue);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-}
-
-.btn-secondary:hover {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: var(--accent-blue);
-  color: #fff;
-}
-
-.btn-action {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--accent-blue);
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-action:hover {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: var(--accent-blue);
-  color: #fff;
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-}
-
-.paper-meta {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-}
-
-.status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.88rem;
-  color: #cbd5e1;
-  background: rgba(3, 5, 9, 0.5);
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-card);
-}
-
-.status-check {
-  color: var(--accent-green);
-  font-weight: bold;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.35rem 0.9rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid var(--border-card);
-  color: var(--accent-blue);
-  background: rgba(56, 189, 248, 0.15);
-  transition: all 0.2s ease;
-}
-
-.badge:hover {
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-
-.tiny-badge {
-  display: inline-block;
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--accent-blue);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: 9999px;
-  padding: 0.25rem 0.7rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-}
-
-/* General Anchor Hover and Text Styling */
-a {
-  color: var(--accent-amber);
-  text-decoration: underline;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-a:hover,
-a:active,
-a:focus {
-  color: var(--accent-blue);
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
-}
-
-/* ==========================================================================
-   9. Footer
-   ========================================================================== */
-footer {
-  margin-top: 4rem;
-  padding: 2.5rem 0;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-color);
-  background: rgba(8, 12, 20, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  text-align: center;
-}
-
-footer p {
-  margin: 0.4rem 0;
-}
-
-footer .footer-brand {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-footer .footer-established {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
-footer .footer-links {
-  margin-bottom: 1rem;
-}
-
-footer .footer-links a {
-  color: var(--accent-amber);
-  text-decoration: none;
-  margin: 0 0.3rem;
-}
-
-footer .footer-links a:hover {
-  color: var(--accent-blue);
-  text-decoration: underline;
-}
-
-footer .footer-meta {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-footer .footer-meta a {
-  color: var(--accent-amber);
-}
-
-/* ==========================================================================
-   10. Media Queries
-   ========================================================================== */
-@media (max-width: 900px) {
-  .frontiers-list-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .tier-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .tier-card {
-    width: 100% !important;
-  }
-  form div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .card {
-    padding: 1.25rem;
-  }
-
-  .axiom-box {
-    padding: 1.25rem 0.75rem;
-  }
-
-  .math-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .nav-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .citation-box {
-    padding: 0.75rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .btn-copy {
-    top: auto;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    transform: none;
-  }
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
 }
 
-/* ==========================================================================
-   11. Global Mobile Overflow & Grid Safety Fix
-   ========================================================================== */
+/* 8. Footer */
+footer {
+    border-top: 1px solid var(--border-color);
+    background: rgba(3, 5, 9, 0.9);
+    padding: 2.5rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer-brand {
+    font-weight: 600;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.footer-established {
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+.footer-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.footer-meta a {
+    color: var(--accent-blue);
+}
+
+/* 9. Responsive Breakpoints (General Layout adjustments) */
+@media (max-width: 768px) {
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+/* 10 & 11. Media Query Safeguards for Tier Grid & Cards */
 @media (max-width: 900px) {
-  .grid-2, 
-  .grid-3, 
-  .math-grid, 
-  .domains-grid, 
-  .frontiers-list-grid, 
-  .tier-grid, 
-  .contact-grid, 
-  .status-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .card, 
-  .hero-card, 
-  .info-card, 
-  .support-card, 
-  .sub-card, 
-  .domain-card, 
-  .math-card, 
-  .contact-card, 
-  .tier-card, 
-  .axiom-box {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  h1, h2, h3, p {
-    word-break: break-word;
-  }
+    .tier-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    }
+    
+    .tier-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
 }
