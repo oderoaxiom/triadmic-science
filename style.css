@@ -406,7 +406,8 @@ li::marker {
 /* ==========================================================================
    7. Research Domains & Framework/Library/About/Contact Components
    ========================================================================== */
-.domains-grid {
+.domains-grid,
+.frontiers-list-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.25rem;
@@ -530,6 +531,24 @@ li::marker {
   border: 1px solid var(--border-card);
   border-radius: 12px;
   padding: 1.5rem;
+}
+
+/* Support Tier Grid Components */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.tier-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Theories Components */
@@ -833,6 +852,21 @@ footer .footer-meta a {
 /* ==========================================================================
    10. Media Queries
    ========================================================================== */
+@media (max-width: 900px) {
+  .frontiers-list-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .tier-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .tier-card {
+    width: 100% !important;
+  }
+  form div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 600px) {
   .card {
     padding: 1.25rem;
@@ -861,5 +895,40 @@ footer .footer-meta a {
     bottom: 0.5rem;
     right: 0.5rem;
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   11. Global Mobile Overflow & Grid Safety Fix
+   ========================================================================== */
+@media (max-width: 900px) {
+  .grid-2, 
+  .grid-3, 
+  .math-grid, 
+  .domains-grid, 
+  .frontiers-list-grid, 
+  .tier-grid, 
+  .contact-grid, 
+  .status-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card, 
+  .hero-card, 
+  .info-card, 
+  .support-card, 
+  .sub-card, 
+  .domain-card, 
+  .math-card, 
+  .contact-card, 
+  .tier-card, 
+  .axiom-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  h1, h2, h3, p {
+    word-break: break-word;
   }
 }
