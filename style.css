@@ -852,21 +852,6 @@ footer .footer-meta a {
 /* ==========================================================================
    10. Media Queries
    ========================================================================== */
-@media (max-width: 900px) {
-  .frontiers-list-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .tier-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .tier-card {
-    width: 100% !important;
-  }
-  form div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-}
-
 @media (max-width: 600px) {
   .card {
     padding: 1.25rem;
