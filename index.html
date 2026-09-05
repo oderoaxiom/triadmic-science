@@ -71,6 +71,35 @@
             color: var(--accent-amber);
         }
 
+        .badge-doi-glow .banner-arrow {
+            display: inline-block;
+            margin-left: 0.25rem;
+            transition: transform 0.2s ease;
+        }
+
+        .badge-doi-glow:hover .banner-arrow {
+            transform: translateX(3px);
+        }
+
+        .badge-discipline-glow {
+            display: inline-block;
+            background: rgba(8, 12, 20, 0.75) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(56, 189, 248, 0.85);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 6px rgba(56, 189, 248, 0.15);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            cursor: default;
+            text-decoration: none;
+        }
+
         /* 8-10 second slow breathing gold pulse for the Monument Axiom */
         @keyframes sacredBreathingPulse {
             0% {
@@ -438,7 +467,14 @@
         
         <!-- 1. Hero Section -->
         <section class="hero-container">
-            <span class="badge">FOUNDATIONAL PHYSICS • COMPLEXITY SCIENCE • INFORMATION THEORY</span>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.65rem; margin-bottom: 1.25rem;">
+                <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" class="badge-doi-glow">
+                    RESEARCH MILESTONE &bull; 14 PUBLICATIONS &bull; FUNDAMENTAL COSMOLOGICAL EQUATION ACCEPTED FOR PUBLICATION &bull; 2026 <span class="banner-arrow">&rarr;</span>
+                </a>
+                <div class="badge-discipline-glow">
+                    FOUNDATIONAL PHYSICS &bull; COMPLEXITY SCIENCE &bull; INFORMATION THEORY
+                </div>
+            </div>
             
             <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); margin-top: 0.5rem; margin-bottom: 1rem;">Persistence Science</h1>
             
@@ -446,7 +482,7 @@
                 A Science of Persistence
             </div>
 
-            <div style="color: var(--text-muted); font-size: 1.05rem; margin-top: 1.25rem; font-style: italic;">
+            <div style="color: var(--text-muted); font-size: 1.05rem; margin-top: 1.25rem; font-style: italic; max-width: 750px; margin-left: auto; margin-right: auto; line-height: 1.5;">
                 From information and institutions to economies, civilizations, religious systems, and the Cosmos.
             </div>
         </section>
@@ -552,6 +588,7 @@
                         <h3>Foundations</h3>
                         <ul>
                             <li>Odero Axiom</li>
+                            <li><a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Laws of Persistence Science</a></li>
                             <li>Information Index</li>
                             <li>Persistence Index</li>
                         </ul>
@@ -605,7 +642,7 @@
                 <div class="theory-card glow-blue">
                     <div>
                         <span class="tiny-badge">FOUNDATION</span>
-                        <div class="theory-formula">Odero Axiom</div>
+                        <div class="theory-formula">Parent Axiom</div>
                         <div class="theory-title">Odero Axiom</div>
                         <div class="theory-desc">
                             Establishes the foundational mathematical baseline that C(I) × E > D dictates system survival.
@@ -616,8 +653,19 @@
                 <div class="theory-card glow-blue">
                     <div>
                         <span class="tiny-badge">FOUNDATION</span>
-                        <div class="theory-formula">I = S × ηI</div>
-                        <div class="theory-title">Information Index</div>
+                        <div class="theory-formula">Core Laws</div>
+                        <div class="theory-title"><a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Laws of Persistence Science</a></div>
+                        <div class="theory-desc">
+                            Formalizes the universal Persistence Principle and unified laws governing system survival, structural stability, and collapse.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="theory-card glow-blue">
+                    <div>
+                        <span class="tiny-badge">FOUNDATION</span>
+                        <div class="theory-formula">Index Formula</div>
+                        <div class="theory-title">Information Index <span style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); display: block; margin-top: 0.2rem;">I = S × ηI</span></div>
                         <div class="theory-desc">
                             Measures effective information through the interaction of Information Structure and Information Efficiency.
                         </div>
@@ -627,8 +675,8 @@
                 <div class="theory-card glow-blue">
                     <div>
                         <span class="tiny-badge">FOUNDATION</span>
-                        <div class="theory-formula">Persistence Index</div>
-                        <div class="theory-title">Persistence Index</div>
+                        <div class="theory-formula">Index Formula</div>
+                        <div class="theory-title">Persistence Index <span style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); display: block; margin-top: 0.2rem;">Ω = C(I)E / D</span></div>
                         <div class="theory-desc">
                             Quantifies the overall capacity of a system to maintain structural integrity against entropic decay.
                         </div>
