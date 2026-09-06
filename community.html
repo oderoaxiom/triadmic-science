@@ -72,7 +72,7 @@
             box-shadow: 0 0 35px rgba(245, 158, 11, 0.35);
         }
 
-        /* Special Teal + Blue Highlight Glow Card for Discussion Form & Companion Card */
+        /* Special Teal + Blue Highlight Glow Card for Discussion Form */
         .glow-teal-blue {
             background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(16,185,129,.08));
             border: 1px solid rgba(56, 189, 248, 0.25);
@@ -123,19 +123,10 @@
             color: #fff;
         }
 
-        /* Two-column layout for Form + What's Next Card */
-        .community-main-grid {
-            display: grid;
-            grid-template-columns: 1.6fr 1fr;
-            gap: 2rem;
-            align-items: start;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-        @media (max-width: 1024px) {
-            .community-main-grid {
-                grid-template-columns: 1fr;
-            }
+        /* Single-column centered layout for the discussion form */
+        .community-form-container {
+            max-width: 900px;
+            margin: 2rem auto;
         }
 
         /* Interactive Participation Grid */
@@ -151,22 +142,19 @@
             }
         }
 
-        /* Frontiers List Grid */
-        .frontiers-list-grid {
+        /* Areas of Community Interest Grid */
+        .interest-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             margin-top: 1.5rem;
         }
         @media (max-width: 768px) {
-            .frontiers-list-grid {
+            .interest-grid {
                 grid-template-columns: 1fr;
             }
-            .frontier-item[style*="grid-column"] {
-                grid-column: span 1 !important;
-            }
         }
-        .frontier-item {
+        .interest-item {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -179,7 +167,7 @@
             gap: 0.75rem;
             transition: all 0.3s ease;
         }
-        .frontier-item:hover {
+        .interest-item:hover {
             border-color: var(--accent-blue);
             transform: translateY(-2px);
             box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
@@ -200,9 +188,10 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="framework.html">Framework</a></li>
+                    <li><a href="research.html">Research</a></li>
                     <li><a href="library.html">Library</a></li>
+                    <li><a href="community.html" style="color: var(--accent-blue);" class="active">Community</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="community.html" class="active">Community</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -273,10 +262,8 @@
             </div>
         </section>
 
-        <!-- Main Grid: Submission Form on Left, "What Should Persistence Science Explain Next?" on Right -->
-        <div class="community-main-grid">
-            
-            <!-- Discussion Form Card -->
+        <!-- Discussion Form Section -->
+        <div class="community-form-container">
             <section id="discussion-form" class="card glow-teal-blue" style="padding: 2.5rem;">
                 
                 <h2 style="margin-bottom: 0.75rem; font-size: 1.8rem;">Join the Discussion</h2>
@@ -313,6 +300,7 @@
                             <label for="discussion-area" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Discussion Area</label>
                             <select id="discussion-area" name="Area" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit; cursor: pointer;">
                                 <option>Foundations</option>
+                                <option>Laws of Persistence Science</option>
                                 <option>Core Theories</option>
                                 <option>Economic Systems</option>
                                 <option>Political Systems</option>
@@ -333,12 +321,9 @@
                         <textarea id="discussion-message" name="Message" rows="7" placeholder="Share an idea, critique, application, question, observation, or proposal..." style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
                     </div>
 
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <button type="submit" class="btn-action" style="background: var(--accent-teal); color: #000; border-color: var(--accent-teal); font-weight: 600; padding: 0.85rem 1.5rem; cursor: pointer; flex: 1;">
-                            [ Join the Discussion ]
-                        </button>
-                        <button type="button" onclick="document.getElementById('discussion-message').focus();" class="btn-action" style="background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600; padding: 0.85rem 1.5rem; cursor: pointer; flex: 1;">
-                            [ Contribute an Idea ]
+                    <div>
+                        <button type="submit" class="btn-action" style="background: var(--accent-teal); color: #000; border-color: var(--accent-teal); font-weight: 600; padding: 0.85rem 1.5rem; cursor: pointer; width: 100%; text-align: center;">
+                            [ Submit Contribution ]
                         </button>
                     </div>
                 </form>
@@ -351,51 +336,22 @@
                     </p>
                 </div>
             </section>
-
-            <!-- Companion Card: What Should Persistence Science Explain Next? -->
-            <section class="card glow-blue" style="padding: 2.2rem; position: sticky; top: 2rem;">
-                <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">What should Persistence Science explain next?</h3>
-                <ul style="list-style-type: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">
-                    <li>• Biological Evolution</li>
-                    <li>• Disease Persistence</li>
-                    <li>• Military Stability</li>
-                    <li>• Artificial Intelligence</li>
-                    <li>• Civilizational Collapse</li>
-                    <li>• The Hubble Constant</li>
-                    <li>• Cosmic Expansion</li>
-                    <li>• Dark Energy</li>
-                </ul>
-                <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; text-align: center;">
-                    <div style="color: #fff; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem;">Have an idea?</div>
-                    <div style="color: var(--accent-teal); font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;">Tell us.</div>
-                    <a href="#discussion-form" class="btn-action" style="display: block; text-align: center; background: var(--accent-blue); color: #000; border-color: var(--accent-blue); font-weight: 600;">Submit an Idea &rarr;</a>
-                </div>
-            </section>
-
         </div>
 
-        <!-- The Next Frontier -->
+        <!-- Areas of Community Interest -->
         <section class="card glow-blue">
-            <h2>The Next Frontier</h2>
+            <h2>Areas of Community Interest</h2>
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;">
-                Persistence Science is expanding into new domains of theory, validation, and application.
-            </p>
-            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
-                Current areas of development include:
+                Engage with collaborative discussions across core conceptual domains and application areas.
             </p>
 
-            <div class="frontiers-list-grid">
-                <div class="frontier-item"><span>🔹</span> Global Persistence Index</div>
-                <div class="frontier-item"><span>🔹</span> Institutional Legitimacy Observatory</div>
-                <div class="frontier-item"><span>🔹</span> Religious Systems Observatory</div>
-                <div class="frontier-item"><span>🔹</span> Biological Persistence</div>
-                <div class="frontier-item"><span>🔹</span> Disease Dynamics</div>
-                <div class="frontier-item"><span>🔹</span> Military and Strategic Persistence</div>
-                <div class="frontier-item"><span>🔹</span> Civilizational Persistence</div>
-                <div class="frontier-item"><span>🔹</span> Hubble Constant Research</div>
-                <div class="frontier-item"><span>🔹</span> Cosmic Expansion</div>
-                <div class="frontier-item"><span>🔹</span> Dark Energy and Universal Persistence</div>
-                <div class="frontier-item" style="grid-column: span 2;"><span>🔹</span> Persistence Science Validation Framework</div>
+            <div class="interest-grid">
+                <div class="interest-item"><span>•</span> Fundamental Theory</div>
+                <div class="interest-item"><span>•</span> Validation Studies</div>
+                <div class="interest-item"><span>•</span> Institutions</div>
+                <div class="interest-item"><span>•</span> Religion</div>
+                <div class="interest-item"><span>•</span> Economics</div>
+                <div class="interest-item"><span>•</span> Cosmology</div>
             </div>
         </section>
 
@@ -489,9 +445,10 @@
             <p class="footer-links">
                 <a href="index.html">Home</a> &bull; 
                 <a href="framework.html">Framework</a> &bull; 
+                <a href="research.html">Research</a> &bull; 
                 <a href="library.html">Library</a> &bull; 
-                <a href="about.html">About</a> &bull; 
                 <a href="community.html">Community</a> &bull; 
+                <a href="about.html">About</a> &bull; 
                 <a href="contact.html">Contact</a>
             </p>
             <p class="footer-meta">

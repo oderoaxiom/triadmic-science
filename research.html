@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Primary Metadata -->
+    <title>Research Programs | Persistence Science</title>
+    <meta name="description" content="Current and planned research initiatives extending Persistence Science toward empirical validation and real-world applications.">
+    <meta name="keywords" content="research programs, persistence cosmology, research architecture, global persistence index, persistence science">
+    <meta name="author" content="John Otieno Odero">
+
+    <!-- GoatCounter Analytics Integration -->
+    <script data-goatcounter="https://persistencescience.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Research Programs | Persistence Science">
+    <meta property="og:description" content="Explore the Persistence Science research ecosystem, featuring our broader architecture, institutional observatories, and the featured Persistence Cosmology program.">
+    <meta property="og:url" content="https://persistencescience.org/research.html">
+    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+
+    <!-- Global Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Three.js for 3D/4D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        .badge-discipline-glow {
+            display: inline-block;
+            background: rgba(8, 12, 20, 0.75) !important;
+            backdrop-filter: blur(8px) !important;
+            -webkit-backdrop-filter: blur(8px) !important;
+            color: var(--accent-blue);
+            border-radius: 9999px;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(56, 189, 248, 0.85);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 6px rgba(56, 189, 248, 0.15);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .portfolio-card {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .portfolio-card.featured-track {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
+        }
+
+        .portfolio-card.featured-track:hover {
+            border-color: rgba(245, 158, 11, 0.8);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.18);
+        }
+
+        .card-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .track-status-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .track-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .featured-track .track-label {
+            color: var(--accent-amber);
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+            width: fit-content;
+        }
+
+        .status-active {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+        }
+
+        .status-planned {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .transition-bridge-box {
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 14px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0 3rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.05);
+        }
+
+        .roadmap-container {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            margin: 2.5rem 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .roadmap-chain {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+            margin-top: 1.5rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .roadmap-node {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 9999px;
+            padding: 0.65rem 1.75rem;
+            color: #f8fafc;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.12);
+            letter-spacing: 0.02em;
+            transition: all 0.3s ease;
+            max-width: 90%;
+        }
+
+        .roadmap-node.highlight-paper {
+            border-color: var(--accent-amber);
+            color: var(--accent-amber);
+            background: rgba(245, 158, 11, 0.1);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .roadmap-arrow {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            font-weight: bold;
+            opacity: 0.75;
+        }
+
+        .program-header-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.05);
+        }
+
+        .area-card {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.75rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .area-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .area-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .area-title-group {
+            flex: 1;
+        }
+
+        .area-subtitle {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.25rem;
+        }
+
+        .area-title {
+            font-size: 1.35rem;
+            font-weight: 750;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #f8fafc;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .objective-text {
+            color: #cbd5e1;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.5rem 1rem;
+        }
+
+        .topic-list li {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            position: relative;
+            padding-left: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .topic-list li::before {
+            content: "•";
+            color: var(--accent-blue);
+            font-weight: bold;
+            position: absolute;
+            left: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="site-title">
+                Persistence Science
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="framework.html">Framework</a></li>
+                    <li><a href="research.html" class="active">Research</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero Section (Left-Aligned) -->
+        <section class="hero-container" style="text-align: left; margin-top: 1rem; margin-bottom: 2.5rem;">
+            <div style="margin-bottom: 1.25rem;">
+                <div class="badge-discipline-glow">
+                    RESEARCH ECOSYSTEM &amp; PORTFOLIO
+                </div>
+            </div>
+            
+            <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-top: 0.5rem; margin-bottom: 1rem;">Research Programs</h1>
+            
+            <div style="font-size: clamp(1rem, 1.8vw, 1.15rem); color: #94a3b8; font-weight: 400; max-width: 760px; line-height: 1.6;">
+                Current and planned research initiatives extending Persistence Science toward empirical validation and real-world applications.
+            </div>
+        </section>
+
+        <!-- Section 2: Research Portfolio / Architecture (Reordered Layout) -->
+        <section style="margin-top: 2rem; margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Broader Ecosystem</span>
+                    <h2 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; border: none; padding: 0; color: #ffffff;">Research Portfolio</h2>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; max-width: 450px;">
+                    Multi-domain observatories and validation frameworks forming the foundation of Persistence Science.
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Track 01: Validation Framework (Row 1, Card 1) -->
+                <div class="portfolio-card">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 01</span>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Validation Framework</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Methodological standards and axiomatic consistency checks for cross-disciplinary persistence metrics.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Track 02: Global Persistence Index (Row 1, Card 2) -->
+                <div class="portfolio-card">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 02</span>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Global Persistence Index</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Empirical quantification of systemic stability and endurance across complex socioeconomic networks.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Track 03: Institutional Observatory (Row 1, Card 3) -->
+                <div class="portfolio-card">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 03</span>
+                                <span class="status-badge status-planned">Planned</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Institutional Observatory</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Longitudinal tracking of structural legitimacy, decay rates, and adaptive resilience in civic institutions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Track 04: Religious Observatory (Row 2, Card 1) -->
+                <div class="portfolio-card">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 04</span>
+                                <span class="status-badge status-planned">Planned</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Religious Observatory</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Cross-cultural analysis of belief persistence, continuity dynamics, and cultural transmission loops.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Track 06: Dark Energy & Persistence (Row 2, Card 2) -->
+                <div class="portfolio-card">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 06</span>
+                                <span class="status-badge status-planned">Planned</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Dark Energy &amp; Persistence</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Investigating universal persistence drivers as an alternative lens on cosmic acceleration and dark energy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Track 05: Persistence Cosmology (Row 2, Card 3 - Gold Highlighted Destination) -->
+                <div class="portfolio-card featured-track">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label">Track 05</span>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Persistence Cosmology</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Cosmic-scale application of persistence equations governing space-time dynamics and information fields.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Narrative Transition Bridge -->
+        <section class="transition-bridge-box">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
+                Currently Active Research Track
+            </div>
+            <p style="color: #f8fafc; font-size: 1.05rem; line-height: 1.7; margin: 0;">
+                Among the research initiatives within Persistence Science, <strong>Persistence Cosmology</strong> represents the most developed research track, supported by the publication of <em>The Fundamental Cosmological Equation</em> in JAGP (2026). The publication establishes the cosmological foundations of the framework and defines the next phase of investigation.
+            </p>
+        </section>
+
+        <!-- Section 3 & 4: Featured Program & Gold Card -->
+        <section class="program-header-box">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">
+                Featured Research Program
+            </div>
+            <h2 style="font-size: 2rem; color: #ffffff; margin: 0 0 0.75rem 0; border: none; padding: 0;">Persistence Cosmology</h2>
+            <p style="color: var(--accent-amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem;">
+                Building upon <em>The Fundamental Cosmological Equation</em> (JAGP, 2026).
+            </p>
+            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; margin: 0;">
+                The Persistence Cosmology program investigates how information, control, energy, and decay shape the evolution of the universe across cosmic scales.
+            </p>
+        </section>
+
+        <!-- Section 5: Cosmology Research Roadmap -->
+        <section class="roadmap-container">
+            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">
+                COSMOLOGY RESEARCH ROADMAP
+            </span>
+            
+            <div class="roadmap-chain">
+                <div class="roadmap-node highlight-paper">Published Paper</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Physical Foundations</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Hubble Tension</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Observables</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Parameter Constraints</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Numerical Cosmology</div>
+            </div>
+        </section>
+
+        <!-- Detailed Research Directions -->
+        <section style="margin-top: 3rem;">
+            
+            <!-- Research Area 1 -->
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title-group">
+                        <div class="area-subtitle">Research Area 1</div>
+                        <h3 class="area-title">Physical Foundations of Coupling</h3>
+                    </div>
+                    <span class="status-badge status-active">Status: Active</span>
+                </div>
+                
+                <div class="section-label">Objective</div>
+                <p class="objective-text">
+                    Develop a rigorous derivation of the persistence coupling mechanism from fundamental physical principles.
+                </p>
+
+                <div class="section-label">Current Topics</div>
+                <ul class="topic-list">
+                    <li>Information-field interactions</li>
+                    <li>Thermodynamic interpretation</li>
+                    <li>Quantum field perspectives</li>
+                    <li>First-principles derivations</li>
+                </ul>
+            </div>
+
+            <!-- Research Area 2 -->
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title-group">
+                        <div class="area-subtitle">Research Area 2</div>
+                        <h3 class="area-title">Hubble Tension Analysis</h3>
+                    </div>
+                    <span class="status-badge status-active">Status: Active</span>
+                </div>
+
+                <div class="section-label">Objective</div>
+                <p class="objective-text">
+                    Evaluate whether the persistence framework can quantitatively explain discrepancies in measured cosmic expansion rates.
+                </p>
+
+                <div class="section-label">Current Topics</div>
+                <ul class="topic-list">
+                    <li>Expansion history analysis</li>
+                    <li>Early vs late universe measurements</li>
+                    <li>Persistence corrections to cosmology</li>
+                    <li>Hubble tension implications</li>
+                </ul>
+            </div>
+
+            <!-- Research Area 3 -->
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title-group">
+                        <div class="area-subtitle">Research Area 3</div>
+                        <h3 class="area-title">Cosmological Observables</h3>
+                    </div>
+                    <span class="status-badge status-planned">Status: Planned</span>
+                </div>
+
+                <div class="section-label">Objective</div>
+                <p class="objective-text">
+                    Generate testable predictions that distinguish persistence cosmology from conventional models.
+                </p>
+
+                <div class="section-label">Current Topics</div>
+                <ul class="topic-list">
+                    <li>Control function evolution <i>C(z)</i></li>
+                    <li>Density perturbations</li>
+                    <li>Expansion observables</li>
+                    <li>Large-scale structure signatures</li>
+                </ul>
+            </div>
+
+            <!-- Research Area 4 -->
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title-group">
+                        <div class="area-subtitle">Research Area 4</div>
+                        <h3 class="area-title">Parameter Constraints</h3>
+                    </div>
+                    <span class="status-badge status-planned">Status: Planned</span>
+                </div>
+
+                <div class="section-label">Objective</div>
+                <p class="objective-text">
+                    Determine physically admissible values for cosmological persistence parameters using observational data.
+                </p>
+
+                <div class="section-label">Current Topics</div>
+                <ul class="topic-list">
+                    <li>&beta; parameter estimation</li>
+                    <li>&lambda; parameter estimation</li>
+                    <li>Statistical fitting</li>
+                    <li>Physical admissibility regions</li>
+                </ul>
+            </div>
+
+            <!-- Research Area 5 -->
+            <div class="area-card">
+                <div class="area-header">
+                    <div class="area-title-group">
+                        <div class="area-subtitle">Research Area 5</div>
+                        <h3 class="area-title">Numerical Cosmology</h3>
+                    </div>
+                    <span class="status-badge status-planned">Status: Planned</span>
+                </div>
+
+                <div class="section-label">Objective</div>
+                <p class="objective-text">
+                    Implement and test persistence cosmology using modern computational cosmology tools.
+                </p>
+
+                <div class="section-label">Current Topics</div>
+                <ul class="topic-list">
+                    <li>CAMB integration</li>
+                    <li>CLASS integration</li>
+                    <li>Numerical simulations</li>
+                    <li>Data comparison with CMB, BAO and SN Ia observations</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section-spaced" style="text-align: center; padding: 3.5rem 2rem; margin-top: 3.5rem; margin-bottom: 2rem; background: rgba(15, 23, 42, 0.25); border: 1px solid var(--border-color); border-radius: 16px;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: #f8fafc; border: none; padding: 0;">Explore Published Research</h2>
+            <p style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto 1.75rem auto; line-height: 1.6;">
+                Access peer-reviewed publications, preprints, and underlying analytical documentation in the library.
+            </p>
+            <div>
+                <a href="library.html" class="btn-glass-amber">Visit Library &rarr;</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-brand">Persistence Science</p>
+            <p class="footer-established">Established by John Otieno Odero</p>
+            <p class="footer-links">
+                <a href="index.html">Home</a> &bull; 
+                <a href="framework.html">Framework</a> &bull; 
+                <a href="research.html">Research</a> &bull; 
+                <a href="library.html">Library</a> &bull; 
+                <a href="community.html">Community</a> &bull; 
+                <a href="about.html">About</a> &bull; 
+                <a href="contact.html">Contact</a>
+            </p>
+            <p class="footer-meta">
+                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
+                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+            </p>
+            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+        </div>
+    </footer>
+
+    <!-- STABILIZED THREE.js WebGL Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('canvas-container');
+            if (container && typeof THREE !== 'undefined') {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 60;
+
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                container.appendChild(renderer.domElement);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                window.addEventListener('mousemove', (e) => {
+                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const starCount = 450;
+                const starGeo = new THREE.BufferGeometry();
+                const starPositions = new Float32Array(starCount * 3);
+                const starColors = new Float32Array(starCount * 3);
+                
+                const particles4D = [];
+                const AMBER = new THREE.Color(0xf59e0b);
+                const BLUE  = new THREE.Color(0x38bdf8);
+
+                for (let i = 0; i < starCount; i++) {
+                    const x = (Math.random() - 0.5) * 220;
+                    const y = (Math.random() - 0.5) * 220;
+                    const z = (Math.random() - 0.5) * 220;
+                    const w = (Math.random() - 0.5) * 180;
+
+                    let speedMultiplier = ((Math.random() > 0.6) 
+                        ? (0.018 + Math.random() * 0.024) 
+                        : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                    particles4D.push({
+                        x: x, y: y, z: z, w: w,
+                        vx: (Math.random() - 0.5) * speedMultiplier,
+                        vy: (Math.random() - 0.5) * speedMultiplier,
+                        vz: (Math.random() - 0.5) * speedMultiplier,
+                        vw: (Math.random() - 0.5) * speedMultiplier
+                    });
+
+                    starPositions[i * 3]     = x;
+                    starPositions[i * 3 + 1] = y;
+                    starPositions[i * 3 + 2] = z;
+
+                    starColors[i * 3]     = colorObj.r;
+                    starColors[i * 3 + 1] = colorObj.g;
+                    starColors[i * 3 + 2] = colorObj.b;
+                }
+
+                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                gradient.addColorStop(0, 'rgba(255,255,255,1)');
+                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 32, 32);
+
+                const pTexture = new THREE.CanvasTexture(canvas);
+                const starMat = new THREE.PointsMaterial({
+                    size: 1.6,
+                    vertexColors: true,
+                    map: pTexture,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                const starField = new THREE.Points(starGeo, starMat);
+                scene.add(starField);
+
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: 0x38bdf8,
+                    transparent: true,
+                    opacity: 0.12,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineGeo = new THREE.BufferGeometry();
+                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+                scene.add(lineSegments);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    const positions = starField.geometry.attributes.position.array;
+                    const linePos = [];
+
+                    for (let i = 0; i < particles4D.length; i++) {
+                        let p = particles4D[i];
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.z += p.vz;
+                        p.w += p.vw;
+
+                        if (Math.abs(p.x) > 110) p.vx *= -1;
+                        if (Math.abs(p.y) > 110) p.vy *= -1;
+                        if (Math.abs(p.z) > 110) p.vz *= -1;
+                        if (Math.abs(p.w) > 90) p.vw *= -1;
+
+                        let wFactor = 1 + (p.w / 300);
+                        positions[i * 3]     = p.x * wFactor;
+                        positions[i * 3 + 1] = p.y * wFactor;
+                        positions[i * 3 + 2] = p.z * wFactor;
+
+                        for (let j = i + 1; j < particles4D.length; j++) {
+                            let p2 = particles4D[j];
+                            let dx = p.x - p2.x;
+                            let dy = p.y - p2.y;
+                            let dz = p.z - p2.z;
+                            let distSq = dx * dx + dy * dy + dz * dz;
+
+                            if (distSq < 320) {
+                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
+                            }
+                        }
+                    }
+
+                    starField.geometry.attributes.position.needsUpdate = true;
+                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
+
+                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                    starField.rotation.x += (mouseY * 0.0005);
+                    lineSegments.rotation.copy(starField.rotation);
+
+                    renderer.render(scene, camera);
+                }
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

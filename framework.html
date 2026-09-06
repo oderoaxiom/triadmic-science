@@ -126,6 +126,49 @@
             font-weight: bold;
         }
 
+        /* Stats Strip */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 14px;
+            padding: 1.75rem 1.25rem;
+            margin: 2rem 0 3rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 25px rgba(56, 189, 248, 0.1);
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            padding: 0.5rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
         /* Sacred Axiom Treatment Card */
         .sacred-axiom-card {
             border: 1px solid rgba(245, 158, 11, 0.45);
@@ -236,15 +279,11 @@
             padding-bottom: 0.5rem;
         }
 
-        .domain-card ul {
+        .domain-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
             margin: 0;
-            padding-left: 1.25rem;
-            color: var(--text-main);
-        }
-
-        .domain-card li {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
         }
 
         .explore-library-section {
@@ -343,6 +382,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="framework.html" class="active">Framework</a></li>
+                    <li><a href="research.html">Research</a></li>
                     <li><a href="library.html">Library</a></li>
                     <li><a href="community.html">Community</a></li>
                     <li><a href="about.html">About</a></li>
@@ -388,6 +428,30 @@
             </div>
         </section>
 
+        <!-- Stats Strip -->
+        <section class="stats-strip">
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Foundations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Publications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Universal Indices</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Multiple</div>
+                <div class="stat-label">Domain Applications</div>
+            </div>
+            <div class="stat-item" style="border-right: none;">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Published Cosmology Paper</div>
+            </div>
+        </section>
+
         <!-- Framework Architecture (Supporting Visual) -->
         <section class="framework-flow-container">
             <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">Framework Architecture</span>
@@ -421,7 +485,7 @@
             <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: var(--accent-amber);">Published Body of Work</span>
             <h2 style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Persistence Science Library</h2>
             <p style="color: var(--text-muted); font-size: 1rem; margin: 0 auto; max-width: 600px; line-height: 1.6;">
-                13 Published Frameworks organized into Foundations, Core Theories, and Application Frameworks.
+                14 Published Frameworks organized into Foundations, Core Theories, and Application Frameworks.
             </p>
         </section>
 
@@ -513,72 +577,30 @@
             </div>
         </section>
 
-        <!-- Domains of Application Section (Replacing Application Frameworks with distinct domain colors) -->
-        <section class="card glow-blue">
-            <h2>Domains of Application</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.5rem;">
-                Persistence Science applies a common framework across multiple domains of inquiry.
+        <!-- Framework Applications Section -->
+        <section class="card glow-amber" style="margin-top: 3rem;">
+            <h2>Framework Applications</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+                Practical deployment of theoretical persistence principles across diverse physical and social domains.
             </p>
-            <p style="color: var(--accent-amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 1.5rem;">
-                One framework &bull; Many domains
-            </p>
-
             <div class="domain-grid">
                 <div class="domain-card domain-emerald">
-                    <h3>Economic Systems</h3>
-                    <ul>
-                        <li>Thermoeconomic Information Theory</li>
-                        <li>Theory of Captured Inflation</li>
-                    </ul>
+                    <h3>Global Systems</h3>
+                    <p>Application of persistence metrics to socioeconomic and planetary-scale systems.</p>
                 </div>
-
                 <div class="domain-card domain-purple">
-                    <h3>Political Systems</h3>
-                    <ul>
-                        <li>Coalition Indispensability Theory</li>
-                        <li>Theory of Hegemonic Stability &amp; Transition</li>
-                    </ul>
+                    <h3>Institutions</h3>
+                    <p>Persistence dynamics governing legitimacy, adaptation, and institutional survival.</p>
                 </div>
-
                 <div class="domain-card domain-indigo">
-                    <h3>Policy &amp; Institutions</h3>
-                    <ul>
-                        <li>General Theory of Legitimacy</li>
-                    </ul>
+                    <h3>Religion</h3>
+                    <p>Persistence and transmission of belief systems across generations.</p>
                 </div>
-
                 <div class="domain-card domain-copper">
-                    <h3>Religious Systems</h3>
-                    <ul>
-                        <li>Theory of Interpretive and Organizational Trust</li>
-                    </ul>
-                </div>
-
-                <div class="domain-card domain-violet" style="grid-column: 1 / -1;">
-                    <h3>Cosmological Systems</h3>
-                    <ul>
-                        <li>Fundamental Cosmological Equation</li>
-                        <li>Elasticosmos Regenesis Theory</li>
-                    </ul>
+                    <h3>Cosmology</h3>
+                    <p>Extension of persistence principles to cosmic evolution and large-scale structure.</p>
                 </div>
             </div>
-        </section>
-
-        <!-- The Next Frontier Section -->
-        <section class="card glow-amber" style="margin-top: 3rem;">
-            <h2>The Next Frontier</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                Ongoing research initiatives and observational extensions pushing the boundaries of Persistence Science.
-            </p>
-            <ul style="list-style-type: none; padding-left: 0; color: var(--text-main); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Global Persistence Index</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Institutional Legitimacy Observatory</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Religious Systems Observatory</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Cosmological Persistence Research</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Hubble Constant and Cosmic Expansion</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;">&bull; Dark Energy and Universal Persistence</li>
-                <li style="background: rgba(8, 12, 20, 0.4); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; grid-column: 1 / -1;">&bull; Persistence Science Validation Framework</li>
-            </ul>
         </section>
 
         <!-- Redesigned Blue Glassmorphism Explore the Library Section -->
