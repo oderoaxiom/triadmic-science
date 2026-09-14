@@ -104,6 +104,13 @@
             color: var(--accent-amber);
         }
 
+        /* Planned cards track label and text styling in grey */
+        .portfolio-card:has(.status-planned) .track-label,
+        .portfolio-card:has(.status-planned) h3,
+        .portfolio-card:has(.status-planned) p {
+            color: #94a3b8 !important;
+        }
+
         .status-badge {
             display: inline-block;
             font-size: 0.65rem;
@@ -429,6 +436,23 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- NEW: Track 07: Applied Systems & Commercial Infrastructure (Application I) -->
+                <div class="portfolio-card featured-track" style="border-color: rgba(245, 158, 11, 0.7); background: rgba(15, 23, 42, 0.65);">
+                    <div>
+                        <div class="card-header-top">
+                            <div class="track-status-group">
+                                <span class="track-label" style="color: var(--accent-amber);">Track 07 • Application I</span>
+                                <span class="status-badge status-active">Active</span>
+                            </div>
+                        </div>
+                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Engineering Persistence <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">The Model for Fintech Scale</span></h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                            Empirical validation of the Odero Axiom (𝐶(𝐼) · 𝐸 &gt; 𝐷) across multi-country enterprise networks.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -438,7 +462,7 @@
                 Currently Active Research Track
             </div>
             <p style="color: #f8fafc; font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                Among the research initiatives within Persistence Science, <strong>Persistence Cosmology</strong> represents the most developed research track, supported by the publication of <em>The Fundamental Cosmological Equation</em> in JAGP (2026). The publication establishes the cosmological foundations of the framework and defines the next phase of investigation.
+                Among the research initiatives within Persistence Science, <strong>Persistence Cosmology</strong> represents the most developed research track, supported by the publication of <em>The Fundamental Cosmological Equation</em> in JAGP (2026). Simultaneously, commercial architecture initiatives like <strong>Engineering Persistence: The Model for Fintech Scale</strong> establish real-world empirical validation across enterprise systems.
             </p>
         </section>
 
