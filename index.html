@@ -131,28 +131,41 @@
             display: inline-block;
         }
 
+        /* Highly Monumental Axiom Card (The Absolute Visual Centerpiece) */
         .monument-card {
-            background: rgba(15, 23, 42, 0.45);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 16px;
-            padding: 3.5rem 2rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid rgba(245, 158, 11, 0.5);
+            border-radius: 20px;
+            padding: 4.5rem 2.5rem;
             text-align: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             box-shadow: 
-                0 0 35px rgba(245,158,11,.12),
-                0 0 80px rgba(245,158,11,.05),
-                inset 0 0 18px rgba(245,158,11,.04);
+                0 0 50px rgba(245,158,11,.18),
+                0 0 100px rgba(245,158,11,.08),
+                inset 0 0 25px rgba(245,158,11,.08);
             margin: 2.5rem 0;
             transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .monument-card:hover {
-            border-color: rgba(245, 158, 11, 0.6);
+            border-color: rgba(245, 158, 11, 0.85);
             box-shadow: 
-                0 0 45px rgba(245,158,11,.2),
-                0 0 100px rgba(245,158,11,.08),
-                inset 0 0 24px rgba(245,158,11,.08);
+                0 0 65px rgba(245,158,11,.28),
+                0 0 130px rgba(245,158,11,.12),
+                inset 0 0 35px rgba(245,158,11,.12);
+        }
+
+        /* Simplified, Elegant Chain Section (Supporting Flow, Not Monumental) */
+        .chain-flow-container {
+            background: rgba(15, 23, 42, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 14px;
+            padding: 2.25rem 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .hero-container {
@@ -171,15 +184,15 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
-            margin: 2rem auto;
-            max-width: 900px;
+            margin: 2rem 0 1rem 0;
+            max-width: 100%;
         }
 
         .stat-badge-card {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(56, 189, 248, 0.25);
             border-radius: 12px;
-            padding: 1rem;
+            padding: 1.15rem 1rem;
             text-align: center;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -192,7 +205,7 @@
         }
 
         .stat-number {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--accent-blue);
             font-family: monospace;
@@ -207,41 +220,42 @@
             font-weight: 600;
         }
 
-        /* Compact Published Milestone Card */
+        /* Compact Published Milestone Card (Subdued to protect Axiom hierarchy) */
         .featured-pub-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            border-radius: 12px;
-            padding: 1.5rem 2rem;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
             margin: 2rem auto;
-            max-width: 800px;
+            max-width: 680px;
             text-align: center;
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.04);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .featured-pub-card:hover {
-            border-color: rgba(245, 158, 11, 0.6);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.08);
         }
 
         .featured-pub-title {
-            font-size: clamp(1.1rem, 2vw, 1.35rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin: 0.5rem 0;
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            font-weight: 650;
+            color: #f8fafc;
+            margin: 0.25rem 0;
             line-height: 1.3;
         }
 
         .featured-pub-meta {
             color: var(--accent-amber);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
             text-transform: uppercase;
+            opacity: 0.9;
         }
 
         .featured-pub-actions {
@@ -315,123 +329,96 @@
             transform: translateY(-2px);
         }
 
-        .domain-card.emerging {
-            border-style: dashed;
-            border-color: rgba(245, 158, 11, 0.4);
-        }
-        .domain-card.emerging:hover {
-            border-color: var(--accent-amber);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.25);
-        }
-
-        /* Signature Visual Chain Motif */
-        .signature-motif-box {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+        /* Monumental Discipline Manifesto Section (Strictly 3 Text Sizes) */
+        .field-development-section {
+            background: linear-gradient(
+                135deg,
+                rgba(56, 189, 248, .06),
+                rgba(15, 23, 42, .70)
+            );
+            border: 1px solid rgba(56, 189, 248, .25);
             border-radius: 16px;
-            padding: 3rem 2rem;
-            margin: 2.5rem 0;
+            padding: 4rem 2.5rem;
+            margin: 3rem 0;
             text-align: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .motif-chain {
+        /* 1. Small Typography */
+        .monument-small {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            margin: 0 0 1.5rem 0;
+        }
+
+        /* 2. Large Typography */
+        .monument-large {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.35;
+            color: #ffffff;
+            max-width: 780px;
+            margin: 0 auto;
+            letter-spacing: -0.02em;
+        }
+
+        /* Monument Divider */
+        .monument-divider {
+            color: rgba(56, 189, 248, 0.4);
+            font-size: 1.25rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin: 2.25rem 0;
+            user-select: none;
+        }
+
+        /* Inline Chain Flow inside Monument */
+        .monument-chain-flow {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            gap: 0.4rem;
+            margin: 0 auto;
             font-size: 1.15rem;
             font-weight: 700;
-        }
-
-        .motif-node {
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            border-radius: 9999px;
-            padding: 0.65rem 2rem;
             color: #f8fafc;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
             letter-spacing: 0.03em;
-            transition: all 0.3s ease;
         }
 
-        .motif-node:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.35);
-            transform: scale(1.03);
+        .monument-chain-flow .m-node {
+            color: #f8fafc;
+            transition: color 0.2s;
         }
 
-        .motif-node.highlight-persistence {
-            border-color: var(--accent-amber);
+        .monument-chain-flow .m-node.highlight {
             color: var(--accent-amber);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+            font-size: 1.25em;
+            font-weight: 800;
+            text-shadow: 0 0 18px rgba(245,158,11,.35);
         }
 
-        .motif-arrow {
+        .monument-chain-flow .m-arrow {
             color: var(--accent-blue);
-            font-size: 1.25rem;
+            font-size: 1rem;
             font-weight: bold;
             opacity: 0.8;
+            margin: 0.15rem 0;
         }
 
-        /* Field in Development Section */
-        .field-development-section {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.75), rgba(8, 12, 20, 0.9));
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 16px;
-            padding: 3.5rem 2.5rem;
-            margin: 3rem 0;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.1);
-        }
-
-        .field-development-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #cbd5e1;
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        /* Strongest Closing Line Section */
-        .strongest-closing-section {
-            padding: 3.5rem 2rem;
-            margin: 3rem 0;
-            text-align: center;
-            background: transparent;
-        }
-
-        .closing-line-list {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin: 1.75rem 0;
+        /* 3. Medium Typography */
+        .monument-medium {
             font-size: 1.1rem;
-            color: var(--accent-blue);
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-
-        .closing-line-list span::after {
-            content: " •";
-            margin-left: 2rem;
-            color: var(--text-muted);
-        }
-        .closing-line-list span:last-child::after {
-            content: "";
-            margin-left: 0;
-        }
-
-        .closing-line-question {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-top: 1.5rem;
+            font-weight: 450;
+            line-height: 1.7;
+            color: #cbd5e1;
+            max-width: 720px;
+            margin: 0 auto;
             letter-spacing: -0.01em;
-            text-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
         }
 
         /* Glassmorphism CTA Button Styles */
@@ -468,18 +455,18 @@
             color: var(--accent-amber);
             border: 1px solid rgba(245, 158, 11, 0.4);
             border-radius: 9999px;
-            padding: 0.6rem 1.5rem;
-            font-size: 0.85rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.04em;
             text-decoration: none;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.15), inset 0 0 10px rgba(245, 158, 11, 0.05);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.12), inset 0 0 8px rgba(245, 158, 11, 0.04);
             transition: all 0.3s ease;
         }
 
         .btn-glass-amber:hover {
             border-color: rgba(245, 158, 11, 1);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(245, 158, 11, 0.15);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.35), inset 0 0 12px rgba(245, 158, 11, 0.12);
             transform: translateY(-2px);
             color: #ffffff;
             text-decoration: none;
@@ -500,15 +487,9 @@
         /* Architecture grid adjustments */
         .architecture-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 1.25rem;
             margin-top: 1.5rem;
-        }
-
-        .foundations-core-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
         }
 
         .architecture-column {
@@ -526,22 +507,22 @@
 
         .architecture-column h3 {
             color: var(--accent-amber);
-            font-size: 1.05rem;
+            font-size: 1rem;
             margin-top: 0;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
         }
 
         .architecture-column ul {
             margin: 0;
-            padding-left: 1.25rem;
+            padding-left: 1.15rem;
             color: var(--text-main);
         }
 
         .architecture-column li {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
         }
 
         .theory-card {
@@ -603,8 +584,35 @@
                 From Information Theory to Cosmology
             </div>
 
-            <div style="font-size: clamp(0.85rem, 1.6vw, 1.02rem); color: #94a3b8; font-weight: 400; max-width: 720px; margin: 0 auto; line-height: 1.5;">
-                A unified scientific framework investigating why complex systems persist, adapt, or collapse.
+            <div style="font-size: clamp(1.05rem, 2vw, 1.3rem); color: #cbd5e1; font-weight: 450; max-width: 760px; margin: 0 auto; line-height: 1.5;">
+                The science of how systems survive, adapt, and resist decay through time.
+            </div>
+        </section>
+
+        <!-- Monumental Discipline Manifesto Section (Preserved exact core sentence) -->
+        <section class="field-development-section">
+            <div class="monument-small">WHAT IS PERSISTENCE SCIENCE?</div>
+            
+            <div class="monument-large">
+                Persistence Science is the study of how systems survive, adapt, and resist decay through time.
+            </div>
+            
+            <div class="monument-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="monument-chain-flow">
+                <div class="m-node">Information</div>
+                <div class="m-arrow">↓</div>
+                <div class="m-node">Information Control</div>
+                <div class="m-arrow">↓</div>
+                <div class="m-node">Persistence Capacity</div>
+                <div class="m-arrow">↓</div>
+                <div class="m-node highlight">Persistence</div>
+            </div>
+            
+            <div class="monument-divider">━━━━━━━━━━━━━━━━━━</div>
+            
+            <div class="monument-medium">
+                A scientific discipline seeking universal principles governing persistence across physical, biological, technological, economic, institutional, and cosmological systems.
             </div>
         </section>
 
@@ -618,58 +626,21 @@
             </div>
         </section>
 
-        <!-- Statistics Strip -->
-        <div class="stats-strip">
-            <div class="stat-badge-card">
-                <div class="stat-number">14</div>
-                <div class="stat-label">Publications</div>
-            </div>
-            <div class="stat-badge-card">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Journal Publication</div>
-            </div>
-            <div class="stat-badge-card">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Foundations</div>
-            </div>
-            <div class="stat-badge-card">
-                <div class="stat-number">2</div>
-                <div class="stat-label">Universal Indices</div>
-            </div>
-            <div class="stat-badge-card">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Unified Framework</div>
-            </div>
-        </div>
-
-        <!-- Published Milestone Section (Compact Card) -->
-        <section class="featured-pub-card">
-            <div style="font-size: 0.7rem; letter-spacing: 0.12em; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; margin-bottom: 0.25rem;">Published Milestone</div>
-            <div class="featured-pub-title">
-                The Fundamental Cosmological Equation
-            </div>
-            <div class="featured-pub-meta">
-                Published in JAGP &bull; September 2026
-            </div>
-            <div class="featured-pub-actions">
-                <a href="https://jagp-bbefc5.gitlab.io/articolo.html?id=jagp_0000005" target="_blank" rel="noopener" class="btn-glass-amber">Read Publication &rarr;</a>
-            </div>
-        </section>
-
-        <!-- 3. The Persistence Condition (Monument Axiom) -->
+        <!-- 3. The Persistence Condition (Monumental Axiom Centerpiece) -->
         <section class="monument-card">
-            <div style="font-size: 0.85rem; letter-spacing: 0.1em; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">The Persistence Condition</div>
+            <div style="font-size: 0.8rem; letter-spacing: 0.15em; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem;">THE ODERO AXIOM</div>
+            <div style="font-size: 1.15rem; font-weight: 650; color: #f8fafc; margin-bottom: 1.5rem;">The Persistence Condition</div>
             
-            <div style="font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; margin-bottom: 1.5rem; font-family: monospace;">
+            <div style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-bottom: 1.75rem; font-family: monospace;">
                 <span class="monument-formula">C(I) × E > D</span>
             </div>
             
-            <div style="color: #f8fafc; font-size: 1.15rem; line-height: 1.6; max-width: 650px; margin: 0 auto; font-weight: 500;">
+            <div style="color: #f8fafc; font-size: 1.2rem; line-height: 1.6; max-width: 680px; margin: 0 auto; font-weight: 500;">
                 Information directed through energy must exceed decay.<br>
                 <span style="color: var(--accent-amber); font-weight: 600;">Everything else follows.</span>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2.25rem; max-width: 720px; margin-left: auto; margin-right: auto;">
                 <div style="background: rgba(8, 12, 20, 0.5); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 0.85rem;">
                     <div style="color: var(--accent-blue); font-weight: bold; font-family: monospace; font-size: 1rem;">C(I)</div>
                     <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Information-Control Capacity</div>
@@ -685,47 +656,23 @@
             </div>
         </section>
 
-        <!-- 4. Signature Visual Motif (The Universal Chain) -->
-        <section class="signature-motif-box">
-            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">CORE DISCIPLINARY CHAIN</span>
-            <div class="motif-chain">
-                <div class="motif-node">Information</div>
-                <div class="motif-arrow">↓</div>
-                <div class="motif-node">Information Control</div>
-                <div class="motif-arrow">↓</div>
-                <div class="motif-node">Persistence Capacity</div>
-                <div class="motif-arrow">↓</div>
-                <div class="motif-node highlight-persistence">Persistence</div>
+        <!-- 4. Core Disciplinary Chain (Simplified Flow Section) -->
+        <section class="chain-flow-container">
+            <div style="font-size: 0.75rem; letter-spacing: 0.15em; color: var(--accent-blue); font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;">The Chain</div>
+            <div style="font-size: 1rem; font-weight: 650; color: #f8fafc; margin-bottom: 1.25rem;">Core Disciplinary Progression</div>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 1.05rem; font-weight: 650; color: #f8fafc;">
+                <div>Information</div>
+                <div style="color: var(--accent-blue); font-size: 0.9rem;">↓</div>
+                <div>Information Control</div>
+                <div style="color: var(--accent-blue); font-size: 0.9rem;">↓</div>
+                <div>Persistence Capacity</div>
+                <div style="color: var(--accent-blue); font-size: 0.9rem;">↓</div>
+                <div style="color: var(--accent-amber); font-weight: 800;">Persistence</div>
             </div>
         </section>
 
-        <!-- 5. Domains of Exploration -->
-        <section class="card glow-blue">
-            <h2>Domains of Exploration</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.6;">
-                Persistence Science explores structured dynamics across established and emerging domains.
-            </p>
-
-            <div style="font-size: 0.85rem; color: var(--accent-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">Active Domains</div>
-            <div class="domains-grid">
-                <div class="domain-card">Economic Systems</div>
-                <div class="domain-card">Political Systems</div>
-                <div class="domain-card">Policy &amp; Institutions</div>
-                <div class="domain-card">Religious Systems</div>
-                <div class="domain-card">Cosmological Systems</div>
-            </div>
-
-            <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2rem; margin-bottom: 0.75rem;">Emerging Domains</div>
-            <div class="domains-grid">
-                <div class="domain-card emerging">Biological Systems</div>
-                <div class="domain-card emerging">Disease Dynamics</div>
-                <div class="domain-card emerging">Military Systems</div>
-                <div class="domain-card emerging">Civilizations</div>
-                <div class="domain-card emerging">Artificial Intelligence</div>
-            </div>
-        </section>
-
-        <!-- 6. The Persistence Science Architecture -->
+        <!-- 5. The Persistence Science Architecture (Now directly preceding Statistics) -->
         <section class="card glow-amber">
             <h2>The Persistence Science Architecture</h2>
             
@@ -736,61 +683,108 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin: 1.25rem 0; font-weight: 700; color: var(--accent-amber); letter-spacing: 0.05em; font-size: 0.85rem; text-transform: uppercase;">
                 <div>Foundations</div>
                 <div>↓</div>
-                <div>Core Theories</div>
+                <div>Measurement Architecture</div>
                 <div>↓</div>
-                <div>Domain Applications</div>
+                <div>Theoretical Frameworks</div>
+                <div>↓</div>
+                <div>Application Domains</div>
             </div>
 
             <div class="architecture-grid">
-                <div class="foundations-core-grid">
-                    <div class="architecture-column glow-amber">
-                        <h3>Foundations</h3>
-                        <ul>
-                            <li>Odero Axiom</li>
-                            <li><a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Laws of Persistence Science</a></li>
-                            <li>Information Index</li>
-                            <li>Persistence Index</li>
-                        </ul>
-                    </div>
-                    <div class="architecture-column glow-amber">
-                        <h3>Core Theories</h3>
-                        <ul>
-                            <li>Persistence Thermodynamics</li>
-                            <li>System Dynamics &amp; Control Theory</li>
-                        </ul>
-                    </div>
+                <div class="architecture-column glow-amber">
+                    <h3>Foundations</h3>
+                    <ul>
+                        <li>PS-F01 Odero Axiom</li>
+                        <li><a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">PS-F02 Laws</a></li>
+                    </ul>
+                </div>
+                
+                <div class="architecture-column glow-amber">
+                    <h3>Measurement Architecture</h3>
+                    <ul>
+                        <li>PS-M01 Info Index</li>
+                        <li>PS-M02 Decay Index</li>
+                        <li>PS-M03 Persistence Index</li>
+                    </ul>
                 </div>
 
                 <div class="architecture-column glow-amber">
-                    <h3>Application Frameworks</h3>
-                    <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; text-transform: uppercase;">Economic Systems</div>
-                    <ul style="margin-bottom: 0.75rem;">
-                        <li>Thermoeconomic Information Theory</li>
-                        <li>Theory of Captured Inflation</li>
-                    </ul>
-                    <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; text-transform: uppercase;">Political Systems</div>
-                    <ul style="margin-bottom: 0.75rem;">
-                        <li>Coalition Indispensability Theory</li>
-                        <li>Theory of Hegemonic Stability and Transition</li>
-                    </ul>
-                    <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; text-transform: uppercase;">Policy and Institutions</div>
-                    <ul style="margin-bottom: 0.75rem;">
-                        <li>General Theory of Legitimacy</li>
-                    </ul>
-                    <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; text-transform: uppercase;">Religious Systems</div>
-                    <ul style="margin-bottom: 0.75rem;">
-                        <li>Theory of Interpretive and Organizational Trust</li>
-                    </ul>
-                    <div style="font-size: 0.85rem; color: var(--accent-amber); font-weight: bold; margin-top: 0.5rem; margin-bottom: 0.25rem; text-transform: uppercase;">Cosmological Systems</div>
-                    <ul>
-                        <li>Fundamental Cosmological Equation</li>
-                        <li>Elasticosmos Regenesis Theory</li>
+                    <h3>Theoretical Frameworks</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; margin: 0;">
+                        12 theoretical frameworks extending Persistence Science across economics, institutions, artificial intelligence, and cosmology.
+                    </p>
+                </div>
+
+                <div class="architecture-column glow-amber">
+                    <h3>Application Domains</h3>
+                    <ul style="margin: 0;">
+                        <li>Artificial Intelligence</li>
+                        <li>Economics</li>
+                        <li>Institutions</li>
+                        <li>Global Systems</li>
+                        <li>Religion</li>
+                        <li>Cosmology</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 7. Start Here (Featured Publications) -->
+        <!-- Statistics Strip (Attached directly beneath Architecture to eliminate detachment) -->
+        <div class="stats-strip">
+            <div class="stat-badge-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Foundations</div>
+            </div>
+            <div class="stat-badge-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Measurement Frameworks</div>
+            </div>
+            <div class="stat-badge-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Theoretical Frameworks</div>
+            </div>
+            <div class="stat-badge-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Application Domains</div>
+            </div>
+            <div class="stat-badge-card">
+                <div class="stat-number">17</div>
+                <div class="stat-label">Published Works</div>
+            </div>
+        </div>
+
+        <!-- 6. Published Milestone Section -->
+        <section class="featured-pub-card">
+            <div style="font-size: 0.65rem; letter-spacing: 0.1em; color: var(--accent-amber); font-weight: 700; text-transform: uppercase; margin-bottom: 0.15rem;">Published Milestone</div>
+            <div class="featured-pub-title">
+                The Fundamental Cosmological Equation
+            </div>
+            <div class="featured-pub-meta">
+                Published in JAGP &bull; September 2026
+            </div>
+            <div class="featured-pub-actions">
+                <a href="https://jagp-bbefc5.gitlab.io/articolo.html?id=jagp_0000005" target="_blank" rel="noopener" class="btn-glass-amber">Read Publication &rarr;</a>
+            </div>
+        </section>
+
+        <!-- 7. Application Domains Section -->
+        <section class="card glow-blue">
+            <h2>Application Domains</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.6;">
+                Domains in which Persistence Science theories are applied, tested, validated, and refined.
+            </p>
+
+            <div class="domains-grid">
+                <div class="domain-card">Artificial Intelligence</div>
+                <div class="domain-card">Economics</div>
+                <div class="domain-card">Institutions</div>
+                <div class="domain-card">Global Systems</div>
+                <div class="domain-card">Religion</div>
+                <div class="domain-card">Cosmology</div>
+            </div>
+        </section>
+
+        <!-- 8. Start Here (Featured Publications) -->
         <section class="card glow-blue">
             <h2>Start Here</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
@@ -855,31 +849,7 @@
             </div>
         </section>
 
-        <!-- 8. Field in Development Section -->
-        <section class="field-development-section">
-            <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: #ffffff; border: none; padding: 0;">A New Scientific Frontier</h2>
-            
-            <div class="field-development-text">
-                Persistence Science seeks to establish a common language for understanding persistence across physical, biological, economic, institutional, religious, technological, and cosmological systems.
-            </div>
-        </section>
-
-        <!-- 9. Strongest Closing Line & CTA -->
-        <section class="strongest-closing-section">
-            <div class="closing-line-list">
-                <span>Theories evolve</span>
-                <span>Institutions rise and fall</span>
-                <span>Civilizations expand and collapse</span>
-            </div>
-            
-            <div style="color: var(--text-muted); font-size: 1.05rem; margin-top: 1rem;">The question remains:</div>
-            
-            <div class="closing-line-question">
-                Why do some systems persist?
-            </div>
-        </section>
-
-        <!-- Extraordinary CTA Section -->
+        <!-- 9. Extraordinary CTA Section -->
         <section class="cta-section-spaced">
             <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #f8fafc; border: none; padding: 0;">Discover the Science of Persistence</h2>
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 650px; margin: 0 auto 2rem auto; line-height: 1.7;">

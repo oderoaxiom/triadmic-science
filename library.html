@@ -1,976 +1,1157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<!-- GoatCounter Analytics Integration -->
+<script data-goatcounter="https://persistencescience.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Library & Knowledge Atlas | Persistence Science">
+<meta property="og:description" content="Published works organized according to the architecture of the discipline: Foundations, Measurement Architecture, Theoretical Frameworks, and Application Domains.">
+<meta property="og:url" content="https://doi.org/10.5281/zenodo.22198300">
+<meta property="og:image" content="https://persistencescience.org/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Global Stylesheet -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Library-Specific Domain Color & Knowledge Atlas Styles -->
+<style>
+    .btn-action:active, .btn-action:focus {
+        background-color: rgba(245, 158, 11, 0.25) !important;
+        border-color: var(--accent-gold) !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.7), inset 0 0 10px rgba(245, 158, 11, 0.3) !important;
+    }
     
-    <!-- Primary Metadata -->
-    <title>Library | Persistence Science</title>
-    <meta name="description" content="The Persistence Science Library contains fourteen interconnected publications organized into a structured Knowledge Atlas spanning foundations, core theories, and domain applications.">
-    <meta name="keywords" content="Persistence Science Library, Publications, Knowledge Atlas, Odero Axiom, Cosmology, Research Papers">
-    <meta name="author" content="John Otieno Odero">
+    .cta-section {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        margin: 4rem auto 2rem auto;
+        text-align: center;
+        max-width: 800px;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+    }
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0T90DCR411"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    .cta-section h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-main);
+        margin: 0 0 0.75rem 0;
+        border: none;
+        padding: 0;
+        letter-spacing: -0.01em;
+    }
 
-  gtag('config', 'G-0T90DCR411');
-</script>
+    .cta-section p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        max-width: 580px;
+        margin: 0 auto 2rem auto;
+        line-height: 1.6;
+    }
 
-    <!-- GoatCounter Analytics Integration -->
-    <script data-goatcounter="https://persistencescience.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    .cta-button-wrapper {
+        display: inline-block;
+    }
 
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Library & Knowledge Atlas | Persistence Science">
-    <meta property="og:description" content="Fourteen interconnected publications organized into a structured Knowledge Atlas spanning foundations, core theories, and domain applications.">
-    <meta property="og:url" content="https://doi.org/10.5281/zenodo.22198300">
-    <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    .cta-section .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.85rem 2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+    }
 
-    <!-- Global Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    .cta-section .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        background: linear-gradient(135deg, #38bdf8, #1d4ed8);
+    }
 
-    <!-- Library-Specific Domain Color & Knowledge Atlas Styles -->
-    <style>
-        .btn-action:active, .btn-action:focus {
-            background-color: rgba(245, 158, 11, 0.25) !important;
-            border-color: var(--accent-gold) !important;
-            color: #ffffff !important;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.7), inset 0 0 10px rgba(245, 158, 11, 0.3) !important;
-        }
+    .library-architecture {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.25rem 1.5rem;
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+    .arch-node {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-main);
+    }
+    .arch-arrow {
+        color: var(--accent-blue);
+        font-weight: bold;
+    }
+
+    /* Card Hierarchy Updates: Theory Name Dominates */
+    .academic-card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--text-main);
+        margin: 0.4rem 0 0.5rem 0;
+        line-height: 1.35;
+    }
+
+    .academic-meta-footer {
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        letter-spacing: 0.03em;
+        margin-top: 1rem;
+        padding-top: 0.6rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .academic-stats-bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        background: rgba(15, 23, 42, 0.4);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 1rem 1.5rem;
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+    .academic-stat-text {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+    }
+
+    /* Domain-Specific Visual Borders */
+    .card-foundation { border-left: 4px solid #f59e0b; }
+    .card-measurement { border-left: 4px solid #38bdf8; }
+    .card-core { border-left: 4px solid #38bdf8; }
+    .card-economic { border-left: 4px solid #10b981; }
+    .card-political { border-left: 4px solid #8b5cf6; }
+    .card-policy { border-left: 4px solid #6366f1; }
+    .card-religious { border-left: 4px solid #d97706; }
+    .card-cosmological { border-left: 4px solid #a855f7; }
+
+    /* Smooth Hover Expansion & Knowledge Atlas Metadata Styling */
+    .sub-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .sub-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+        border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .knowledge-relations {
+        background: rgba(15, 23, 42, 0.6);
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 0;
+        margin-top: 0.75rem;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+    }
+    .knowledge-relations span {
+        font-weight: 600;
+        color: var(--text-main);
+        display: block;
+        margin-bottom: 0.2rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+    
+    .reading-path-box {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    /* Featured Publication Card */
+    .featured-pub-card {
+        background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.95) 75%);
+        border: 1px solid rgba(245, 158, 11, 0.5);
+        border-radius: 16px;
+        padding: 2.5rem;
+        margin: 2.5rem 0;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 40px rgba(245, 158, 11, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .featured-pub-card::before {
+        content: 'PUBLISHED';
+        position: absolute;
+        top: 1.25rem;
+        right: 1.75rem;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: var(--accent-gold);
+        opacity: 0.9;
+    }
+
+    .featured-badge {
+        display: inline-block;
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--accent-gold);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        padding: 0.3rem 0.9rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .featured-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+    }
+
+    .featured-meta {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .featured-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* Signature Persistence Chain Iconography */
+    .persistence-chain {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 1.25rem;
+        text-align: center;
+    }
+    .chain-step {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-main);
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+    }
+    .chain-link {
+        color: var(--accent-gold);
+        font-weight: bold;
+    }
+</style>
+
+<!-- Three.js for 3D/4D Background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+
+<header>
+    <div class="container nav-container">
+        <a href="index.html" class="site-title">
+            Persistence Science
+        </a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="framework.html">Framework</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="library.html" class="active">Library</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero-container" style="margin-top: 0.75rem;">
+        <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Knowledge Atlas &amp; Repository</span>
+        <h1>Persistence Science Library</h1>
+        <div class="sub-title">Foundations, Measurement Systems, Theoretical Frameworks, and Application Domains.</div>
         
-        .cta-section {
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            margin: 4rem auto 2rem auto;
-            text-align: center;
-            max-width: 800px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-        }
-
-        .cta-section h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin: 0 0 0.75rem 0;
-            border: none;
-            padding: 0;
-            letter-spacing: -0.01em;
-        }
-
-        .cta-section p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 580px;
-            margin: 0 auto 2rem auto;
-            line-height: 1.6;
-        }
-
-        .cta-button-wrapper {
-            display: inline-block;
-        }
-
-        .cta-section .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--accent-blue), #2563eb);
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.85rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-        }
-
-        .cta-section .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
-            background: linear-gradient(135deg, #38bdf8, #1d4ed8);
-        }
-
-        .library-architecture {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        .arch-node {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-main);
-        }
-        .arch-arrow {
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-
-        /* Card Hierarchy Updates: Theory Name Dominates */
-        .academic-card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            color: var(--text-main);
-            margin: 0.4rem 0 0.5rem 0;
-            line-height: 1.35;
-        }
-
-        .academic-meta-footer {
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 0.03em;
-            margin-top: 1rem;
-            padding-top: 0.6rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .academic-stats-bar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem 2rem;
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-        .academic-stat-text {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.02em;
-        }
-
-        /* Domain-Specific Visual Borders (Without Text Labels) */
-        .card-foundation { border-left: 4px solid #f59e0b; }
-        .card-core { border-left: 4px solid #38bdf8; }
-        .card-economic { border-left: 4px solid #10b981; }
-        .card-political { border-left: 4px solid #8b5cf6; }
-        .card-policy { border-left: 4px solid #6366f1; }
-        .card-religious { border-left: 4px solid #d97706; }
-        .card-cosmological { border-left: 4px solid #a855f7; }
-
-        /* Smooth Hover Expansion & Knowledge Atlas Metadata Styling */
-        .sub-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .sub-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
-            border-color: rgba(56, 189, 248, 0.4);
-        }
-
-        .knowledge-relations {
-            background: rgba(15, 23, 42, 0.6);
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 0;
-            margin-top: 0.75rem;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-        .knowledge-relations span {
-            font-weight: 600;
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 0.2rem;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-        }
-        
-        .reading-path-box {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        /* Featured Publication Card */
-        .featured-pub-card {
-            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.95) 75%);
-            border: 1px solid rgba(245, 158, 11, 0.5);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2.5rem 0;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 40px rgba(245, 158, 11, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .featured-pub-card::before {
-            content: 'PUBLISHED';
-            position: absolute;
-            top: 1.25rem;
-            right: 1.75rem;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 0.15em;
-            color: var(--accent-gold);
-            opacity: 0.9;
-        }
-
-        .featured-badge {
-            display: inline-block;
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--accent-gold);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .featured-title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .featured-meta {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .featured-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* Signature Persistence Chain Iconography */
-        .persistence-chain {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-top: 1.25rem;
-            text-align: center;
-        }
-        .chain-step {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-main);
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 0.3rem 0.6rem;
-            border-radius: 6px;
-        }
-        .chain-link {
-            color: var(--accent-gold);
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Three.js for 3D/4D Background -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-</head>
-<body>
-
-    <div id="canvas-container"></div>
-
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="site-title">
-                Persistence Science
-            </a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="framework.html">Framework</a></li>
-                    <li><a href="research.html">Research</a></li>
-                    <li><a href="library.html" class="active">Library</a></li>
-                    <li><a href="community.html">Community</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+        <div style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1.25rem; text-align: left;">
+            <p style="color: var(--text-muted); font-size: 0.98rem; margin: 0; line-height: 1.6;">
+                A structured knowledge atlas of the Persistence Science discipline. The Library documents the development of Persistence Science through its foundations, measurement systems, theoretical frameworks, and application domains.
+            </p>
         </div>
-    </header>
 
-    <main class="container">
-        
-        <!-- Hero Section -->
-        <section class="hero-container" style="margin-top: 0.75rem;">
-            <span class="badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.4);">Knowledge Atlas &amp; Repository</span>
-            <h1>Persistence Science Library</h1>
-            <div class="sub-title">Publications, Mathematical Foundations, Application Frameworks, and DOI Records</div>
-            
-            <div style="background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 1.25rem; text-align: left;">
-                <p style="color: var(--text-muted); font-size: 0.98rem; margin: 0; line-height: 1.6;">
-                    The Persistence Science Library contains fourteen interconnected publications organized into a structured Knowledge Atlas spanning foundations, core theories, and domain applications.
+        <!-- Signature Persistence Chain Iconography -->
+        <div class="persistence-chain">
+            <span class="chain-step">Information</span>
+            <span class="chain-link">&rarr;</span>
+            <span class="chain-step">Information Control</span>
+            <span class="chain-link">&rarr;</span>
+            <span class="chain-step">Persistence Capacity</span>
+            <span class="chain-link">&rarr;</span>
+            <span class="chain-step">Persistence</span>
+        </div>
+
+        <!-- Library Architecture Section -->
+        <div class="library-architecture">
+            <span class="arch-node">Foundations</span>
+            <span class="arch-arrow">&darr;</span>
+            <span class="arch-node">Measurement Architecture</span>
+            <span class="arch-arrow">&darr;</span>
+            <span class="arch-node">Theoretical Frameworks</span>
+            <span class="arch-arrow">&darr;</span>
+            <span class="arch-node">Application Domains</span>
+        </div>
+
+        <!-- Academic Statistics Bar -->
+        <div class="academic-stats-bar">
+            <span class="academic-stat-text">17 Published Works</span>
+            <span class="academic-stat-text">&bull;</span>
+            <span class="academic-stat-text">2 Foundations</span>
+            <span class="academic-stat-text">&bull;</span>
+            <span class="academic-stat-text">3 Measurement Frameworks</span>
+            <span class="academic-stat-text">&bull;</span>
+            <span class="academic-stat-text">12 Theoretical Frameworks</span>
+            <span class="academic-stat-text">&bull;</span>
+            <span class="academic-stat-text">6 Application Domains</span>
+        </div>
+    </section>
+
+    <!-- Featured Publication Section -->
+    <section class="featured-pub-card">
+        <span class="featured-badge">Peer Reviewed and Published in JAGP</span>
+        <div class="featured-title">The Fundamental Cosmological Equation: A Covariant Field-Theoretic Realization of the Odero Axiom</div>
+        <div class="featured-meta">
+            <span><strong>Published:</strong> September 2026</span>
+            <span><strong>JAGP ID:</strong> JAGP-2026-PS01</span>
+            <span><strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" style="color: var(--accent-gold); text-decoration: underline;">10.5281/zenodo.21991847</a></span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+            Formalizing the covariant field-theoretic realization of the Odero Axiom in peer-reviewed literature, establishing how information control and entropic decay govern cosmic evolution and large-scale structural persistence.
+        </p>
+        <div class="featured-actions">
+            <a href="https://jagp-bbefc5.gitlab.io/articolo.html?id=jagp_0000005" target="_blank" rel="noopener" class="btn btn-primary">Read Publication</a>
+        </div>
+    </section>
+
+    <!-- Recommended Learning Path Box -->
+    <div class="reading-path-box" style="margin-bottom: 3rem;">
+        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-top: 0; margin-bottom: 0.5rem;">Recommended Learning Path</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">New to Persistence Science? Follow this structural progression:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; text-align: left;">
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 1</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Odero Axiom (PS-F01)</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 2</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Laws of Persistence Science (PS-F02)</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 3</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Information Index (PS-M01)</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 4</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Decay Index (PS-M02)</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 5</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Persistence Index (PS-M03)</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 6</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Theoretical Frameworks</span>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 7</strong>
+                <span style="color: var(--text-main); font-size: 0.85rem;">Application Domains</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Foundations -->
+    <h2>Foundations</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Foundational papers establish the mathematical principles upon which the Persistence Science Framework is built.</p>
+
+    <div class="grid-2">
+        <!-- Card 1: PS-F01 Odero Axiom -->
+        <div class="sub-card card-foundation">
+            <div>
+                <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
+                <h3 class="academic-card-title">PS-F01: Odero Axiom</h3>
+                <div class="theory-formula">C(I) × E > D</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    The foundational persistence condition governing survival, adaptation and collapse.
                 </p>
-            </div>
-
-            <!-- Signature Persistence Chain Iconography -->
-            <div class="persistence-chain">
-                <span class="chain-step">Information</span>
-                <span class="chain-link">&rarr;</span>
-                <span class="chain-step">Information Control</span>
-                <span class="chain-link">&rarr;</span>
-                <span class="chain-step">Persistence Capacity</span>
-                <span class="chain-link">&rarr;</span>
-                <span class="chain-step">Persistence</span>
-            </div>
-
-            <!-- Library Architecture Section -->
-            <div class="library-architecture">
-                <span class="arch-node">Foundations</span>
-                <span class="arch-arrow">&darr;</span>
-                <span class="arch-node">Core Theories</span>
-                <span class="arch-arrow">&darr;</span>
-                <span class="arch-node">Application Frameworks</span>
-            </div>
-
-            <!-- Academic Statistics Bar -->
-            <div class="academic-stats-bar">
-                <span class="academic-stat-text">14 Publications</span>
-                <span class="academic-stat-text">&bull;</span>
-                <span class="academic-stat-text">4 Foundations</span>
-                <span class="academic-stat-text">&bull;</span>
-                <span class="academic-stat-text">2 Core Theories</span>
-                <span class="academic-stat-text">&bull;</span>
-                <span class="academic-stat-text">8 Application Frameworks</span>
-                <span class="academic-stat-text">&bull;</span>
-                <span class="academic-stat-text">1 Journal Publication</span>
-            </div>
-        </section>
-
-        <!-- Featured Publication Section -->
-        <section class="featured-pub-card">
-            <span class="featured-badge">Peer Reviewed and Published in JAGP</span>
-            <div class="featured-title">The Fundamental Cosmological Equation: A Covariant Field-Theoretic Realization of the Odero Axiom</div>
-            <div class="featured-meta">
-                <span><strong>Published:</strong> September 2026</span>
-                <span><strong>JAGP ID:</strong> JAGP-2026-PS01</span>
-                <span><strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" style="color: var(--accent-gold); text-decoration: underline;">10.5281/zenodo.21991847</a></span>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                Formalizing the covariant field-theoretic realization of the Odero Axiom in peer-reviewed literature, establishing how information control and entropic decay govern cosmic evolution and large-scale structural persistence.
-            </p>
-            <div class="featured-actions">
-                <a href="https://jagp-bbefc5.gitlab.io/articolo.html?id=jagp_0000005" target="_blank" rel="noopener" class="btn btn-primary">Read Publication</a>
-            </div>
-        </section>
-
-        <!-- Start Here Reading Path Box -->
-        <div class="reading-path-box" style="margin-bottom: 3rem;">
-            <h3 style="color: var(--text-main); font-size: 1.1rem; margin-top: 0; margin-bottom: 0.5rem;">Start Here: Recommended Reading Path</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">New to Persistence Science? Follow this structural progression:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; text-align: left;">
-                <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 1</strong>
-                    <span style="color: var(--text-main); font-size: 0.9rem;">Odero Axiom (PS-001)</span>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> None (First Principle)<br>
+                    <strong>Supports:</strong> The Laws of Persistence Science, Measurement Architecture, Theoretical Frameworks<br>
+                    <strong>Referenced By:</strong> All Application Domains
                 </div>
-                <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 2</strong>
-                    <span style="color: var(--text-main); font-size: 0.9rem;">The Laws of Persistence Science (PS-002)</span>
-                </div>
-                <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 3</strong>
-                    <span style="color: var(--text-main); font-size: 0.9rem;">Information Index (PS-003)</span>
-                </div>
-                <div style="background: rgba(15, 23, 42, 0.4); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
-                    <strong style="color: var(--accent-gold); font-size: 0.85rem; display: block; margin-bottom: 0.2rem;">Step 4</strong>
-                    <span style="color: var(--text-main); font-size: 0.9rem;">Persistence Index (PS-004)</span>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-F01 &bull; Foundation | DOI: 10.5281/zenodo.22198300</span>
+                    <a href="https://doi.org/10.5281/zenodo.22198300" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Section 1: Foundations -->
-        <h2>Foundations</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Foundational papers establish the mathematical principles upon which the Persistence Science Framework is built.</p>
-
-        <div class="grid-2">
-            <!-- Card 1: Odero Axiom -->
-            <div class="sub-card card-foundation">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
-                    <h3 class="academic-card-title">PS-001: Odero Axiom</h3>
-                    <div class="theory-formula">C(I) × E > D</div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        The foundational persistence condition governing survival, adaptation and collapse.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> None (First Principle)<br>
-                        <strong>Supports:</strong> The Laws of Persistence Science, Information Index, Persistence Index, Core Theories<br>
-                        <strong>Referenced By:</strong> All Application Frameworks
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-001 &bull; Foundation | DOI: 10.5281/zenodo.22198300</span>
-                        <a href="https://doi.org/10.5281/zenodo.22198300" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 2: PS-F02 The Laws of Persistence Science -->
+        <div class="sub-card card-foundation">
+            <div>
+                <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
+                <h3 class="academic-card-title">PS-F02: Laws of Persistence Science</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Codified universal laws governing the emergence, maintenance, adaptation, and dissolution of complex systems.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> Odero Axiom<br>
+                    <strong>Supports:</strong> Measurement Architecture, Theoretical Frameworks<br>
+                    <strong>Referenced By:</strong> Global Systems, Institutional Models
                 </div>
             </div>
-
-            <!-- Card 2: The Laws of Persistence Science -->
-            <div class="sub-card card-foundation">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
-                    <h3 class="academic-card-title">PS-002: The Laws of Persistence Science</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Codified universal laws governing the emergence, maintenance, adaptation, and dissolution of complex systems.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Odero Axiom<br>
-                        <strong>Supports:</strong> Information Index, Persistence Index<br>
-                        <strong>Referenced By:</strong> Global Systems, Institutional Models
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-F02 &bull; Foundation | DOI: 10.5281/zenodo.22335291</span>
+                    <a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-002 &bull; Foundation | DOI: 10.5281/zenodo.22335291</span>
-                        <a href="https://doi.org/10.5281/zenodo.22335291" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: Measurement Architecture -->
+    <h2 style="margin-top: 3rem;">Measurement Architecture</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Quantitative frameworks used to measure information, decay, and persistence across adaptive systems.</p>
+
+    <!-- Highlighted Box: Foundational Measurement Trilogy -->
+    <div style="background: radial-gradient(circle at center, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0.95) 75%); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; text-align: center;">
+        <span style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; color: var(--accent-blue); text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Foundational Measurement Trilogy</span>
+        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+            <span style="background: rgba(15, 23, 42, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.88rem; color: var(--text-main);">Information Index</span>
+            <span style="background: rgba(15, 23, 42, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.88rem; color: var(--text-main);">Decay Index</span>
+            <span style="background: rgba(15, 23, 42, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid var(--border-color); font-size: 0.88rem; color: var(--text-main);">Persistence Index</span>
+        </div>
+    </div>
+
+    <div class="grid-3" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+        <!-- Card 3: PS-M01 Information Index -->
+        <div class="sub-card card-measurement">
+            <div>
+                <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">MEASUREMENT</span>
+                <h3 class="academic-card-title">PS-M01: Information Index</h3>
+                <div class="theory-formula">I = S × ηI</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Quantifies information as the product of Information Structure and Information Efficiency.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> Odero Axiom, Laws of Persistence Science<br>
+                    <strong>Supports:</strong> Decay Index, Persistence Index
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-M01 &bull; Measurement | DOI: 10.5281/zenodo.22203683</span>
+                    <a href="https://doi.org/10.5281/zenodo.22203683" target="_blank" rel="noopener" class="btn-action">View &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <div class="grid-2" style="margin-top: 1.25rem;">
-            <!-- Card 3: Information Index -->
-            <div class="sub-card card-foundation">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
-                    <h3 class="academic-card-title">PS-003: Information Index</h3>
-                    <div class="theory-formula">I = S × ηI</div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Quantifies information as the product of Information Structure and Information Efficiency.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Odero Axiom, The Laws of Persistence Science<br>
-                        <strong>Supports:</strong> Persistence Index, Control Models<br>
-                        <strong>Referenced By:</strong> Institutional Frameworks
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-003 &bull; Foundation | DOI: 10.5281/zenodo.22203683</span>
-                        <a href="https://doi.org/10.5281/zenodo.22203683" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 4: PS-M02 Decay Index -->
+        <div class="sub-card card-measurement">
+            <div>
+                <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">MEASUREMENT</span>
+                <h3 class="academic-card-title">PS-M02: Decay Index</h3>
+                <div class="theory-formula">D = f(S, t, e)</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Quantifies entropic and structural decay pressures operating across complex systems.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> Information Index<br>
+                    <strong>Supports:</strong> Persistence Index, Theoretical Frameworks
                 </div>
             </div>
-
-            <!-- Card 4: Persistence Index -->
-            <div class="sub-card card-foundation">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--accent-gold);">FOUNDATION</span>
-                    <h3 class="academic-card-title">PS-004: Persistence Index</h3>
-                    <div class="theory-formula">Ω = P/D</div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        A dimensional persistence metric for evaluating system state.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Odero Axiom, The Laws of Persistence Science, Information Index<br>
-                        <strong>Supports:</strong> All Application Frameworks<br>
-                        <strong>Referenced By:</strong> Global Systems Analytics
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-004 &bull; Foundation | DOI: 10.5281/zenodo.22205476</span>
-                        <a href="https://doi.org/10.5281/zenodo.22205476" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-M02 &bull; Measurement | DOI: 10.5281/zenodo.22853619</span>
+                    <a href="https://doi.org/10.5281/zenodo.22853619" target="_blank" rel="noopener" class="btn-action">View &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: Core Theories -->
-        <h2>Core Theories</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Core theories extend the foundational principles into general models applicable across disciplines.</p>
-
-        <div class="grid-2">
-            <!-- Card 5: Persistence Thermodynamics -->
-            <div class="sub-card card-core">
-                <div>
-                    <span class="tiny-badge">CORE THEORY</span>
-                    <h3 class="academic-card-title">PS-005: Persistence Thermodynamics</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Explains how systems resist decay through energy and information flows.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> PS-001, PS-004<br>
-                        <strong>Supports:</strong> Cosmology Framework, Global Systems<br>
-                        <strong>Referenced By:</strong> PS-006, Cosmology Publications
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-005 &bull; Core Theory | DOI: 10.5281/zenodo.22157474</span>
-                        <a href="https://doi.org/10.5281/zenodo.22157474" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 5: PS-M03 Persistence Index -->
+        <div class="sub-card card-measurement">
+            <div>
+                <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">MEASUREMENT</span>
+                <h3 class="academic-card-title">PS-M03: Persistence Index</h3>
+                <div class="theory-formula">Ω = P/D</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    A dimensional persistence metric for evaluating system state against decay pressures.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> Information Index, Decay Index<br>
+                    <strong>Supports:</strong> All Theoretical Frameworks
                 </div>
             </div>
-
-            <!-- Card 6: System Dynamics & Control Theory -->
-            <div class="sub-card card-core">
-                <div>
-                    <span class="tiny-badge">CORE THEORY</span>
-                    <h3 class="academic-card-title">PS-006: System Dynamics &amp; Control Theory</h3>
-                    <div class="theory-formula">ω = dΩ/dt</div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Models how persistence changes through time.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> PS-004, PS-005<br>
-                        <strong>Supports:</strong> Institutional &amp; Societal Stability Models<br>
-                        <strong>Referenced By:</strong> Applied Risk Frameworks
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-M03 &bull; Measurement | DOI: 10.5281/zenodo.22205476</span>
+                    <a href="https://doi.org/10.5281/zenodo.22205476" target="_blank" rel="noopener" class="btn-action">View &rarr;</a>
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-006 &bull; Core Theory | DOI: 10.5281/zenodo.22206400</span>
-                        <a href="https://doi.org/10.5281/zenodo.22206400" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Theoretical Frameworks -->
+    <h2 style="margin-top: 3rem;">Theoretical Frameworks</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Core and specialized theoretical models extending foundational principles across complex systems.</p>
+
+    <!-- Main Theoretical Framework Cards (Without General Theoretical Frameworks Heading) -->
+    <div class="grid-2" style="margin-top: 1.5rem;">
+        <!-- Card 6: PS-T01 Persistence Thermodynamics -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T01: Persistence Thermodynamics</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Explains how systems resist decay through energy and information flows.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-F01, PS-M03<br>
+                    <strong>Supports:</strong> Global Systems, Cosmology Framework
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T01 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22157474</span>
+                    <a href="https://doi.org/10.5281/zenodo.22157474" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Section 3: Application Frameworks -->
-        <h2>Application Frameworks</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Application frameworks extend Persistence Science into specific systemic domains of inquiry.</p>
-
-        <!-- Domain: Economic Systems -->
-        <h3 style="color: #10b981; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Economic Systems</h3>
-        <div class="grid-2">
-            <!-- Card 7: Thermoeconomic Information Theory -->
-            <div class="sub-card card-economic">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-007: Thermoeconomic Information Theory</h3>
-                    <div class="theory-formula">Ωecon = C(I)E/D</div>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Information, energy and economic persistence.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Persistence Index, Persistence Thermodynamics
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-007 &bull; Economic Systems | DOI: 10.5281/zenodo.22162692</span>
-                        <a href="https://doi.org/10.5281/zenodo.22162692" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 7: PS-T02 System Dynamics & Control Theory -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T02: System Dynamics &amp; Control Theory</h3>
+                <div class="theory-formula">ω = dΩ/dt</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Models how persistence changes through time under control mechanisms.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M03, PS-T01<br>
+                    <strong>Supports:</strong> Global Systems Control Models
                 </div>
             </div>
-
-            <!-- Card 8: Odero Theory of Captured Inflation -->
-            <div class="sub-card card-economic">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-008: Odero Theory of Captured Inflation</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        An explanation of inflation through control structures and systemic distortions.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Thermoeconomic Information Theory
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T02 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22206400</span>
+                    <a href="https://doi.org/10.5281/zenodo.22206400" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-008 &bull; Economic Systems | DOI: 10.5281/zenodo.22724868</span>
-                        <a href="https://doi.org/10.5281/zenodo.22724868" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1.25rem;">
+        <!-- Card 8: PS-T03 Thermoeconomic Information Theory -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T03: Thermoeconomic Information Theory</h3>
+                <div class="theory-formula">Ωecon = C(I)E/D</div>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Information, energy and economic persistence in market architectures.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M03, PS-T01<br>
+                    <strong>Supports:</strong> Theory of Captured Inflation
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T03 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22162692</span>
+                    <a href="https://doi.org/10.5281/zenodo.22162692" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Domain: Political Systems -->
-        <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Political Systems</h3>
-        <div class="grid-2">
-            <!-- Card 9: Coalition Indispensability Theory -->
-            <div class="sub-card card-political">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-009: Coalition Indispensability Theory</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Political persistence through coalition dependence.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Persistence Index
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-009 &bull; Political Systems | DOI: 10.5281/zenodo.22342604</span>
-                        <a href="https://doi.org/10.5281/zenodo.22342604" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 9: PS-T04 Theory of Captured Inflation -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T04: Theory of Captured Inflation</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    An explanation of asymmetric price persistence and market capture through control structures.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-T03<br>
+                    <strong>Supports:</strong> Economic Application Domain
                 </div>
             </div>
-
-            <!-- Card 10: Theory of Hegemonic Stability and Transition -->
-            <div class="sub-card card-political">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-010: Theory of Hegemonic Stability and Transition</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        A persistence-based theory explaining how hegemonic powers maintain, consolidate, and transition.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Coalition Indispensability Theory
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T04 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22724868</span>
+                    <a href="https://doi.org/10.5281/zenodo.22724868" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-010 &bull; Political Systems | DOI: 10.5281/zenodo.22134046</span>
-                        <a href="https://doi.org/10.5281/zenodo.22134046" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1.25rem;">
+        <!-- Card 10: PS-T05 Odero Axiom of AI Persistence -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T05: Odero Axiom of AI Persistence</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Applying persistence conditions to artificial intelligence architecture and agentic alignment.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-F01, PS-M01<br>
+                    <strong>Supports:</strong> AI Application Domain
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T05 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22183490</span>
+                    <a href="https://doi.org/10.5281/zenodo.22183490" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Domain: Policy & Institutions -->
-        <h3 style="color: #6366f1; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Policy &amp; Institutions</h3>
-        <div style="margin-top: 1rem;">
-            <!-- Card 13: General Theory of Legitimacy -->
-            <div class="sub-card card-policy" style="width: 100%;">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(99, 102, 241, 0.2); color: #6366f1;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-013: General Theory of Legitimacy</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        A persistence-based model explaining how institutions acquire, maintain, and lose legitimacy.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Information Index, Persistence Index<br>
-                        <strong>Referenced By:</strong> Theory of Interpretive &amp; Organizational Trust
-                    </div>
+        <!-- Card 11: PS-T06 Information Preservation Theory -->
+        <div class="sub-card card-core">
+            <div>
+                <span class="tiny-badge">THEORY</span>
+                <h3 class="academic-card-title">PS-T06: Information Preservation Theory</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Mechanisms of safeguarding structural information against computational and physical degradation.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M01, PS-T05<br>
+                    <strong>Supports:</strong> AI Application Domain
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-013 &bull; Policy &amp; Institutions | DOI: 10.5281/zenodo.22209191</span>
-                        <a href="https://doi.org/10.5281/zenodo.22209191" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T06 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22208145</span>
+                    <a href="https://doi.org/10.5281/zenodo.22208145" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subsection: Institutional & Political Frameworks -->
+    <h3 style="color: #8b5cf6; font-size: 1.1rem; margin-top: 2.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Institutional &amp; Political Frameworks</h3>
+    <div class="grid-2">
+        <!-- Card 12: PS-T07 Coalition Indispensability Theory -->
+        <div class="sub-card card-political">
+            <div>
+                <span class="tiny-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">THEORY</span>
+                <h3 class="academic-card-title">PS-T07: Coalition Indispensability Theory</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Political persistence through structural coalition dependence.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M03<br>
+                    <strong>Supports:</strong> Theory of Hegemonic Stability
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T07 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22342604</span>
+                    <a href="https://doi.org/10.5281/zenodo.22342604" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Domain: Religious Systems -->
-        <h3 style="color: #d97706; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Religious Systems</h3>
-        <div style="margin-top: 1rem;">
-            <!-- Card 14: Theory of Interpretive and Organizational Trust -->
-            <div class="sub-card card-religious" style="width: 100%;">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(217, 119, 6, 0.2); color: #d97706;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-014: Theory of Interpretive and Organizational Trust</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Trust, coercion, and persistence within religious systems.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Information Index, General Theory of Legitimacy
-                    </div>
+        <!-- Card 13: PS-T08 Theory of Hegemonic Stability and Transition -->
+        <div class="sub-card card-political">
+            <div>
+                <span class="tiny-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">THEORY</span>
+                <h3 class="academic-card-title">PS-T08: Theory of Hegemonic Stability and Transition</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    A persistence-based theory explaining how hegemonic powers maintain, consolidate, and transition.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-T07<br>
+                    <strong>Supports:</strong> Institutional Application Domain
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-014 &bull; Religious Systems | DOI: 10.5281/zenodo.22210558</span>
-                        <a href="https://doi.org/10.5281/zenodo.22210558" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T08 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22134046</span>
+                    <a href="https://doi.org/10.5281/zenodo.22134046" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1.25rem;">
+        <!-- Card 14: PS-T09 General Theory of Legitimacy -->
+        <div class="sub-card card-policy">
+            <div>
+                <span class="tiny-badge" style="background: rgba(99, 102, 241, 0.2); color: #6366f1;">THEORY</span>
+                <h3 class="academic-card-title">PS-T09: General Theory of Legitimacy</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    A persistence-based model explaining how institutions acquire, maintain, and lose legitimacy.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M01, PS-M03<br>
+                    <strong>Supports:</strong> Theory of Interpretive &amp; Organizational Trust
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T09 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22209191</span>
+                    <a href="https://doi.org/10.5281/zenodo.22209191" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Domain: Cosmological Systems -->
-        <h3 style="color: #a855f7; font-size: 1.1rem; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Cosmological Systems</h3>
-        <div class="grid-2">
-            <!-- Card 11: Fundamental Cosmological Equation -->
-            <div class="sub-card card-cosmological">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-011: Fundamental Cosmological Equation</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        Persistence principles applied to cosmological evolution.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Persistence Thermodynamics
-                    </div>
-                </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-011 &bull; Cosmological Systems | DOI: 10.5281/zenodo.21991847</span>
-                        <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+        <!-- Card 15: PS-T10 Theory of Interpretive and Organizational Trust -->
+        <div class="sub-card card-religious">
+            <div>
+                <span class="tiny-badge" style="background: rgba(217, 119, 6, 0.2); color: #d97706;">THEORY</span>
+                <h3 class="academic-card-title">PS-T10: Theory of Interpretive and Organizational Trust</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Trust, coercion, and persistence within institutional and religious systems.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-M01, PS-T09<br>
+                    <strong>Supports:</strong> Religious &amp; Institutional Application Domains
                 </div>
             </div>
-
-            <!-- Card 12: Elasticosmos Regenesis Theory -->
-            <div class="sub-card card-cosmological">
-                <div>
-                    <span class="tiny-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">APPLICATION</span>
-                    <h3 class="academic-card-title">PS-012: Elasticosmos Regenesis Theory</h3>
-                    <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
-                        A regenerative model of cosmic evolution based on elastic spacetime dynamics.
-                    </p>
-                    <div class="knowledge-relations">
-                        <span>Knowledge Atlas Relations</span>
-                        <strong>Depends On:</strong> Fundamental Cosmological Equation
-                    </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T10 &bull; Theoretical Framework | DOI: 10.5281/zenodo.22210558</span>
+                    <a href="https://doi.org/10.5281/zenodo.22210558" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
-                <div>
-                    <div class="academic-meta-footer">
-                        <span>PS-012 &bull; Cosmological Systems | DOI: 10.5281/zenodo.21650616</span>
-                        <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subsection: Cosmological Frameworks -->
+    <h3 style="color: #a855f7; font-size: 1.1rem; margin-top: 2.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem;">Cosmological Frameworks</h3>
+    <div class="grid-2">
+        <!-- Card 16: PS-T11 Fundamental Cosmological Equation -->
+        <div class="sub-card card-cosmological">
+            <div>
+                <span class="tiny-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">THEORY</span>
+                <h3 class="academic-card-title">PS-T11: Fundamental Cosmological Equation</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    Persistence principles applied to covariant field-theoretic cosmological evolution.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-T01<br>
+                    <strong>Supports:</strong> Elasticosmos Regenesis Theory
+                </div>
+            </div>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T11 &bull; Theoretical Framework | DOI: 10.5281/zenodo.21991847</span>
+                    <a href="https://doi.org/10.5281/zenodo.21991847" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
                 </div>
             </div>
         </div>
 
-        <!-- Section 5: Citation Notice -->
-        <div style="background: rgba(15, 23, 42, 0.4); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 1.5rem; margin-top: 3rem; text-align: center;">
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0; line-height: 1.6;">
-                All publications are archived through Zenodo and include persistent DOI identifiers to ensure long-term academic accessibility and citation.
-            </p>
-        </div>
-
-        <!-- Final CTA -->
-        <section class="cta-section">
-            <h2>See How Everything Connects</h2>
-            <p>
-                Explore how the Foundations, Core Theories, and Application Frameworks fit into a unified Persistence Science architecture.
-            </p>
-            <div class="cta-button-wrapper">
-                <a href="framework.html" class="btn-primary">Explore the Framework &rarr;</a>
+        <!-- Card 17: PS-T12 Elasticosmos Regenesis Theory -->
+        <div class="sub-card card-cosmological">
+            <div>
+                <span class="tiny-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">THEORY</span>
+                <h3 class="academic-card-title">PS-T12: Elasticosmos Regenesis Theory</h3>
+                <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0.5rem 0;">
+                    A regenerative model of cosmic evolution based on elastic spacetime dynamics and persistence.
+                </p>
+                <div class="knowledge-relations">
+                    <span>Knowledge Atlas Relations</span>
+                    <strong>Depends On:</strong> PS-T11<br>
+                    <strong>Supports:</strong> Cosmology Application Domain
+                </div>
             </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p class="footer-brand">Persistence Science</p>
-            <p class="footer-established">Established by John Otieno Odero</p>
-            <p class="footer-links">
-                <a href="index.html">Home</a> &bull; 
-                <a href="framework.html">Framework</a> &bull; 
-                <a href="research.html">Research</a> &bull; 
-                <a href="library.html">Library</a> &bull; 
-                <a href="community.html">Community</a> &bull; 
-                <a href="about.html">About</a> &bull; 
-                <a href="contact.html">Contact</a>
-            </p>
-            <p class="footer-meta">
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
-                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
-            </p>
-            <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+            <div>
+                <div class="academic-meta-footer">
+                    <span>PS-T12 &bull; Theoretical Framework | DOI: 10.5281/zenodo.21650616</span>
+                    <a href="https://doi.org/10.5281/zenodo.21650616" target="_blank" rel="noopener" class="btn-action">View Publication &rarr;</a>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- STABILIZED THREE.js WebGL Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('canvas-container');
-            if (container && typeof THREE !== 'undefined') {
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-                camera.position.z = 60;
+    <!-- Section 4: Application Domains -->
+    <h2 style="margin-top: 3.5rem;">Application Domains</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Domains in which Persistence Science theories are applied, tested, validated, and refined through observation and practice.</p>
 
-                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                container.appendChild(renderer.domElement);
+    <div class="grid-2" style="margin-top: 1.5rem;">
+        <!-- Domain Card: Artificial Intelligence -->
+        <div class="sub-card card-core" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Artificial Intelligence</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Applying persistence principles to agentic alignment, intelligence architecture, and structural information preservation.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-blue); display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T05 Odero Axiom of AI Persistence</li>
+                        <li>PS-T06 Information Preservation Theory</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                let mouseX = 0;
-                let mouseY = 0;
+        <!-- Domain Card: Economics -->
+        <div class="sub-card card-economic" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Economics</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Analyzing thermoeconomic information flows, structural market distortions, and captured inflation dynamics.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(16, 185, 129, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: #10b981; display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T03 Thermoeconomic Information Theory</li>
+                        <li>PS-T04 Theory of Captured Inflation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                window.addEventListener('mousemove', (e) => {
-                    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    <div class="grid-2" style="margin-top: 1.5rem;">
+        <!-- Domain Card: Institutions -->
+        <div class="sub-card card-political" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(139, 92, 246, 0.2); color: #8b5cf6;">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Institutions</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Evaluating political stability, coalition dependencies, hegemonic transitions, and institutional legitimacy.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(139, 92, 246, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: #8b5cf6; display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T07 Coalition Indispensability Theory</li>
+                        <li>PS-T08 Theory of Hegemonic Stability and Transition</li>
+                        <li>PS-T09 General Theory of Legitimacy</li>
+                        <li>PS-T10 Theory of Interpretive and Organizational Trust</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Card: Global Systems -->
+        <div class="sub-card card-measurement" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-blue);">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Global Systems</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Modeling macro-level thermodynamic dissipation, complex system dynamics, and temporal persistence control.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(56, 189, 248, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-blue); display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T01 Persistence Thermodynamics</li>
+                        <li>PS-T02 System Dynamics &amp; Control Theory</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 1.5rem;">
+        <!-- Domain Card: Religion -->
+        <div class="sub-card card-religious" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(217, 119, 6, 0.2); color: #d97706;">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Religion</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Analyzing institutional trust architectures, belief persistence, and interpretive frameworks across spiritual bodies.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(217, 119, 6, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: #d97706; display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T09 General Theory of Legitimacy</li>
+                        <li>PS-T10 Theory of Interpretive and Organizational Trust</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Card: Cosmology -->
+        <div class="sub-card card-cosmological" style="background: rgba(15, 23, 42, 0.5); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+            <div>
+                <span class="tiny-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">DOMAIN</span>
+                <h3 class="academic-card-title" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Cosmology</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Investigating covariant field-theoretic cosmological equations and regenerative elastic spacetime evolution.
+                </p>
+                <div style="background: rgba(15, 23, 42, 0.6); padding: 0.75rem 1rem; border-radius: 8px; border: 1px dashed rgba(168, 85, 247, 0.3);">
+                    <strong style="font-size: 0.75rem; text-transform: uppercase; color: #a855f7; display: block; margin-bottom: 0.4rem;">Uses Theories:</strong>
+                    <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.88rem; color: var(--text-main);">
+                        <li>PS-T11 Fundamental Cosmological Equation</li>
+                        <li>PS-T12 Elasticosmos Regenesis Theory</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 5: Citation Notice -->
+    <div style="background: rgba(15, 23, 42, 0.4); border: 1px dashed rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 1.5rem; margin-top: 3rem; text-align: center;">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0; line-height: 1.6;">
+            All publications are archived through Zenodo and include persistent DOI identifiers to ensure long-term academic accessibility and citation.
+        </p>
+    </div>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+        <h2>See How Everything Connects</h2>
+        <p>
+            Explore how Foundations, Measurement Architecture, Theoretical Frameworks, and Application Domains fit into a unified Persistence Science architecture.
+        </p>
+        <div class="cta-button-wrapper">
+            <a href="framework.html" class="btn-primary">Explore the Framework &rarr;</a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p class="footer-brand">Persistence Science</p>
+        <p class="footer-established">Established by John Otieno Odero</p>
+        <p class="footer-links">
+            <a href="index.html">Home</a> &bull; 
+            <a href="framework.html">Framework</a> &bull; 
+            <a href="research.html">Research</a> &bull; 
+            <a href="library.html">Library</a> &bull; 
+            <a href="community.html">Community</a> &bull; 
+            <a href="about.html">About</a> &bull; 
+            <a href="contact.html">Contact</a>
+        </p>
+        <p class="footer-meta">
+            ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
+            Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
+            Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
+    </div>
+</footer>
+
+<!-- STABILIZED THREE.js WebGL Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('canvas-container');
+        if (container && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 60;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            let mouseX = 0;
+            let mouseY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            const starCount = 150;
+            const starGeo = new THREE.BufferGeometry();
+            const starPositions = new Float32Array(starCount * 3);
+            const starColors = new Float32Array(starCount * 3);
+            
+            const particles4D = [];
+            const AMBER = new THREE.Color(0xf59e0b);
+            const BLUE  = new THREE.Color(0x38bdf8);
+
+            for (let i = 0; i < starCount; i++) {
+                const x = (Math.random() - 0.5) * 220;
+                const y = (Math.random() - 0.5) * 220;
+                const z = (Math.random() - 0.5) * 220;
+                const w = (Math.random() - 0.5) * 180;
+
+                let speedMultiplier = ((Math.random() > 0.6) 
+                    ? (0.018 + Math.random() * 0.024) 
+                    : (0.003 + Math.random() * 0.06)) * 0.4;
+
+                const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+
+                particles4D.push({
+                    x: x, y: y, z: z, w: w,
+                    vx: (Math.random() - 0.5) * speedMultiplier,
+                    vy: (Math.random() - 0.5) * speedMultiplier,
+                    vz: (Math.random() - 0.5) * speedMultiplier,
+                    vw: (Math.random() - 0.5) * speedMultiplier
                 });
 
-                const starCount = 150;
-                const starGeo = new THREE.BufferGeometry();
-                const starPositions = new Float32Array(starCount * 3);
-                const starColors = new Float32Array(starCount * 3);
-                
-                const particles4D = [];
-                const AMBER = new THREE.Color(0xf59e0b);
-                const BLUE  = new THREE.Color(0x38bdf8);
+                starPositions[i * 3]     = x;
+                starPositions[i * 3 + 1] = y;
+                starPositions[i * 3 + 2] = z;
 
-                for (let i = 0; i < starCount; i++) {
-                    const x = (Math.random() - 0.5) * 220;
-                    const y = (Math.random() - 0.5) * 220;
-                    const z = (Math.random() - 0.5) * 220;
-                    const w = (Math.random() - 0.5) * 180;
+                starColors[i * 3]     = colorObj.r;
+                starColors[i * 3 + 1] = colorObj.g;
+                starColors[i * 3 + 2] = colorObj.b;
+            }
 
-                    let speedMultiplier = ((Math.random() > 0.6) 
-                        ? (0.018 + Math.random() * 0.024) 
-                        : (0.003 + Math.random() * 0.06)) * 0.4;
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+            starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
 
-                    const colorObj = (Math.random() > 0.65) ? AMBER : BLUE;
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 32, 32);
 
-                    particles4D.push({
-                        x: x, y: y, z: z, w: w,
-                        vx: (Math.random() - 0.5) * speedMultiplier,
-                        vy: (Math.random() - 0.5) * speedMultiplier,
-                        vz: (Math.random() - 0.5) * speedMultiplier,
-                        vw: (Math.random() - 0.5) * speedMultiplier
-                    });
+            const pTexture = new THREE.CanvasTexture(canvas);
+            const starMat = new THREE.PointsMaterial({
+                size: 1.6,
+                vertexColors: true,
+                map: pTexture,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
 
-                    starPositions[i * 3]     = x;
-                    starPositions[i * 3 + 1] = y;
-                    starPositions[i * 3 + 2] = z;
+            const starField = new THREE.Points(starGeo, starMat);
+            scene.add(starField);
 
-                    starColors[i * 3]     = colorObj.r;
-                    starColors[i * 3 + 1] = colorObj.g;
-                    starColors[i * 3 + 2] = colorObj.b;
-                }
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x38bdf8,
+                transparent: true,
+                opacity: 0.12,
+                blending: THREE.AdditiveBlending
+            });
 
-                starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-                starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+            const lineGeo = new THREE.BufferGeometry();
+            const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
+            scene.add(lineSegments);
 
-                const canvas = document.createElement('canvas');
-                canvas.width = 32;
-                canvas.height = 32;
-                const ctx = canvas.getContext('2d');
-                const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-                gradient.addColorStop(0, 'rgba(255,255,255,1)');
-                gradient.addColorStop(0.3, 'rgba(56,189,248,0.8)');
-                gradient.addColorStop(1, 'rgba(0,0,0,0)');
-                ctx.fillStyle = gradient;
-                ctx.fillRect(0, 0, 32, 32);
+            function animate() {
+                requestAnimationFrame(animate);
 
-                const pTexture = new THREE.CanvasTexture(canvas);
-                const starMat = new THREE.PointsMaterial({
-                    size: 1.6,
-                    vertexColors: true,
-                    map: pTexture,
-                    transparent: true,
-                    blending: THREE.AdditiveBlending,
-                    depthWrite: false
-                });
+                const positions = starField.geometry.attributes.position.array;
+                const linePos = [];
 
-                const starField = new THREE.Points(starGeo, starMat);
-                scene.add(starField);
+                for (let i = 0; i < particles4D.length; i++) {
+                    let p = particles4D[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.z += p.vz;
+                    p.w += p.vw;
 
-                const lineMaterial = new THREE.LineBasicMaterial({
-                    color: 0x38bdf8,
-                    transparent: true,
-                    opacity: 0.12,
-                    blending: THREE.AdditiveBlending
-                });
+                    if (Math.abs(p.x) > 110) p.vx *= -1;
+                    if (Math.abs(p.y) > 110) p.vy *= -1;
+                    if (Math.abs(p.z) > 110) p.vz *= -1;
+                    if (Math.abs(p.w) > 90) p.vw *= -1;
 
-                const lineGeo = new THREE.BufferGeometry();
-                const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
-                scene.add(lineSegments);
+                    let wFactor = 1 + (p.w / 300);
+                    positions[i * 3]     = p.x * wFactor;
+                    positions[i * 3 + 1] = p.y * wFactor;
+                    positions[i * 3 + 2] = p.z * wFactor;
 
-                function animate() {
-                    requestAnimationFrame(animate);
+                    for (let j = i + 1; j < particles4D.length; j++) {
+                        let p2 = particles4D[j];
+                        let dx = p.x - p2.x;
+                        let dy = p.y - p2.y;
+                        let dz = p.z - p2.z;
+                        let distSq = dx * dx + dy * dy + dz * dz;
 
-                    const positions = starField.geometry.attributes.position.array;
-                    const linePos = [];
-
-                    for (let i = 0; i < particles4D.length; i++) {
-                        let p = particles4D[i];
-                        p.x += p.vx;
-                        p.y += p.vy;
-                        p.z += p.vz;
-                        p.w += p.vw;
-
-                        if (Math.abs(p.x) > 110) p.vx *= -1;
-                        if (Math.abs(p.y) > 110) p.vy *= -1;
-                        if (Math.abs(p.z) > 110) p.vz *= -1;
-                        if (Math.abs(p.w) > 90) p.vw *= -1;
-
-                        let wFactor = 1 + (p.w / 300);
-                        positions[i * 3]     = p.x * wFactor;
-                        positions[i * 3 + 1] = p.y * wFactor;
-                        positions[i * 3 + 2] = p.z * wFactor;
-
-                        for (let j = i + 1; j < particles4D.length; j++) {
-                            let p2 = particles4D[j];
-                            let dx = p.x - p2.x;
-                            let dy = p.y - p2.y;
-                            let dz = p.z - p2.z;
-                            let distSq = dx * dx + dy * dy + dz * dz;
-
-                            if (distSq < 320) {
-                                linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
-                                linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
-                            }
+                        if (distSq < 320) {
+                            linePos.push(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+                            linePos.push(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
                         }
                     }
-
-                    starField.geometry.attributes.position.needsUpdate = true;
-                    lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
-
-                    starField.rotation.y += 0.0008 + (mouseX * 0.0005);
-                    starField.rotation.x += (mouseY * 0.0005);
-                    lineSegments.rotation.copy(starField.rotation);
-
-                    renderer.render(scene, camera);
                 }
 
-                animate();
+                starField.geometry.attributes.position.needsUpdate = true;
+                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePos, 3));
 
-                window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                });
+                starField.rotation.y += 0.0008 + (mouseX * 0.0005);
+                starField.rotation.x += (mouseY * 0.0005);
+                lineSegments.rotation.copy(starField.rotation);
+
+                renderer.render(scene, camera);
             }
-        });
-    </script>
-</body>
-</html>
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    });
+</script>

@@ -22,6 +22,7 @@
 
     <!-- KaTeX Library for Math Formula Rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
             onload="renderMathInElement(document.body, {
                 delimiters: [
@@ -139,48 +140,110 @@
             margin: 2rem auto;
         }
 
-        /* Interactive Participation Grid */
-        .participation-grid {
+        /* Participation Journey Step Flow Styles */
+        .journey-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .journey-node {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.85rem 2rem;
+            text-align: center;
+            color: var(--text-main);
+            font-weight: 600;
+            width: 100%;
+            max-width: 350px;
+            transition: all 0.3s ease;
+        }
+        .journey-node:hover {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .journey-arrow {
+            color: var(--accent-teal);
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* Who Can Participate Grid (4 Cards) */
+        .participate-grid-4 {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
             margin-top: 1.5rem;
         }
-        @media (max-width: 900px) {
-            .participation-grid {
+        @media (max-width: 1024px) {
+            .participate-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .participate-grid-4 {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Areas of Community Interest Grid */
-        .interest-grid {
+        /* Community Principles Grid (4 Cards) */
+        .principles-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .principles-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .principles-grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Current Collaboration Areas Grid */
+        .collab-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             margin-top: 1.5rem;
         }
         @media (max-width: 768px) {
-            .interest-grid {
+            .collab-grid {
                 grid-template-columns: 1fr;
             }
         }
-        .interest-item {
+        .collab-item {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 1rem 1.25rem;
+            padding: 1.25rem 1.5rem;
             color: #fff;
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 1rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: space-between;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
-        .interest-item:hover {
+        .collab-item:hover {
             border-color: var(--accent-blue);
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            color: var(--accent-blue);
+        }
+        .collab-item span.arrow {
+            color: var(--accent-blue);
+            font-weight: bold;
         }
     </style>
 </head>
@@ -213,62 +276,175 @@
         <!-- Hero Section -->
         <section class="card glow-emerald" style="text-align: center; padding: 3rem 2rem;">
             <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Join the Community</h1>
-            <p class="sub-title" style="font-size: 1.15rem; max-width: 750px; margin: 0 auto 1.5rem auto; line-height: 1.7;">
+            <p class="sub-title" style="font-size: 1.15rem; max-width: 750px; margin: 0 auto 1.25rem auto; line-height: 1.7;">
                 The Persistence Science Community is intended to serve as an intellectual commons for the study of persistence across systems.
             </p>
-            <div style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto; line-height: 1.6;">
+            <div style="color: var(--text-main); font-size: 1.1rem; font-weight: 600; max-width: 650px; margin: 0 auto 0.4rem auto; line-height: 1.6;">
                 An open framework. A growing body of knowledge. A place for ideas that persist.
             </div>
         </section>
 
-        <!-- Why Participate? Section -->
-        <section class="card glow-amber">
-            <h2>Why Participate?</h2>
-            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
-                Engage with the framework at any level—explore core ideas, create new knowledge, or build systems together.
+        <!-- Community Architecture / Participation Journey Section -->
+        <section class="card glow-teal-blue">
+            <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: var(--accent-teal); margin-bottom: 1rem;">Participation Journey</span>
+            <h2>Community Architecture</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;">
+                The engagement lifecycle mirrors the discipline perfectly, moving from discovery to active contribution.
             </p>
 
-            <div class="participation-grid">
+            <div class="journey-flow">
+                <div class="journey-node">Read</div>
+                <div class="journey-arrow">&darr;</div>
+                <div class="journey-node">Study</div>
+                <div class="journey-arrow">&darr;</div>
+                <div class="journey-node">Apply</div>
+                <div class="journey-arrow">&darr;</div>
+                <div class="journey-node">Validate</div>
+                <div class="journey-arrow">&darr;</div>
+                <div class="journey-node" style="border-color: var(--accent-teal); background: rgba(16, 185, 129, 0.08);">Contribute</div>
+            </div>
+        </section>
+
+        <!-- Who Can Participate? Section -->
+        <section class="card glow-amber">
+            <h2>Who Can Participate?</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                Engagement spans multiple roles and backgrounds across the global scientific and professional ecosystem.
+            </p>
+
+            <div class="participate-grid-4">
                 
-                <!-- Discuss Card -->
-                <div class="sub-card glow-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4);">
+                <!-- Researchers Card -->
+                <div class="sub-card glow-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4); margin-top: 0;">
                     <div>
-                        <h3>Discuss</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6;">
-                            Persistence Science is an open framework. Submit challenges, critiques, and questions directly to help refine core propositions.
+                        <h3 style="color: var(--accent-blue);">Researchers</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Develop theories<br>
+                            Conduct validation studies<br>
+                            Expand the framework
                         </p>
-                    </div>
-                    <div>
-                        <a href="#discussion-form" class="btn-action" style="margin-top: 0; width: 100%; text-align: center;">Submit Discussion &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Contribute Card -->
-                <div class="sub-card glow-emerald" style="display: flex; flex-direction: column; justify-content: space-between; border-color: var(--accent-teal); background: rgba(16, 185, 129, 0.05);">
+                <!-- Students Card -->
+                <div class="sub-card glow-emerald" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16, 185, 129, 0.4); margin-top: 0;">
                     <div>
-                        <h3 style="color: #fff;">Contribute</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;">
-                            Submit critiques, empirical validations, and cross-disciplinary applications to expand the living body of persistence science.
+                        <h3 style="color: var(--accent-teal);">Students</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Learn Persistence Science<br>
+                            Build projects<br>
+                            Test ideas
                         </p>
-                    </div>
-                    <div>
-                        <a href="mailto:info@persistencescience.org?subject=Persistence%20Science%20Contribution" class="btn-action" style="margin-top: 0; width: 100%; text-align: center; background: var(--accent-teal); color: #000; border-color: var(--accent-teal);">Contribute &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Collaborate Card -->
-                <div class="sub-card glow-amber" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.4);">
+                <!-- Professionals Card -->
+                <div class="sub-card glow-amber" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.4); margin-top: 0;">
                     <div>
-                        <h3>Collaborate</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;">
-                            Partner on working groups, mathematical modeling, and foundational research across biological, institutional, and AI systems.
+                        <h3 style="color: var(--accent-amber);">Professionals</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Apply the framework to organizations, economics, technology, and strategy.
                         </p>
-                    </div>
-                    <div>
-                        <a href="mailto:info@persistencescience.org?subject=Persistence%20Science%20Collaboration" class="btn-action" style="margin-top: 0; width: 100%; text-align: center;">Collaborate &rarr;</a>
                     </div>
                 </div>
 
+                <!-- Institutions Card -->
+                <div class="sub-card glow-teal-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4); margin-top: 0;">
+                    <div>
+                        <h3 style="color: #fff;">Institutions</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Partner on observatories, validation programs, and research initiatives.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Community Principles Section -->
+        <section class="card glow-blue">
+            <h2>Community Principles</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                The foundational cultural tenets guiding all discussions, critiques, and collaborative explorations.
+            </p>
+
+            <div class="principles-grid-4">
+                
+                <!-- Open Inquiry Card -->
+                <div class="sub-card glow-emerald" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16, 185, 129, 0.4); margin-top: 0;">
+                    <div>
+                        <h3 style="color: var(--accent-teal);">Open Inquiry</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Question fundamental assumptions and explore uncharted theoretical territories without dogma.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Evidence-Based Reasoning Card -->
+                <div class="sub-card glow-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4); margin-top: 0;">
+                    <div>
+                        <h3 style="color: var(--accent-blue);">Evidence-Based Reasoning</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Ground claims in rigorous mathematical formulations, empirical data, and verifiable observations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Constructive Criticism Card -->
+                <div class="sub-card glow-amber" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.4); margin-top: 0;">
+                    <div>
+                        <h3 style="color: var(--accent-amber);">Constructive Criticism</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Challenge ideas rigorously and respectfully to strengthen the structural integrity of the framework.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cross-Disciplinary Collaboration Card -->
+                <div class="sub-card glow-teal-blue" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.4); margin-top: 0;">
+                    <div>
+                        <h3 style="color: #fff;">Cross-Disciplinary Collaboration</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.75rem; line-height: 1.6;">
+                            Bridge physics, economics, information theory, and systems engineering to synthesize unified insights.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Current Collaboration Areas Section -->
+        <section class="card glow-emerald">
+            <h2>Current Collaboration Areas</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;">
+                Active research avenues linked directly to ongoing initiatives on the Research page.
+            </p>
+
+            <div class="collab-grid">
+                <a href="research.html" class="collab-item">
+                    <span>Validation Framework</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="research.html" class="collab-item">
+                    <span>Global Persistence Index</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="research.html" class="collab-item">
+                    <span>Decay Measurement Research</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="research.html" class="collab-item">
+                    <span>Information Preservation Research</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="research.html" class="collab-item">
+                    <span>Engineering Persistence</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
+                <a href="research.html" class="collab-item">
+                    <span>Persistence Cosmology</span>
+                    <span class="arrow">&rarr;</span>
+                </a>
             </div>
         </section>
 
@@ -310,13 +486,14 @@
                             <label for="discussion-area" style="color: #fff; font-size: 0.9rem; font-weight: 500;">Discussion Area</label>
                             <select id="discussion-area" name="Area" style="width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-color); border-radius: 6px; color: #fff; font-size: 0.95rem; font-family: inherit; cursor: pointer;">
                                 <option>Foundations</option>
-                                <option>Laws of Persistence Science</option>
-                                <option>Core Theories</option>
-                                <option>Economic Systems</option>
-                                <option>Political Systems</option>
-                                <option>Policy & Institutions</option>
-                                <option>Religious Systems</option>
-                                <option>Cosmological Systems</option>
+                                <option>Measurement Architecture</option>
+                                <option>Theoretical Frameworks</option>
+                                <option>Artificial Intelligence</option>
+                                <option>Economics</option>
+                                <option>Institutions</option>
+                                <option>Global Systems</option>
+                                <option>Religion</option>
+                                <option>Cosmology</option>
                                 <option>General Discussion</option>
                             </select>
                         </div>
@@ -348,26 +525,9 @@
             </section>
         </div>
 
-        <!-- Areas of Community Interest -->
-        <section class="card glow-blue">
-            <h2>Areas of Community Interest</h2>
-            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 0.5rem;">
-                Engage with collaborative discussions across core conceptual domains and application areas.
-            </p>
-
-            <div class="interest-grid">
-                <div class="interest-item"><span>•</span> Fundamental Theory</div>
-                <div class="interest-item"><span>•</span> Validation Studies</div>
-                <div class="interest-item"><span>•</span> Institutions</div>
-                <div class="interest-item"><span>•</span> Religion</div>
-                <div class="interest-item"><span>•</span> Economics</div>
-                <div class="interest-item"><span>•</span> Cosmology</div>
-            </div>
-        </section>
-
-        <!-- Support Persistence Science -->
+        <!-- Support Open Research Section -->
         <section class="card glow-emerald">
-            <h2>Support Persistence Science</h2>
+            <h2>Support Open Research</h2>
             
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
                 Persistence Science is developed independently and published through open-access infrastructure.
@@ -386,7 +546,7 @@
             <!-- Paystack Contribution Tiers & Custom Amount -->
             <div style="background: rgba(11, 14, 20, 0.85); border: 1.5px solid var(--accent-teal); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
-                    <div style="color: var(--accent-teal); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Support Persistence Science</div>
+                    <div style="color: var(--accent-teal); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Support Open Research</div>
                     <div style="flex: 1; max-width: 300px; min-width: 200px;">
                         <input type="email" id="user-email" placeholder="Your Email for receipt (optional)" style="width: 100%; padding: 0.45rem 0.75rem; background: rgba(3, 5, 9, 0.8); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-main); font-size: 0.8rem; font-family: inherit;">
                     </div>

@@ -7,9 +7,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <!-- Primary Metadata -->
-    <title>Research Programs | Persistence Science</title>
+    <title>Research Ecosystem &amp; Validation | Persistence Science</title>
     <meta name="description" content="Current and planned research initiatives extending Persistence Science toward empirical validation, fintech scale, and strategic management frameworks.">
-    <meta name="keywords" content="research programs, persistence cosmology, strategic management, engineering persistence, global persistence index, persistence science">
+    <meta name="keywords" content="research ecosystem, persistence cosmology, strategic management, engineering persistence, global persistence index, persistence science">
     <meta name="author" content="John Otieno Odero">
 
 <!-- Google tag (gtag.js) -->
@@ -27,7 +27,7 @@
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Research Programs | Persistence Science">
+    <meta property="og:title" content="Research Ecosystem &amp; Validation | Persistence Science">
     <meta property="og:description" content="Explore the Persistence Science research ecosystem, featuring our broader architecture, institutional observatories, strategic management, and featured Persistence Cosmology program.">
     <meta property="og:url" content="https://persistencescience.org/research.html">
     <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
@@ -55,11 +55,45 @@
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 6px rgba(56, 189, 248, 0.15);
         }
 
+        .stats-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .stat-number {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             margin-bottom: 2.5rem;
         }
 
@@ -112,12 +146,6 @@
 
         .featured-track .track-label {
             color: var(--accent-amber);
-        }
-
-        .portfolio-card:has(.status-planned) .track-label,
-        .portfolio-card:has(.status-planned) h3,
-        .portfolio-card:has(.status-planned) p {
-            color: #94a3b8 !important;
         }
 
         .status-badge {
@@ -323,162 +351,263 @@
     <main class="container">
         
         <!-- Hero Section (Left-Aligned) -->
-        <section class="hero-container" style="text-align: left; margin-top: 1rem; margin-bottom: 2.5rem;">
+        <section class="hero-container" style="text-align: left; margin-top: 1rem; margin-bottom: 2rem;">
             <div style="margin-bottom: 1.25rem;">
                 <div class="badge-discipline-glow">
-                    RESEARCH ECOSYSTEM &amp; PORTFOLIO
+                    RESEARCH ECOSYSTEM &amp; VALIDATION
                 </div>
             </div>
             
-            <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-top: 0.5rem; margin-bottom: 1rem;">Research Programs</h1>
+            <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-top: 0.5rem; margin-bottom: 1rem;">Research Ecosystem &amp; Validation</h1>
             
             <div style="font-size: clamp(1rem, 1.8vw, 1.15rem); color: #94a3b8; font-weight: 400; max-width: 760px; line-height: 1.6;">
-                Current and planned research initiatives extending Persistence Science toward empirical validation, fintech scale, and strategic management frameworks.
+                What Persistence Science is working on right now: active empirical validation, cross-disciplinary observatories, and foundational frameworks.
+            </div>
+
+            <!-- Stats Strip -->
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Validation Programs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Institutional Programs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Applied Program</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Cosmology Programs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Research Programs</span>
+                </div>
             </div>
         </section>
 
-        <!-- Section 2: Research Portfolio / Architecture -->
+        <!-- Research Architecture immediately after hero -->
+        <section class="roadmap-container" style="margin-top: 1rem; margin-bottom: 2.5rem;">
+            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">
+                RESEARCH ARCHITECTURE
+            </span>
+            <div class="roadmap-chain">
+                <div class="roadmap-node">Foundations</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Measurement Architecture</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Theoretical Frameworks</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Research Programs</div>
+                <div class="roadmap-arrow">↓</div>
+                <div class="roadmap-node">Future Applications</div>
+            </div>
+        </section>
+
+        <!-- Active Research Programs / Reorganized Portfolio -->
         <section style="margin-top: 2rem; margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Broader Ecosystem</span>
-                    <h2 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; border: none; padding: 0; color: #ffffff;">Research Portfolio</h2>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Research Ecosystem</span>
+                    <h2 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; border: none; padding: 0; color: #ffffff;">Active Research Programs</h2>
                 </div>
                 <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; max-width: 450px;">
-                    Multi-domain observatories, enterprise scale models, and validation frameworks forming the foundation of Persistence Science.
+                    Structured initiatives connecting empirical validation, institutional observatories, applied systems, and cosmology.
                 </p>
             </div>
 
-            <div class="portfolio-grid">
-                <!-- Track 01: Validation Framework -->
-                <div class="portfolio-card">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 01</span>
-                                <span class="status-badge status-active">Active</span>
+            <!-- A. Validation Programs -->
+            <div style="margin-bottom: 2.5rem;">
+                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">A. Validation Programs</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Testing Persistence Science empirically.</p>
+                
+                <div class="portfolio-grid">
+                    <!-- Validation Framework -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 01</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
                             </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Validation Framework</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Methodological standards and axiomatic consistency checks for cross-disciplinary persistence metrics.
+                            </p>
                         </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Validation Framework</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Methodological standards and axiomatic consistency checks for cross-disciplinary persistence metrics.
-                        </p>
+                    </div>
+
+                    <!-- Global Persistence Index -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 02</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Global Persistence Index</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Empirical quantification of systemic stability and endurance across complex socioeconomic networks.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Decay Measurement Research -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 03</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Decay Measurement Research</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Application and validation of the Decay Index across institutional, economic, and technological systems.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Information Preservation Research -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 04</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Information Preservation Research</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Empirical measurement of actionable-information decay, Information Preservation Ratio (PI), and AI-generated value.
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Track 02: Global Persistence Index -->
-                <div class="portfolio-card">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 02</span>
-                                <span class="status-badge status-active">Active</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Global Persistence Index</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Empirical quantification of systemic stability and endurance across complex socioeconomic networks.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Track 03: Institutional Observatory -->
-                <div class="portfolio-card">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 03</span>
-                                <span class="status-badge status-planned">Planned</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Institutional Observatory</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Longitudinal tracking of structural legitimacy, decay rates, and adaptive resilience in civic institutions.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Track 04: Religious Observatory -->
-                <div class="portfolio-card">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 04</span>
-                                <span class="status-badge status-planned">Planned</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Religious Observatory</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Cross-cultural analysis of belief persistence, continuity dynamics, and cultural transmission loops.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Track 06: Dark Energy & Persistence -->
-                <div class="portfolio-card">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 06</span>
-                                <span class="status-badge status-planned">Planned</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Dark Energy &amp; Persistence</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Investigating universal persistence drivers as an alternative lens on cosmic acceleration and dark energy.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Track 05: Persistence Cosmology -->
-                <div class="portfolio-card featured-track">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label">Track 05</span>
-                                <span class="status-badge status-active">Active</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Persistence Cosmology</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Cosmic-scale application of persistence equations governing space-time dynamics and information fields.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Track 07: Applied Systems & Commercial Infrastructure -->
-                <div class="portfolio-card featured-track" style="border-color: rgba(245, 158, 11, 0.7); background: rgba(15, 23, 42, 0.65);">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label" style="color: var(--accent-amber);">Track 07 • Application I</span>
-                                <span class="status-badge status-active">Active</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Engineering Persistence <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">The Model for Fintech Scale</span></h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Empirical validation of the Odero Axiom (𝐶(𝐼) · 𝐸 &gt; 𝐷) across multi-country enterprise networks.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- NEW: Track 08: Strategic Management & Institutional Persistence -->
-                <div class="portfolio-card featured-track" style="border-color: rgba(56, 189, 248, 0.7); background: rgba(15, 23, 42, 0.65);">
-                    <div>
-                        <div class="card-header-top">
-                            <div class="track-status-group">
-                                <span class="track-label" style="color: var(--accent-blue);">Track 08 • Strategic Track</span>
-                                <span class="status-badge status-active">Active</span>
-                            </div>
-                        </div>
-                        <h3 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Strategic Management <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">Institutional Persistence &amp; Control</span></h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                            Applying the Odero Axiom to corporate governance, resource allocation architectures, and long-term market survival.
-                        </p>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- B. Institutional Research -->
+            <div style="margin-bottom: 2.5rem;">
+                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">B. Institutional Research</h3>
+                
+                <div class="portfolio-grid">
+                    <!-- Institutional Observatory -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 05</span>
+                                    <span class="status-badge status-planned">Planned</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Institutional Observatory</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Longitudinal tracking of structural legitimacy, decay rates, and adaptive resilience in civic institutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Religious Observatory -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 06</span>
+                                    <span class="status-badge status-planned">Planned</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Religious Observatory</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Cross-cultural analysis of belief persistence, continuity dynamics, and cultural transmission loops.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Strategic Management -->
+                    <div class="portfolio-card featured-track" style="border-color: rgba(56, 189, 248, 0.7); background: rgba(15, 23, 42, 0.65);">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label" style="color: var(--accent-blue);">Track 07 • Strategic Track</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Strategic Management <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">Institutional Persistence &amp; Control</span></h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Applying the Odero Axiom to corporate governance, resource allocation architectures, and long-term market survival.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C. Applied Persistence Research -->
+            <div style="margin-bottom: 2.5rem;">
+                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">C. Applied Persistence Research</h3>
+                
+                <div class="portfolio-grid">
+                    <!-- Engineering Persistence -->
+                    <div class="portfolio-card featured-track" style="border-color: rgba(245, 158, 11, 0.7); background: rgba(15, 23, 42, 0.65);">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label" style="color: var(--accent-amber);">Track 08 • Application I</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Engineering Persistence <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">The Model for Fintech Scale</span></h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Empirical validation of the Odero Axiom (𝐶(𝐼) · 𝐸 &gt; 𝐷) across multi-country enterprise networks.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- D. Cosmology Research -->
+            <div style="margin-bottom: 2.5rem;">
+                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">D. Cosmology Research</h3>
+                
+                <div class="portfolio-grid">
+                    <!-- Persistence Cosmology -->
+                    <div class="portfolio-card featured-track">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 09</span>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Persistence Cosmology</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Cosmic-scale application of persistence equations governing space-time dynamics and information fields.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Dark Energy & Persistence -->
+                    <div class="portfolio-card">
+                        <div>
+                            <div class="card-header-top">
+                                <div class="track-status-group">
+                                    <span class="track-label">Track 10</span>
+                                    <span class="status-badge status-planned">Planned</span>
+                                </div>
+                            </div>
+                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Dark Energy &amp; Persistence</h4>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
+                                Investigating universal persistence drivers as an alternative lens on cosmic acceleration and dark energy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- Narrative Transition Bridge -->
@@ -491,7 +620,7 @@
             </p>
         </section>
 
-        <!-- Section 3 & 4: Featured Program & Gold Card -->
+        <!-- Featured Program -->
         <section class="program-header-box">
             <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">
                 Featured Research Program
@@ -505,7 +634,7 @@
             </p>
         </section>
 
-        <!-- Section 5: Cosmology Research Roadmap -->
+        <!-- Cosmology Research Roadmap -->
         <section class="roadmap-container">
             <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">
                 COSMOLOGY RESEARCH ROADMAP
@@ -526,15 +655,20 @@
             </div>
         </section>
 
-        <!-- Detailed Research Directions -->
+        <!-- Detailed Cosmology Workstreams (Workstreams 1-5) -->
         <section style="margin-top: 3rem;">
             
-            <!-- Research Area 1 -->
+            <div style="margin-bottom: 1.5rem;">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Cosmology Program Execution</span>
+                <h3 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; color: #ffffff;">Cosmology Workstreams</h3>
+            </div>
+
+            <!-- Workstream 1 -->
             <div class="area-card">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 1</div>
-                        <h3 class="area-title">Physical Foundations of Coupling</h3>
+                        <div class="area-subtitle">Cosmology Workstream 1</div>
+                        <h4 class="area-title">Physical Foundations of Coupling</h4>
                     </div>
                     <span class="status-badge status-active">Status: Active</span>
                 </div>
@@ -553,12 +687,12 @@
                 </ul>
             </div>
 
-            <!-- Research Area 2 -->
+            <!-- Workstream 2 -->
             <div class="area-card">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 2</div>
-                        <h3 class="area-title">Hubble Tension Analysis</h3>
+                        <div class="area-subtitle">Cosmology Workstream 2</div>
+                        <h4 class="area-title">Hubble Tension Analysis</h4>
                     </div>
                     <span class="status-badge status-active">Status: Active</span>
                 </div>
@@ -577,12 +711,12 @@
                 </ul>
             </div>
 
-            <!-- Research Area 3 -->
+            <!-- Workstream 3 -->
             <div class="area-card">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 3</div>
-                        <h3 class="area-title">Cosmological Observables</h3>
+                        <div class="area-subtitle">Cosmology Workstream 3</div>
+                        <h4 class="area-title">Cosmological Observables</h4>
                     </div>
                     <span class="status-badge status-planned">Status: Planned</span>
                 </div>
@@ -601,12 +735,12 @@
                 </ul>
             </div>
 
-            <!-- Research Area 4 -->
+            <!-- Workstream 4 -->
             <div class="area-card">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 4</div>
-                        <h3 class="area-title">Parameter Constraints</h3>
+                        <div class="area-subtitle">Cosmology Workstream 4</div>
+                        <h4 class="area-title">Parameter Constraints</h4>
                     </div>
                     <span class="status-badge status-planned">Status: Planned</span>
                 </div>
@@ -625,12 +759,12 @@
                 </ul>
             </div>
 
-            <!-- Research Area 5 -->
+            <!-- Workstream 5 -->
             <div class="area-card">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 5</div>
-                        <h3 class="area-title">Numerical Cosmology</h3>
+                        <div class="area-subtitle">Cosmology Workstream 5</div>
+                        <h4 class="area-title">Numerical Cosmology</h4>
                     </div>
                     <span class="status-badge status-planned">Status: Planned</span>
                 </div>
@@ -649,12 +783,22 @@
                 </ul>
             </div>
 
-            <!-- NEW: Research Area 6: Strategic Management & Institutional Persistence -->
+        </section>
+
+        <!-- Detailed Applied Persistence Workstreams -->
+        <section style="margin-top: 3rem;">
+            
+            <div style="margin-bottom: 1.5rem;">
+                <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Applied Persistence Program Execution</span>
+                <h3 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; color: #ffffff;">Applied Persistence Workstreams</h3>
+            </div>
+
+            <!-- Applied Persistence Workstream 1 -->
             <div class="area-card" style="border-color: rgba(56, 189, 248, 0.4);">
                 <div class="area-header">
                     <div class="area-title-group">
-                        <div class="area-subtitle">Research Area 6 • Master's Track</div>
-                        <h3 class="area-title">Strategic Management &amp; Institutional Persistence</h3>
+                        <div class="area-subtitle">Applied Persistence Workstream 1 • Institutional Track</div>
+                        <h4 class="area-title">Strategic Management &amp; Institutional Persistence</h4>
                     </div>
                     <span class="status-badge status-active">Status: Active</span>
                 </div>
@@ -808,7 +952,7 @@
                 const lineSegments = new THREE.LineSegments(lineGeo, lineMaterial);
                 scene.add(lineSegments);
 
-                fnanimate();
+                animate();
 
                 function animate() {
                     requestAnimationFrame(animate);
