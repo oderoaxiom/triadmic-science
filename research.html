@@ -7,29 +7,30 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <!-- Primary Metadata -->
-    <title>Research Ecosystem &amp; Validation | Persistence Science</title>
-    <meta name="description" content="Current and planned research initiatives extending Persistence Science toward empirical validation, fintech scale, and strategic management frameworks.">
-    <meta name="keywords" content="research ecosystem, persistence cosmology, strategic management, engineering persistence, global persistence index, persistence science">
+    <title>Research Programmes | Persistence Science</title>
+    <meta name="description" content="Distinct Persistence Science research domains, staged programmes, publication status, numerical validation, and empirical testing.">
+    <meta name="keywords" content="persistence science research, persistence cosmology, economic persistence, organizational persistence, engineering persistence, research programmes">
     <meta name="author" content="John Otieno Odero">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0T90DCR411"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0T90DCR411');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0T90DCR411"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-0T90DCR411');
+    </script>
 
     <!-- GoatCounter Analytics Integration -->
     <script data-goatcounter="https://persistencescience.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Research Ecosystem &amp; Validation | Persistence Science">
-    <meta property="og:description" content="Explore the Persistence Science research ecosystem, featuring our broader architecture, institutional observatories, strategic management, and featured Persistence Cosmology program.">
     <meta property="og:url" content="https://persistencescience.org/research.html">
+    <meta property="og:title" content="Research Programmes | Persistence Science">
+    <meta property="og:description" content="Explore the distinct research domains, staged programmes, publication status, and validation roadmap of Persistence Science.">
     <meta property="og:image" content="https://persistencescience.org/og-image.jpg">
 
     <!-- Global Stylesheet -->
@@ -89,63 +90,225 @@
             letter-spacing: 0.05em;
         }
 
-        .portfolio-grid {
+        /* =========================================================
+        INTERACTIVE RESEARCH DOMAINS
+        ========================================================= */
+
+        .domain-nav {
+            position: sticky;
+            top: 72px;
+            z-index: 30;
+
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.55rem;
+
+            margin: 1.5rem 0 0.65rem;
+            padding: 0.75rem;
+
+            background: rgba(8, 12, 20, 0.94);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 14px;
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        .portfolio-card {
-            background: rgba(15, 23, 42, 0.45);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.75rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        .domain-tab {
+            appearance: none;
+            width: 100%;
+
+            padding: 0.75rem 0.55rem;
+
+            background: rgba(15, 23, 42, 0.78);
+            color: #cbd5e1;
+
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 10px;
+
+            font: inherit;
+            font-size: 0.78rem;
+            font-weight: 750;
+
+            cursor: pointer;
+
+            transition:
+            background 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease,
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
         }
 
-        .portfolio-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .portfolio-card.featured-track {
-            border-color: rgba(245, 158, 11, 0.5);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
-        }
-
-        .portfolio-card.featured-track:hover {
-            border-color: rgba(245, 158, 11, 0.8);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.18);
-        }
-
-        .card-header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.75rem;
-        }
-
-        .track-status-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .track-label {
-            font-size: 0.75rem;
-            font-weight: 700;
+        .domain-tab:hover,
+        .domain-tab:focus-visible {
             color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+            outline: none;
         }
 
-        .featured-track .track-label {
+        .domain-tab[aria-selected="true"] {
+            color: #06111d;
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.32);
+        }
+
+        .domain-instruction {
+            margin: 0.65rem 0 1.25rem;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        /* Hide all domain panels unless selected */
+
+        .domain-section {
+            display: none;
+            margin-top: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .domain-section.is-active {
+            display: block;
+            animation: revealResearchPanel 0.25s ease;
+        }
+
+        @keyframes revealResearchPanel {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+        INTERACTIVE COSMOLOGY STAGES
+        ========================================================= */
+
+        .cosmology-stage-explorer {
+            margin: 1.5rem 0 0;
+            padding: 1rem;
+
+            background: rgba(8, 12, 20, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 14px;
+        }
+
+        .cosmology-stage-label {
+            margin-bottom: 0.75rem;
+            color: var(--accent-blue);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .cosmology-stage-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            padding: 0.15rem 0.15rem 0.8rem;
+        }
+
+        .cosmology-stage-tab {
+            flex: 0 0 auto;
+            appearance: none;
+            padding: 0.52rem 0.8rem;
+            background: rgba(15, 23, 42, 0.78);
+            color: #94a3b8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 9999px;
+            font: inherit;
+            font-size: 0.73rem;
+            font-weight: 750;
+            cursor: pointer;
+            transition:
+            background 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+        }
+
+        .cosmology-stage-tab:hover,
+        .cosmology-stage-tab:focus-visible {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            outline: none;
+        }
+
+        .cosmology-stage-tab[aria-selected="true"] {
+            color: #07111d;
+            background: var(--accent-amber);
+            border-color: var(--accent-amber);
+        }
+
+        /* Cosmology cards are no longer shown as one long grid */
+
+        #cosmology .portfolio-grid {
+            display: block;
+            margin: 0;
+        }
+
+        #cosmology .stage-card {
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        #cosmology .stage-card.is-active {
+            display: flex;
+            animation: revealResearchPanel 0.25s ease;
+        }
+
+        /* Responsive controls */
+
+        @media (max-width: 900px) {
+            .domain-nav {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                top: 64px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .domain-nav {
+                position: static;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .domain-tab {
+                padding: 0.65rem 0.4rem;
+                font-size: 0.72rem;
+            }
+        }
+
+        /* Status Colors */
+        .status-published {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .status-ongoing {
+            background: rgba(6, 182, 212, 0.15);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+
+        .status-validation {
+            background: rgba(245, 158, 11, 0.15);
             color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+
+        .status-planned {
+            background: rgba(148, 163, 184, 0.15);
+            color: #94a3b8;
+            border: 1px solid rgba(148, 163, 184, 0.3);
         }
 
         .status-badge {
@@ -160,27 +323,82 @@
             width: fit-content;
         }
 
-        .status-active {
-            background: rgba(56, 189, 248, 0.15);
+        .domain-heading {
+            font-size: 1.5rem;
+            color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .portfolio-card, .stage-card {
+            background: rgba(15, 23, 42, 0.45);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-card:hover, .stage-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .published-stage {
+            border-color: rgba(16, 185, 129, 0.5);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .validation-stage {
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .stage-meta {
+            font-size: 0.75rem;
+            font-weight: 700;
             color: var(--accent-blue);
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .status-planned {
-            background: rgba(148, 163, 184, 0.15);
-            color: #94a3b8;
-            border: 1px solid rgba(148, 163, 184, 0.3);
+        .paper-title {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            font-weight: 750;
         }
 
-        .transition-bridge-box {
-            background: rgba(15, 23, 42, 0.55);
+        .status-note {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .equation-line {
+            font-family: monospace;
+            color: var(--accent-amber);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin: 0.5rem 0;
             border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 14px;
-            padding: 2rem 2.5rem;
-            margin: 2.5rem 0 3rem 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(245, 158, 11, 0.05);
         }
 
         .roadmap-container {
@@ -191,7 +409,6 @@
             margin: 2.5rem 0;
             text-align: center;
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
 
         .roadmap-chain {
@@ -212,15 +429,7 @@
             color: #f8fafc;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.12);
             letter-spacing: 0.02em;
-            transition: all 0.3s ease;
             max-width: 90%;
-        }
-
-        .roadmap-node.highlight-paper {
-            border-color: var(--accent-amber);
-            color: var(--accent-amber);
-            background: rgba(245, 158, 11, 0.1);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
         }
 
         .roadmap-arrow {
@@ -228,100 +437,6 @@
             font-size: 1.1rem;
             font-weight: bold;
             opacity: 0.75;
-        }
-
-        .program-header-box {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(245, 158, 11, 0.35);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.05);
-        }
-
-        .area-card {
-            background: rgba(15, 23, 42, 0.45);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 1.75rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .area-card:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
-        }
-
-        .area-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .area-title-group {
-            flex: 1;
-        }
-
-        .area-subtitle {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.25rem;
-        }
-
-        .area-title {
-            font-size: 1.35rem;
-            font-weight: 750;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: #f8fafc;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .objective-text {
-            color: #cbd5e1;
-            font-size: 0.98rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .topic-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.5rem 1rem;
-        }
-
-        .topic-list li {
-            color: #94a3b8;
-            font-size: 0.92rem;
-            position: relative;
-            padding-left: 1.25rem;
-            line-height: 1.5;
-        }
-
-        .topic-list li::before {
-            content: "•";
-            color: var(--accent-blue);
-            font-weight: bold;
-            position: absolute;
-            left: 0.25rem;
         }
     </style>
 </head>
@@ -331,9 +446,7 @@
 
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="site-title">
-                Persistence Science
-            </a>
+            <a href="index.html" class="site-title">Persistence Science</a>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
@@ -350,480 +463,910 @@
 
     <main class="container">
         
-        <!-- Hero Section (Left-Aligned) -->
+        <!-- Hero Section -->
         <section class="hero-container" style="text-align: left; margin-top: 1rem; margin-bottom: 2rem;">
             <div style="margin-bottom: 1.25rem;">
-                <div class="badge-discipline-glow">
-                    RESEARCH ECOSYSTEM &amp; VALIDATION
-                </div>
+                <div class="badge-discipline-glow">RESEARCH PROGRAMMES &amp; VALIDATION</div>
             </div>
             
-            <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-top: 0.5rem; margin-bottom: 1rem;">Research Ecosystem &amp; Validation</h1>
+            <h1 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 850; margin-top: 0.5rem; margin-bottom: 1rem;">Research Programmes</h1>
             
             <div style="font-size: clamp(1rem, 1.8vw, 1.15rem); color: #94a3b8; font-weight: 400; max-width: 760px; line-height: 1.6;">
-                What Persistence Science is working on right now: active empirical validation, cross-disciplinary observatories, and foundational frameworks.
+                Persistence Science advances through distinct research domains. Each domain applies the exact Odero Axiom <strong>C(I) × E &gt; D</strong> to a defined class of systems while retaining its own questions, methods, evidence, and publication sequence.
             </div>
 
-            <!-- Stats Strip -->
+            <!-- Summary Statistics -->
             <div class="stats-strip">
                 <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Validation Programs</span>
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Research Domains</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Institutional Programs</span>
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Cosmology Stages</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">1</span>
-                    <span class="stat-label">Applied Program</span>
+                    <span class="stat-label">Published Foundation</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Cosmology Programs</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">10</span>
-                    <span class="stat-label">Research Programs</span>
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Status Categories</span>
                 </div>
             </div>
         </section>
 
-        <!-- Research Architecture immediately after hero -->
-        <section class="roadmap-container" style="margin-top: 1rem; margin-bottom: 2.5rem;">
-            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">
-                RESEARCH ARCHITECTURE
-            </span>
-            <div class="roadmap-chain">
-                <div class="roadmap-node">Foundations</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Measurement Architecture</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Theoretical Frameworks</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Research Programs</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Future Applications</div>
-            </div>
-        </section>
+        <!-- Interactive Research Domain Selector -->
+        <div
+        class="domain-nav"
+        role="tablist"
+        aria-label="Research domains"
+        >
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-foundations"
+            role="tab"
+            data-domain="foundations"
+            aria-controls="foundations"
+            aria-selected="true"
+            >
+            Foundations
+            </button>
+             
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-cosmology"
+            role="tab"
+            data-domain="cosmology"
+            aria-controls="cosmology"
+            aria-selected="false"
+            >
+            Cosmology
+            </button>
+             
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-economics"
+            role="tab"
+            data-domain="economics"
+            aria-controls="economics"
+            aria-selected="false"
+            >
+            Economics
+            </button>
+             
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-organizations"
+            role="tab"
+            data-domain="organizations"
+            aria-controls="organizations"
+            aria-selected="false"
+            >
+            Organizations
+            </button>
+             
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-engineering"
+            role="tab"
+            data-domain="engineering"
+            aria-controls="engineering"
+            aria-selected="false"
+            >
+            Engineering
+            </button>
 
-        <!-- Active Research Programs / Reorganized Portfolio -->
-        <section style="margin-top: 2rem; margin-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-                <div>
-                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Research Ecosystem</span>
-                    <h2 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; border: none; padding: 0; color: #ffffff;">Active Research Programs</h2>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0; max-width: 450px;">
-                    Structured initiatives connecting empirical validation, institutional observatories, applied systems, and cosmology.
-                </p>
-            </div>
+            <button
+            type="button"
+            class="domain-tab"
+            role="tab"
+            id="tab-biology"
+            data-domain="biology"
+            aria-controls="biology"
+            aria-selected="false"
+            >
+            Biology
+            </button>
+             
+            <button
+            type="button"
+            class="domain-tab"
+            id="tab-philosophy"
+            role="tab"
+            data-domain="philosophy"
+            aria-controls="philosophy"
+            aria-selected="false"
+            >
+            Philosophy &amp; Theology
+            </button>
+        </div>
+         
+        <p class="domain-instruction">
+        Select a research domain. Its programmes and topics will appear immediately below without moving to another part of the page.
+        </p>
 
-            <!-- A. Validation Programs -->
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">A. Validation Programs</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">Testing Persistence Science empirically.</p>
-                
-                <div class="portfolio-grid">
-                    <!-- Validation Framework -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 01</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Validation Framework</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Methodological standards and axiomatic consistency checks for cross-disciplinary persistence metrics.
-                            </p>
-                        </div>
-                    </div>
+        <!-- Status & Evidence Policy Note -->
+        <div class="status-note">
+            <strong>Evidence Policy:</strong> Published means publicly released with a verified publication record. Ongoing means active manuscript, derivation, coding, or analysis. Validation pending means the methodology is defined but computational or empirical testing has not yet been completed. Planned means the study depends on results from earlier stages. Only verified outputs are marked Published.
+        </div>
 
-                    <!-- Global Persistence Index -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 02</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Global Persistence Index</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Empirical quantification of systemic stability and endurance across complex socioeconomic networks.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Decay Measurement Research -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 03</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Decay Measurement Research</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Application and validation of the Decay Index across institutional, economic, and technological systems.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Information Preservation Research -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 04</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Information Preservation Research</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Empirical measurement of actionable-information decay, Information Preservation Ratio (PI), and AI-generated value.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- B. Institutional Research -->
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">B. Institutional Research</h3>
-                
-                <div class="portfolio-grid">
-                    <!-- Institutional Observatory -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 05</span>
-                                    <span class="status-badge status-planned">Planned</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Institutional Observatory</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Longitudinal tracking of structural legitimacy, decay rates, and adaptive resilience in civic institutions.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Religious Observatory -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 06</span>
-                                    <span class="status-badge status-planned">Planned</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Religious Observatory</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Cross-cultural analysis of belief persistence, continuity dynamics, and cultural transmission loops.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Strategic Management -->
-                    <div class="portfolio-card featured-track" style="border-color: rgba(56, 189, 248, 0.7); background: rgba(15, 23, 42, 0.65);">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label" style="color: var(--accent-blue);">Track 07 • Strategic Track</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Strategic Management <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">Institutional Persistence &amp; Control</span></h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Applying the Odero Axiom to corporate governance, resource allocation architectures, and long-term market survival.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- C. Applied Persistence Research -->
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">C. Applied Persistence Research</h3>
-                
-                <div class="portfolio-grid">
-                    <!-- Engineering Persistence -->
-                    <div class="portfolio-card featured-track" style="border-color: rgba(245, 158, 11, 0.7); background: rgba(15, 23, 42, 0.65);">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label" style="color: var(--accent-amber);">Track 08 • Application I</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Engineering Persistence <span style="font-size: 0.85rem; font-weight: 500; color: #94a3b8; display: block; margin-top: 0.15rem;">The Model for Fintech Scale</span></h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Empirical validation of the Odero Axiom (𝐶(𝐼) · 𝐸 &gt; 𝐷) across multi-country enterprise networks.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- D. Cosmology Research -->
-            <div style="margin-bottom: 2.5rem;">
-                <h3 style="font-size: 1.25rem; color: var(--accent-blue); margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">D. Cosmology Research</h3>
-                
-                <div class="portfolio-grid">
-                    <!-- Persistence Cosmology -->
-                    <div class="portfolio-card featured-track">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 09</span>
-                                    <span class="status-badge status-active">Active</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Persistence Cosmology</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Cosmic-scale application of persistence equations governing space-time dynamics and information fields.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Dark Energy & Persistence -->
-                    <div class="portfolio-card">
-                        <div>
-                            <div class="card-header-top">
-                                <div class="track-status-group">
-                                    <span class="track-label">Track 10</span>
-                                    <span class="status-badge status-planned">Planned</span>
-                                </div>
-                            </div>
-                            <h4 style="font-size: 1.15rem; color: #ffffff; margin-bottom: 0.5rem;">Dark Energy &amp; Persistence</h4>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">
-                                Investigating universal persistence drivers as an alternative lens on cosmic acceleration and dark energy.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Narrative Transition Bridge -->
-        <section class="transition-bridge-box">
-            <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;">
-                Active Research Tracks &amp; Academic Scope
-            </div>
-            <p style="color: #f8fafc; font-size: 1.05rem; line-height: 1.7; margin: 0;">
-                Persistence Science bridges fundamental physics and enterprise frameworks. <strong>Persistence Cosmology</strong> anchors our physical architecture, supported by the publication of <em>The Fundamental Cosmological Equation</em> in JAGP (2026). Concurrently, commercial and organizational initiatives like <strong>Engineering Persistence (Fintech Scale)</strong> and <strong>Strategic Management &amp; Institutional Persistence</strong> establish rigorous empirical validation across complex corporate and economic corridors.
+        <!-- DOMAIN A: Foundations -->
+        <section
+        id="foundations"
+        class="domain-section is-active"
+        role="tabpanel"
+        aria-labelledby="tab-foundations"
+        tabindex="0"
+        >
+            <h2 class="domain-heading">Domain A: Foundational Persistence Science</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Develops the universal axioms, laws, indices, boundary conditions, measurement architecture, and cross-domain validation standards of Persistence Science.
             </p>
+
+            <!-- Foundational Research Architecture -->
+            <section class="roadmap-container">
+                <span
+                class="badge"
+                style="
+                background: rgba(56, 189, 248, 0.15);
+                color: var(--accent-blue);
+                border-color: rgba(56, 189, 248, 0.4);
+                "
+                >
+                FOUNDATIONAL RESEARCH ARCHITECTURE
+                </span>
+                 
+                <div class="roadmap-chain">
+                <div class="roadmap-node">
+                Foundational Axiom, Laws &amp; Indices
+                </div>
+                 
+                <div class="roadmap-arrow">↓</div>
+                 
+                <div class="roadmap-node">
+                Domain-Specific Theory
+                </div>
+                 
+                <div class="roadmap-arrow">↓</div>
+                 
+                <div class="roadmap-node">
+                Numerical &amp; Measurement Architecture
+                </div>
+                 
+                <div class="roadmap-arrow">↓</div>
+                 
+                <div class="roadmap-node">
+                Empirical Validation
+                </div>
+                 
+                <div class="roadmap-arrow">↓</div>
+                 
+                <div class="roadmap-node">
+                Comparative Assessment &amp; Applications
+                </div>
+                </div>
+            </section>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div>
+                        <div class="paper-title">Axiom, Laws &amp; Measurement Indices</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            The Odero Axiom, Laws of Persistence Science, Information Index, Decay Index, Persistence Index, and related measurement validity.
+                        </p>
+                        <div class="equation-line">I → C(I) → P = C(I) × E → Ω<sub>P</sub> = P / D</div>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div>
+                        <div class="paper-title">Validation Framework</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Methodological standards, dimensional consistency, axiomatic coherence, falsification criteria, and cross-domain measurement tests.
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div>
+                        <div class="paper-title">Information, Decay &amp; Persistence Measurement</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Empirical development of usable-information, degradation, recovery, and systemic-persistence measures across defined system classes.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Featured Program -->
-        <section class="program-header-box">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem;">
-                Featured Research Program
-            </div>
-            <h2 style="font-size: 2rem; color: #ffffff; margin: 0 0 0.75rem 0; border: none; padding: 0;">Persistence Cosmology</h2>
-            <p style="color: var(--accent-amber); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem;">
-                Building upon <em>The Fundamental Cosmological Equation</em> (JAGP, 2026).
+        <!-- DOMAIN B: Cosmology -->
+        <section
+        id="cosmology"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-cosmology"
+        tabindex="0"
+        hidden
+        >
+            <h2 class="domain-heading">Domain B: Persistence Cosmology</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                A staged theoretical, numerical, and observational programme investigating how information-derived control, Available Energy, and Total Decay shape field evolution, cosmic acceleration, critical transitions, structure growth, and regenerative boundary dynamics.
             </p>
-            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.6; margin: 0;">
-                The Persistence Cosmology program investigates how information, control, energy, and decay shape the evolution of the universe across cosmic scales.
+            <div class="status-note">
+                <strong>Current publication position:</strong> The Fundamental Cosmological Equation is the only published output in the cosmology programme. All subsequent papers are shown as ongoing, validation pending, or planned according to their actual stage. The published foundation is established; field, observable, boundary, membrane, and expansion manuscripts are ongoing.
+            </div>
+
+            <!-- Interactive Cosmology Stage Selector -->
+            <div class="cosmology-stage-explorer">
+                <div class="cosmology-stage-label">
+                    Select a cosmology paper or research stage
+                </div>
+                <div
+                class="cosmology-stage-tabs"
+                role="tablist"
+                aria-label="Persistence Cosmology stages"
+                >
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="0" aria-selected="true">Stage I · Foundation</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="1" aria-selected="false">Stage II · Field Dynamics</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="2" aria-selected="false">Stage III · Observables</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="3" aria-selected="false">Stage III · Transitions</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="4" aria-selected="false">Stage IV · Membrane</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="5" aria-selected="false">Stage IV · Expansion</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="6" aria-selected="false">Stage V · Numerical</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="7" aria-selected="false">Stage VI · Constraints</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="8" aria-selected="false">Stage VII · Growth</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="9" aria-selected="false">Stage VIII · Membrane Simulation</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="10" aria-selected="false">Stage IX · Tensions</button>
+                    <button type="button" class="cosmology-stage-tab" data-stage-index="11" aria-selected="false">Stage IX · Verdict</button>
+                </div>
+            </div>
+
+            <!-- Cosmology Stages Grid -->
+            <div class="portfolio-grid" style="margin-top: 1.5rem;">
+                <!-- Stage I -->
+                <div class="stage-card published-stage is-active">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage I · Foundation</span>
+                            <span class="status-badge status-published">Published</span>
+                        </div>
+                        <div class="paper-title">The Fundamental Cosmological Equation</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem;">
+                            Establish the covariant field-theoretic foundation of Persistence Cosmology and connect the exact Odero Axiom to cosmological dynamics.
+                        </p>
+                        <ul style="color: #94a3b8; font-size: 0.85rem; padding-left: 1.2rem; margin: 0;">
+                            <li>Covariant cosmological foundation</li>
+                            <li>Baseline physical architecture</li>
+                            <li>Published anchor of the programme</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage II -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage II · Field Dynamics</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <div class="paper-title">Dynamics of the Odero Field</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem;">
+                            Develop the scalar-field realization implied by the published foundation.
+                        </p>
+                        <ul style="color: #94a3b8; font-size: 0.85rem; padding-left: 1.2rem; margin: 0;">
+                            <li>Field trajectory φ</li>
+                            <li>Effective potential V<sub>eff</sub>(φ)</li>
+                            <li>Constitutive bridge Φ<sub>O</sub> = κ(Ω<sub>P</sub> − 1)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage III -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage III · Observables</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <div class="paper-title">Cosmological Observables of the Odero Field</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.75rem;">
+                            Derive measurable background and structure-growth predictions from the field trajectory.
+                        </p>
+                        <div class="equation-line">φ(z) → H(z) → w<sub>O</sub>(z) → q(z) → D<sub>+</sub>(z) → fσ<sub>8</sub>(z)</div>
+                    </div>
+                </div>
+
+                <!-- Stage III Critical Transitions -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage III · Critical Transitions</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <div class="paper-title">Boundary Theory of Persistence</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Formalize crossing, tangency, recovery, collapse, metastability, and stability at the persistence boundary Ω<sub>P</sub> = 1.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage IV Membrane -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage IV · Membrane Theory</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <div class="paper-title">Theory of the Cosmological Membrane</div>
+                        <p style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 0.25rem;">Elasticosmos Regenesis Theory 2.0</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Characterize a hypothesized effective cosmological hypersurface through geometry, stress-energy, information, decay, and persistence regeneration.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage IV Expansion -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage IV · Expansion Theory</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <div class="paper-title">Persistent Expansion Field Theory</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.5rem;">
+                            Determine when persistence surplus is sufficient to generate and sustain cosmological acceleration.
+                        </p>
+                        <div class="equation-line">M<sub>E</sub> = κ(Ω<sub>P</sub> − 1) − L<sub>g</sub></div>
+                    </div>
+                </div>
+
+                <!-- Stage V Numerical Existence -->
+                <div class="stage-card validation-stage" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage V · Numerical Existence</span>
+                            <span class="status-badge status-validation">Validation pending</span>
+                        </div>
+                        <div class="paper-title">Numerical Dynamics of the Odero Field</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Determine whether regular, positive-density, constitutively compatible, and cosmologically viable field trajectories exist.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage VI Background Constraints -->
+                <div class="stage-card validation-stage" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage VI · Background Constraints</span>
+                            <span class="status-badge status-validation">Validation pending</span>
+                        </div>
+                        <div class="paper-title">Observational Constraints on Persistence Cosmology</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Fit viable field trajectories to Type Ia supernova, baryon acoustic oscillation, direct H(z), and selected prior data.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage VII Growth Constraints -->
+                <div class="stage-card validation-stage" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage VII · Growth Constraints</span>
+                            <span class="status-badge status-validation">Validation pending</span>
+                        </div>
+                        <div class="paper-title">Structure Growth in Persistence Cosmology</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Test whether the same parameter region that fits expansion also reproduces observed matter clustering (D<sub>+</sub>(z), f(z), σ<sub>8</sub>, S<sub>8</sub>).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage VIII Membrane Simulation -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage VIII · Membrane Simulation</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <div class="paper-title">Numerical Dynamics of the Cosmological Membrane</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Test whether a stable, persistent, regenerative membrane trajectory can coexist with an empirically viable bulk solution.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage IX Tensions -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage IX · Cosmological Tensions</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <div class="paper-title">The Hubble Tension in Persistence Cosmology</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Determine whether Persistence Cosmology can reconcile early- and late-universe expansion measurements without violating constraints.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stage IX Verdict -->
+                <div class="stage-card" hidden>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="stage-meta">Stage IX · Empirical Verdict</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <div class="paper-title">Integrated Empirical Assessment of Persistence Cosmology</div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Synthesize actual findings across background expansion, structure growth, cosmological tensions, and membrane viability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DOMAIN C: Economics -->
+        <section
+        id="economics"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-economics"
+        tabindex="0"
+        hidden
+        >
+            <h2 class="domain-heading">Domain C: Economic Persistence</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Applies Persistence Science to economic continuity, institutional resilience, capital and resource flows, productive capacity, decay, shocks, and recovery.
             </p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Economic Persistence Measurement</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Persistence indices, information quality, productive capacity, capital-energy allocation, market decay, shock recovery, and regional or corridor persistence.
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Economic Corridors &amp; Systemic Resilience</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Comparative study of persistence, latency, institutional quality, and recovery across economic corridors.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Cosmology Research Roadmap -->
-        <section class="roadmap-container">
-            <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.4);">
-                COSMOLOGY RESEARCH ROADMAP
-            </span>
-            
-            <div class="roadmap-chain">
-                <div class="roadmap-node highlight-paper">Published Paper</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Physical Foundations</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Hubble Tension</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Observables</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Parameter Constraints</div>
-                <div class="roadmap-arrow">↓</div>
-                <div class="roadmap-node">Numerical Cosmology</div>
+        <!-- DOMAIN D: Organizations -->
+        <section
+        id="organizations"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-organizations"
+        tabindex="0"
+        hidden
+        >
+            <h2 class="domain-heading">Domain D: Organizational &amp; Strategic Persistence</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Studies how organizations and institutions preserve function, coordinate information, allocate resources, adapt, and recover from disruption.
+            </p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Strategic Management &amp; Institutional Persistence</span>
+                            <span class="status-badge status-ongoing">Ongoing</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Governance, control-energy-decay feedback, organizational continuity, resource capture, adaptation, recovery thresholds, and strategic resilience.
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Institutional Observatory</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Longitudinal study of legitimacy, decay, adaptive capacity, continuity, and systemic recovery in institutions.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Detailed Cosmology Workstreams (Workstreams 1-5) -->
-        <section style="margin-top: 3rem;">
-            
-            <div style="margin-bottom: 1.5rem;">
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Cosmology Program Execution</span>
-                <h3 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; color: #ffffff;">Cosmology Workstreams</h3>
-            </div>
-
-            <!-- Workstream 1 -->
-            <div class="area-card">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Cosmology Workstream 1</div>
-                        <h4 class="area-title">Physical Foundations of Coupling</h4>
-                    </div>
-                    <span class="status-badge status-active">Status: Active</span>
-                </div>
-                
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Develop a rigorous derivation of the persistence coupling mechanism from fundamental physical principles.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>Information-field interactions</li>
-                    <li>Thermodynamic interpretation</li>
-                    <li>Quantum field perspectives</li>
-                    <li>First-principles derivations</li>
-                </ul>
-            </div>
-
-            <!-- Workstream 2 -->
-            <div class="area-card">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Cosmology Workstream 2</div>
-                        <h4 class="area-title">Hubble Tension Analysis</h4>
-                    </div>
-                    <span class="status-badge status-active">Status: Active</span>
-                </div>
-
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Evaluate whether the persistence framework can quantitatively explain discrepancies in measured cosmic expansion rates.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>Expansion history analysis</li>
-                    <li>Early vs late universe measurements</li>
-                    <li>Persistence corrections to cosmology</li>
-                    <li>Hubble tension implications</li>
-                </ul>
-            </div>
-
-            <!-- Workstream 3 -->
-            <div class="area-card">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Cosmology Workstream 3</div>
-                        <h4 class="area-title">Cosmological Observables</h4>
-                    </div>
-                    <span class="status-badge status-planned">Status: Planned</span>
-                </div>
-
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Generate testable predictions that distinguish persistence cosmology from conventional models.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>Control function evolution <i>C(z)</i></li>
-                    <li>Density perturbations</li>
-                    <li>Expansion observables</li>
-                    <li>Large-scale structure signatures</li>
-                </ul>
-            </div>
-
-            <!-- Workstream 4 -->
-            <div class="area-card">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Cosmology Workstream 4</div>
-                        <h4 class="area-title">Parameter Constraints</h4>
-                    </div>
-                    <span class="status-badge status-planned">Status: Planned</span>
-                </div>
-
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Determine physically admissible values for cosmological persistence parameters using observational data.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>&beta; parameter estimation</li>
-                    <li>&lambda; parameter estimation</li>
-                    <li>Statistical fitting</li>
-                    <li>Physical admissibility regions</li>
-                </ul>
-            </div>
-
-            <!-- Workstream 5 -->
-            <div class="area-card">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Cosmology Workstream 5</div>
-                        <h4 class="area-title">Numerical Cosmology</h4>
-                    </div>
-                    <span class="status-badge status-planned">Status: Planned</span>
-                </div>
-
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Implement and test persistence cosmology using modern computational cosmology tools.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>CAMB integration</li>
-                    <li>CLASS integration</li>
-                    <li>Numerical simulations</li>
-                    <li>Data comparison with CMB, BAO and SN Ia observations</li>
-                </ul>
-            </div>
-
+        <!-- DOMAIN E: Engineering -->
+        <section
+        id="engineering"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-engineering"
+        aria-hidden="true"
+        hidden
+        >
+        <h2 class="domain-heading">
+        Domain E: Engineering &amp; Applied Persistence
+        </h2>
+         
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Translates Persistence Science into measurable frameworks
+        for digital infrastructure, autonomous systems, financial
+        technology, distributed operations, system reliability,
+        control degradation, and operational recovery.
+        </p>
+         
+        <div class="portfolio-grid">
+         
+        <div class="portfolio-card">
+        <div>
+        <div
+        style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        "
+        >
+        <span class="paper-title">
+        Cross-Border Systems Telemetry
+        </span>
+         
+        <span class="status-badge status-ongoing">
+        Ongoing
+        </span>
+        </div>
+         
+        <p
+        style="
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-amber);
+        margin-bottom: 0.5rem;
+        "
+        >
+        An Ongoing Persistence Engineering Study at
+        InTouch Kenya
+        </p>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        "
+        >
+        Cross-Border Systems Telemetry examines the
+        continuity, responsiveness, and degradation of
+        distributed digital infrastructure across
+        national and operational boundaries. The
+        research evaluates how information quality,
+        control effectiveness, energy and resource
+        availability, latency, service interruption,
+        recovery capacity, and cumulative decay
+        influence the persistence of cross-border
+        technology systems.
+        </p>
+         
+        <ul
+        style="
+        color: #94a3b8;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding-left: 1.2rem;
+        "
+        >
+        <li>Cross-border transaction telemetry</li>
+        <li>Infrastructure availability and continuity</li>
+        <li>End-to-end latency and response degradation</li>
+        <li>Information and data-model alignment</li>
+        <li>Failure propagation across connected systems</li>
+        <li>Corridor-level persistence measurement</li>
+        <li>Recovery time and operational resilience</li>
+        <li>Control efficiency under distributed load</li>
+        </ul>
+        </div>
+        </div>
+         
+        <div class="portfolio-card">
+        <div>
+        <div
+        style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        "
+        >
+        <span class="paper-title">
+        Theory of Autonomous Control Collapse
+        </span>
+         
+        <span class="status-badge status-ongoing">
+        Ongoing
+        </span>
+        </div>
+         
+        <p
+        style="
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-blue);
+        margin-bottom: 0.5rem;
+        "
+        >
+        Agentic Systems, Control Degradation, and
+        Infrastructure Persistence
+        </p>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        "
+        >
+        As software architecture transitions from passive, static large language models to autonomous agentic loops capable of executing real-world infrastructure operations, execution velocity may exceed human or automated oversight.
+        </p>
+         
+        <div class="equation-line">
+        Ω = 1
+        </div>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-top: 0.75rem;
+        "
+        >
+        Extending the domain-invariant Odero Axiom, C(I) × E &gt; D, this paper proposes the Theory of Autonomous Control Collapse. The theory holds that agentic-system stability requires persistence capacity to remain greater than internal error, control, and operational decay. When computational throughput increases rapidly while alignment-control efficiency deteriorates through recursive error amplification, delayed feedback, or governance bottlenecks, the system may approach the critical persistence boundary Ω = 1 and subsequently enter decay dominance at Ω &lt; 1.
+        </p>
+         
+        <ul
+        style="
+        color: #94a3b8;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding-left: 1.2rem;
+        "
+        >
+        <li>Agentic execution velocity</li>
+        <li>Alignment-control efficiency</li>
+        <li>Recursive error degradation</li>
+        <li>Oversight and correction bottlenecks</li>
+        <li>Cascading infrastructure failure</li>
+        <li>Autonomous-system persistence thresholds</li>
+        <li>Recovery and safe-interruption mechanisms</li>
+        </ul>
+        </div>
+        </div>
+         
+        </div>
         </section>
 
-        <!-- Detailed Applied Persistence Workstreams -->
-        <section style="margin-top: 3rem;">
-            
-            <div style="margin-bottom: 1.5rem;">
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.08em;">Applied Persistence Program Execution</span>
-                <h3 style="font-size: 1.8rem; margin: 0.25rem 0 0 0; color: #ffffff;">Applied Persistence Workstreams</h3>
-            </div>
-
-            <!-- Applied Persistence Workstream 1 -->
-            <div class="area-card" style="border-color: rgba(56, 189, 248, 0.4);">
-                <div class="area-header">
-                    <div class="area-title-group">
-                        <div class="area-subtitle">Applied Persistence Workstream 1 • Institutional Track</div>
-                        <h4 class="area-title">Strategic Management &amp; Institutional Persistence</h4>
-                    </div>
-                    <span class="status-badge status-active">Status: Active</span>
-                </div>
-
-                <div class="section-label">Objective</div>
-                <p class="objective-text">
-                    Formulate and test strategic management models based on the Odero Axiom to analyze organizational endurance, resource capture, and decay mitigation.
-                </p>
-
-                <div class="section-label">Current Topics</div>
-                <ul class="topic-list">
-                    <li>Corporate resource capture dynamics</li>
-                    <li>Control-energy-decay feedback loops in firms</li>
-                    <li>Intrapreneurial scaling frameworks</li>
-                    <li>Strategic resilience across economic corridors</li>
-                </ul>
-            </div>
-
+        <!-- DOMAIN F: Biology -->
+        <section
+        id="biology"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-biology"
+        aria-hidden="true"
+        hidden
+        >
+        <h2 class="domain-heading">
+        Domain F: Biological Persistence
+        </h2>
+         
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Applies Persistence Science to biological continuity,
+        information regulation, energy availability, immune
+        response, disease progression, cellular repair, systemic
+        degradation, adaptation, and recovery.
+        </p>
+         
+        <div class="portfolio-grid">
+         
+        <div class="portfolio-card">
+        <div>
+        <div
+        style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        "
+        >
+        <span class="paper-title">
+        Foundations of Biological Persistence
+        </span>
+         
+        <span class="status-badge status-ongoing">
+        Ongoing
+        </span>
+        </div>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        "
+        >
+        This research investigates how biological
+        systems maintain organization through
+        information-control capacity, usable energy,
+        repair, adaptation, and resistance to
+        cumulative decay. The programme examines how
+        the Odero Axiom may be operationalized across
+        cellular, immune, organismal, and population
+        levels.
+        </p>
+         
+        <ul
+        style="
+        color: #94a3b8;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding-left: 1.2rem;
+        "
+        >
+        <li>Biological information-control capacity</li>
+        <li>Cellular maintenance and repair</li>
+        <li>Metabolic energy availability</li>
+        <li>Immune-system coordination</li>
+        <li>Biological decay and degradation</li>
+        <li>Adaptation and recovery thresholds</li>
+        <li>Multi-scale biological persistence</li>
+        </ul>
+        </div>
+        </div>
+         
+        <div class="portfolio-card">
+        <div>
+        <div
+        style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+        "
+        >
+        <span class="paper-title">
+        HIV and AIDS Persistence Research
+        </span>
+         
+        <span class="status-badge status-ongoing">
+        Ongoing
+        </span>
+        </div>
+         
+        <p
+        style="
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-blue);
+        margin-bottom: 0.5rem;
+        "
+        >
+        Information, Immunity, Energy, Decay, and
+        Long-Term Systemic Persistence
+        </p>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        "
+        >
+        This research explores whether Persistence
+        Science can provide a systems-level framework
+        for examining the interaction among viral
+        persistence, immune regulation, treatment
+        continuity, biological energy availability,
+        cumulative physiological decay, and long-term
+        health-system support in HIV and AIDS.
+        </p>
+         
+        <p
+        style="
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-top: 0.5rem;
+        "
+        >
+        The work is presently conceptual and
+        methodological. Any clinical or epidemiological
+        application will require established biomedical
+        evidence, appropriate ethical review, qualified
+        clinical collaboration, and validated health
+        data.
+        </p>
+         
+        <ul
+        style="
+        color: #94a3b8;
+        font-size: 0.85rem;
+        line-height: 1.6;
+        padding-left: 1.2rem;
+        "
+        >
+        <li>Viral and host-system persistence</li>
+        <li>Immune information and response capacity</li>
+        <li>Treatment continuity and adherence systems</li>
+        <li>Inflammation and cumulative biological decay</li>
+        <li>Recovery and resilience indicators</li>
+        <li>Health-system support and continuity</li>
+        <li>Ethical and evidence requirements</li>
+        </ul>
+        </div>
+        </div>
+         
+        </div>
         </section>
 
-        <!-- CTA Section -->
+        <!-- DOMAIN G: Philosophy & Theology -->
+        <section
+        id="philosophy"
+        class="domain-section"
+        role="tabpanel"
+        aria-labelledby="tab-philosophy"
+        tabindex="0"
+        hidden
+        >
+            <h2 class="domain-heading">Domain G: Philosophy &amp; Theology of Persistence</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                Examines the philosophical and theological meaning of persistence while maintaining a clear distinction between interpretive claims and empirically testable mechanisms.
+            </p>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Meaning, Order &amp; Sustenance</span>
+                            <span class="status-badge status-validation">Developing</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Ontology of persistence, information and order, divine sustenance and physical law, scientific explanation, theological interpretation, and methodological boundaries.
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span class="paper-title">Belief &amp; Cultural Persistence</span>
+                            <span class="status-badge status-planned">Planned</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                            Cross-cultural study of continuity, belief transmission, institutional memory, and cultural persistence without treating theological claims as physical observables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Library Call-to-Action -->
         <section class="cta-section-spaced" style="text-align: center; padding: 3.5rem 2rem; margin-top: 3.5rem; margin-bottom: 2rem; background: rgba(15, 23, 42, 0.25); border: 1px solid var(--border-color); border-radius: 16px;">
             <h2 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: #f8fafc; border: none; padding: 0;">Explore Published Research</h2>
             <p style="color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto 1.75rem auto; line-height: 1.6;">
-                Access peer-reviewed publications, preprints, and underlying analytical documentation in the library.
+                Access verified publications and supporting analytical documentation in the library. Ongoing and planned studies remain clearly labeled until publication or validation is complete.
             </p>
             <div>
                 <a href="library.html" class="btn-glass-amber">Visit Library &rarr;</a>
@@ -846,15 +1389,36 @@
                 <a href="contact.html">Contact</a>
             </p>
             <p class="footer-meta">
-                ORCID: <a href="https://orcid.org/0009-0007-7039-7209" target="_blank" rel="noopener">0009-0007-7039-7209</a> &bull; 
-                Repository: <a href="https://zenodo.org" target="_blank" rel="noopener">Zenodo Preprints</a> &bull; 
-                Email: <a href="mailto:info@persistencescience.org">info@persistencescience.org</a>
+                ORCID: 
+                <a
+                href="https://orcid.org/0009-0007-7039-7209"
+                target="_blank"
+                rel="noopener"
+                >
+                0009-0007-7039-7209
+                </a>
+                &bull;
+                 
+                Repository:
+                <a
+                href="https://zenodo.org"
+                target="_blank"
+                rel="noopener"
+                >
+                Zenodo Preprints
+                </a>
+                &bull;
+                 
+                Email:
+                <a href="mailto:info@persistencescience.org">
+                info@persistencescience.org
+                </a>
             </p>
             <p style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Persistence Science</p>
         </div>
     </footer>
 
-    <!-- STABILIZED THREE.js WebGL Script -->
+    <!-- Three.js Background Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const container = document.getElementById('canvas-container');
@@ -1008,6 +1572,159 @@
                 });
             }
         });
+    </script>
+
+    <!-- Interactive Research Domains and Cosmology Stages -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /*
+        - Research domains
+        */
+
+        const domainTabs = Array.from(
+            document.querySelectorAll(".domain-tab")
+        );
+
+        const domainPanels = Array.from(
+            document.querySelectorAll(".domain-section")
+        );
+
+        function activateDomain(domainId, updateUrl = true) {
+
+            domainTabs.forEach(function (tab) {
+                const isSelected = tab.dataset.domain === domainId;
+                tab.setAttribute("aria-selected", isSelected ? "true" : "false");
+                tab.tabIndex = isSelected ? 0 : -1;
+            });
+
+            domainPanels.forEach(function (panel) {
+                const isSelected = panel.id === domainId;
+                panel.classList.toggle("is-active", isSelected);
+                panel.hidden = !isSelected;
+            });
+
+            if (updateUrl && window.history.replaceState) {
+                window.history.replaceState(null, "", "#" + domainId);
+            }
+        }
+
+        domainTabs.forEach(function (tab, index) {
+            tab.addEventListener("click", function () {
+                activateDomain(tab.dataset.domain);
+            });
+
+            tab.addEventListener("keydown", function (event) {
+                const navigationKeys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+                if (!navigationKeys.includes(event.key)) {
+                    return;
+                }
+
+                event.preventDefault();
+                let nextIndex = index;
+
+                if (event.key === "ArrowRight") {
+                    nextIndex = (index + 1) % domainTabs.length;
+                }
+                if (event.key === "ArrowLeft") {
+                    nextIndex = (index - 1 + domainTabs.length) % domainTabs.length;
+                }
+                if (event.key === "Home") {
+                    nextIndex = 0;
+                }
+                if (event.key === "End") {
+                    nextIndex = domainTabs.length - 1;
+                }
+
+                domainTabs[nextIndex].focus();
+                activateDomain(domainTabs[nextIndex].dataset.domain);
+            });
+        });
+
+        /*
+        - Open a domain directly from the URL.
+        - Example: research.html#economics
+        */
+
+        const requestedDomain = window.location.hash.replace("#", "");
+        const requestedDomainExists = domainTabs.some(function (tab) {
+            return tab.dataset.domain === requestedDomain;
+        });
+
+        if (requestedDomainExists) {
+            activateDomain(requestedDomain, false);
+        } else {
+            activateDomain("foundations", false);
+        }
+
+        /*
+        - Cosmology stages
+        */
+
+        const cosmologyStageTabs = Array.from(
+            document.querySelectorAll(".cosmology-stage-tab")
+        );
+
+        const cosmologyStageCards = Array.from(
+            document.querySelectorAll("#cosmology .portfolio-grid .stage-card")
+        );
+
+        function activateCosmologyStage(stageIndex) {
+            cosmologyStageTabs.forEach(function (tab, index) {
+                const isSelected = index === stageIndex;
+                tab.setAttribute("aria-selected", isSelected ? "true" : "false");
+                tab.tabIndex = isSelected ? 0 : -1;
+            });
+
+            cosmologyStageCards.forEach(function (card, index) {
+                const isSelected = index === stageIndex;
+                card.classList.toggle("is-active", isSelected);
+                card.hidden = !isSelected;
+            });
+        }
+
+        cosmologyStageTabs.forEach(function (tab, index) {
+            tab.addEventListener("click", function () {
+                activateCosmologyStage(index);
+            });
+
+            tab.addEventListener("keydown", function (event) {
+                const navigationKeys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+                if (!navigationKeys.includes(event.key)) {
+                    return;
+                }
+
+                event.preventDefault();
+                let nextIndex = index;
+
+                if (event.key === "ArrowRight") {
+                    nextIndex = (index + 1) % cosmologyStageTabs.length;
+                }
+                if (event.key === "ArrowLeft") {
+                    nextIndex = (
+                        index - 1 +
+                        cosmologyStageTabs.length
+                    ) % cosmologyStageTabs.length;
+                }
+                if (event.key === "Home") {
+                    nextIndex = 0;
+                }
+                if (event.key === "End") {
+                    nextIndex = cosmologyStageTabs.length - 1;
+                }
+
+                cosmologyStageTabs[nextIndex].focus();
+                activateCosmologyStage(nextIndex);
+            });
+        });
+
+        /*
+        - Show Stage I when Cosmology first opens.
+        */
+
+        activateCosmologyStage(0);
+
+    });
     </script>
 </body>
 </html>
